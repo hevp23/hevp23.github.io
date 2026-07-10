@@ -122,14 +122,17 @@
   <div id="reloj-actual" style="font-size: 1.8rem; font-weight: bold; margin-top: 5px; color: #ff4200; text-align: center;">00:00:00</div>
 </div>
 
-        <!-- Sección de Música Instrumental -->
+<!-- Sección de Música Instrumental con Autoplay Oculto -->
 <div style="background-color: #00ff16; padding: 10px; border-radius: 12px; margin: 15px auto; max-width: 280px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <p style="color: #ff4200; font-family: sans-serif; font-weight: bold; margin: 0 0 8px 0; font-size: 0.9rem;">🎵 Música Instrumental</p>
-  <audio controls style="width: 100%; height: 32px; border-radius: 8px;">
+  <p style="color: #ff4200; font-family: sans-serif; font-weight: bold; margin: 0; font-size: 0.9rem;">🎵 Música Instrumental</p>
+  
+  <!-- El reproductor no tiene 'controls', por eso no se verá la barra blanca, y lleva autoplay/loop -->
+  <audio autoplay loop>
     <source src="musica.mp3" type="audio/mpeg">
     Tu navegador no soporta este audio.
   </audio>
 </div>
+
 
         <!-- Contenedor de tus enlaces (Sustituto de Mezink) -->
         <div class="links-container">
