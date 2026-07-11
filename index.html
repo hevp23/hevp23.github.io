@@ -232,9 +232,17 @@
     const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
     let fechaTexto = ahora.toLocaleDateString('es-SV', opcionesFecha);
     
+        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        let fechaTexto = ahora.toLocaleDateString('es-SV', opcionesFecha);
 
-    fechaTexto = fechaTexto.replace(/([0-9]+\/)([a-z])/i, (match, p1, p2) => p1 + p2.toUpperCase());
-    fechaTexto = fechaTexto.replace(/de ([a-z])/, (match p1) => 'de ' + p1.toUpperCase());
+        // Convertir la primera letra de cada palabra en mayúscula de forma segura
+        let palabras = fechaTexto.split(' ');
+        palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1); // Hace mayúscula el día
+        if (palabras[3]) {
+            palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1); // Hace mayúscula el mes
+        }
+        fechaTexto = palabras.join(' ');
+
     
     // Formatear la hora con ceros a la izquierda si es necesario (11:41:00)
     const horas = String(ahora.getHours()).padStart(2, '0');
