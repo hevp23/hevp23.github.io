@@ -228,15 +228,13 @@
   function actualizarReloj() {
     const ahora = new Date();
     
-    // Opciones para la fecha en español: "Jue. 9/Jul/2026"
-    const opcionesFecha = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+    // Opciones para la fecha en español: "Jueves, 9 Julio de 2026"
+    const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
     let fechaTexto = ahora.toLocaleDateString('es-SV', opcionesFecha);
     
-    // Formatear la fecha para que quede limpia con barras
-    // Ejemplo: Jue, 9 jul 2026 -> Jue. 9/Jul/2026
-    fechaTexto = fechaTexto.replace(',', '.').replace(/ de /g, '/');
-    // Capitalizar la primera letra del mes
+
     fechaTexto = fechaTexto.replace(/([0-9]+\/)([a-z])/i, (match, p1, p2) => p1 + p2.toUpperCase());
+    fechaTexto = fechaTexto.replace(/de ([a-z])/, (match p1) => 'de ' + p1.toUpperCase());
     
     // Formatear la hora con ceros a la izquierda si es necesario (11:41:00)
     const horas = String(ahora.getHours()).padStart(2, '0');
