@@ -33,8 +33,8 @@
         .profile-img {
             width: 120px;
             height: 120px;
-            border-radius: 0%;
-            border: 0px solid #ffffff;
+            border-radius: 50%;
+            border: 40px solid #ffffff;
             object-fit: cover;
             margin-bottom: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -79,7 +79,7 @@
   width: 50%;
   max-width: 350px;
   aspect-ratio: 1 / 1;
-  border-radius: 0%;
+  border-radius: 50%;
   object-fit: cover;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -166,6 +166,43 @@
             gap: 10px;
             margin-bottom: 15px;
         }
+/* Este contenedor es el que hace la magia de ponerlos en 2 columnas */
+.cuadricula-enlaces {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Esto crea exactamente dos columnas iguales */
+  gap: 12px;                      /* Espacio de separación entre los botones */
+  width: 90%;
+  max-width: 500px;               /* Para que en pantallas grandes no se estiren demasiado */
+  margin: 20px auto;              /* Centra todo el bloque en la página */
+}
+
+/* Estilo individual de cada botón */
+.boton-enlace {
+  display: flex;
+  align-items: center;
+  background-color: #00FF1E;      /* Verde brillante, podés cambiarlo por el tono exacto que tenés */
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;                /* Un poquito más pequeña para que quepa bien a la par */
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.boton-enlace:hover {
+  transform: scale(1.03);
+}
+
+/* Estilo para los iconitos de cada botón */
+.icono-enlace {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;             /* Imagen totalmente redonda */
+  margin-right: 8px;              /* Espacio entre la foto y el texto */
+  object-fit: cover;
+}
 
         .link-card-half {
             flex: 1; /* Esto hace que cada tarjeta ocupe el 50% */
