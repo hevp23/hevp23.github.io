@@ -166,33 +166,32 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-/* Este contenedor es el que hace la magia de ponerlos en 2 columnas */
-/* Contenedor que hace la magia de ponerlos en 2 columnas */
+/* Contenedor principal para organizar en dos columnas */
 .cuadricula-enlaces {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas idénticas */
-  gap: 12px !important;                             /* Espacio de separación */
-  width: 95% !important;
-  max-width: 480px !important;                      /* Ajustado para pantallas de celular */
+  grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas iguales */
+  gap: 12px !important;                             /* Separación uniforme */
+  width: 90% !important;
+  max-width: 480px !important;                      /* Tamaño ideal para pantalla de cel */
   margin: 20px auto !important;
   padding: 0 !important;
 }
 
-/* Estilo de cada botón con tu color anaranjado y fondo verde */
+/* Estilo individual de cada uno de los botones nuevos */
 .boton-enlace {
   display: flex !important;
   align-items: center !important;
-  justify-content: flex-start !important; /* Alinea icono y texto a la izquierda */
+  justify-content: flex-start !important;
   background-color: #00ff16 !important;   /* Tu verde original */
-  color: #ff4200 !important;              /* Tu color anaranjado */
+  color: #ff4200 !important;              /* Tu texto anaranjado */
   text-decoration: none !important;
   font-weight: 600 !important;
-  font-size: 13px !important;             /* Tamaño de letra para que no se salga */
+  font-size: 13px !important;             /* Texto compacto para que no se salga */
   padding: 12px 10px !important;
-  border-radius: 12px !important;         /* Bordes redondeados */
+  border-radius: 12px !important;         /* Bordes redondeados nítidos */
   box-sizing: border-box !important;
-  width: 100% !important;                 /* Se acopla a su mitad de la columna */
-  height: 52px !important;                /* Fuerza a que todos midan lo mismo */
+  width: 100% !important;                 /* Cubre el ancho de su columna */
+  height: 52px !important;                /* Fuerza a que todos tengan la misma altura */
   transition: transform 0.2s !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
 }
@@ -201,15 +200,16 @@
   transform: scale(1.03) !important;
 }
 
-/* Estilo para las fotitos o iconos de cada botón */
+/* Iconos o fotos de los botones */
 .icono-enlace {
   width: 24px !important;
   height: 24px !important;
-  min-width: 24px !important;             /* Evita que se aplaste el icono */
-  border-radius: 50% !important;          /* Redondo */
-  margin-right: 10px !important;          /* Espacio entre la foto y el texto */
+  min-width: 24px !important;             /* Evita que se encoja la imagen */
+  border-radius: 50% !important;          /* Totalmente redondos */
+  margin-right: 8px !important;
   object-fit: cover !important;
 }
+
 
 
     </style>
@@ -252,22 +252,8 @@
     <a href="https://www.tiktok.com/@hevp23" style="background-color: #000000;"><i class="fab fa-tiktok"></i></a>
 </div>
 
-
-
-<!-- Fila forzada a ponerse a la par con estilos directos -->
-<div style="display: flex; gap: 10px; margin-bottom: 15px; width: 100%;">
-    <a href="https://www.getmysocial.com/hevp23" style="flex: 1; background-color: #00ff16; color: #ff4200; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25);">📖 Comunidad</a>
-    <a href="https://mez.ink/hevp23" style="flex: 1; background-color: #00ff16; color: #ff4200; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25);">✨ Mezink</a>
-</div>
 <div class="cuadricula-enlaces">
-  <div style="display: flex; gap: 10px; margin-bottom: 15px; width: 100%;">
-    <a href="https://www.getmysocial.com/hevp23" style="flex: 1; background-color: #00ff16; color: #ff4200; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25);">📖 Comunidad</a>
-    <img src="icono_linkfly.png" alt="Linkfly" class="icono-enlace">
-    <a href="https://mez.ink/hevp23" style="flex: 1; background-color: #00ff16; color: #ff4200; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25);">✨ Mezink</a>
-      <img src="icono_linkfly.png" alt="Linkfly" class="icono-enlace">
-  </div>
-    
-    <!-- Linkfly -->
+  <!-- Linkfly -->
   <a href="https://linkfly.to/hevp23?fbclid=IwVERDUATGSORleHRuA2FlbQIxMABzcnRjBmFwcF9pZAwzNTA2ODU1MzE3MjgAAR6Mx5Y4c7NbcchFsAQl6PLgEA-If8FbtF9gbgGxK1917PSn3I9qyaHWk_6k1A_aem_EbI_V4jEsmdHNcH11J9-SA" class="boton-enlace" target="_blank">
     <img src="icono_linkfly.png" alt="Linkfly" class="icono-enlace">
     <span>Linkfly</span>
@@ -351,6 +337,7 @@
     <span>Linkhub</span>
   </a>
 </div>
+
 
 
 
