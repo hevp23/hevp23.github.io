@@ -227,10 +227,9 @@
 
 /* El botón de la bandera: lo movemos un poco más a la izquierda */
 .idioma-fijo {
-.idioma-fijo {
   position: absolute;
-  left: -25px;         /* Te lo mueve a la izquierda de tu avatar */
-  top: 75px;          /* Lo centra verticalmente a la mitad de la foto */
+  left: -25px;         
+  top: -20px;         /* Lo cambiamos a negativo para que suba junto con la foto */
   transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
@@ -249,8 +248,8 @@
 .opciones-idioma {
   display: none;        
   position: absolute;
-  left: -25px;         /* Alineado recto con el botón */
-  top: 105px;          /* Justo abajo del botón redondo */
+  left: -25px;         
+  top: 10px;          /* Lo ajustamos para que aparezca abajito del botón redondo */
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -261,10 +260,6 @@
   gap: 5px;
 }
 
-/* Esta clase es la que activa el JavaScript para mostrar el menú */
-.opciones-idioma.show {
-  display: flex !important;
-}
 
 
 
@@ -277,19 +272,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <div class="portada" style="background-image: url('InShot_20260222_210212208.jpg'); border-radius: 0;"></div>
 
-<div style="position: relative; display: inline-block; margin-top: -55%;">
-  <!-- Tu foto de perfil -->
-  <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" style="border-radius: 50%; width: 150px; height: 150px; position: relative; z-index: 5; border: none;" alt="Foto de Perfil">
+<div style="position: relative; display: inline-block;">
+  <!-- Tu foto de perfil con su margin-top original del -55% -->
+  <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269fb1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=150" style="border-radius: 50%; width: 150px; height: 150px; position: relative; z-index: 5; border: none; margin-top: -55%;" alt="Foto de Perfil">
 
   <!-- Botón principal de la bandera -->
   <div class="idioma-fijo" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
 
-  <!-- Opciones del menú (Se abren abajo del botón) -->
+  <!-- Opciones del menú -->
   <div class="opciones-idioma" id="menu-idiomas">
     <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
     <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
   </div>
 </div>
+
 
 
 
