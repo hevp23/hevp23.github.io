@@ -248,19 +248,20 @@
 
 /* El menú de opciones: por defecto debe estar oculto */
 .opciones-idioma {
-  display: none;        /* Esto va a desaparecer las banderas de abajo */
+  display: none;        
   position: absolute;
-  left: -35px;          /* Que se alinee abajo del botón */
-  top: 105px;           /* Lo posiciona justo abajo del botón redondo */
+  left: -50px;          /* Lo alineamos con el nuevo left de -50px que le dimos al botón */
+  top: 125px;           /* Lo bajamos un poquito más para que no tape el botón principal */
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 5px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
   z-index: 15;
   flex-direction: column;
   gap: 5px;
 }
+
 
 /* Esta clase la activa tu JavaScript para mostrar el menú */
 .opciones-idioma.show {
@@ -289,7 +290,6 @@
   <div class="opciones-idioma" id="menu-idiomas">
     <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
     <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
-    <button onclick="cambiarIdioma('fr', '🇫🇷')">🇫🇷</button>
   </div>
 </div>
 
