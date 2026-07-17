@@ -229,8 +229,8 @@
 .idioma-fijo {
 .idioma-fijo {
   position: absolute;
-  left: -25px;         /* Lo cambiamos para que se desplace bien a la izquierda de tu avatar */
-  top: 90px;           /* Lo centramos un poco mejor verticalmente */
+  left: -25px;         /* Te lo mueve a la izquierda de tu avatar */
+  top: 75px;          /* Lo centra verticalmente a la mitad de la foto */
   transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
@@ -244,14 +244,13 @@
   cursor: pointer;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
   z-index: 10;
-  transition: transform 0.2s;
 }
 
 .opciones-idioma {
   display: none;        
   position: absolute;
-  left: -25px;          /* Cabal el mismo left para que quede alineado en línea recta con el botón */
-  top: 120px;           /* Se despliega justo abajo del botón principal */
+  left: -25px;         /* Alineado recto con el botón */
+  top: 105px;          /* Justo abajo del botón redondo */
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -262,12 +261,11 @@
   gap: 5px;
 }
 
-
-
-/* Esta clase la activa tu JavaScript para mostrar el menú */
+/* Esta clase es la que activa el JavaScript para mostrar el menú */
 .opciones-idioma.show {
   display: flex !important;
 }
+
 
 
 
