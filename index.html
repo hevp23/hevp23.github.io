@@ -240,13 +240,14 @@
   text-align: center;
 }
 
-/* --- BOTÓN TRADUCTOR FIJO A LA IZQUIERDA --- */
+/* --- BOTÓN TRADUCTOR QUE SE MUEVE CON LA PÁGINA --- */
 .idioma-flotante-izq {
-  position: fixed;     /* Se queda congelado en la pantalla */
-  left: 20px;          /* Lo pega al lado izquierdo */
-  top: 190px;          /* Lo baja a la altura del fondo azul (ajustalo si ocupás) */
-  z-index: 1000;       /* Super alto para que nada lo tape */
+  position: absolute;   /* ¡Hoy sí! Se mueve con el scroll de la página y no tapa nada */
+  left: 20px;           /* Lo mantiene pegado al lado izquierdo */
+  top: 190px;           /* Ajustamos los píxeles para que calce bien en la zona azul */
+  z-index: 1000;        
 }
+
 
 .idioma-boton {
   display: flex;
