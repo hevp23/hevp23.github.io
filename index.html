@@ -297,13 +297,18 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- Botón e idioma completamente independientes de la foto -->
-<div class="idioma-fijo" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
-
-<div class="opciones-idioma" id="menu-idiomas">
-  <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
-  <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
+<!-- Contenedor del botón de idioma, justo abajo del contenedor de tu foto -->
+<div class="contenedor-idioma">
+  <!-- Este es el botón principal que cambia de bandera -->
+  <div class="idioma-boton" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
+  
+  <!-- Este es el menú con las opciones que se abre al darle clic -->
+  <div class="opciones-idioma" id="menu-idiomas">
+    <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸 Español</button>
+    <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧 English</button>
+  </div>
 </div>
+
 
 
 
