@@ -279,21 +279,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <div class="portada" style="background-image: url('InShot_20260222_210212208.jpg'); border-radius: 0;"></div>
 
-    <div class="container">
-        <div class="contenedor-perfil">
-  <!-- 1. Primero ponemos tu foto de perfil -->
-  <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" style="border-radius: 50%; width: 150px; height: 150px; position: relative; z-index: 5;" alt="Foto de Perfil">
+<div style="position: relative; display: inline-block; margin-top: -55%;">
+  <!-- Tu foto de perfil -->
+  <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" style="border-radius: 50%; width: 150px; height: 150px; position: relative; z-index: 5; border: none;" alt="Foto de Perfil">
 
-  <!-- 2. Justo abajo de la foto, metemos el botón del traductor -->
+  <!-- Botón principal de la bandera -->
   <div class="idioma-fijo" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
 
-  
-  <!-- 3. Y abajo el menú de las opciones -->
+  <!-- Opciones del menú (Se abren abajo del botón) -->
   <div class="opciones-idioma" id="menu-idiomas">
     <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
     <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
   </div>
 </div>
+
 
 
 
