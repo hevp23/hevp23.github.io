@@ -217,63 +217,61 @@
   object-fit: cover !important;
 }
 
-/* Botón flotante de idioma */
-.idioma-flotante {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
-  transition: transform 0.2s;
+/* Contenedor para alinear la foto y el botón */
+.contenedor-perfil {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
-.idioma-flotante:hover {
-  transform: scale(1.1);
-}
-
-/* Menú con las opciones de banderas */
-.opciones-idioma {
-  position: fixed;
-  bottom: 85px;
-  right: 20px;
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-}
-
-.opciones-idioma button {
+/* El nuevo botón de idioma al lado izquierdo */
+.idioma-fijo {
+  position: absolute;
+  left: 15%; /* Lo empuja a la izquierda de la foto */
+  top: 50%;  /* Lo centra verticalmente en la línea */
+  transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  z-index: 10;
   transition: transform 0.2s;
 }
 
-.opciones-idioma button:hover {
-  transform: scale(1.1);
+.idioma-fijo:hover {
+  transform: translateY(-50%) scale(1.1);
 }
 
-/* Clase para mostrar el menú */
-.mostrar-menu {
-  display: flex;
+/* Menú de opciones que sale abajo del botón */
+.opciones-idioma {
+  display: none;
+  position: absolute;
+  left: 10%;
+  top: 95%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 20;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+}
+
+.opciones-idioma button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 3px;
 }
 
 
@@ -284,6 +282,14 @@
 <div class="portada" style="background-image: url('InShot_20260222_210212208.jpg'); border-radius: 0;"></div>
 
     <div class="container">
+        <div class="contenedor-perfil">
+  <!-- Botón del traductor en la X -->
+  <div class="idioma-fijo" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
+  <div class="opciones-idioma" id="menu-idiomas">
+    <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
+    <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
+    <button onclick="cambiarIdioma('fr', '🇫🇷')">🇫🇷</button>
+  </div>
         <!-- Foto de Perfil (Pegá aquí tu enlace de Gravatar entre las comillas) -->
         <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" class="profile-image" oncontextmenu="return false;" ondragstart="return false;" alt="Foto de perfil de Gravatar de Héctor Eduardo Valladares Pérez">
 
@@ -472,15 +478,6 @@
   setInterval(actualizarReloj, 1000);
 </script>
 
-<!-- Botón flotante principal (Empieza con España) -->
-<div class="idioma-flotante" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
-
-<!-- Opciones ocultas que aparecen al hacer clic -->
-<div class="opciones-idioma" id="menu-idiomas">
-  <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
-  <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
-  <button onclick="cambiarIdioma('fr', '🇫🇷')">🇫🇷</button>
-</div>
 
 </body>
 </html>
