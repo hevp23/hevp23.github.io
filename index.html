@@ -440,33 +440,40 @@
 </div>
 
 <script>
+  // Guardamos el idioma actual de la página ('es' por defecto)
+  let idiomaActual = 'es';
+
   function actualizarReloj() {
     const ahora = new Date();
+    let fechaTexto = "";
 
-    // Opciones para la fecha en español: "Jueves, 16 de Julio de 2026"
-    const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-    let fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
-
-    // Convertir la primera letra de cada palabra a mayúscula
-    let palabras = fechaTexto.split(' ');
-    palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1);
-    if (palabras[3]) {
-      palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1);
+    if (idiomaActual === 'es') {
+      // Fecha en Español
+      const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+      fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
+      
+      // Primera letra a mayúscula
+      let palabras = fechaTexto.split(' ');
+      palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1);
+      if (palabras[3]) {
+        palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1);
+      }
+      fechaTexto = palabras.join(' ');
+    } else {
+      // Fecha en Inglés: "Friday, July 17, 2026"
+      const opcionesFecha = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+      fechaTexto = ahora.toLocaleDateString('en-US', opcionesFecha);
     }
-    fechaTexto = palabras.join(' ');
 
     // --- CÓDIGO PARA EL RELOJ DE 12 HORAS ---
     let horas = ahora.getHours();
     const minutos = String(ahora.getMinutes()).padStart(2, '0');
     const segundos = String(ahora.getSeconds()).padStart(2, '0');
-    
-    // Determinamos si es AM o PM
     const ampm = horas >= 12 ? 'PM' : 'AM';
-    
-    // Convertimos de 24 horas a 12 horas
+
     horas = horas % 12;
-    horas = horas ? horas : 12; // Si la hora es 0, la cambia a 12
-    
+    horas = horas ? horas : 12;
+
     const horaTexto = `${horas}:${minutos}:${segundos} ${ampm}`;
 
     // Meter los datos en la pantalla
@@ -474,17 +481,39 @@
     document.getElementById('reloj-actual').textContent = horaTexto;
   }
 
-  // Ejecutar la función de inmediato y luego cada segundo
+  // Ejecutar el reloj de inmediato y cada segundo
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
-</script>
 
-<script>
+  // Función para abrir y cerrar el menú de banderas
   function toggleMenu() {
     var menu = document.getElementById("menu-idiomas");
     menu.classList.toggle("show");
   }
+
+  // Función principal que cambia los textos de los botones al inglés
+  function cambiarIdioma(lang, flag) {
+    idiomaActual = lang;
+    
+    // Cambia el emoji del botón principal
+    document.getElementById("btn-idioma").textContent = flag;
+    
+    // Forzamos al reloj a actualizarse con el nuevo idioma al instante
+    actualizarReloj();
+
+    // Aquí agregamos las traducciones de tus 8 botones principales
+    if (lang === 'en') {
+      document.querySelector('a[href*="comunidad"] .Link-text, .Comunidad-text, a:nth-of-type(1) text').textContent = "Community";
+      // Agregaremos el resto de botones de tu lista en el siguiente paso
+    } else {
+      document.querySelector('a[href*="comunidad"] .Link-text, .Comunidad-text, a:nth-of-type(1) text').textContent = "Comunidad";
+    }
+
+    // Cierra el menú al elegir
+    toggleMenu();
+  }
 </script>
+
 
 </body>
 </html>
