@@ -217,6 +217,64 @@
   object-fit: cover !important;
 }
 
+/* Botón flotante de idioma */
+.idioma-flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+.idioma-flotante:hover {
+  transform: scale(1.1);
+}
+
+/* Menú con las opciones de banderas */
+.opciones-idioma {
+  position: fixed;
+  bottom: 85px;
+  right: 20px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.opciones-idioma button {
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.opciones-idioma button:hover {
+  transform: scale(1.1);
+}
+
+/* Clase para mostrar el menú */
+.mostrar-menu {
+  display: flex;
+}
 
 
     </style>
@@ -414,6 +472,15 @@
   setInterval(actualizarReloj, 1000);
 </script>
 
+<!-- Botón flotante principal (Empieza con España) -->
+<div class="idioma-flotante" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
+
+<!-- Opciones ocultas que aparecen al hacer clic -->
+<div class="opciones-idioma" id="menu-idiomas">
+  <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
+  <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
+  <button onclick="cambiarIdioma('fr', '🇫🇷')">🇫🇷</button>
+</div>
 
 </body>
 </html>
