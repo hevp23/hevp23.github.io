@@ -218,18 +218,19 @@
 }
 
 /* Contenedor para alinear la foto y el botón */
+/* 1. Modificamos el contenedor para que solo rodee la foto */
 .contenedor-perfil {
   position: relative;
   display: inline-block;
-  width: 100%;
+  margin-top: -80px; /* Esto es para que suba la foto sobre la portada azul */
   text-align: center;
 }
 
-/* El nuevo botón de idioma al lado izquierdo */
+/* 2. Ajustamos la posición exacta del botón */
 .idioma-fijo {
   position: absolute;
-  left: 15%; /* Lo empuja a la izquierda de la foto */
-  top: 50%;  /* Lo centra verticalmente en la línea */
+  left: -20px;       /* Lo saca un poquito a la izquierda de la foto */
+  top: 50%;          /* Lo centra verticalmente con el círculo */
   transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
@@ -246,33 +247,6 @@
   transition: transform 0.2s;
 }
 
-.idioma-fijo:hover {
-  transform: translateY(-50%) scale(1.1);
-}
-
-/* Menú de opciones que sale abajo del botón */
-.opciones-idioma {
-  display: none;
-  position: absolute;
-  left: 10%;
-  top: 95%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 5px;
-  flex-direction: column;
-  gap: 5px;
-  z-index: 20;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
-}
-
-.opciones-idioma button {
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  padding: 3px;
-}
 
 
     </style>
