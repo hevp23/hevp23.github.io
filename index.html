@@ -218,19 +218,17 @@
 }
 
 /* Contenedor para alinear la foto y el botón */
-/* 1. Modificamos el contenedor para que solo rodee la foto */
 .contenedor-perfil {
   position: relative;
   display: inline-block;
-  margin-top: -80px; /* Esto es para que suba la foto sobre la portada azul */
+  margin-top: -55px; /* Esto hace que la foto suba un poquito y muerda la portada azul de forma limpia */
   text-align: center;
 }
 
-/* 2. Ajustamos la posición exacta del botón */
 .idioma-fijo {
   position: absolute;
-  left: -20px;       /* Lo saca un poquito a la izquierda de la foto */
-  top: 50%;          /* Lo centra verticalmente con el círculo */
+  left: -15px;       /* Hoy sí se va a mover con respecto a la foto */
+  top: 75px;         /* Lo baja a la mitad exacta de la altura de la foto (que mide 150px) */
   transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
@@ -249,6 +247,7 @@
 
 
 
+
     </style>
 </head>
 <body>
@@ -257,15 +256,19 @@
 
     <div class="container">
         <div class="contenedor-perfil">
-  <!-- Botón del traductor en la X -->
+  <!-- 1. Primero ponemos tu foto de perfil -->
+  <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" style="border-radius: 50%; width: 150px; height: 150px; border: 4px solid white; position: relative; z-index: 5;" alt="Foto de Perfil">
+
+  <!-- 2. Justo abajo de la foto, metemos el botón del traductor -->
   <div class="idioma-fijo" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
+  
+  <!-- 3. Y abajo el menú de las opciones -->
   <div class="opciones-idioma" id="menu-idiomas">
     <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸</button>
     <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧</button>
     <button onclick="cambiarIdioma('fr', '🇫🇷')">🇫🇷</button>
   </div>
-        <!-- Foto de Perfil (Pegá aquí tu enlace de Gravatar entre las comillas) -->
-        <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" class="profile-image" oncontextmenu="return false;" ondragstart="return false;" alt="Foto de perfil de Gravatar de Héctor Eduardo Valladares Pérez">
+</div>
 
 
 
