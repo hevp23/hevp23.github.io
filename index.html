@@ -240,44 +240,65 @@
   text-align: center;
 }
 
-/* El botón de la bandera: lo movemos un poco más a la izquierda */
-.idioma-fijo {
-.idioma-fijo {
-  position: fixed;
-  right: 20px;         /* Lo pegamos a la derecha de la pantalla */
-  top: 20px;           /* Lo pegamos arriba de la pantalla */
+/* --- BOTÓN TRADUCTOR FIJO A LA IZQUIERDA --- */
+.idioma-flotante-izq {
+  position: fixed;     /* Se queda congelado en la pantalla */
+  left: 20px;          /* Lo pega al lado izquierdo */
+  top: 170px;          /* Lo baja a la altura del fondo azul (ajustalo si ocupás) */
+  z-index: 1000;       /* Super alto para que nada lo tape */
+}
+
+.idioma-boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: white;
   border: 2px solid #ccc;
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-  z-index: 100;        /* Súper alto para que nada lo tape */
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+  user-select: none;
 }
 
 .opciones-idioma {
   display: none;        
-  position: fixed;
-  right: 20px;         /* Alineado cabalito con el botón de arriba */
-  top: 75px;           /* Aparece justo abajo del botón redondo */
+  position: absolute;  
+  left: 0;             
+  top: 50px;           
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 5px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-  z-index: 105;
+  padding: 6px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  z-index: 1005;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+}
+
+.opciones-idioma button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap; 
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.opciones-idioma button:hover {
+  background-color: #f0f0f0;
+  border-radius: 4px;
 }
 
 .opciones-idioma.show {
   display: flex !important;
 }
+
 
 
 
@@ -302,12 +323,15 @@
   <!-- Este es el botón principal que cambia de bandera -->
   <div class="idioma-boton" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
   
-  <!-- Este es el menú con las opciones que se abre al darle clic -->
+  <!-- El botón de idioma totalmente independiente -->
+<div class="idioma-flotante-izq">
+  <div class="idioma-boton" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
   <div class="opciones-idioma" id="menu-idiomas">
     <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸 Español</button>
     <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧 English</button>
   </div>
 </div>
+
 
 
 
