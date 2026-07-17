@@ -225,10 +225,11 @@
   text-align: center;
 }
 
+/* El botón de la bandera: lo movemos un poco más a la izquierda */
 .idioma-fijo {
   position: absolute;
-  left: -15px;       /* Hoy sí se va a mover con respecto a la foto */
-  top: 75px;         /* Lo baja a la mitad exacta de la altura de la foto (que mide 150px) */
+  left: -35px;       /* Le subí de -15px a -35px para que se aleje de tu cara */
+  top: 75px;         
   transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
@@ -244,6 +245,28 @@
   z-index: 10;
   transition: transform 0.2s;
 }
+
+/* El menú de opciones: por defecto debe estar oculto */
+.opciones-idioma {
+  display: none;        /* Esto va a desaparecer las banderas de abajo */
+  position: absolute;
+  left: -35px;          /* Que se alinee abajo del botón */
+  top: 105px;           /* Lo posiciona justo abajo del botón redondo */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  z-index: 15;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Esta clase la activa tu JavaScript para mostrar el menú */
+.opciones-idioma.show {
+  display: flex !important;
+}
+
 
 
 
