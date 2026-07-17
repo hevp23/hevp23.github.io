@@ -227,9 +227,10 @@
 
 /* El botón de la bandera: lo movemos un poco más a la izquierda */
 .idioma-fijo {
+.idioma-fijo {
   position: absolute;
-  left: -35px;       /* Le subí de -15px a -35px para que se aleje de tu cara */
-  top: 75px;         
+  left: -25px;         /* Lo cambiamos para que se desplace bien a la izquierda de tu avatar */
+  top: 90px;           /* Lo centramos un poco mejor verticalmente */
   transform: translateY(-50%);
   background: white;
   border: 2px solid #ccc;
@@ -246,12 +247,11 @@
   transition: transform 0.2s;
 }
 
-/* El menú de opciones: por defecto debe estar oculto */
 .opciones-idioma {
   display: none;        
   position: absolute;
-  left: -50px;          /* Lo alineamos con el nuevo left de -50px que le dimos al botón */
-  top: 125px;           /* Lo bajamos un poquito más para que no tape el botón principal */
+  left: -25px;          /* Cabal el mismo left para que quede alineado en línea recta con el botón */
+  top: 120px;           /* Se despliega justo abajo del botón principal */
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -261,6 +261,7 @@
   flex-direction: column;
   gap: 5px;
 }
+
 
 
 /* Esta clase la activa tu JavaScript para mostrar el menú */
