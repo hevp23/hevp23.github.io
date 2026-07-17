@@ -370,36 +370,43 @@
 <script>
   function actualizarReloj() {
     const ahora = new Date();
-    
-    // Opciones para la fecha en español: "Jueves, 9 Julio de 2026"
+
+    // Opciones para la fecha en español: "Jueves, 16 de Julio de 2026"
     const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-    
-        let fechaTexto = ahora.toLocaleDateString('es-SV', opcionesFecha);
+    let fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
 
-        // Convertir la primera letra de cada palabra en mayúscula de forma segura
-        let palabras = fechaTexto.split(' ');
-        palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1); // Hace mayúscula el día
-        if (palabras[3]) {
-            palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1); // Hace mayúscula el mes
-        }
-        fechaTexto = palabras.join(' ');
+    // Convertir la primera letra de cada palabra a mayúscula
+    let palabras = fechaTexto.split(' ');
+    palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1);
+    if (palabras[3]) {
+      palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1);
+    }
+    fechaTexto = palabras.join(' ');
 
-    
-    // Formatear la hora con ceros a la izquierda si es necesario (11:41:00)
-    const horas = String(ahora.getHours()).padStart(2, '0');
+    // --- CÓDIGO PARA EL RELOJ DE 12 HORAS ---
+    let horas = ahora.getHours();
     const minutos = String(ahora.getMinutes()).padStart(2, '0');
     const segundos = String(ahora.getSeconds()).padStart(2, '0');
-    const horaTexto = `${horas}:${minutos}:${segundos}`;
     
+    // Determinamos si es AM o PM
+    const ampm = horas >= 12 ? 'PM' : 'AM';
+    
+    // Convertimos de 24 horas a 12 horas
+    horas = horas % 12;
+    horas = horas ? horas : 12; // Si la hora es 0, la cambia a 12
+    
+    const horaTexto = `${horas}:${minutos}:${segundos} ${ampm}`;
+
     // Meter los datos en la pantalla
     document.getElementById('fecha-actual').textContent = fechaTexto;
     document.getElementById('reloj-actual').textContent = horaTexto;
   }
 
-  // Ejecutar la función de inmediato y luego cada segundo (1000 milisegundos)
+  // Ejecutar la función de inmediato y luego cada segundo
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
 </script>
+
 
 </body>
 </html>
