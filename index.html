@@ -191,13 +191,14 @@
 /* --- LA CUADRÍCULA (Para que queden 2 columnas iguales) --- */
 .cuadricula-enlaces {
   display: grid !important;
-  /* CAMBIÁ ESTA LÍNEA ABAJO: Usamos minmax para bloquear el ancho idéntico */
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
   gap: 12px;                      
   width: 90%;                     
   max-width: 500px;               
-  margin: 20px auto;              
+  margin: 20px auto !important;   /* Le ponemos important para que mande */
+  justify-content: center;        /* ¡ESTA LÍNEA va a jalar todo al centro! */
 }
+
 
 
 /* --- LOS BOTONES (Verde #00ff16 y Anaranjado #ff4200) --- */
