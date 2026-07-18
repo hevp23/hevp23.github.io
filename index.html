@@ -556,6 +556,72 @@
   }
 </script>
 
+function cambiarIdioma(idioma, bandera) {
+  // 1. Cambiar el emoji del botón principal
+  document.getElementById('btn-idioma').innerText = bandera;
+  
+  // Mapeo de todos los elementos por su ID único
+  const elementos = {
+    comunidad: document.getElementById('txt-comunidad'),
+    mezink: document.getElementById('txt-mezink'),
+    linkfly: document.getElementById('txt-linkfly'),
+    beacons: document.getElementById('txt-beacons'),
+    linkbio: document.getElementById('txt-linkbio'),
+    visitmylinks: document.getElementById('txt-visitmylinks'),
+    gravatar: document.getElementById('txt-gravatar'),
+    linkme: document.getElementById('txt-linkme'),
+    allmylinks: document.getElementById('txt-allmylinks'),
+    carrd: document.getElementById('txt-carrd'),
+    lynkdo: document.getElementById('txt-lynkdo'),
+    fabbio: document.getElementById('txt-fabbio'),
+    milkshake: document.getElementById('txt-milkshake'),
+    inbio: document.getElementById('txt-inbio'),
+    ibio: document.getElementById('txt-ibio'),
+    linkhub: document.getElementById('txt-linkhub')
+  };
+
+  // 2. Aplicar los textos correspondientes según el idioma elegido
+  if (idioma === 'es') {
+    if(elementos.comunidad) elementos.comunidad.innerText = "Comunidad";
+    if(elementos.mezink) elementos.mezink.innerText = "Mezink";
+    if(elementos.linkfly) elementos.linkfly.innerText = "Linkfly";
+    if(elementos.beacons) elementos.beacons.innerText = "Beacons";
+    if(elementos.linkbio) elementos.linkbio.innerText = "Linkbio";
+    if(elementos.visitmylinks) elementos.visitmylinks.innerText = "Visit My Links";
+    if(elementos.gravatar) elementos.gravatar.innerText = "Gravatar";
+    if(elementos.linkme) elementos.linkme.innerText = "Linkme";
+    if(elementos.allmylinks) elementos.allmylinks.innerText = "AllMyLinks";
+    if(elementos.carrd) elementos.carrd.innerText = "Carrd";
+    if(elementos.lynkdo) elements.lynkdo.innerText = "Lynkdo";
+    if(elementos.fabbio) elementos.fabbio.innerText = "Fab Bio";
+    if(elementos.milkshake) elementos.milkshake.innerText = "Milkshake";
+    if(elementos.inbio) elementos.inbio.innerText = "Inbio";
+    if(elementos.ibio) elementos.ibio.innerText = "iBio";
+    if(elementos.linkhub) elementos.linkhub.innerText = "Linkhub";
+    
+  } else if (idioma === 'en') {
+    if(elementos.comunidad) elementos.comunidad.innerText = "Community";
+    if(elementos.mezink) elementos.mezink.innerText = "Mezink";
+    if(elementos.linkfly) elementos.linkfly.innerText = "Linkfly";
+    if(elementos.beacons) elementos.beacons.innerText = "Beacons";
+    if(elementos.linkbio) elementos.linkbio.innerText = "Linkbio";
+    if(elementos.visitmylinks) elementos.visitmylinks.innerText = "Visit My Links"; // Se mantiene igual
+    if(elementos.gravatar) elementos.gravatar.innerText = "Gravatar";
+    if(elementos.linkme) elementos.linkme.innerText = "Linkme";
+    if(elementos.allmylinks) elementos.allmylinks.innerText = "AllMyLinks";
+    if(elementos.carrd) elementos.carrd.innerText = "Carrd";
+    if(elementos.lynkdo) elementos.lynkdo.innerText = "Lynkdo";
+    if(elementos.fabbio) elementos.fabbio.innerText = "Fab Bio";
+    if(elementos.milkshake) elementos.milkshake.innerText = "Milkshake";
+    if(elementos.inbio) elementos.inbio.innerText = "Inbio";
+    if(elementos.ibio) elementos.ibio.innerText = "iBio";
+    if(elementos.linkhub) elementos.linkhub.innerText = "Linkhub";
+  }
+
+  // 3. Cerrar el menú desplegable automáticamente
+  const menu = document.getElementById('menu-idiomas');
+  if(menu) menu.classList.remove('show');
+}
 
 </body>
 </html>
