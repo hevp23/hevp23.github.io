@@ -188,30 +188,22 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-/* Contenedor principal para organizar en dos columnas */
+/* --- CONFIGURACIÓN DE LA CUADRÍCULA --- */
 .cuadricula-enlaces {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas iguales */
-  gap: 12px !important;                             /* Separación uniforme */
-  width: 90% !important;
-  max-width: 480px !important;                      /* Tamaño ideal para pantalla de cel */
-  margin: 20px auto !important;
-  padding: 0 !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* ¡Esta es la clave! Obliga a que las 2 columnas tengan exactamente el mismo ancho (50% y 50%) */
+  gap: 12px;                      /* El espacio de separación entre los botones */
 }
 
-/* Estilo individual de cada uno de los botones nuevos */
+/* --- CONFIGURACIÓN DE LOS BOTONES --- */
 .boton-enlace {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  background-color: #00ff16 !important;   /* Tu verde original */
-  color: #ff4200 !important;              /* Tu texto anaranjado */
-  text-decoration: none !important;
-  font-weight: 600 !important;
-  font-size: 13px !important;             /* Texto compacto para que no se salga */
-  padding: 12px 10px !important;
-  border-radius: 12px !important;         /* Bordes redondeados nítidos */
-  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  width: 100%;                   /* Hace que el botón ocupe todo el ancho de su columna y no se encoja */
+  box-sizing: border-box;         /* Evita que el botón se deforme con el padding */
+  /* Aquí abajo se quedan tus otros estilos (background-color, padding, border-radius, etc.) */
+
+
   width: 100% !important;                 /* Cubre el ancho de su columna */
   height: 52px !important;                /* Fuerza a que todos tengan la misma altura */
   transition: transform 0.2s !important;
