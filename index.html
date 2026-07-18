@@ -191,41 +191,48 @@
 /* --- LA CUADRÍCULA (Para que queden 2 columnas iguales) --- */
 .cuadricula-enlaces {
   display: grid !important;
-grid-template-columns: 1fr 1fr !important;
- /* Hace que las dos columnas midan exactamente lo mismo */
-  gap: 12px;                      /* Espacio de separación entre botones */
-  width: 90%;                     /* Centra la cuadrícula en la pantalla */
-  max-width: 500px;               /* Evita que se estire demasiado en pantallas grandes */
-  margin: 20px auto;              /* Centra todo el bloque de botones */
+  grid-template-columns: 1fr 1fr !important; /* Columnas idénticas */
+  gap: 12px;                                  /* Separación entre botones */
+  width: 90%;                                 /* Centra la cuadrícula */
+  max-width: 500px;                           /* Límite en pantallas grandes */
+  margin: 20px auto;                          /* Centra el bloque entero */
 }
 
-/* --- LOS BOTONES (Con tus colores exactos #00ff16 y #ff4200) --- */
+/* --- LOS BOTONES (Verde #00ff16 y Anaranjado #ff4200) --- */
 .boton-enlace {
   display: flex;
   align-items: center;
-  justify-content: flex-start;    /* Alinea el icono y el texto al inicio */
-  background-color: #00ff16;      /* Tu color verde chillante de fondo */
-  color: #ff4200;                 /* Tu color anaranjado para las letras */
-  text-decoration: none;          /* Quita la línea azul de enlace subrayado */
-  padding: 12px 15px;             /* Espacio interno para que no se vea apretado */
-  border-radius: 15px;            /* Bordes bien redondeados como los tenías antes */
-  font-weight: bold;              /* Letras en negrita para que resalten */
-  width: 100%;                    /* Obliga al botón a estirarse al 100% de su columna */
-  box-sizing: border-box;         /* Evita que el botón se deforme */
+  justify-content: center;        /* ¡Hoy sí! Todo bien centrado al medio */
+  background-color: #00ff16;      /* Tu verde chivo de fondo */
+  color: #ff4200;                 /* Tu anaranjado para las letras */
+  text-decoration: none;          
+  padding: 12px 15px;             /* Espacio interno cabal */
+  border-radius: 15px;            /* Esquinas bien redondeadas */
+  font-weight: bold;              
+  width: 100%;                    
+  box-sizing: border-box;         
+  transition: transform 0.2s ease; /* Pequeño efecto al tocarlo */
+}
+
+/* --- EFECTO AL PASAR EL MOUSE O TOCAR EL BOTÓN --- */
+.boton-enlace:hover {
+  transform: scale(1.02);         /* Se hace un "penitito" más grande */
 }
 
 /* --- LOS ICONOS ADENTRO DE LOS BOTONES --- */
 .icono-enlace {
-  width: 24px;                    /* Tamaño de los iconos pequeños */
-  height: 24px;
-  margin-right: 10px;             /* Espacio entre el icono y el texto */
-  object-fit: contain;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;     /* Evita que se encoja la imagen */
+  border-radius: 50% !important;  /* Totalmente redonditos */
+  margin-right: 8px !important;   /* Separación con el texto */
+  object-fit: cover !important;
 }
 
-/* --- COLOR DE LAS LETRAS (Por si tenías etiquetas span o a) --- */
+/* --- COLOR DE LAS LETRAS (Asegura tu anaranjado) --- */
 .boton-enlace span, 
 .boton-enlace a {
-  color: #ff4200 !important;      /* Asegura que el texto sea anaranjado y no azul */
+  color: #ff4200 !important;      
   text-decoration: none;
 }
 
