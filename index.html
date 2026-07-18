@@ -190,8 +190,9 @@
         }
 /* --- LA CUADRÍCULA (Para que queden 2 columnas iguales) --- */
 .cuadricula-enlaces {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Hace que las dos columnas midan exactamente lo mismo */
+  display: grid !important;
+grid-template-columns: 1fr 1fr !important;
+ /* Hace que las dos columnas midan exactamente lo mismo */
   gap: 12px;                      /* Espacio de separación entre botones */
   width: 90%;                     /* Centra la cuadrícula en la pantalla */
   max-width: 500px;               /* Evita que se estire demasiado en pantallas grandes */
