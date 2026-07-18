@@ -188,31 +188,46 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-/* --- CONFIGURACIÓN DE LA CUADRÍCULA --- */
+/* --- LA CUADRÍCULA (Para que queden 2 columnas iguales) --- */
 .cuadricula-enlaces {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* ¡Esta es la clave! Obliga a que las 2 columnas tengan exactamente el mismo ancho (50% y 50%) */
-  gap: 12px;                      /* El espacio de separación entre los botones */
+  grid-template-columns: 1fr 1fr; /* Hace que las dos columnas midan exactamente lo mismo */
+  gap: 12px;                      /* Espacio de separación entre botones */
+  width: 90%;                     /* Centra la cuadrícula en la pantalla */
+  max-width: 500px;               /* Evita que se estire demasiado en pantallas grandes */
+  margin: 20px auto;              /* Centra todo el bloque de botones */
 }
 
-/* --- CONFIGURACIÓN DE LOS BOTONES --- */
+/* --- LOS BOTONES (Con tus colores exactos #00ff16 y #ff4200) --- */
 .boton-enlace {
   display: flex;
   align-items: center;
-  width: 100%;                   /* Hace que el botón ocupe todo el ancho de su columna y no se encoja */
-  box-sizing: border-box;         /* Evita que el botón se deforme con el padding */
-  /* Aquí abajo se quedan tus otros estilos (background-color, padding, border-radius, etc.) */
-
-
-  width: 100% !important;                 /* Cubre el ancho de su columna */
-  height: 52px !important;                /* Fuerza a que todos tengan la misma altura */
-  transition: transform 0.2s !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  justify-content: flex-start;    /* Alinea el icono y el texto al inicio */
+  background-color: #00ff16;      /* Tu color verde chillante de fondo */
+  color: #ff4200;                 /* Tu color anaranjado para las letras */
+  text-decoration: none;          /* Quita la línea azul de enlace subrayado */
+  padding: 12px 15px;             /* Espacio interno para que no se vea apretado */
+  border-radius: 15px;            /* Bordes bien redondeados como los tenías antes */
+  font-weight: bold;              /* Letras en negrita para que resalten */
+  width: 100%;                    /* Obliga al botón a estirarse al 100% de su columna */
+  box-sizing: border-box;         /* Evita que el botón se deforme */
 }
 
-.boton-enlace:hover {
-  transform: scale(1.03) !important;
+/* --- LOS ICONOS ADENTRO DE LOS BOTONES --- */
+.icono-enlace {
+  width: 24px;                    /* Tamaño de los iconos pequeños */
+  height: 24px;
+  margin-right: 10px;             /* Espacio entre el icono y el texto */
+  object-fit: contain;
 }
+
+/* --- COLOR DE LAS LETRAS (Por si tenías etiquetas span o a) --- */
+.boton-enlace span, 
+.boton-enlace a {
+  color: #ff4200 !important;      /* Asegura que el texto sea anaranjado y no azul */
+  text-decoration: none;
+}
+
 
 /* Iconos o fotos de los botones */
 .icono-enlace {
