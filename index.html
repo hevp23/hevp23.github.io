@@ -364,11 +364,12 @@
   ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇸🇻
 </p>
 
-<!-- Botón único y limpio para cambiar de idioma -->
-<div class="idioma-flotante-izq" style="text-align: center;" onclick="alternarIdioma()">
-  <div id="btn-idioma" style="font-size: 32px; cursor: pointer; display: inline-block;">🇪🇸</div>
-  <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
+<!-- Selector de idioma con elementos separados y limpios -->
+<div class="idioma-flotante-izq" style="text-align: center; cursor: pointer;" onclick="alternarIdioma()">
+  <div id="icono-bandera" style="font-size: 32px; display: inline-block;">🇪🇸</div>
+  <div id="texto-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
 </div>
+
 
 <!-- Botón único y limpio para cambiar de idioma -->
 <div class="idioma-flotante-izq" style="text-align: center;" onclick="alternarIdioma()">
@@ -516,25 +517,21 @@
 
   setInterval(actualizarReloj, 1000);
 
-  function renderizarBotonIdioma() {
-      const contenedor = document.getElementById('contenedor-idioma');
-      if (idiomaActual === 'es') {
-          contenedor.innerHTML = `
-              <div style="font-size: 32px; display: inline-block;">🇪🇸</div>
-              <div style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
-          `;
-      } else {
-          contenedor.innerHTML = `
-              <div style="font-size: 32px; display: inline-block;">🇬🇧</div>
-              <div style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">English</div>
-          `;
-      }
-  }
-
   function alternarIdioma() {
-      idiomaActual = (idiomaActual === 'es') ? 'en' : 'es';
-      renderizarBotonIdioma();
+      const bandera = document.getElementById("icono-bandera");
+      const texto = document.getElementById("texto-idioma");
 
+      if (idiomaActual === 'es') {
+          idiomaActual = 'en';
+          bandera.innerText = "🇬🇧";
+          texto.innerText = "English";
+      } else {
+          idiomaActual = 'es';
+          bandera.innerText = "🇪🇸";
+          texto.innerText = "Español";
+      }
+
+      // Traducir los botones
       const elementos = document.querySelectorAll('.boton-enlace span');
       elementos.forEach(el => {
           if (idiomaActual === 'en') {
@@ -547,9 +544,9 @@
       actualizarReloj();
   }
 
-  renderizarBotonIdioma();
   actualizarReloj();
 </script>
+
 
 
 
