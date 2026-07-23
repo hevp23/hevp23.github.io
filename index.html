@@ -516,7 +516,6 @@
 
   setInterval(actualizarReloj, 1000);
 
-  // Función para renderizar el botón y evitar que se encimen las letras
   function renderizarBotonIdioma() {
       const contenedor = document.getElementById('contenedor-idioma');
       if (idiomaActual === 'es') {
@@ -534,10 +533,8 @@
 
   function alternarIdioma() {
       idiomaActual = (idiomaActual === 'es') ? 'en' : 'es';
-
       renderizarBotonIdioma();
 
-      // Traducir los botones
       const elementos = document.querySelectorAll('.boton-enlace span');
       elementos.forEach(el => {
           if (idiomaActual === 'en') {
@@ -550,10 +547,10 @@
       actualizarReloj();
   }
 
-  // Inicializar al cargar la página
   renderizarBotonIdioma();
   actualizarReloj();
 </script>
+
 
 
 <script>
