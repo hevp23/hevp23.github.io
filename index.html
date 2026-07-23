@@ -516,7 +516,6 @@
   function actualizarReloj() {
       const fechaHora = new Date();
       
-      // Usamos la variable global idiomaActual para saber el idioma exacto
       const esIngles = idiomaActual === 'en';
       const idioma = esIngles ? 'en-US' : 'es-ES';
 
@@ -535,7 +534,7 @@
           fechaFormateada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
       }
 
-      // Opciones para la hora asegurando formato de 12 horas con AM/PM en ambos idiomas
+      // Opciones para la hora con formato de 12 horas
       const opcionesHora = { 
           hour: 'numeric', 
           minute: 'numeric', 
@@ -544,6 +543,9 @@
       };
 
       let horaFormateada = fechaHora.toLocaleTimeString(idioma, opcionesHora);
+
+      // Limpiamos los puntos de p.m. / a.m. y los pasamos a mayúsculas PM / AM
+      horaFormateada = horaFormateada.replace(/p\.?\s*m\.?/gi, 'PM').replace(/a\.?\s*m\.?/gi, 'AM');
 
       // Lo inyectamos en tus contenedores del reloj
       document.getElementById('fecha-actual').innerText = fechaFormateada;
@@ -560,11 +562,11 @@
       menu.classList.toggle("show");
   }
 
-  // Función principal que cambia los textos de los botones y el idioma del reloj
+  // Función principal que cambia los textos, la bandera y el nombre del idioma
   function cambiarIdioma(lang, flag) {
-      idiomaActual = lang; // Actualizamos la variable global de idioma
+      idiomaActual = lang; 
 
-      // Cambiamos todos los textos de los botones usando los atributos data-en / data-es
+      // Traducimos todos los botones usando data-en / data-es
       const elementos = document.querySelectorAll('.boton-enlace span');
       elementos.forEach(el => {
           if (lang === 'en') {
@@ -574,16 +576,25 @@
           }
       });
 
-      // Cambia el emoji del botón principal de banderas
+      // Cambia el emoji de la bandera
       document.getElementById("btn-idioma").textContent = flag;
       
-      // Forzamos al reloj a actualizarse con el idioma correcto al instante
+      // Cambia el texto de abajo de la bandera según el idioma seleccionado
+      const txtIdioma = document.getElementById("nombre-idioma");
+      if (lang === 'en') {
+          txtIdioma.innerText = "English";
+      } else {
+          txtIdioma.innerText = "Español";
+      }
+
+      // Forzamos al reloj a actualizarse al instante
       actualizarReloj();
 
-      // Cierra el menú de idiomas al elegir
+      // Cierra el menú
       toggleMenu();
   }
 </script>
+
 
 <script>
 function cambiarIdioma(idioma, bandera) {
