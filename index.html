@@ -559,7 +559,17 @@ actualizarReloj();
   // Función principal que cambia los textos de los botones al inglés
   function cambiarIdioma(lang, flag) {
     idiomaActual = lang;
-    
+    function cambiarIdioma(idioma) {
+    const elementos = document.querySelectorAll('.boton-enlace span');
+    elementos.forEach(el => {
+        if (idioma === 'en') {
+            el.innerText = el.getAttribute('data-en');
+        } else {
+            el.innerText = el.getAttribute('data-es');
+        }
+    });
+}
+
     // Cambia el emoji del botón principal
     document.getElementById("btn-idioma").textContent = flag;
     
