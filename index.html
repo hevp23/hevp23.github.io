@@ -528,47 +528,44 @@
   // Guardamos el idioma actual de la página ('es' por defecto)
   let idiomaActual = 'es';
 
-  function actualizarReloj() {
-    const ahora = new Date();
-    let fechaTexto = "";
+function actualizarReloj() {
+    const fechaHora = new Date();
+    
+    // Detectamos si la página está en inglés viendo si algún elemento cambió a inglés (como "Community")
+    // O podemos revisar el idioma del navegador / atributo lang de la página
+    const esIngles = document.documentElement.lang === 'en' || 
+                     document.getElementById('txt-comunidad').innerText.toLowerCase() === 'community';
+    
+    const idioma = esIngles ? 'en-US' : 'es-ES';
 
-    if (idiomaActual === 'es') {
-      // Fecha en Español
-      const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-      fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
-      
-      // Primera letra a mayúscula
-      let palabras = fechaTexto.split(' ');
-      palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1);
-      if (palabras[3]) {
-        palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1);
-      }
-      fechaTexto = palabras.join(' ');
-    } else {
-      // Fecha en Inglés: "Friday, July 17, 2026"
-      const opcionesFecha = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
-      fechaTexto = ahora.toLocaleDateString('en-US', opcionesFecha);
+    // Opciones para formatear la fecha según el idioma
+    const opcionesFecha = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+
+    // Obtenemos la fecha formateada en el idioma correcto
+    let fechaFormateada = fechaHora.toLocaleDateString(idioma, opcionesFecha);
+    
+    // Si estamos en español, ponemos la primera letra del día en mayúscula por estética
+    if (!esIngles) {
+        fechaFormateada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
     }
 
-    // --- CÓDIGO PARA EL RELOJ DE 12 HORAS ---
-    let horas = ahora.getHours();
-    const minutos = String(ahora.getMinutes()).padStart(2, '0');
-    const segundos = String(ahora.getSeconds()).padStart(2, '0');
-    const ampm = horas >= 12 ? 'PM' : 'AM';
+    // Obtenemos la hora actual
+    const horaFormateada = fechaHora.toLocaleTimeString(idioma);
 
-    horas = horas % 12;
-    horas = horas ? horas : 12;
+    // Lo inyectamos en tus contenedores del reloj
+    document.getElementById('fecha-actual').innerText = fechaFormateada;
+    document.getElementById('reloj-actual').innerText = horaFormateada;
+}
 
-    const horaTexto = `${horas}:${minutos}:${segundos} ${ampm}`;
+// Actualizar cada segundo
+setInterval(actualizarReloj, 1000);
+actualizarReloj();
 
-    // Meter los datos en la pantalla
-    document.getElementById('fecha-actual').textContent = fechaTexto;
-    document.getElementById('reloj-actual').textContent = horaTexto;
-  }
-
-  // Ejecutar el reloj de inmediato y cada segundo
-  actualizarReloj();
-  setInterval(actualizarReloj, 1000);
 
   // Función para abrir y cerrar el menú de banderas
   function toggleMenu() {
