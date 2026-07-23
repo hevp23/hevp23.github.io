@@ -188,52 +188,40 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-/* --- LA CUADRÍCULA (Para que queden 2 columnas iguales) --- */
 /* --- LA CUADRÍCULA --- */
 .cuadricula-enlaces {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
-  gap: 12px;                      
-  width: 90%;                     
-  max-width: 500px;               
+  gap: 12px !important;                      
+  width: 90% !important;                     
+  max-width: 500px !important;               
   margin: 20px auto !important;   
-  justify-content: center;        
-  align-items: stretch;           /* Hace que las dos columnas midan exactamente lo mismo de alto */
+  justify-content: center !important;        
 }
 
 /* --- LOS BOTONES --- */
 .boton-enlace {
   display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
-  justify-content: center !important;   /* ¡Esto centra todo el contenido (icono + texto) horizontalmente! */
+  justify-content: center !important;   /* Centra perfectamente el contenido */
   background-color: #00ff16 !important;      
   color: #ff4200 !important;                 
   text-decoration: none !important;          
-  padding: 12px 15px !important;             
+  padding: 12px 10px !important;             
   border-radius: 15px !important;            
   font-weight: bold !important;              
   width: 100% !important;                    
   box-sizing: border-box !important;         
   text-align: center !important;
-  transition: transform 0.2s ease !important; 
+  overflow: hidden !important;          /* Evita que cualquier elemento se salga del botón */
 }
 
-/* --- SI NO HAY IMAGEN, OCULTARLA PARA QUE NO ESTORBE --- */
-.icono-enlace:not([src]), 
-.icono-enlace[src=""],
-.icono-enlace[src="#"] {
-  display: none !important;         /* Si no hay enlace de imagen, desaparece y el texto se centra solito */
-}
-
-/* --- LOS ICONOS (Cuando sí los pongas) --- */
+/* --- SI EL ICONO DA ERROR O ESTÁ VACÍO, OCULTARLO POR COMPLETO --- */
 .icono-enlace {
-  width: 24px !important;
-  height: 24px !important;
-  min-width: 24px !important;     
-  flex-shrink: 0 !important;      
-  border-radius: 50% !important;  
-  margin-right: 8px !important;   
-  object-fit: cover !important;
+  width: 0px !important;                /* Si no hay imagen real, le quitamos espacio */
+  height: 0px !important;
+  display: none !important;             /* Lo apagamos para que no desentone */
 }
 
 /* --- TEXTO DENTRO DEL BOTÓN --- */
@@ -242,7 +230,9 @@
   color: #ff4200 !important;      
   text-decoration: none !important;
   text-align: center !important;
+  width: 100% !important;
 }
+
 
 
 
