@@ -353,9 +353,13 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- El contenedor limpio donde se dibuja el botón -->
-<div id="contenedor-idioma" class="idioma-flotante-izq" style="text-align: center; cursor: pointer;" onclick="alternarIdioma()"></div>
-
+<!-- Menú desplegable clásico de idioma -->
+<div class="idioma-flotante-izq" style="text-align: center;">
+  <select id="selector-idioma" onchange="cambiarIdiomaDesplegable(this.value)" style="background: rgba(0,0,0,0.6); color: white; border: 1px solid white; border-radius: 5px; padding: 2px 5px; font-size: 12px; cursor: pointer;">
+    <option value="es">🇪🇸 Español</option>
+    <option value="en">🇬🇧 English</option>
+  </select>
+</div>
 
         <h1 style="text-align: center; margin: 10px 0;">Héctor Eduardo Valladares Pérez</h1>
 <span class="username" style="color: #ffe000; display: block; margin: 5px 0; text-align: center;">@hevp23</span>
@@ -363,14 +367,6 @@
 <p style="font-size: 1.1rem; color: #ffe000; margin: 10px 0; text-align: center; font-weight: 500;">
   ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇸🇻
 </p>
-
-
-
-<!-- Botón único y limpio para cambiar de idioma -->
-<div class="idioma-flotante-izq" style="text-align: center;" onclick="alternarIdioma()">
-  <div id="btn-idioma" style="font-size: 32px; cursor: pointer; display: inline-block;">🇪🇦</div>
-  <div id="nombre-idioma" style="color: #fe000; font-weight: bold; font-size: 13px; margin-top: 2px;">Español English</div>
-</div>
 
 <!-- Tus 5 iconos con sus círculos de colores originales -->
 <div class="fila-iconos">
@@ -512,19 +508,8 @@
 
   setInterval(actualizarReloj, 1000);
 
-  function alternarIdioma() {
-      const bandera = document.getElementById("icono-bandera");
-      const texto = document.getElementById("texto-idioma");
-
-      if (idiomaActual === 'es') {
-          idiomaActual = 'en';
-          bandera.innerText = "🇬🇧";
-          texto.innerText = "English";
-      } else {
-          idiomaActual = 'es';
-          bandera.innerText = "🇪🇸";
-          texto.innerText = "Español";
-      }
+  function cambiarIdiomaDesplegable(nuevoIdioma) {
+      idiomaActual = nuevoIdioma;
 
       // Traducir los botones
       const elementos = document.querySelectorAll('.boton-enlace span');
@@ -541,6 +526,7 @@
 
   actualizarReloj();
 </script>
+
 
 
 
