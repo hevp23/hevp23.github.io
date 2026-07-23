@@ -258,11 +258,64 @@
   display: flex !important;
 }
 
+/* --- NUEVA CUADRÍCULA DE ENLACES DESDE CERO --- */
+.cuadricula-enlaces {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
+  gap: 12px !important;                      
+  width: 90% !important;                     
+  max-width: 440px !important;               
+  margin: 20px auto !important;      
+  justify-content: center !important;        
+  justify-items: center !important;  
+}
 
+/* --- NUEVOS BOTONES LIMPIOS Y CENTRADOS --- */
+.boton-enlace {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;   
+  background-color: #00ff16 !important;      
+  color: #ff4200 !important;                 
+  text-decoration: none !important;          
+  padding: 15px 10px !important;             
+  border-radius: 15px !important;            
+  font-weight: bold !important;              
+  width: 100% !important;                    
+  box-sizing: border-box !important;         
+  text-align: center !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
 
+.boton-enlace:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
 
+.boton-enlace span {
+  color: #ff4200 !important;      
+  text-decoration: none !important;
+  text-align: center !important;
+  width: 100% !important;
+  font-size: 15px;
+}
 
+/* --- ESTILO PARA EL ICONO FUTURO DENTRO DEL BOTÓN --- */
+.icono-enlace {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;             
+  border-radius: 50% !important;          
+  margin-right: 8px !important;
+  object-fit: cover !important;
+}
 
+/* Si la etiqueta de imagen está vacía, se oculta solita para que el texto quede centrado */
+.icono-enlace:not([src]), 
+.icono-enlace[src=""],
+.icono-enlace[src="#"] {
+  display: none !important;         
+}
 
 /* --- LOGO Y NOMBRE DE LA WEB (Chiquito, redondo y a la par) --- */
 .marca-web-contenedor {
