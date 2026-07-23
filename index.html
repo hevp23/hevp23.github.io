@@ -353,10 +353,10 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- El botón de idioma independiente de un solo toque -->
+<!-- Botón único y limpio para cambiar de idioma -->
 <div class="idioma-flotante-izq" style="text-align: center;">
-  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()" style="font-size: 32px; cursor: pointer; display: inline-block;">🇬🇧</div>
-  <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">English</div>
+  <button id="btn-idioma" onclick="alternarIdioma()" style="font-size: 32px; background: transparent; border: none; cursor: pointer; padding: 0; display: block; margin: 0 auto;">🇪🇸</button>
+  <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
 </div>
 
 </div>
@@ -540,7 +540,7 @@
   setInterval(actualizarReloj, 1000);
   actualizarReloj();
 
-  // Función de un solo toque para alternar entre Español e Inglés sin nudos
+  // Función de un solo toque para alternar entre Español e Inglés
   function alternarIdioma() {
       const btnIdioma = document.getElementById("btn-idioma");
       const txtIdioma = document.getElementById("nombre-idioma");
@@ -569,6 +569,7 @@
       actualizarReloj();
   }
 </script>
+
 
 <script>
 function cambiarIdioma(idioma, bandera) {
