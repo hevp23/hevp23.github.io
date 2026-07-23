@@ -353,15 +353,12 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- El botón de idioma totalmente independiente -->
-<div class="idioma-flotante-izq">
-  <div class="idioma-boton" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
-  <div class="opciones-idioma" id="menu-idiomas">
-      <span id="nombre-idioma">Español</span>
-    <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸 Español</button>
-      <span id="nombre-idioma">English</span>
-    <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧 English</button>
-  </div>
+<!-- El botón de idioma independiente de un solo toque -->
+<div class="idioma-flotante-izq" style="text-align: center;">
+  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()" style="font-size: 32px; cursor: pointer; display: inline-block;">🇬🇧</div>
+  <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">English</div>
+</div>
+
 </div>
 
   
