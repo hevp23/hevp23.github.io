@@ -189,55 +189,61 @@
             margin-bottom: 15px;
         }
 /* --- LA CUADRÍCULA (Para que queden 2 columnas iguales) --- */
+/* --- LA CUADRÍCULA --- */
 .cuadricula-enlaces {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
   gap: 12px;                      
   width: 90%;                     
   max-width: 500px;               
-  margin: 20px auto !important;   /* Le ponemos important para que mande */
-  justify-content: center;        /* ¡ESTA LÍNEA va a jalar todo al centro! */
+  margin: 20px auto !important;   
+  justify-content: center;        
+  align-items: stretch;           /* Hace que las dos columnas midan exactamente lo mismo de alto */
 }
 
-
-
-/* --- LOS BOTONES (Verde #00ff16 y Anaranjado #ff4200) --- */
+/* --- LOS BOTONES --- */
 .boton-enlace {
-  display: flex;
-  align-items: center;
-  justify-content: center;        /* ¡Hoy sí! Todo bien centrado al medio */
-  background-color: #00ff16;      /* Tu verde chivo de fondo */
-  color: #ff4200;                 /* Tu anaranjado para las letras */
-  text-decoration: none;          
-  padding: 12px 15px;             /* Espacio interno cabal */
-  border-radius: 15px;            /* Esquinas bien redondeadas */
-  font-weight: bold;              
-  width: 100%;                    
-  box-sizing: border-box;         
-  transition: transform 0.2s ease; /* Pequeño efecto al tocarlo */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;   /* ¡Esto centra todo el contenido (icono + texto) horizontalmente! */
+  background-color: #00ff16 !important;      
+  color: #ff4200 !important;                 
+  text-decoration: none !important;          
+  padding: 12px 15px !important;             
+  border-radius: 15px !important;            
+  font-weight: bold !important;              
+  width: 100% !important;                    
+  box-sizing: border-box !important;         
+  text-align: center !important;
+  transition: transform 0.2s ease !important; 
 }
 
-/* --- EFECTO AL PASAR EL MOUSE O TOCAR EL BOTÓN --- */
-.boton-enlace:hover {
-  transform: scale(1.02);         /* Se hace un "penitito" más grande */
+/* --- SI NO HAY IMAGEN, OCULTARLA PARA QUE NO ESTORBE --- */
+.icono-enlace:not([src]), 
+.icono-enlace[src=""],
+.icono-enlace[src="#"] {
+  display: none !important;         /* Si no hay enlace de imagen, desaparece y el texto se centra solito */
 }
 
-/* --- LOS ICONOS ADENTRO DE LOS BOTONES --- */
+/* --- LOS ICONOS (Cuando sí los pongas) --- */
 .icono-enlace {
   width: 24px !important;
   height: 24px !important;
-  min-width: 24px !important;     /* Evita que se encoja la imagen */
-  border-radius: 50% !important;  /* Totalmente redonditos */
-  margin-right: 8px !important;   /* Separación con el texto */
+  min-width: 24px !important;     
+  flex-shrink: 0 !important;      
+  border-radius: 50% !important;  
+  margin-right: 8px !important;   
   object-fit: cover !important;
 }
 
-/* --- COLOR DE LAS LETRAS (Asegura tu anaranjado) --- */
+/* --- TEXTO DENTRO DEL BOTÓN --- */
 .boton-enlace span, 
 .boton-enlace a {
   color: #ff4200 !important;      
-  text-decoration: none;
+  text-decoration: none !important;
+  text-align: center !important;
 }
+
 
 
 /* Iconos o fotos de los botones */
