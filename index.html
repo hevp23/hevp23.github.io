@@ -188,47 +188,48 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-/* --- LA CUADRÍCULA (Centrada de verdad al medio) --- */
-.cuadricula-enlaces {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
-  gap: 12px !important;                      
-  width: 90% !important;                     
-  max-width: 400px !important;       /* Un poco más angosto para que no se peguen tanto a la orilla */
-  margin-left: auto !important;      /* ¡Empuja desde la izquierda al centro! */
-  margin-right: auto !important;     /* ¡Empuja desde la derecha al centro! */
-  justify-content: center !important;        
-  justify-items: center !important;  /* Centra cada botón dentro de su celda de la cuadrícula */
-}
+        /* --- LA CUADRÍCULA DE ENLACES PERFECTAMENTE CENTRADA --- */
+        .cuadricula-enlaces {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
+            gap: 12px !important;                      
+            width: 100% !important;                     
+            max-width: 440px !important;               
+            margin: 20px auto !important;      
+            justify-content: center !important;        
+            justify-items: center !important;  
+        }
 
-/* --- LOS BOTONES --- */
-.boton-enlace {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;   
-  background-color: #00ff16 !important;      
-  color: #ff4200 !important;                 
-  text-decoration: none !important;          
-  padding: 12px 10px !important;             
-  border-radius: 15px !important;            
-  font-weight: bold !important;              
-  width: 100% !important;                    
-  box-sizing: border-box !important;         
-  text-align: center !important;
-}
+        /* --- LOS BOTONES LIMPIOS Y CENTRADOS --- */
+        .boton-enlace {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;   
+            background-color: #00ff16 !important;      
+            color: #ff4200 !important;                 
+            text-decoration: none !important;          
+            padding: 15px 10px !important;             
+            border-radius: 15px !important;            
+            font-weight: bold !important;              
+            width: 100% !important;                    
+            box-sizing: border-box !important;         
+            text-align: center !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
 
-/* --- TEXTO DENTRO DEL BOTÓN --- */
-.boton-enlace span, 
-.boton-enlace a {
-  color: #ff4200 !important;      
-  text-decoration: none !important;
-  text-align: center !important;
-  width: 100% !important;
-}
+        .boton-enlace:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
 
-
-
-
+        /* --- TEXTO DENTRO DEL BOTÓN --- */
+        .boton-enlace span {
+            color: #ff4200 !important;      
+            text-decoration: none !important;
+            text-align: center !important;
+            width: 100% !important;
+            font-size: 15px;
+        }
 
 /* Iconos o fotos de los botones */
 .icono-enlace {
