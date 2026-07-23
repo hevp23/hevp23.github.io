@@ -355,7 +355,7 @@
 
 <!-- Botón único y limpio para cambiar de idioma -->
 <div class="idioma-flotante-izq" style="text-align: center;">
-  <button id="btn-idioma" onclick="alternarIdioma()" style="font-size: 32px; background: transparent; border: none; cursor: pointer; padding: 0; display: block; margin: 0 auto;">🇪🇸</button>
+  <button id="btn-idioma" onclick="alternarIdioma()" style="font-size: 32px; background: transparent; border: none; cursor: pointer; padding: 0; display: block; margin: 0 auto;">🇪🇸🇬🇧</button>
   <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
 </div>
 
@@ -376,9 +376,15 @@
   ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇸🇻
 </p>
 
-<!-- El botón de idioma independiente de un solo toque -->
-<div class="idioma-flotante-izq" style="text-align: center;">
-  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()" style="font-size: 32px; cursor: pointer; display: inline-block;">🇪🇸</div>
+<!-- Botón único y limpio para cambiar de idioma -->
+<div class="idioma-flotante-izq" style="text-align: center;" onclick="alternarIdioma()">
+  <div id="btn-idioma" style="font-size: 32px; cursor: pointer; display: inline-block;">🇪🇸</div>
+  <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
+</div>
+
+<!-- Botón único y limpio para cambiar de idioma -->
+<div class="idioma-flotante-izq" style="text-align: center;" onclick="alternarIdioma()">
+  <div id="btn-idioma" style="font-size: 32px; cursor: pointer; display: inline-block;">🇪🇸</div>
   <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px; margin-top: 2px;">Español</div>
 </div>
 
@@ -547,11 +553,11 @@
 
       if (idiomaActual === 'es') {
           idiomaActual = 'en';
-          btnIdioma.textContent = "🇬🇧";
+          btnIdioma.innerText = "🇬🇧";
           txtIdioma.innerText = "English";
       } else {
           idiomaActual = 'es';
-          btnIdioma.textContent = "🇪🇸";
+          btnIdioma.innerText = "🇪🇸";
           txtIdioma.innerText = "Español";
       }
 
@@ -569,6 +575,7 @@
       actualizarReloj();
   }
 </script>
+
 
 
 <script>
