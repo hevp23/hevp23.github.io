@@ -518,11 +518,9 @@
       };
 
       let fechaFormateada = fechaHora.toLocaleDateString(idioma, opcionesFecha);
-      
-      // Primera letra en mayúscula
       fechaFormateada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
 
-      // Opciones para la hora con formato de 12 horas
+      // Opciones para la hora con formato de 12 horas en mayúsculas
       const opcionesHora = { 
           hour: 'numeric', 
           minute: 'numeric', 
@@ -531,8 +529,6 @@
       };
 
       let horaFormateada = fechaHora.toLocaleTimeString(idioma, opcionesHora);
-
-      // Forzar PM y AM en mayúsculas sin puntos
       horaFormateada = horaFormateada.replace(/p\.?\s*m\.?/gi, 'PM').replace(/a\.?\s*m\.?/gi, 'AM');
 
       // Inyectamos en el HTML
@@ -544,16 +540,19 @@
   setInterval(actualizarReloj, 1000);
   actualizarReloj();
 
-  // Función de un solo toque para alternar entre Español e Inglés
+  // Función de un solo toque para alternar entre Español e Inglés sin nudos
   function alternarIdioma() {
+      const btnIdioma = document.getElementById("btn-idioma");
+      const txtIdioma = document.getElementById("nombre-idioma");
+
       if (idiomaActual === 'es') {
           idiomaActual = 'en';
-          document.getElementById("btn-idioma").textContent = "🇬🇧";
-          document.getElementById("nombre-idioma").innerText = "English";
+          btnIdioma.textContent = "🇬🇧";
+          txtIdioma.innerText = "English";
       } else {
           idiomaActual = 'es';
-          document.getElementById("btn-idioma").textContent = "🇪🇸";
-          document.getElementById("nombre-idioma").innerText = "Español";
+          btnIdioma.textContent = "🇪🇸";
+          txtIdioma.innerText = "Español";
       }
 
       // Traducir todos los botones de la lista usando data-en / data-es
@@ -570,8 +569,6 @@
       actualizarReloj();
   }
 </script>
-
-
 
 <script>
 function cambiarIdioma(idioma, bandera) {
