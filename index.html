@@ -188,23 +188,24 @@
             gap: 10px;
             margin-bottom: 15px;
         }
-/* --- LA CUADRÍCULA --- */
+/* --- LA CUADRÍCULA (Centrada de verdad al medio) --- */
 .cuadricula-enlaces {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
   gap: 12px !important;                      
   width: 90% !important;                     
-  max-width: 500px !important;               
-  margin: 20px auto !important;   
+  max-width: 400px !important;       /* Un poco más angosto para que no se peguen tanto a la orilla */
+  margin-left: auto !important;      /* ¡Empuja desde la izquierda al centro! */
+  margin-right: auto !important;     /* ¡Empuja desde la derecha al centro! */
   justify-content: center !important;        
+  justify-items: center !important;  /* Centra cada botón dentro de su celda de la cuadrícula */
 }
 
 /* --- LOS BOTONES --- */
 .boton-enlace {
   display: flex !important;
-  flex-direction: row !important;
   align-items: center !important;
-  justify-content: center !important;   /* Centra perfectamente el contenido */
+  justify-content: center !important;   
   background-color: #00ff16 !important;      
   color: #ff4200 !important;                 
   text-decoration: none !important;          
@@ -214,14 +215,6 @@
   width: 100% !important;                    
   box-sizing: border-box !important;         
   text-align: center !important;
-  overflow: hidden !important;          /* Evita que cualquier elemento se salga del botón */
-}
-
-/* --- SI EL ICONO DA ERROR O ESTÁ VACÍO, OCULTARLO POR COMPLETO --- */
-.icono-enlace {
-  width: 0px !important;                /* Si no hay imagen real, le quitamos espacio */
-  height: 0px !important;
-  display: none !important;             /* Lo apagamos para que no desentone */
 }
 
 /* --- TEXTO DENTRO DEL BOTÓN --- */
@@ -232,6 +225,7 @@
   text-align: center !important;
   width: 100% !important;
 }
+
 
 
 
