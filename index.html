@@ -353,11 +353,12 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- Traductor original limpio -->
-<div class="idioma-flotante-izq" style="text-align: center;">
-  <div onclick="alternarIdioma()" style="cursor: pointer; display: inline-block;">
-    <div id="btn-idioma" style="font-size: 32px;">🇪🇸</div>
-    <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px;">Español</div>
+<!-- El botón de idioma totalmente independiente -->
+<div class="idioma-flotante-izq">
+  <div class="idioma-boton" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
+  <div class="opciones-idioma" id="menu-idiomas">
+    <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸 Español</button>
+    <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧 English</button>
   </div>
 </div>
 
@@ -489,44 +490,78 @@
 </div>
 
 <script>
+  // Guardamos el idioma actual de la página ('es' por defecto)
   let idiomaActual = 'es';
 
   function actualizarReloj() {
-      const fechaHora = new Date();
-      const esIngles = idiomaActual === 'en';
-      const idioma = esIngles ? 'en-US' : 'es-ES';
+    const ahora = new Date();
+    let fechaTexto = "";
 
-      const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      let fechaFormateada = fechaHora.toLocaleDateString(idioma, opcionesFecha);
-      fechaFormateada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+    if (idiomaActual === 'es') {
+      // Fecha en Español
+      const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+      fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
+      
+      // Primera letra a mayúscula
+      let palabras = fechaTexto.split(' ');
+      palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1);
+      if (palabras[3]) {
+        palabras[3] = palabras[3].charAt(0).toUpperCase() + palabras[3].slice(1);
+      }
+      fechaTexto = palabras.join(' ');
+    } else {
+      // Fecha en Inglés: "Friday, July 17, 2026"
+      const opcionesFecha = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+      fechaTexto = ahora.toLocaleDateString('en-US', opcionesFecha);
+    }
 
-      const opcionesHora = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
-      let horaFormateada = fechaHora.toLocaleTimeString(idioma, opcionesHora);
-      horaFormateada = horaFormateada.replace(/p\.?\s*m\.?/gi, 'PM').replace(/a\.?\s*m\.?/gi, 'AM');
+    // --- CÓDIGO PARA EL RELOJ DE 12 HORAS ---
+    let horas = ahora.getHours();
+    const minutos = String(ahora.getMinutes()).padStart(2, '0');
+    const segundos = String(ahora.getSeconds()).padStart(2, '0');
+    const ampm = horas >= 12 ? 'PM' : 'AM';
 
-      document.getElementById('fecha-actual').innerText = fechaFormateada;
-      document.getElementById('reloj-actual').innerText = horaFormateada;
+    horas = horas % 12;
+    horas = horas ? horas : 12;
+
+    const horaTexto = `${horas}:${minutos}:${segundos} ${ampm}`;
+
+    // Meter los datos en la pantalla
+    document.getElementById('fecha-actual').textContent = fechaTexto;
+    document.getElementById('reloj-actual').textContent = horaTexto;
   }
 
+  // Ejecutar el reloj de inmediato y cada segundo
+  actualizarReloj();
   setInterval(actualizarReloj, 1000);
 
-  function cambiarIdiomaDesplegable(nuevoIdioma) {
-      idiomaActual = nuevoIdioma;
-
-      // Traducir los botones
-      const elementos = document.querySelectorAll('.boton-enlace span');
-      elementos.forEach(el => {
-          if (idiomaActual === 'en') {
-              if (el.getAttribute('data-en')) el.innerText = el.getAttribute('data-en');
-          } else {
-              if (el.getAttribute('data-es')) el.innerText = el.getAttribute('data-es');
-          }
-      });
-
-      actualizarReloj();
+  // Función para abrir y cerrar el menú de banderas
+  function toggleMenu() {
+    var menu = document.getElementById("menu-idiomas");
+    menu.classList.toggle("show");
   }
 
-  actualizarReloj();
+  // Función principal que cambia los textos de los botones al inglés
+  function cambiarIdioma(lang, flag) {
+    idiomaActual = lang;
+    
+    // Cambia el emoji del botón principal
+    document.getElementById("btn-idioma").textContent = flag;
+    
+    // Forzamos al reloj a actualizarse con el nuevo idioma al instante
+    actualizarReloj();
+
+    // Aquí agregamos las traducciones de tus 8 botones principales
+    if (lang === 'en') {
+      document.querySelector('a[href*="comunidad"] .Link-text, .Comunidad-text, a:nth-of-type(1) text').textContent = "Community";
+      // Agregaremos el resto de botones de tu lista en el siguiente paso
+    } else {
+      document.querySelector('a[href*="comunidad"] .Link-text, .Comunidad-text, a:nth-of-type(1) text').textContent = "Comunidad";
+    }
+
+    // Cierra el menú al elegir
+    toggleMenu();
+  }
 </script>
 
 
