@@ -353,17 +353,14 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- Selector de idioma en círculo limpio y corrido para que no tape la foto -->
-<div class="idioma-flotante-izq" style="position: absolute; left: 15px; top: 120px; text-align: center; z-index: 10;">
-  <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid white; border-radius: 50px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-    <span style="font-size: 20px;">🇪🇸</span>
-      <span style="font-size: 20px;">🇬🇧</span>
-    <select id="selector-idioma" onchange="cambiarIdiomaDesplegable(this.value)" style="background: transparent; color: white; border: none; font-size: 13px; font-weight: bold; cursor: pointer; outline: none;">
-      <option value="es" style="color: black;">Español</option>
-      <option value="en" style="color: black;">English</option>
-    </select>
+<!-- Traductor original limpio -->
+<div class="idioma-flotante-izq" style="text-align: center;">
+  <div onclick="alternarIdioma()" style="cursor: pointer; display: inline-block;">
+    <div id="btn-idioma" style="font-size: 32px;">🇪🇸</div>
+    <div id="nombre-idioma" style="color: white; font-weight: bold; font-size: 13px;">Español</div>
   </div>
 </div>
+
 
 
         <h1 style="text-align: center; margin: 10px 0;">Héctor Eduardo Valladares Pérez</h1>
