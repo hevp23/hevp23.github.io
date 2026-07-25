@@ -198,20 +198,22 @@
   text-align: center;
 }
 
-/* --- BOTÓN TRADUCTOR QUE SE MUEVE CON LA PÁGINA --- */
+/* --- BOTÓN TRADUCTOR FIJO Y CON SU CÍRCULO BLANCO --- */
 .idioma-flotante-izq {
-  position: absolute;   /* ¡Hoy sí! Se mueve con el scroll de la página y no tapa nada */
-  left: 35px;           /* Lo mantiene pegado al lado izquierdo */
-  top: 200px;           /* Ajustamos los píxeles para que calce bien en la zona azul */
-  z-index: 1000;        
+  position: absolute;   
+  left: 35px;           
+  top: 200px;           
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 
 .idioma-boton {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: white !important; /* Forzamos el fondo blanco */
   border: 2px solid #ccc;
   border-radius: 50%;
   width: 45px;
@@ -222,41 +224,23 @@
   user-select: none;
 }
 
+.texto-idioma-actual {
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffe000;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Ocultamos el menú desplegable viejo para que funcione al toque */
 .opciones-idioma {
-  display: none;        
-  position: absolute;  
-  left: 0;             
-  top: 50px;           
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 6px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-  z-index: 1005;
-  flex-direction: column;
-  gap: 6px;
+  display: none !important;
 }
 
-.opciones-idioma button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  padding: 6px 12px;
-  cursor: pointer;
-  white-space: nowrap; 
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.opciones-idioma button:hover {
-  background-color: #f0f0f0;
-  border-radius: 4px;
-}
-
-.opciones-idioma.show {
-  display: flex !important;
-}
 
 /* --- NUEVA CUADRÍCULA DE ENLACES DESDE CERO --- */
 .cuadricula-enlaces {
@@ -380,14 +364,12 @@
   <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil">
 </div>
 
-<!-- El botón de idioma totalmente independiente -->
+<!-- El botón traductor fijo con su círculo blanco y su texto abajo -->
 <div class="idioma-flotante-izq">
-  <div class="idioma-boton" id="btn-idioma" onclick="toggleMenu()">🇪🇸</div>
-  <div class="opciones-idioma" id="menu-idiomas">
-    <button onclick="cambiarIdioma('es', '🇪🇸')">🇪🇸 Español</button>
-    <button onclick="cambiarIdioma('en', '🇬🇧')">🇬🇧 English</button>
-  </div>
+  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()" title="Cambiar idioma">🇪🇸</div>
+  <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
 </div>
+
 
 <!-- El botón de música flotante -->
 <div class="musica-flotante-der">
