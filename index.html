@@ -563,12 +563,24 @@
     menu.classList.toggle("show");
   }
 
-  function cambiarIdioma(idioma, bandera) {
-    idiomaActual = idioma;
-    document.getElementById('btn-idioma').innerText = bandera;
-    
-    actualizarReloj();
+    // --- CONTROLADOR DE IDIOMA CON UN SOLO TOQUE ---
+  function alternarIdioma() {
+    if (idiomaActual === 'es') {
+      idiomaActual = 'en';
+      document.getElementById('btn-idioma').innerText = '🇬🇧';
+      document.getElementById('lbl-idioma-activo').innerText = 'English';
+    } else {
+      idiomaActual = 'es';
+      document.getElementById('btn-idioma').innerText = '🇪🇸';
+      document.getElementById('lbl-idioma-activo').innerText = 'Español';
+    }
 
+    actualizarReloj();
+    actualizarTextosBotones();
+  }
+
+  // --- FUNCIÓN PARA ACTUALIZAR LOS TEXTOS DE LOS BOTONES ---
+  function actualizarTextosBotones() {
     const elementos = {
       comunidad: document.getElementById('txt-comunidad'),
       redes: document.getElementById('txt-redes'),
@@ -586,7 +598,7 @@
       linkhub: document.getElementById('txt-linkhub')
     };
 
-    if (idioma === 'es') {
+    if (idiomaActual === 'es') {
       if(elementos.comunidad) elementos.comunidad.innerText = "Comunidad";
       if(elementos.redes) elementos.redes.innerText = "Redes Sociales";
       if(elementos.tecnologia) elementos.tecnologia.innerText = "Tecnología";
@@ -601,7 +613,7 @@
       if(elementos.inbio) elementos.inbio.innerText = "Inbio";
       if(elementos.ibio) elementos.ibio.innerText = "iBio";
       if(elementos.linkhub) elementos.linkhub.innerText = "Linkhub";
-    } else if (idioma === 'en') {
+    } else {
       if(elementos.comunidad) elementos.comunidad.innerText = "Community";
       if(elementos.redes) elementos.redes.innerText = "Social Media";
       if(elementos.tecnologia) elementos.tecnologia.innerText = "Technology";
@@ -617,6 +629,8 @@
       if(elementos.ibio) elementos.ibio.innerText = "iBio";
       if(elementos.linkhub) elementos.linkhub.innerText = "Linkhub";
     }
+  }
+
 
     const menu = document.getElementById('menu-idiomas');
     if(menu) menu.classList.remove('show');
