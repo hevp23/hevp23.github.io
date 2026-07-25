@@ -341,6 +341,33 @@
   text-decoration: none !important;
 }
 
+/* --- BOTÓN DE MÚSICA FLOTANTE (AL OTRO LADO) --- */
+.musica-flotante-der {
+  position: absolute;   
+  right: 35px;           /* Lo pasa al lado derecho, simétrico al del traductor */
+  top: 200px;           /* A la misma altura para que queden alineados */
+  z-index: 1000;        
+}
+
+.musica-boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.musica-boton:hover {
+  transform: scale(1.1);
+}
 
     </style>
 </head>
@@ -362,6 +389,16 @@
   </div>
 </div>
 
+<!-- El botón de música flotante -->
+<div class="musica-flotante-der">
+  <div class="musica-boton" id="btn-musica" onclick="toggleMusica()" title="Reproducir música">▶️</div>
+</div>
+
+<!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
+<audio id="audio-fondo" loop>
+  <source src="tu-cancion.mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio>
 
 
         <h1 style="text-align: center; margin: 10px 0;">Héctor Eduardo Valladares Pérez</h1>
@@ -602,6 +639,20 @@
     const menu = document.getElementById('menu-idiomas');
     if(menu) menu.classList.remove('show');
   }
+      // --- CONTROLADOR DE MÚSICA ---
+  function toggleMusica() {
+    const audio = document.getElementById('audio-fondo');
+    const btnMusica = document.getElementById('btn-musica');
+
+    if (audio.paused) {
+      audio.play();
+      btnMusica.textContent = '⏸️';
+    } else {
+      audio.pause();
+      btnMusica.textContent = '▶️';
+    }
+  }
+
 </script>
 
 </body>
