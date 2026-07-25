@@ -369,9 +369,10 @@
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
 </div>
 
-<!-- El botón de música flotante -->
+<!-- El botón de música flotante con su etiqueta abajo -->
 <div class="musica-flotante-der">
-  <div class="musica-boton" id="btn-musica" onclick="toggleMusica()" title="Reproducir música">▶️</div>
+  <div class="musica-boton" id="btn-musica" onclick="toggleMusica()">▶️</div>
+  <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
 </div>
 
 <!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
@@ -577,6 +578,17 @@
 
     actualizarReloj();
     actualizarTextosBotones();
+
+    // Actualizar texto del botón de música según el idioma actual
+    const audio = document.getElementById('audio-fondo');
+    const lblMusica = document.getElementById('lbl-musica-activo');
+    if (lblMusica && audio) {
+      if (idiomaActual === 'es') {
+        lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
+      } else {
+        lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
+      }
+    }
   }
 
   // --- FUNCIÓN PARA ACTUALIZAR LOS TEXTOS DE LOS BOTONES ---
@@ -631,22 +643,34 @@
     }
   }
 
-  // --- CONTROLADOR DE MÚSICA ---
+  // --- CONTROLADOR DE MÚSICA CON ETIQUETA DINÁMICA ---
   function toggleMusica() {
     const audio = document.getElementById('audio-fondo');
     const btnMusica = document.getElementById('btn-musica');
+    const lblMusica = document.getElementById('lbl-musica-activo');
 
-    if (audio && btnMusica) {
+    if (audio && btnMusica && lblMusica) {
       if (audio.paused) {
         audio.play();
         btnMusica.textContent = '⏸️';
+        if (idiomaActual === 'es') {
+          lblMusica.textContent = 'Pausa';
+        } else {
+          lblMusica.textContent = 'Pause';
+        }
       } else {
         audio.pause();
         btnMusica.textContent = '▶️';
+        if (idiomaActual === 'es') {
+          lblMusica.textContent = 'Reproducir';
+        } else {
+          lblMusica.textContent = 'Play';
+        }
       }
     }
   }
 </script>
+
 
 
 </body>
