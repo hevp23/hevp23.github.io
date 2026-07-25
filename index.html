@@ -331,6 +331,9 @@
   right: 35px;           /* Lo pasa al lado derecho, simétrico al del traductor */
   top: 200px;           /* A la misma altura para que queden alineados */
   z-index: 1000;        
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .musica-boton {
@@ -353,6 +356,20 @@
   transform: scale(1.1);
 }
 
+/* --- ESTILO PARA EL TEXTO DEL BOTÓN DE MÚSICA --- */
+.texto-musica-actual {
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffe000;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
     </style>
 </head>
 <body>
@@ -369,11 +386,12 @@
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
 </div>
 
-<!-- El botón de música flotante con su etiqueta abajo -->
+<!-- Botón Música (Derecha) con su respectiva clase de texto -->
 <div class="musica-flotante-der">
   <div class="musica-boton" id="btn-musica" onclick="toggleMusica()">▶️</div>
   <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
 </div>
+
 
 <!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
 <audio id="audio-fondo" loop>
