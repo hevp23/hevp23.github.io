@@ -148,43 +148,65 @@
 
                 
 
-        .fila-iconos a:hover {
-            transform: scale(1.1);
+                .fila-iconos {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 10px !important;
+            margin: 20px auto !important;
+            width: 100% !important;
         }
 
-        /* --- COLORES PERSONALIZADOS PARA CADA RED SOCIAL --- */
+        .fila-iconos a {
+            width: 42px !important;
+            height: 42px !important;
+            min-width: 42px !important;
+            max-width: 42px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 50% !important;
+            text-decoration: none !important;
+            color: white !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            flex-shrink: 0 !important;
+            transition: transform 0.2s ease !important;
+        }
+
+        .fila-iconos a svg {
+            width: 20px !important;
+            height: 20px !important;
+            fill: currentColor !important;
+        }
+
         .social-facebook {
-          background-color: #0b5ed7 !important; /* Azul más oscuro para que resalte del fondo */
+            background-color: #0b5et7 !important;
         }
 
         .social-instagram {
-          background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
         }
 
         .social-whatsapp {
-          background-color: #25d366 !important;
+            background-color: #25d366 !important;
         }
 
         .social-youtube {
-          background-color: #ff0000 !important;
+            background-color: #ff0000 !important;
         }
 
         .social-tiktok {
-          background-color: #000000 !important;
-          border: 1px solid rgba(255,255,255,0.2);
+            background-color: #000000 !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
         }
 
         .social-discord {
-          background-color: #5865F2 !important; /* Color oficial de Discord */
+            background-color: #5865F2 !important;
         }
 
         .social-reddit {
-          background-color: #FF4500 !important; /* Color oficial de Reddit */
-        }
-
-
-        .fila-iconos a:hover {
-            transform: scale(1.1);
+            background-color: #FF4500 !important;
         }
 
         /* Estas son las tarjetas para tus enlaces */
