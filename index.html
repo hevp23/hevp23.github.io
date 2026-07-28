@@ -600,7 +600,7 @@
 
 </span>
 
-<!-- Cuadrícula de Enlaces TreeLinks (Corregida y Adaptada) -->
+<!-- Cuadrícula de Enlaces TreeLinks (Actualizada) -->
 <div class="cuadricula-enlaces">
   <!-- 1. Comunidad -->
   <a href="https://www.getmysocial.com/hevp23" class="boton-enlace" target="_blank">
@@ -644,48 +644,49 @@
     <span id="txt-mapas" data-es="Mapas" data-en="Maps">Mapas</span>
   </a>
 
-  <!-- 8. Carrd (Espacio reservado) -->
+  <!-- 8. Chatbots -->
   <a href="https://hevp23.carrd.co" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
-    <span id="txt-carrd" data-es="Carrd" data-en="Carrd">Carrd</span>
+    <span id="txt-chatbots" data-es="Chatbots" data-en="Chatbots">Chatbots</span>
   </a>
 
-  <!-- 9. Juegos (Espacio reservado) -->
+  <!-- 9. Juegos -->
   <a href="https://lynkdo.bio/es/hevp23" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
     <span id="txt-juegos" data-es="Juegos" data-en="Games">Juegos</span>
   </a>
 
-  <!-- 10. Fab Bio (Espacio reservado) -->
+  <!-- 10. Fotos -->
   <a href="https://fab.bio/hevp23" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
-    <span id="txt-fabbio" data-es="Fab Bio" data-en="Fab Bio">Fab Bio</span>
+    <span id="txt-fotos" data-es="Fotos" data-en="Photos">Fotos</span>
   </a>
 
-  <!-- 11. Milkshake (Espacio reservado) -->
+  <!-- 11. Milkshake -->
   <a href="https://msha.ke/hevp23" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
     <span id="txt-milkshake" data-es="Milkshake" data-en="Milkshake">Milkshake</span>
   </a>
 
-  <!-- 12. Inbio (Espacio reservado) -->
-  <a href="https://inbio.me/hevp23" class="boton-enlace" target="_blank">
+  <!-- 12. Mensajes públicos (Linktree) -->
+  <a href="https://linktr.ee/hevp23" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
-    <span id="txt-inbio" data-es="Inbio" data-en="Inbio">Inbio</span>
+    <span id="txt-mensajes" data-es="Mensajes públicos" data-en="Public Messages">Mensajes públicos</span>
   </a>
 
-  <!-- 13. iBio (Espacio reservado) -->
-  <a href="https://ibio.vivoapp.xyz/hevp23" class="boton-enlace" target="_blank">
+  <!-- 13. Servidores (Mezink) -->
+  <a href="https://mez.ink/hevp23" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
-    <span id="txt-ibio" data-es="iBio" data-en="iBio">iBio</span>
+    <span id="txt-servidores" data-es="Servidores" data-en="Servers">Servidores</span>
   </a>
 
-  <!-- 14. Linkhub (Espacio reservado) -->
+  <!-- 14. Extra (Linkhub con Inbio e iBio integrados) -->
   <a href="https://lhub.to/hevp23" class="boton-enlace" target="_blank">
     <img src="" class="icono-enlace">
-    <span id="txt-linkhub" data-es="Linkhub" data-en="Linkhub">Linkhub</span>
+    <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
 </div>
+
 
 
 
@@ -790,13 +791,13 @@
       deportes: document.getElementById('txt-deportes'),
       economia: document.getElementById('txt-economia'),
       mapas: document.getElementById('txt-mapas'),
-      carrd: document.getElementById('txt-carrd'),
+      chatbots: document.getElementById('txt-chatbots'),
       juegos: document.getElementById('txt-juegos'),
-      fabbio: document.getElementById('txt-fabbio'),
+      fotos: document.getElementById('txt-fotos'),
       milkshake: document.getElementById('txt-milkshake'),
-      inbio: document.getElementById('txt-inbio'),
-      ibio: document.getElementById('txt-ibio'),
-      linkhub: document.getElementById('txt-linkhub')
+      mensajes: document.getElementById('txt-mensajes'),
+      servidores: document.getElementById('txt-servidores'),
+      extra: document.getElementById('txt-extra')
     };
 
     if (idiomaActual === 'es') {
@@ -807,13 +808,13 @@
       if(elementos.deportes) elementos.deportes.innerText = "Deportes";
       if(elementos.economia) elementos.economia.innerText = "Economía";
       if(elementos.mapas) elementos.mapas.innerText = "Mapas";
-      if(elementos.carrd) elementos.carrd.innerText = "Carrd";
+      if(elementos.chatbots) elementos.chatbots.innerText = "Chatbots";
       if(elementos.juegos) elementos.juegos.innerText = "Juegos";
-      if(elementos.fabbio) elementos.fabbio.innerText = "Fab Bio";
+      if(elementos.fotos) elementos.fotos.innerText = "Fotos";
       if(elementos.milkshake) elementos.milkshake.innerText = "Milkshake";
-      if(elementos.inbio) elementos.inbio.innerText = "Inbio";
-      if(elementos.ibio) elementos.ibio.innerText = "iBio";
-      if(elementos.linkhub) elementos.linkhub.innerText = "Linkhub";
+      if(elementos.mensajes) elementos.mensajes.innerText = "Mensajes públicos";
+      if(elementos.servidores) elementos.servidores.innerText = "Servidores";
+      if(elementos.extra) elementos.extra.innerText = "Extra";
     } else {
       if(elementos.comunidad) elementos.comunidad.innerText = "Community";
       if(elementos.redes) elementos.redes.innerText = "Social Media";
@@ -821,16 +822,18 @@
       if(elementos.educacion) elementos.educacion.innerText = "Education";
       if(elementos.deportes) elementos.deportes.innerText = "Sports";
       if(elementos.economia) elementos.economia.innerText = "Economy";
+      if(elementos.mapas) elementso.mapas.innerText = "Maps"; // corregido por seguridad
       if(elementos.mapas) elementos.mapas.innerText = "Maps";
-      if(elementos.carrd) elementos.carrd.innerText = "Carrd";
+      if(elementos.chatbots) elementos.chatbots.innerText = "Chatbots";
       if(elementos.juegos) elementos.juegos.innerText = "Games";
-      if(elementos.fabbio) elementos.fabbio.innerText = "Fab Bio";
+      if(elementos.fotos) elementos.fotos.innerText = "Photos";
       if(elementos.milkshake) elementos.milkshake.innerText = "Milkshake";
-      if(elementos.inbio) elementos.inbio.innerText = "Inbio";
-      if(elementos.ibio) elementos.ibio.innerText = "iBio";
-      if(elementos.linkhub) elementos.linkhub.innerText = "Linkhub";
+      if(elementos.mensajes) elementos.mensajes.innerText = "Public Messages";
+      if(elementos.servidores) elementos.servidores.innerText = "Servers";
+      if(elementos.extra) elementos.extra.innerText = "Extra";
     }
   }
+
 
   // --- CONTROLADOR DE MÚSICA CON ETIQUETA DINÁMICA ---
   function toggleMusica() {
