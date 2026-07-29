@@ -506,6 +506,32 @@
     vertical-align: middle;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
+        /* Bloqueo total en imágenes */
+img {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Pero los enlaces SÍ funcionan */
+a {
+  pointer-events: auto !important;
+}
+
+/* Las imágenes dentro de enlaces no bloquean el clic */
+.boton-enlace img,
+.contenedor-avatar img,
+.logo-web {
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
     </style>
 </head>
 <body>
@@ -878,7 +904,57 @@
   }
 </script>
 
+<script>
+  // --- BLOQUEO TOTAL DE MENÚ EN IMÁGENES (MÓVIL Y PC) ---
+  
+  // 1. Bloquear clic derecho (PC)
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  }, true);
 
+  // 2. Bloquear toque largo (Móvil)
+  let touchTimer;
+  document.addEventListener('touchstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+      touchTimer = setTimeout(function() {
+        e.preventDefault();
+        e.stopPropagation();
+      }, 500);
+    }
+  }, true);
+
+  document.addEventListener('touchend', function(e) {
+    if (e.target.tagName === 'IMG') {
+      clearTimeout(touchTimer);
+    }
+  }, true);
+
+  document.addEventListener('touchmove', function(e) {
+    if (e.target.tagName === 'IMG') {
+      clearTimeout(touchTimer);
+    }
+  }, true);
+
+  // 3. Bloquear arrastrar
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+
+  // 4. Bloquear selección
+  document.addEventListener('selectstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+      return false;
+    }
+  }, true);
+</script>
 
 </body>
 </html>
