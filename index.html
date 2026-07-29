@@ -506,10 +506,48 @@
     vertical-align: middle;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
-        .btn-regresar {
-    background-color: #ffcc00 !important;
-    color: #000 !important;
-    margin-bottom: 20px;
+        /* ================== PANTALLAS ================== */
+
+.pantalla{
+    width:100%;
+    animation: aparecer .25s;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+.titulo-pantalla{
+    color:#ffe000;
+    font-size:24px;
+    text-align:center;
+    margin:20px 0;
+}
+
+.boton-volver{
+    background:#00ff16;
+    color:#ff4200;
+    border:none;
+    border-radius:15px;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    width:100%;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+
+.lista-perfiles{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
     </style>
