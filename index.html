@@ -31,57 +31,59 @@
     padding: 40px 20px;
 }
 
-/* --- ESTILOS DEL LISTÓN EN FORMA DE ARCO --- */
+/* --- ESTILOS DEL LISTÓN CORREGIDO --- */
         .ribbon-container {
             display: flex;
             justify-content: center;
             margin: 20px 0;
-            padding: 0 20px;
+            padding: 0 30px;
         }
 
         .ribbon {
             position: relative;
             background: #ff4200;
             color: #ffe000;
-            padding: 20px 50px 25px 50px;
+            padding: 18px 60px 22px 60px;
             font-size: 16px;
             font-weight: bold;
             text-align: center;
-            border-radius: 30px 30px 0 0; /* Curva suave solo arriba (arco) */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            min-width: 300px;
+            border-radius: 8px 8px 0 0; /* Curva muy sutil arriba */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            min-width: 280px;
             z-index: 2;
         }
 
-        /* Cola izquierda grande con forma de V */
+        /* Cola izquierda con forma de V */
         .ribbon::before {
             content: '';
             position: absolute;
-            bottom: -20px;
-            left: -25px;
+            bottom: 0;
+            left: -20px;
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 30px 0 30px 40px;
-            border-color: transparent transparent transparent #cc3600;
+            border-width: 15px 20px 15px 0;
+            border-color: transparent #cc3600 transparent transparent;
+            z-index: 1;
         }
 
-        /* Cola derecha grande con forma de V */
+        /* Cola derecha con forma de V */
         .ribbon::after {
             content: '';
             position: absolute;
-            bottom: -20px;
-            right: -25px;
+            bottom: 0;
+            right: -20px;
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 30px 40px 30px 0;
-            border-color: transparent #cc3600 transparent transparent;
+            border-width: 15px 0 15px 20px;
+            border-color: transparent transparent transparent #cc3600;
+            z-index: 1;
         }
 
         .ribbon-text {
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
         /* ------------------------------------------- */
         .container {
