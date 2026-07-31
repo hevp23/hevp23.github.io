@@ -31,7 +31,53 @@
     padding: 40px 20px;
 }
 
+/* --- ESTILOS DEL LISTÓN PARA TU NOMBRE --- */
+        .ribbon-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0 20px 0;
+        }
 
+        .ribbon {
+            position: relative;
+            background: #ff4200;
+            color: #ffe000;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            line-height: 1.3;
+        }
+
+        .ribbon::before,
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            width: 0;
+            height: 0;
+            border: 15px solid #cc3600;
+        }
+
+        .ribbon::before {
+            left: 0;
+            border-right-width: 15px;
+            border-left-color: transparent;
+        }
+
+        .ribbon::after {
+            right: 0;
+            border-left-width: 15px;
+            border-right-color: transparent;
+        }
+
+        .ribbon-text {
+            position: relative;
+            z-index: 1;
+        }
+        /* ------------------------------------------- */
         .container {
             max-width: 480px;
             margin: 0 auto;
@@ -551,7 +597,7 @@ a {
 
 <!-- Tu foto centrada con una clase limpia -->
 <div class="contenedor-avatar">
-  <img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil"draggable="falseoncontextmenu="return false;"">
+<img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil" draggable="false" oncontextmenu="return false;">
 </div>
 
 <div class="idioma-flotante-izq">
@@ -573,7 +619,12 @@ a {
 </audio>
 
 
-        <h1 style="text-align: center; margin: 10px 0;">Héctor Eduardo Valladares Pérez</h1>
+<!-- NUEVO LISTÓN -->
+<div class="ribbon-container">
+  <div class="ribbon">
+    <span class="ribbon-text">Héctor Eduardo Valladares Pérez</span>
+  </div>
+</div>
 <span class="username" style="color: #ffe000; display: block; margin: 5px 0; text-align: center;">
     @hevp23 <span class="cheque-verificado">✓</span>
 </span>
