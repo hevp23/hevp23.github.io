@@ -532,14 +532,14 @@ a {
   user-select: none !important;
   -webkit-user-select: none !important;
 }
-        /* --- ICONOS EN LOS BOTONES --- */
+/* --- ICONOS EN LOS BOTONES (CIRCULARES) --- */
 .icono-enlace {
-  width: 32px !important;
-  height: 32px !important;
-  min-width: 32px !important;
-  border-radius: 6px !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 50% !important;  /* ¡Esto las hace redondas! ⭕ */
   margin-right: 10px !important;
-  object-fit: contain !important;
+  object-fit: cover !important;   /* Cambiado a cover para que se vean bien en círculo */
   display: inline-block !important;
   vertical-align: middle !important;
 }
