@@ -909,7 +909,6 @@ a {
     if (idiomaActual === 'es') {
       const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
       fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
-      
       let palabras = fechaTexto.split(' ');
       palabras[0] = palabras[0].charAt(0).toUpperCase() + palabras[0].slice(1);
       if (palabras[3]) {
@@ -925,24 +924,19 @@ a {
     const minutos = String(ahora.getMinutes()).padStart(2, '0');
     const segundos = String(ahora.getSeconds()).padStart(2, '0');
     const ampm = horas >= 12 ? 'PM' : 'AM';
-
     horas = horas % 12;
     horas = horas ? horas : 12;
-
     const horaTexto = `${horas}:${minutos}:${segundos} ${ampm}`;
 
     const elementoFecha = document.getElementById('fecha-actual');
     const elementoReloj = document.getElementById('reloj-actual');
-
     if (elementoFecha) elementoFecha.textContent = fechaTexto;
     if (elementoReloj) elementoReloj.textContent = horaTexto;
   }
 
-  // Arranca el reloj y el intervalo de inmediato
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
 
-  // --- CONTROLADOR DE IDIOMA CON UN SOLO TOQUE ---
   function alternarIdioma() {
     if (idiomaActual === 'es') {
       idiomaActual = 'en';
@@ -961,7 +955,6 @@ a {
     actualizarReloj();
     actualizarTextosBotones();
 
-    // Actualizar texto del botón de música según el idioma actual
     const audio = document.getElementById('audio-fondo');
     const lblMusica = document.getElementById('lbl-musica-activo');
     if (lblMusica && audio) {
@@ -971,9 +964,10 @@ a {
         lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
       }
     }
+    
+    traducirPantallasInternas();
   }
 
-  // --- FUNCIÓN PARA ACTUALIZAR LOS TEXTOS DE LOS BOTONES ---
   function actualizarTextosBotones() {
     const elementos = {
       comunidad: document.getElementById('txt-comunidad'),
@@ -1025,15 +1019,6 @@ a {
     }
   }
 
-
-
-
-
-
-
-
-
-  // --- CONTROLADOR DE MÚSICA CON ETIQUETA DINÁMICA ---
   function toggleMusica() {
     const audio = document.getElementById('audio-fondo');
     const btnMusica = document.getElementById('btn-musica');
@@ -1062,141 +1047,59 @@ a {
 </script>
 
 <script>
-  // --- BLOQUEO TOTAL DE MENÚ EN IMÁGENES (MÓVIL Y PC) ---
-  
-  // 1. Bloquear clic derecho (PC)
   document.addEventListener('contextmenu', function(e) {
-    if (e.target.tagName === 'IMG') {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
+    if (e.target.tagName === 'IMG') { e.preventDefault(); e.stopPropagation(); return false; }
   }, true);
 
-  // 2. Bloquear toque largo (Móvil)
   let touchTimer;
   document.addEventListener('touchstart', function(e) {
     if (e.target.tagName === 'IMG') {
-      touchTimer = setTimeout(function() {
-        e.preventDefault();
-        e.stopPropagation();
-      }, 500);
+      touchTimer = setTimeout(function() { e.preventDefault(); e.stopPropagation(); }, 500);
     }
   }, true);
 
   document.addEventListener('touchend', function(e) {
-    if (e.target.tagName === 'IMG') {
-      clearTimeout(touchTimer);
-    }
+    if (e.target.tagName === 'IMG') { clearTimeout(touchTimer); }
   }, true);
 
   document.addEventListener('touchmove', function(e) {
-    if (e.target.tagName === 'IMG') {
-      clearTimeout(touchTimer);
-    }
+    if (e.target.tagName === 'IMG') { clearTimeout(touchTimer); }
   }, true);
 
-  // 3. Bloquear arrastrar
   document.addEventListener('dragstart', function(e) {
-    if (e.target.tagName === 'IMG') {
-      e.preventDefault();
-      return false;
-    }
+    if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
   }, true);
 
-  // 4. Bloquear selección
   document.addEventListener('selectstart', function(e) {
-    if (e.target.tagName === 'IMG') {
-      e.preventDefault();
-      return false;
-    }
+    if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
   }, true);
 </script>
-    <script>
-// --- FUNCIONES PARA NAVEGAR ENTRE PANTALLAS ---
-function abrirPantalla(idPantalla) {
-  document.getElementById(idPantalla).style.display = 'block';
-}
 
-function cerrarPantalla(idPantalla) {
-  document.getElementById(idPantalla).style.display = 'none';
-}
-
-function actualizarIdiomaPantallasInternas() {
-  const elementos = document.querySelectorAll('[data-es][data-en]');
-  elementos.forEach(el => {
-    el.innerText = (idiomaActual === 'es') ? el.getAttribute('data-es') : el.getAttribute('data-en');
-  });
-}
-        function alternarIdioma() {
-  if (idiomaActual === 'es') {
-    idiomaActual = 'en';
-    const btnIdioma = document.getElementById('btn-idioma');
-    const lblIdioma = document.getElementById('lbl-idioma-activo');
-    if (btnIdioma) btnIdioma.innerText = '🇬🇧';  // 👉 AQUÍ ESTABA EL ERROR, YA LO CORREGÍ
-    if (lblIdioma) lblIdioma.innerText = 'English';
-  } else {
-    idiomaActual = 'es';
-    const btnIdioma = document.getElementById('btn-idioma');
-    const lblIdioma = document.getElementById('lbl-idioma-activo');
-    if (btnIdioma) btnIdioma.innerText = '🇪🇸';
-    if (lblIdioma) lblIdioma.innerText = 'Español';
+<script>
+  function abrirPantalla(idPantalla) {
+    document.getElementById(idPantalla).style.display = 'block';
   }
 
-  actualizarReloj();
-  actualizarTextosBotones();
-
-  // Actualizar texto del botón de música según el idioma actual
-  const audio = document.getElementById('audio-fondo');
-  const lblMusica = document.getElementById('lbl-musica-activo');
-  if (lblMusica && audio) {
-    if (idiomaActual === 'es') {
-      lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
-    } else {
-      lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
-    }
+  function cerrarPantalla(idPantalla) {
+    document.getElementById(idPantalla).style.display = 'none';
   }
 
-  // Traducir pantallas internas
-  traducirPantallasInternas();
-        }
-
-  actualizarReloj();
-  actualizarTextosBotones();
-
-  // Actualizar texto del botón de música según el idioma actual
-  const audio = document.getElementById('audio-fondo');
-  const lblMusica = document.getElementById('lbl-musica-activo');
-  if (lblMusica && audio) {
-    if (idiomaActual === 'es') {
-      lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
-    } else {
-      lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
-    }
-  }
-
-  // 👇 ESTA ES LA LÍNEA NUEVA QUE TRADUCE LAS PANTALLAS INTERNAS 👇
-  traducirPantallasInternas();
-        }
-    </script>
-    <script>
-// --- TRADUCIR PANTALLAS INTERNAS ---
-function traducirPantallasInternas() {
-    // Buscamos solo los elementos que están DENTRO de las pantallas internas
+  function traducirPantallasInternas() {
     const elementos = document.querySelectorAll('.pantalla-interna [data-es][data-en]');
     elementos.forEach(el => {
-        if (idiomaActual === 'es') {
-            el.innerText = el.getAttribute('data-es');
-        } else {
-            el.innerText = el.getAttribute('data-en');
-        }
+      if (idiomaActual === 'es') {
+        el.innerText = el.getAttribute('data-es');
+      } else {
+        el.innerText = el.getAttribute('data-en');
+      }
     });
-}
-    </script>
+  }
+</script>
+  
 <!-- PANTALLA 1: COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
-    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
+    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
   <div class="cuadricula-interna">
@@ -1220,7 +1123,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 3: FOTOS -->
 <div id="pantalla-fotos" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-fotos')">
-    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Fotos" data-en="Photos">Fotos</h2>
   <div class="cuadricula-interna">
@@ -1244,7 +1147,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 5: ASISTENTES -->
 <div id="pantalla-asistentes" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-asistentes')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Asistentes" data-en="Assistants">Asistentes</h2>
   <div class="cuadricula-interna">
@@ -1256,7 +1159,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 6: JUEGOS -->
 <div id="pantalla-juegos" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-juegos')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Juegos" data-en="Games">Juegos</h2>
   <div class="cuadricula-interna">
@@ -1280,7 +1183,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 8: SERVIDORES -->
 <div id="pantalla-servidores" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-servidores')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Servidores" data-en="Servers">Servidores</h2>
   <div class="cuadricula-interna">
@@ -1292,7 +1195,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 9: EDUCACIÓN -->
 <div id="pantalla-educacion" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-educacion')">
-    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Educación" data-en="Education">Educación</h2>
   <div class="cuadricula-interna">
@@ -1316,7 +1219,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 11: TECNOLOGÍA -->
 <div id="pantalla-tecnologia" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-tecnologia')">
-    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Tecnología" data-en="Technology">Tecnología</h2>
   <div class="cuadricula-interna">
@@ -1328,7 +1231,7 @@ function traducirPantallasInternas() {
 <!-- PANTALLA 12: PORTAFOLIO -->
 <div id="pantalla-portafolio" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-portafolio')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Portafolio" data-en="Portfolio">Portafolio</h2>
   <div class="cuadricula-interna">
@@ -1359,7 +1262,9 @@ function traducirPantallasInternas() {
     <a href="#" class="boton-interno"><span data-es="Enlace 1" data-en="Link 1">Enlace 1</span></a>
     <a href="#" class="boton-interno"><span data-es="Enlace 2" data-en="Link 2">Enlace 2</span></a>
   </div>
-        </div>
+                                                          </div>
+
+
 </div>
 </body>
 </html>
