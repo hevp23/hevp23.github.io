@@ -601,6 +601,55 @@ a {
   display: inline-block !important;
   vertical-align: middle !important;
 }
+        /* --- PANTALLAS INTERNAS (OCULTAS POR DEFECTO) --- */
+.pantalla-interna {
+  display: none !important; /* Oculta la pantalla al inicio */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #0070ff !important; /* Tu azul de fondo */
+  z-index: 9999 !important;
+  overflow-y: auto !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* --- BOTÓN VOLVER --- */
+.boton-volver {
+  background-color: #ff4200 !important; /* Naranja para que resalte */
+  color: #ffe000 !important; /* Letras amarillas */
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 50px !important; /* Forma de píldora */
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2) !important;
+}
+
+/* --- TÍTULO DE LA PANTALLA INTERNA --- */
+.titulo-pantalla {
+  color: #ffe000 !important;
+  text-align: center !important;
+  font-size: 24px !important;
+  margin-bottom: 30px !important;
+  font-weight: bold !important;
+}
+
+/* --- CUADRÍCULA PARA LOS NUEVOS BOTONES --- */
+.cuadricula-interna {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
+  gap: 12px !important;                      
+  width: 100% !important;                     
+  max-width: 440px !important;               
+  margin: 0 auto !important;      
+  justify-content: center !important;        
+  justify-items: center !important;  
+}
     </style>
 </head>
 <body>
@@ -718,89 +767,89 @@ a {
 
     
 
-<!-- Cuadrícula de Enlaces TreeLinks -->
+<!-- Cuadrícula de Enlaces TreeLinks (MODIFICADA PARA PANTALLAS INTERNAS) -->
 <div class="cuadricula-enlaces">
   
-  <!-- 1. Comunidad (Cruz) -->
-  <a href="https://www.getmysocial.com/hevp23" class="boton-enlace" target="_blank">
+  <!-- 1. Comunidad -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-comunidad'); return false;">
     <img src="cruz-colina.jpg" class="icono-enlace" alt="Comunidad" draggable="false" oncontextmenu="return false;">
     <span id="txt-comunidad" data-es="Comunidad" data-en="Community">Comunidad</span>
   </a>
 
-  <!-- 2. Redes Sociales (Globo terráqueo) -->
-  <a href="https://linkfly.to/hevp23" class="boton-enlace" target="_blank">
+  <!-- 2. Redes Sociales -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-redes'); return false;">
     <img src="globo-terraneo.png" class="icono-enlace" alt="Redes" draggable="false" oncontextmenu="return false;">
     <span id="txt-redes" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</span>
   </a>
 
-  <!-- 3. Fotos (Paisaje) -->
-  <a href="https://fab.bio/hevp23" class="boton-enlace" target="_blank">
+  <!-- 3. Fotos -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-fotos'); return false;">
     <img src="paisaje-sol.png" class="icono-enlace" alt="Fotos" draggable="false" oncontextmenu="return false;">
     <span id="txt-fotos" data-es="Fotos" data-en="Photos">Fotos</span>
   </a>
 
-  <!-- 4. Mensajes (Burbujas) -->
-  <a href="https://linktr.ee/hevp23" class="boton-enlace" target="_blank">
+  <!-- 4. Mensajes Anónimos -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-mensajes'); return false;">
     <img src="chat-burbuja.png" class="icono-enlace" alt="Mensajes" draggable="false" oncontextmenu="return false;">
     <span id="txt-mensajes" data-es="Mensajes Anónimos" data-en="Anonymous Messages">Mensajes<br>Anónimos</span>
   </a>
 
-  <!-- 5. Asistentes (Robot) -->
-  <a href="https://hevp23.carrd.co" class="boton-enlace" target="_blank">
+  <!-- 5. Asistentes -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-asistentes'); return false;">
     <img src="robot-chat.png" class="icono-enlace" alt="Asistentes" draggable="false" oncontextmenu="return false;">
     <span id="txt-asistentes" data-es="Asistentes" data-en="Assistants">Asistentes</span>
   </a>
 
-  <!-- 6. Juegos (Controlador) -->
-  <a href="https://lynkdo.bio/es/hevp23" class="boton-enlace" target="_blank">
+  <!-- 6. Juegos -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-juegos'); return false;">
     <img src="controlador-juego.jpg" class="icono-enlace" alt="Juegos" draggable="false" oncontextmenu="return false;">
     <span id="txt-juegos" data-es="Juegos" data-en="Games">Juegos</span>
   </a>
 
-  <!-- 7. Mapas (Mapa con pin) -->
-  <a href="https://allmylinks.com/hevp23" class="boton-enlace" target="_blank">
+  <!-- 7. Mapas -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-mapas'); return false;">
     <img src="mapa-pin.png" class="icono-enlace" alt="Mapas" draggable="false" oncontextmenu="return false;">
     <span id="txt-mapas" data-es="Mapas" data-en="Maps">Mapas</span>
   </a>
 
-  <!-- 8. Servidores (Personas) -->
-  <a href="https://mez.ink/hevp23" class="boton-enlace" target="_blank">
+  <!-- 8. Servidores -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-servidores'); return false;">
     <img src="personas.jpg" class="icono-enlace" alt="Servidores" draggable="false" oncontextmenu="return false;">
     <span id="txt-servidores" data-es="Servidores" data-en="Servers">Servidores</span>
   </a>
 
-  <!-- 9. Educación (Libros) -->
-  <a href="https://linkbio.co/hevp23" class="boton-enlace" target="_blank">
+  <!-- 9. Educación -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-educacion'); return false;">
     <img src="libros.png" class="icono-enlace" alt="Educación" draggable="false" oncontextmenu="return false;">
     <span id="txt-educacion" data-es="Educación" data-en="Education">Educación</span>
   </a>
 
-  <!-- 10. Deportes (Pelota) -->
-  <a href="https://visitmylinks.com/hevp23" class="boton-enlace" target="_blank">
+  <!-- 10. Deportes -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-deportes'); return false;">
     <img src="futbol.png" class="icono-enlace" alt="Deportes" draggable="false" oncontextmenu="return false;">
     <span id="txt-deportes" data-es="Deportes" data-en="Sports">Deportes</span>
   </a>
 
-  <!-- 11. Tecnología (Chip) -->
-  <a href="https://beacons.ai/hevp23" class="boton-enlace" target="_blank">
+  <!-- 11. Tecnología -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-tecnologia'); return false;">
     <img src="tecnologia-chip.png" class="icono-enlace" alt="Tecnología" draggable="false" oncontextmenu="return false;">
     <span id="txt-tecnologia" data-es="Tecnología" data-en="Technology">Tecnología</span>
   </a>
 
-  <!-- 12. Portafolio (Maletín) -->
-  <a href="https://msha.ke/hevp23" class="boton-enlace" target="_blank">
+  <!-- 12. Portafolio -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-portafolio'); return false;">
     <img src="portafolio-maletin.png" class="icono-enlace" alt="Portafolio" draggable="false" oncontextmenu="return false;">
     <span id="txt-portafolio" data-es="Portafolio" data-en="Portfolio">Portafolio</span>
   </a>
 
-  <!-- 13. Economía (Monedas) -->
-  <a href="https://link.me/hevp23" class="boton-enlace" target="_blank">
+  <!-- 13. Economía -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-economia'); return false;">
     <img src="economia-monedas.png" class="icono-enlace" alt="Economía" draggable="false" oncontextmenu="return false;">
     <span id="txt-economia" data-es="Economía" data-en="Economy">Economía</span>
   </a>
 
-  <!-- 14. Extra (Estrella) -->
-  <a href="https://lhub.to/hevp23" class="boton-enlace" target="_blank">
+  <!-- 14. Extra -->
+  <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-extra'); return false;">
     <img src="extra-estrella.png" class="icono-enlace" alt="Extra" draggable="false" oncontextmenu="return false;">
     <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
