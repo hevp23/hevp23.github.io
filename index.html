@@ -1128,6 +1128,52 @@ function actualizarIdiomaPantallasInternas() {
     el.innerText = (idiomaActual === 'es') ? el.getAttribute('data-es') : el.getAttribute('data-en');
   });
 }
+        function alternarIdioma() {
+  if (idiomaActual === 'es') {
+    idiomaActual = 'en';
+    const btnIdioma = document.getElementById('btn-idioma');
+    const lblIdioma = document.getElementById('lbl-idioma-activo');
+    if (btnIdioma) btnIdioma.innerText = '🇧';
+    if (lblIdioma) lblIdioma.innerText = 'English';
+  } else {
+    idiomaActual = 'es';
+    const btnIdioma = document.getElementById('btn-idioma');
+    const lblIdioma = document.getElementById('lbl-idioma-activo');
+    if (btnIdioma) btnIdioma.innerText = '🇪🇸';
+    if (lblIdioma) lblIdioma.innerText = 'Español';
+  }
+
+  actualizarReloj();
+  actualizarTextosBotones();
+
+  // Actualizar texto del botón de música según el idioma actual
+  const audio = document.getElementById('audio-fondo');
+  const lblMusica = document.getElementById('lbl-musica-activo');
+  if (lblMusica && audio) {
+    if (idiomaActual === 'es') {
+      lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
+    } else {
+      lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
+    }
+  }
+
+  // 👇 ESTA ES LA LÍNEA NUEVA QUE TRADUCE LAS PANTALLAS INTERNAS 👇
+  traducirPantallasInternas();
+        }
+    </script>
+    <script>
+// --- TRADUCIR PANTALLAS INTERNAS ---
+function traducirPantallasInternas() {
+    // Buscamos solo los elementos que están DENTRO de las pantallas internas
+    const elementos = document.querySelectorAll('.pantalla-interna [data-es][data-en]');
+    elementos.forEach(el => {
+        if (idiomaActual === 'es') {
+            el.innerText = el.getAttribute('data-es');
+        } else {
+            el.innerText = el.getAttribute('data-en');
+        }
+    });
+}
     </script>
 <!-- PANTALLA 1: COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
