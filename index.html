@@ -1133,7 +1133,7 @@ function actualizarIdiomaPantallasInternas() {
     idiomaActual = 'en';
     const btnIdioma = document.getElementById('btn-idioma');
     const lblIdioma = document.getElementById('lbl-idioma-activo');
-    if (btnIdioma) btnIdioma.innerText = '🇧';
+    if (btnIdioma) btnIdioma.innerText = '🇬🇧';  // 👉 AQUÍ ESTABA EL ERROR, YA LO CORREGÍ
     if (lblIdioma) lblIdioma.innerText = 'English';
   } else {
     idiomaActual = 'es';
@@ -1142,6 +1142,24 @@ function actualizarIdiomaPantallasInternas() {
     if (btnIdioma) btnIdioma.innerText = '🇪🇸';
     if (lblIdioma) lblIdioma.innerText = 'Español';
   }
+
+  actualizarReloj();
+  actualizarTextosBotones();
+
+  // Actualizar texto del botón de música según el idioma actual
+  const audio = document.getElementById('audio-fondo');
+  const lblMusica = document.getElementById('lbl-musica-activo');
+  if (lblMusica && audio) {
+    if (idiomaActual === 'es') {
+      lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
+    } else {
+      lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
+    }
+  }
+
+  // Traducir pantallas internas
+  traducirPantallasInternas();
+        }
 
   actualizarReloj();
   actualizarTextosBotones();
