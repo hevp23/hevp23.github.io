@@ -603,15 +603,16 @@ a {
 }
 /* --- PANTALLAS INTERNAS --- */
 .pantalla-interna {
-  display: none; /* Oculta por defecto */
+  display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: #0070ff; /* Tu azul */
+  background-color: #0070ff;
   z-index: 9999;
   overflow-y: auto;
   padding: 20px;
   box-sizing: border-box;
+  overscroll-behavior: contain;
 }
 
 /* --- BOTÓN VOLVER --- */
@@ -1112,16 +1113,13 @@ a {
   }, true);
 </script>
     <script>
-    // --- FUNCIONES PARA NAVEGAR ENTRE PANTALLAS ---
+// --- FUNCIONES PARA NAVEGAR ENTRE PANTALLAS ---
 function abrirPantalla(idPantalla) {
   document.getElementById(idPantalla).style.display = 'block';
-  document.body.style.overflow = 'hidden'; 
-  actualizarIdiomaPantallasInternas(); // Asegura que el idioma sea el correcto al abrir
 }
 
 function cerrarPantalla(idPantalla) {
   document.getElementById(idPantalla).style.display = 'none';
-  document.body.style.overflow = 'auto'; 
 }
 
 function actualizarIdiomaPantallasInternas() {
@@ -1134,11 +1132,10 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 1: COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
   <div class="cuadricula-interna">
-    <!-- Aquí pondremos tus enlaces reales de comunidad -->
     <a href="#" class="boton-interno"><span data-es="Enlace 1" data-en="Link 1">Enlace 1</span></a>
     <a href="#" class="boton-interno"><span data-es="Enlace 2" data-en="Link 2">Enlace 2</span></a>
   </div>
@@ -1159,7 +1156,7 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 3: FOTOS -->
 <div id="pantalla-fotos" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-fotos')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Fotos" data-en="Photos">Fotos</h2>
   <div class="cuadricula-interna">
@@ -1171,15 +1168,16 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 4: MENSAJES ANÓNIMOS -->
 <div id="pantalla-mensajes" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-mensajes')">
-  <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Mensajes Anónimos" data-en="Anonymous Messages">Mensajes Anónimos</h2>
   <div class="cuadricula-interna">
     <a href="#" class="boton-interno"><span data-es="Enlace 1" data-en="Link 1">Enlace 1</span></a>
     <a href="#" class="boton-interno"><span data-es="Enlace 2" data-en="Link 2">Enlace 2</span></a>
   </div>
+</div>
 
-    <!-- PANTALLA 5: ASISTENTES -->
+<!-- PANTALLA 5: ASISTENTES -->
 <div id="pantalla-asistentes" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-asistentes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
@@ -1230,7 +1228,7 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 9: EDUCACIÓN -->
 <div id="pantalla-educacion" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-educacion')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Educación" data-en="Education">Educación</h2>
   <div class="cuadricula-interna">
@@ -1242,7 +1240,7 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 10: DEPORTES -->
 <div id="pantalla-deportes" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-deportes')">
-    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Deportes" data-en="Sports">Deportes</h2>
   <div class="cuadricula-interna">
@@ -1254,7 +1252,7 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 11: TECNOLOGÍA -->
 <div id="pantalla-tecnologia" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-tecnologia')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Tecnología" data-en="Technology">Tecnología</h2>
   <div class="cuadricula-interna">
@@ -1290,14 +1288,14 @@ function actualizarIdiomaPantallasInternas() {
 <!-- PANTALLA 14: EXTRA -->
 <div id="pantalla-extra" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-extra')">
-    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <h2 class="titulo-pantalla" data-es="Extra" data-en="Extra">Extra</h2>
   <div class="cuadricula-interna">
     <a href="#" class="boton-interno"><span data-es="Enlace 1" data-en="Link 1">Enlace 1</span></a>
     <a href="#" class="boton-interno"><span data-es="Enlace 2" data-en="Link 2">Enlace 2</span></a>
   </div>
-    </div>
+        </div>
 </div>
 </body>
 </html>
