@@ -665,6 +665,30 @@ a {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: background-color 0.3s ease;
     }
+        /* --- ICONOS DENTRO DE LOS BOTONES INTERNOS --- */
+.icono-boton-interno {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  border-radius: 50% !important;
+  margin-right: 10px !important;
+  object-fit: cover !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  pointer-events: none !important;
+}
+
+.boton-interno {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-left: 15px !important;
+}
     </style>
 </head>
 <body>
@@ -1103,9 +1127,35 @@ a {
   </button>
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
   <div class="cuadricula-interna">
-    <a href="https://bible.com/users/hectoreduardovalladaresperez288" class="boton-interno"><span data-es="YouVersion" data-en="YouVersion">YouVersion</span></a>
-    <a href="https://worldbibleschool.org/es/members/2931093/" class="boton-interno"><span data-es="World Bible School" data-en="World Bible School">World Bible School</span></a>
-      <a href="https://dailyverses.net/es/rvr60" class="boton-interno"><span data-es="Versículo Diario" data-en="Versículo Diario">Versículo Diario</span></a>
+    <!-- YouVersion -->
+<a href="https://bible.com/users/hectoreduardovalladaresperez288" class="boton-interno" target="_blank">
+  <img src="youversion.png" 
+       alt="YouVersion" 
+       class="icono-boton-interno" 
+       draggable="false" 
+       oncontextmenu="return false">
+  <span data-es="YouVersion" data-en="YouVersion">YouVersion</span>
+</a>
+
+<!-- World Bible School -->
+<a href="https://worldbibleschool.org/es/members/2931093/" class="boton-interno" target="_blank">
+  <img src="wbs.png" 
+       alt="World Bible School" 
+       class="icono-boton-interno" 
+       draggable="false" 
+       oncontextmenu="return false">
+  <span data-es="World Bible School" data-en="World Bible School">World Bible School</span>
+</a>
+
+<!-- Versículo Diario -->
+<a href="https://dailyverses.net/es/rvr60" class="boton-interno" target="_blank">
+  <img src="dailyverse.png" 
+       alt="Versículo Diario" 
+       class="icono-boton-interno" 
+       draggable="false" 
+       oncontextmenu="return false">
+  <span data-es="Versículo Diario" data-en="Daily Verse">Versículo Diario</span>
+</a>
   </div>
 </div>
 
