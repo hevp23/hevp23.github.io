@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Héctor Eduardo Valladares Pérez - @hevp23</title>
     <style>
         * {
@@ -1143,6 +1143,23 @@ a {
       }
     });
   }
+    // --- DETENER MÚSICA AL CERRAR O CAMBIAR DE PESTAÑA ---
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) {
+    var audio = document.getElementById('audio-fondo');
+    var btnMusica = document.getElementById('btn-musica');
+    var lblMusica = document.getElementById('lbl-musica-activo');
+    
+    if (audio && !audio.paused) {
+      audio.pause();
+      // Actualizar los botones visualmente
+      if (btnMusica) btnMusica.textContent = '▶️';
+      if (lblMusica) {
+        lblMusica.textContent = (idiomaActual === 'es') ? 'Reproducir' : 'Play';
+      }
+    }
+  }
+});
 </script>
   
 <!-- PANTALLA 1: COMUNIDAD -->
