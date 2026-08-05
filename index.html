@@ -346,33 +346,35 @@
 }
 
 
-/* --- NUEVA CUADRÍCULA DE ENLACES DESDE CERO --- */
+/* --- CUADRÍCULA COMPATIBLE CON ANDROID 6 A 17 (FLEXBOX) --- */
 .cuadricula-enlaces {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
-  gap: 12px !important;                      
-  width: 90% !important;                     
-  max-width: 440px !important;               
-  margin: 20px auto !important;      
-  justify-content: center !important;        
-  justify-items: center !important;  
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  width: 90% !important;
+  max-width: 440px !important;
+  margin: 20px auto !important;
 }
 
-/* --- NUEVOS BOTONES LIMPIOS Y CENTRADOS --- */
 .boton-enlace {
+  width: 48% !important;
+  margin-bottom: 15px !important;
+  box-sizing: border-box !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;   
-  background-color: #00ff16 !important;      
-  color: #ff4200 !important;                 
-  text-decoration: none !important;          
-  padding: 7px 7px !important;             
-  border-radius: 50px !important;            
-  font-weight: bold !important;              
-  width: 100% !important;                    
-  box-sizing: border-box !important;         
+  justify-content: center !important;
+  background-color: #00ff16 !important;
+  color: #ff4200 !important;
+  text-decoration: none !important;
+  padding: 10px 5px !important;
+  border-radius: 50px !important;
+  -webkit-border-radius: 50px !important;
+  -moz-border-radius: 50px !important;
+  font-weight: bold !important;
   text-align: center !important;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 15px !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   transition: background-color 0.3s ease;
 }
 
@@ -638,33 +640,56 @@ a {
   font-weight: bold;
 }
 
-/* --- CUADRÍCULA INTERNA --- */
+/* --- CUADRÍCULA INTERNA COMPATIBLE CON ANDROID 6 A 17 --- */
 .cuadricula-interna {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin: 0 auto !important;
 }
 
 /* --- BOTONES DENTRO DE LAS PANTALLAS INTERNAS --- */
 .boton-interno {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #00ff16; /* Verde */
-  color: #ff4200; /* Naranja */
-  text-decoration: none;
-  padding: 10px 15px; 
-  border-radius: 50px; /* Forma de píldora */
-  font-weight: bold;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 48% !important;
+  margin-bottom: 15px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #00ff16 !important;
+  color: #ff4200 !important;
+  text-decoration: none !important;
+  padding: 10px 5px !important;
+  border-radius: 50px !important;
+  -webkit-border-radius: 50px !important;
+  -moz-border-radius: 50px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  font-size: 15px !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   transition: background-color 0.3s ease;
-    }
+}
+
+/* --- ICONOS DENTRO DE LOS BOTONES INTERNOS --- */
+.icono-boton-interno {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  margin-right: 8px !important;
+  object-fit: cover !important;
+  display: inline-block !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  pointer-events: none !important;
+}
         /* --- ICONOS DENTRO DE LOS BOTONES INTERNOS --- */
 .icono-boton-interno {
   width: 28px !important;
