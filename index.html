@@ -1143,7 +1143,7 @@ a {
       }
     });
   }
-    // --- DETENER MÚSICA AL CERRAR O CAMBIAR DE PESTAÑA ---
+    // --- DETENER Y REINICIAR MÚSICA AL CERRAR O CAMBIAR DE PESTAÑA ---
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
     var audio = document.getElementById('audio-fondo');
@@ -1152,6 +1152,8 @@ document.addEventListener('visibilitychange', function() {
     
     if (audio && !audio.paused) {
       audio.pause();
+      audio.currentTime = 0; // 🎵 ¡LÍNEA MÁGICA! Reinicia la canción al principio
+      
       // Actualizar los botones visualmente
       if (btnMusica) btnMusica.textContent = '▶️';
       if (lblMusica) {
