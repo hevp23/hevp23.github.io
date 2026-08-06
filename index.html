@@ -474,16 +474,6 @@
   text-align: center;
   white-space: nowrap;
 }
-/* --- NUEVOS ESTILOS PARA EL REPRODUCTOR DINÁMICO --- */
-.controles-musica {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-}
 
 /* Círculos BLANCOS PEQUEÑOS para las flechitas ⏪️ ️ */
 .musica-boton-ctrl {
@@ -764,23 +754,19 @@ a {
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
 </div>
 
-<!-- Botón Música (Derecha) con controles dinámicos -->
+<!-- Botón Música (Derecha) con su respectiva clase de texto -->
 <div class="musica-flotante-der">
-  <div class="controles-musica">
-    <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()">⏪️</button>
-    <button class="musica-boton-ctrl" id="btn-play-pause" onclick="toggleMusica()">▶️</button>
-    <button class="musica-boton-ctrl" id="btn-siguiente" onclick="cancionSiguiente()">⏩️</button>
-  </div>
+  <div class="musica-boton" id="btn-musica" onclick="toggleMusica()">▶️</div>
   <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
 </div>
 
-<!-- Etiqueta de audio oculta (sin 'loop' para que pueda pasar a la siguiente canción) -->
-<audio id="audio-fondo">
+
+<!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
+<audio id="audio-fondo" loop>
   <source src="NewTrend_Music Old Melody(M4A_128K).m4a" type="audio/mpeg">
   Tu navegador no soporta el elemento de audio.
 </audio>
-
-
+    
 <!-- NUEVO LISTÓN -->
 <div class="ribbon-container">
   <div class="ribbon">
@@ -1044,7 +1030,16 @@ a {
     actualizarReloj();
     actualizarTextosBotones();
 
-    actualizarControles(); // 🆕 Refresca la etiqueta (Reproducir/Pausa ↔ Play/Pause)
+    const audio = document.getElementById('audio-fondo');
+    const lblMusica = document.getElementById('lbl-musica-activo');
+    if (lblMusica && audio) {
+      if (idiomaActual === 'es') {
+        lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
+      } else {
+        lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
+      }
+    }
+    
     traducirPantallasInternas();
   }
 
@@ -1099,16 +1094,31 @@ a {
     }
   }
 
-  // --- REPRODUCTOR DE MÚSICA MÚLTIPLE (7 CANCIONES) ---
-  const canciones = [
-    { archivo: "NewTrend_Music Old Melody(M4A_128K).m4a", titulo: "New Trend Music Old Melody • TopGoat" },
-    { archivo: "Kilómetros - Instrumental(M4A_128K).m4a", titulo: "Kilómetros (Instrumental) • Gocho El Lápiz de Platino" },
-    { archivo: "cancion3.mp3", titulo: "Canción 3" },
-    { archivo: "cancion4.mp3", titulo: "Canción 4" },
-    { archivo: "cancion5.mp3", titulo: "Canción 5" },
-    { archivo: "cancion6.mp3", titulo: "Canción 6" },
-    { archivo: "cancion7.mp3", titulo: "Canción 7" }
-  ];
+  function toggleMusica() {
+    const audio = document.getElementById('audio-fondo');
+    const btnMusica = document.getElementById('btn-musica');
+    const lblMusica = document.getElementById('lbl-musica-activo');
+
+    if (audio && btnMusica && lblMusica) {
+      if (audio.paused) {
+        audio.play();
+        btnMusica.textContent = '⏸️';
+        if (idiomaActual === 'es') {
+          lblMusica.textContent = 'Pausa';
+        } else {
+          lblMusica.textContent = 'Pause';
+        }
+      } else {
+        audio.pause();
+        btnMusica.textContent = '▶️';
+        if (idiomaActual === 'es') {
+          lblMusica.textContent = 'Reproducir';
+        } else {
+          lblMusica.textContent = 'Play';
+        }
+      }
+    }
+          }
 
   let cancionActual = 0;
   let estaReproduciendo = false;
@@ -1239,12 +1249,18 @@ a {
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
     var audio = document.getElementById('audio-fondo');
+    var btnMusica = document.getElementById('btn-musica');
+    var lblMusica = document.getElementById('lbl-musica-activo');
     
     if (audio && !audio.paused) {
       audio.pause();
-      audio.currentTime = 0;
-      estaReproduciendo = false;
-      actualizarControles();
+      audio.currentTime = 0; // 🎵 ¡LÍNEA MÁGICA! Reinicia la canción al principio
+      
+      // Actualizar los botones visualmente
+      if (btnMusica) btnMusica.textContent = '▶️';
+      if (lblMusica) {
+        lblMusica.textContent = (idiomaActual === 'es') ? 'Reproducir' : 'Play';
+      }
     }
   }
 });
