@@ -1044,16 +1044,7 @@ a {
     actualizarReloj();
     actualizarTextosBotones();
 
-    const audio = document.getElementById('audio-fondo');
-    const lblMusica = document.getElementById('lbl-musica-activo');
-    if (lblMusica && audio) {
-      if (idiomaActual === 'es') {
-        lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
-      } else {
-        lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
-      }
-    }
-    
+    actualizarControles(); // 🆕 Refresca la etiqueta (Reproducir/Pausa ↔ Play/Pause)
     traducirPantallasInternas();
   }
 
@@ -1108,31 +1099,92 @@ a {
     }
   }
 
-  function toggleMusica() {
-    const audio = document.getElementById('audio-fondo');
-    const btnMusica = document.getElementById('btn-musica');
+  // --- REPRODUCTOR DE MÚSICA MÚLTIPLE (7 CANCIONES) ---
+  const canciones = [
+    { archivo: "NewTrend_Music Old Melody(M4A_128K).m4a", titulo: "Old Melody" },
+    { archivo: "cancion2.mp3", titulo: "Canción 2" },
+    { archivo: "cancion3.mp3", titulo: "Canción 3" },
+    { archivo: "cancion4.mp3", titulo: "Canción 4" },
+    { archivo: "cancion5.mp3", titulo: "Canción 5" },
+    { archivo: "cancion6.mp3", titulo: "Canción 6" },
+    { archivo: "cancion7.mp3", titulo: "Canción 7" }
+  ];
+
+  let cancionActual = 0;
+  let estaReproduciendo = false;
+
+  function actualizarControles() {
+    const btnAnterior = document.getElementById('btn-anterior');
+    const btnSiguiente = document.getElementById('btn-siguiente');
+    const btnPlay = document.getElementById('btn-play-pause');
     const lblMusica = document.getElementById('lbl-musica-activo');
 
-    if (audio && btnMusica && lblMusica) {
-      if (audio.paused) {
-        audio.play();
-        btnMusica.textContent = '⏸️';
-        if (idiomaActual === 'es') {
-          lblMusica.textContent = 'Pausa';
-        } else {
-          lblMusica.textContent = 'Pause';
-        }
-      } else {
-        audio.pause();
-        btnMusica.textContent = '▶️';
-        if (idiomaActual === 'es') {
-          lblMusica.textContent = 'Reproducir';
-        } else {
-          lblMusica.textContent = 'Play';
-        }
-      }
+    if (idiomaActual === 'es') {
+      lblMusica.textContent = estaReproduciendo ? 'Pausa' : 'Reproducir';
+    } else {
+      lblMusica.textContent = estaReproduciendo ? 'Pause' : 'Play';
+    }
+
+    btnPlay.textContent = estaReproduciendo ? '⏸️' : '▶️';
+
+    const mostrarAnterior = estaReproduciendo && cancionActual > 0;
+    const mostrarSiguiente = estaReproduciendo && cancionActual < canciones.length - 1;
+
+    btnAnterior.style.display = mostrarAnterior ? 'flex' : 'none';
+    btnSiguiente.style.display = mostrarSiguiente ? 'flex' : 'none';
+  }
+
+  function toggleMusica() {
+    const audio = document.getElementById('audio-fondo');
+    if (estaReproduciendo) {
+      audio.pause();
+      estaReproduciendo = false;
+    } else {
+      audio.play();
+      estaReproduciendo = true;
+    }
+    actualizarControles();
+  }
+
+  function cancionSiguiente() {
+    if (cancionActual < canciones.length - 1) {
+      cancionActual++;
+      cargarCancion();
     }
   }
+
+  function cancionAnterior() {
+    if (cancionActual > 0) {
+      cancionActual--;
+      cargarCancion();
+    }
+  }
+
+  function cargarCancion() {
+    const audio = document.getElementById('audio-fondo');
+    const source = audio.querySelector('source');
+    source.src = canciones[cancionActual].archivo;
+    audio.load();
+    if (estaReproduciendo) {
+      audio.play();
+    }
+    actualizarControles();
+  }
+
+  actualizarControles();
+
+  document.getElementById('audio-fondo').addEventListener('ended', function() {
+    if (cancionActual < canciones.length - 1) {
+      cancionSiguiente();
+    } else {
+      cancionActual = 0;
+      cargarCancion();
+      const audio = document.getElementById('audio-fondo');
+      audio.pause();
+      estaReproduciendo = false;
+      actualizarControles();
+    }
+  });
 </script>
 
 <script>
@@ -1187,18 +1239,12 @@ a {
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
     var audio = document.getElementById('audio-fondo');
-    var btnMusica = document.getElementById('btn-musica');
-    var lblMusica = document.getElementById('lbl-musica-activo');
     
     if (audio && !audio.paused) {
       audio.pause();
-      audio.currentTime = 0; // 🎵 ¡LÍNEA MÁGICA! Reinicia la canción al principio
-      
-      // Actualizar los botones visualmente
-      if (btnMusica) btnMusica.textContent = '▶️';
-      if (lblMusica) {
-        lblMusica.textContent = (idiomaActual === 'es') ? 'Reproducir' : 'Play';
-      }
+      audio.currentTime = 0;
+      estaReproduciendo = false;
+      actualizarControles();
     }
   }
 });
