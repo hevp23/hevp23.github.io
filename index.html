@@ -980,8 +980,17 @@ picture {
 </div>
 </div>
 <script>
+  /* ========== RELOJ, FECHA, TRADUCTOR Y MÚSICA (VERSIÓN LIMPIA Y CORREGIDA) ========== */
   let idiomaActual = 'es';
+  let cancionActual = 0;
+  let estaReproduciendo = false;
 
+  // 🎵 Tu lista de canciones (así ya no da error cuando se use canciones.length)
+  const canciones = [
+    { archivo: 'NewTrend_Music Old Melody(M4A_128K).m4a' }
+  ];
+
+  // ⏰ RELOJ Y FECHA
   function actualizarReloj() {
     const ahora = new Date();
     let fechaTexto = "";
@@ -1017,6 +1026,7 @@ picture {
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
 
+  // 🌍 TRADUCTOR
   function alternarIdioma() {
     if (idiomaActual === 'es') {
       idiomaActual = 'en';
@@ -1044,7 +1054,7 @@ picture {
         lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
       }
     }
-    
+
     traducirPantallasInternas();
   }
 
@@ -1099,29 +1109,26 @@ picture {
     }
   }
 
-    if (audio && btnMusica && lblMusica) {
-      if (audio.paused) {
-        audio.play();
-        btnMusica.textContent = '⏸️';
-        if (idiomaActual === 'es') {
-          lblMusica.textContent = 'Pausa';
-        } else {
-          lblMusica.textContent = 'Pause';
-        }
-      } else {
-        audio.pause();
-        btnMusica.textContent = '▶️';
-        if (idiomaActual === 'es') {
-          lblMusica.textContent = 'Reproducir';
-        } else {
-          lblMusica.textContent = 'Play';
-        }
-      }
-    }
-          }
+  // 🎵 MÚSICA (UNIFICADA Y SIN CÓDIGO HUÉRFANO)
+  function toggleMusica() {
+    const audio = document.getElementById('audio-fondo');
+    const btnMusica = document.getElementById('btn-musica');
+    const lblMusica = document.getElementById('lbl-musica-activo');
+    if (!audio) return;
 
-  let cancionActual = 0;
-  let estaReproduciendo = false;
+    if (audio.paused) {
+      audio.play();
+      estaReproduciendo = true;
+      if (btnMusica) btnMusica.textContent = '⏸️';
+      if (lblMusica) lblMusica.textContent = (idiomaActual === 'es') ? 'Pausa' : 'Pause';
+    } else {
+      audio.pause();
+      estaReproduciendo = false;
+      if (btnMusica) btnMusica.textContent = '▶️';
+      if (lblMusica) lblMusica.textContent = (idiomaActual === 'es') ? 'Reproducir' : 'Play';
+    }
+    actualizarControles();
+  }
 
   function actualizarControles() {
     const btnAnterior = document.getElementById('btn-anterior');
@@ -1129,31 +1136,14 @@ picture {
     const btnPlay = document.getElementById('btn-play-pause');
     const lblMusica = document.getElementById('lbl-musica-activo');
 
-    if (idiomaActual === 'es') {
-      lblMusica.textContent = estaReproduciendo ? 'Pausa' : 'Reproducir';
-    } else {
-      lblMusica.textContent = estaReproduciendo ? 'Pause' : 'Play';
+    if (lblMusica) {
+      lblMusica.textContent = estaReproduciendo
+        ? (idiomaActual === 'es' ? 'Pausa' : 'Pause')
+        : (idiomaActual === 'es' ? 'Reproducir' : 'Play');
     }
-
-    btnPlay.textContent = estaReproduciendo ? '⏸️' : '▶️';
-
-    const mostrarAnterior = estaReproduciendo && cancionActual > 0;
-    const mostrarSiguiente = estaReproduciendo && cancionActual < canciones.length - 1;
-
-    btnAnterior.style.display = mostrarAnterior ? 'flex' : 'none';
-    btnSiguiente.style.display = mostrarSiguiente ? 'flex' : 'none';
-  }
-
-  function toggleMusica() {
-    const audio = document.getElementById('audio-fondo');
-    if (estaReproduciendo) {
-      audio.pause();
-      estaReproduciendo = false;
-    } else {
-      audio.play();
-      estaReproduciendo = true;
-    }
-    actualizarControles();
+    if (btnPlay) btnPlay.textContent = estaReproduciendo ? '⏸️' : '▶️';
+    if (btnAnterior) btnAnterior.style.display = (estaReproduciendo && cancionActual > 0) ? 'flex' : 'none';
+    if (btnSiguiente) btnSiguiente.style.display = (estaReproduciendo && cancionActual < canciones.length - 1) ? 'flex' : 'none';
   }
 
   function cancionSiguiente() {
@@ -1172,31 +1162,33 @@ picture {
 
   function cargarCancion() {
     const audio = document.getElementById('audio-fondo');
+    if (!audio) return;
     const source = audio.querySelector('source');
-    source.src = canciones[cancionActual].archivo;
-    audio.load();
-    if (estaReproduciendo) {
-      audio.play();
+    if (source) {
+      source.src = canciones[cancionActual].archivo;
+      audio.load();
+      if (estaReproduciendo) audio.play();
     }
     actualizarControles();
   }
 
   actualizarControles();
 
-  document.getElementById('audio-fondo').addEventListener('ended', function() {
-    if (cancionActual < canciones.length - 1) {
-      cancionSiguiente();
-    } else {
-      cancionActual = 0;
-      cargarCancion();
-      const audio = document.getElementById('audio-fondo');
-      audio.pause();
-      estaReproduciendo = false;
-      actualizarControles();
-    }
-  });
-</script>
-
+  const audioFondo = document.getElementById('audio-fondo');
+  if (audioFondo) {
+    audioFondo.addEventListener('ended', function() {
+      if (cancionActual < canciones.length - 1) {
+        cancionSiguiente();
+      } else {
+        cancionActual = 0;
+        cargarCancion();
+        audioFondo.pause();
+        estaReproduciendo = false;
+        actualizarControles();
+      }
+    });
+  }
+        </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
 (() => {
