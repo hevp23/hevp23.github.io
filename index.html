@@ -590,8 +590,15 @@
     vertical-align: middle;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
-        /* Bloqueo total en imágenes */
-img {
+        /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Funciona en TODOS los navegadores */
+img,
+picture,
+.logo-web,
+.contenedor-avatar img,
+.boton-enlace img,
+.icono-enlace,
+.icono-boton-interno,
+.portada {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
@@ -599,22 +606,20 @@ img {
   -webkit-touch-callout: none !important;
   -webkit-user-drag: none !important;
   user-drag: none !important;
-  pointer-events: none !important;
   -webkit-tap-highlight-color: transparent !important;
+  pointer-events: auto !important; /* ¡IMPORTANTE! Esto permite detectar el clic derecho */
 }
 
-/* Pero los enlaces SÍ funcionan */
-a {
+/* Las imágenes no se pueden arrastrar ni guardar */
+img,
+picture {
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+}
+
+/* Capa protectora invisible sobre las imágenes grandes (opcional, para máxima seguridad) */
+.portada {
   pointer-events: auto !important;
-}
-
-/* Las imágenes dentro de enlaces no bloquean el clic */
-.boton-enlace img,
-.contenedor-avatar img,
-.logo-web {
-  pointer-events: none !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
 }
 /* --- ICONOS EN LOS BOTONES (CIRCULARES) --- */
 .icono-enlace {
@@ -1094,11 +1099,6 @@ a {
     }
   }
 
-  function toggleMusica() {
-    const audio = document.getElementById('audio-fondo');
-    const btnMusica = document.getElementById('btn-musica');
-    const lblMusica = document.getElementById('lbl-musica-activo');
-
     if (audio && btnMusica && lblMusica) {
       if (audio.paused) {
         audio.play();
@@ -1198,32 +1198,120 @@ a {
 </script>
 
 <script>
-  document.addEventListener('contextmenu', function(e) {
-    if (e.target.tagName === 'IMG') { e.preventDefault(); e.stopPropagation(); return false; }
-  }, true);
+/* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
+(() => {
+  // Selectores de elementos protegidos (ajusta si necesitas proteger más cosas)
+  const selectoresProtegidos = 'img, picture, .portada, .logo-web, .contenedor-avatar img, .boton-enlace img, .icono-enlace, .icono-boton-interno';
 
-  let touchTimer;
-  document.addEventListener('touchstart', function(e) {
-    if (e.target.tagName === 'IMG') {
-      touchTimer = setTimeout(function() { e.preventDefault(); e.stopPropagation(); }, 500);
+  // Función para verificar si el objetivo es una imagen protegida
+  const esImagenProtegida = (elemento) => {
+    if (!(elemento instanceof Element)) return false;
+    return Boolean(elemento.closest(selectoresProtegidos));
+  };
+
+  // Función para bloquear el evento
+  const bloquearEvento = (evento) => {
+    if (!esImagenProtegida(evento.target)) return;
+    evento.preventDefault();
+    evento.stopPropagation();
+    evento.stopImmediatePropagation();
+    return false;
+  };
+
+  // 1. Bloquear clic derecho (funciona en Edge, Chrome, Firefox, Safari)
+  document.addEventListener('contextmenu', bloquearEvento, {
+    capture: true,
+    passive: false
+  });
+
+  // 2. Bloquear arrastre de imágenes
+  document.addEventListener('dragstart', bloquearEvento, {
+    capture: true,
+    passive: false
+  });
+
+  // 3. Bloquear selección de texto sobre imágenes
+  document.addEventListener('selectstart', bloquearEvento, {
+    capture: true,
+    passive: false
+  });
+
+  // 4. Bloquear "mantener presionado" en móviles (iOS y Android)
+  let temporizadorMantenerPresionado;
+
+  document.addEventListener('touchstart', (evento) => {
+    if (esImagenProtegida(evento.target)) {
+      // Cancelar inmediatamente el comportamiento por defecto (esto es lo que hace que funcione)
+      evento.preventDefault();
+      evento.stopPropagation();
     }
-  }, true);
+  }, {
+    capture: true,
+    passive: false // ¡CRÍTICO! Debe ser false para poder hacer preventDefault
+  });
 
-  document.addEventListener('touchend', function(e) {
-    if (e.target.tagName === 'IMG') { clearTimeout(touchTimer); }
-  }, true);
+  document.addEventListener('touchmove', (evento) => {
+    if (esImagenProtegida(evento.target)) {
+      evento.preventDefault();
+    }
+  }, {
+    capture: true,
+    passive: false
+  });
 
-  document.addEventListener('touchmove', function(e) {
-    if (e.target.tagName === 'IMG') { clearTimeout(touchTimer); }
-  }, true);
+  // 5. Bloquear tecla de Menú (Shift+F10 y tecla Menú del teclado)
+  document.addEventListener('keydown', (evento) => {
+    const tecla = evento.key || '';
+    const esTeclaMenu =
+      (evento.shiftKey && tecla === 'F10') ||
+      tecla === 'ContextMenu' ||
+      tecla === 'Menu';
 
-  document.addEventListener('dragstart', function(e) {
-    if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
-  }, true);
+    if (!esTeclaMenu) return;
 
-  document.addEventListener('selectstart', function(e) {
-    if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
-  }, true);
+    const objetivo = evento.target instanceof Element ? evento.target : document.activeElement;
+
+    if (esImagenProtegida(objetivo)) {
+      evento.preventDefault();
+      evento.stopPropagation();
+      evento.stopImmediatePropagation();
+    }
+  }, {
+    capture: true,
+    passive: false
+  });
+
+  // 6. Marcar todas las imágenes como no arrastrables (atributo HTML)
+  const marcarImagenes = (raiz) => {
+    if (!raiz || typeof raiz.querySelectorAll !== 'function') return;
+    raiz.querySelectorAll('img, picture').forEach((img) => {
+      img.setAttribute('draggable', 'false');
+    });
+  };
+
+  // Aplicar al cargar la página
+  marcarImagenes(document);
+
+  // También aplicar a imágenes que se agreguen dinámicamente (por ejemplo, al abrir pantallas internas)
+  const observador = new MutationObserver((mutaciones) => {
+    mutaciones.forEach((mutacion) => {
+      mutacion.addedNodes.forEach((nodo) => {
+        if (nodo.nodeType === 1) {
+          marcarImagenes(nodo);
+        }
+      });
+    });
+  });
+
+  if (document.body) {
+    observador.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  console.log('✅ Bloqueo universal de imágenes activado en todos los navegadores');
+})();
 </script>
 
 <script>
