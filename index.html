@@ -760,7 +760,12 @@ picture {
   .musica-flotante-der { right: calc(50% - 390px); top: 300px; }
 
   /* ✅ La fila Teléfono/TreeLinks/Correo baja a su propia línea */
-  .fila-iconos > div { width: 100% !important; }
+  .fila-iconos > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    gap: 40px !important;
+  }
 
   /* Textos más grandes y legibles */
   .ribbon { font-size: 22px; padding: 14px 30px; }
