@@ -792,6 +792,23 @@ picture {
 html, body {
   touch-action: pan-x pan-y !important;
 }
+        /* --- CERO RECTÁNGULO / DESTELLO AL PRESIONAR, EN CUALQUIER DISPOSITIVO --- */
+
+/* 📱 Android, 🍎 iPhone/iPad, tablets y pantallas táctiles de Windows:
+   elimina el resaltado de toque y el globo de "guardar/copiar" de iOS */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* 💻 Windows y Mac: sin borde/contorno al hacer clic con mouse o toque.
+   (Solo quien navegue con teclado TAB lo verá, por accesibilidad) */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+div:focus:not(:focus-visible),
+[tabindex]:focus:not(:focus-visible) {
+  outline: none !important;
+}
     </style>
 </head>
 <body>
