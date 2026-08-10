@@ -780,6 +780,10 @@ picture {
   .icono-enlace { width: 48px !important; height: 48px !important; min-width: 48px !important; }
   .icono-boton-interno { width: 36px !important; height: 36px !important; min-width: 36px !important; }
 }
+        /* --- BLOQUEO DE ZOOM: desactiva pellizco y doble toque en todos los navegadores --- */
+html, body {
+  touch-action: pan-x pan-y !important;
+}
     </style>
 </head>
 <body>
@@ -1382,6 +1386,36 @@ document.addEventListener('visibilitychange', function() {
   }
 });
 </script>
+
+    <script>
+/* 🔒 BLOQUEO DE ZOOM UNIVERSAL (Samsung Internet, Chrome, Firefox, iOS, PC) */
+(() => {
+  // 1. Bloquea el pellizco con dos dedos (pinch zoom)
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // 2. Bloquea los gestos de zoom en iOS Safari
+  ['gesturestart', 'gesturechange', 'gestureend'].forEach((evento) => {
+    document.addEventListener(evento, (e) => e.preventDefault());
+  });
+
+  // 3. Bloquea Ctrl + rueda del mouse (zoom en computadora)
+  document.addEventListener('wheel', (e) => {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
+
+  // 4. Bloquea Ctrl + / Ctrl - / Ctrl 0 (atajos de zoom en computadora)
+  document.addEventListener('keydown', (e) => {
+    const tecla = e.key || '';
+    if ((e.ctrlKey || e.metaKey) && (tecla === '+' || tecla === '-' || tecla === '=' || tecla === '0')) {
+      e.preventDefault();
+    }
+  });
+})();
+    </script>
   
 <!-- PANTALLA 1: COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
