@@ -743,6 +743,43 @@ picture {
   justify-content: flex-start !important;
   padding-left: 15px !important;
 }
+        /* --- MODO PC: se activa solo en pantallas grandes (900px o más) --- */
+@media (min-width: 900px) {
+
+  /* Columna central más ancha y cómoda */
+  .cuadricula-enlaces { max-width: 640px !important; }
+  .cuadricula-interna { max-width: 640px !important; }
+
+  /* Portada y avatar más grandes */
+  .portada { height: 300px; }
+  .contenedor-avatar { margin-top: -100px; }
+  .contenedor-avatar img { width: 200px; height: 200px; }
+
+  /* Botones de idioma y música pegados a la columna, no a los bordes */
+  .idioma-flotante-izq { left: calc(50% - 390px); top: 240px; }
+  .musica-flotante-der { right: calc(50% - 390px); top: 240px; }
+
+  /* Textos más grandes y legibles */
+  .ribbon { font-size: 22px; padding: 14px 30px; }
+  .username { font-size: 20px; }
+  .boton-enlace, .boton-enlace span { font-size: 18px !important; }
+  .boton-interno { font-size: 18px !important; }
+  .titulo-pantalla { font-size: 30px; }
+  .boton-volver { font-size: 18px; }
+  .texto-web { font-size: 1.6rem !important; }
+  .logo-web { width: 44px !important; height: 44px !important; }
+
+  /* Reloj más grande */
+  #reloj-actual { font-size: 2.6rem !important; }
+  #fecha-actual { font-size: 1.2rem !important; }
+  div:has(> #reloj-actual) { max-width: 420px !important; }
+
+  /* Íconos más grandes */
+  .btn-red { width: 52px !important; height: 52px !important; min-width: 52px !important; max-width: 52px !important; }
+  .btn-red svg { width: 26px !important; height: 26px !important; }
+  .icono-enlace { width: 48px !important; height: 48px !important; min-width: 48px !important; }
+  .icono-boton-interno { width: 36px !important; height: 36px !important; min-width: 36px !important; }
+}
     </style>
 </head>
 <body>
