@@ -450,15 +450,19 @@
   background: #00ff16;
   border-radius: 50%;
 }
-/* --- BOTÓN DE MÚSICA FLOTANTE (AL OTRO LADO) --- */
 .musica-flotante-der {
   position: absolute;   
-  right: 5px;           /* Lo pasa al lado derecho, simétrico al del traductor */
-  top: 190px;           /* A la misma altura para que queden alineados */
+  right: 12px;
+  top: 190px;
   z-index: 1000;        
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* ▶️ Pausado: se alinea simétrico con el botón del traductor */
+.musica-pausada-pos {
+  right: 35px;
 }
 
 .musica-boton {
@@ -510,7 +514,6 @@
   line-height: 1;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
   user-select: none;
-  transition: transform 0.2s ease;
 }
 
 /* Círculo BLANCO GRANDE para el botón central ⏸️ / ▶️ */
@@ -520,13 +523,7 @@
   font-size: 20px;
 }
 
-.musica-boton-ctrl:hover {
-  transform: scale(1.1);
-}
 
-.musica-boton-ctrl:active {
-  transform: scale(0.9);
-}
         /* --- CONTENEDOR DE CONTROLES DE MÚSICA (los 3 botones) --- */
 .musica-controles {
   display: flex;
@@ -875,7 +872,7 @@ div:focus:not(:focus-visible),
 
 
 <!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
-<audio id="audio-fondo" loop>
+<audio id="audio-fondo">
   <source src="NewTrend_Music Old Melody(M4A_128K).m4a" type="audio/mpeg">
   Tu navegador no soporta el elemento de audio.
 </audio>
@@ -1202,7 +1199,7 @@ div:focus:not(:focus-visible),
     }
   }
 
-  // 🎵 MÚSICA (VERSIÓN FINAL - 3 BOTONES CON LOOP INFINITO)
+  // 🎵 MÚSICA (VERSIÓN FINAL - BOTONES ESTÁTICOS CON LOOP INFINITO)
   function toggleMusica() {
     const audio = document.getElementById('audio-fondo');
     if (!audio) return;
@@ -1224,7 +1221,7 @@ div:focus:not(:focus-visible),
     const lblMusica = document.getElementById('lbl-musica-activo');
     const audio = document.getElementById('audio-fondo');
 
-    // 📝 Texto debajo de los botones (Reproducir/Pausa o Play/Pause)
+    // 📝 Texto debajo de los botones
     if (lblMusica && audio) {
       lblMusica.textContent = estaReproduciendo
         ? (idiomaActual === 'es' ? 'Pausa' : 'Pause')
@@ -1236,13 +1233,21 @@ div:focus:not(:focus-visible),
       btnPlayPause.textContent = estaReproduciendo ? '⏸️' : '▶️';
     }
 
+    // 📍 Posición: pausado → simétrico | sonando → cerca del borde
+    const contMusica = document.querySelector('.musica-flotante-der');
+    if (contMusica) {
+      if (estaReproduciendo) {
+        contMusica.classList.remove('musica-pausada-pos');
+      } else {
+        contMusica.classList.add('musica-pausada-pos');
+      }
+    }
+
     // 🎚️ Mostrar/ocultar botones de navegación
     if (!estaReproduciendo) {
-      // ⏹️ Pausado: solo botón reproducir
       if (btnAnterior) btnAnterior.style.display = 'none';
       if (btnSiguiente) btnSiguiente.style.display = 'none';
     } else {
-      // ▶️ Reproduciendo: siempre los 3 botones
       if (btnAnterior) btnAnterior.style.display = 'flex';
       if (btnSiguiente) btnSiguiente.style.display = 'flex';
     }
@@ -1253,7 +1258,7 @@ div:focus:not(:focus-visible),
       cancionActual++;
       cargarCancion();
     } else {
-      // 🔄 En la última canción, vuelve a la primera (loop)
+      // 🔄 Última canción → vuelve a la primera
       cancionActual = 0;
       cargarCancion();
     }
@@ -1265,7 +1270,7 @@ div:focus:not(:focus-visible),
       cancionActual--;
       cargarCancion();
     } else {
-      // 🔁 En la primera canción, reinicia la canción actual
+      // 🔁 Primera canción → reinicia la canción actual
       if (audio) {
         audio.currentTime = 0;
         if (estaReproduciendo) audio.play();
@@ -1287,20 +1292,20 @@ div:focus:not(:focus-visible),
 
   actualizarControles();
 
-  // 🔄 Cuando termina una canción, pasa a la siguiente automáticamente (con loop)
+  // 🔄 Al terminar una canción, pasa a la siguiente (loop infinito)
   const audioFondo = document.getElementById('audio-fondo');
   if (audioFondo) {
     audioFondo.addEventListener('ended', function() {
       if (cancionActual < canciones.length - 1) {
         cancionSiguiente();
       } else {
-        // 🔄 Vuelve a la primera y sigue sonando (loop infinito)
         cancionActual = 0;
         cargarCancion();
         audioFondo.play();
       }
     });
-        }
+  }
+
         </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
