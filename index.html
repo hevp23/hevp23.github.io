@@ -527,6 +527,19 @@
 .musica-boton-ctrl:active {
   transform: scale(0.9);
 }
+        /* --- CONTENEDOR DE CONTROLES DE MÚSICA (los 3 botones) --- */
+.musica-controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.musica-boton-central {
+  width: 45px !important;
+  height: 45px !important;
+  font-size: 20px !important;
+}
 /* --- CONTENEDOR Y TAMAÑO FIJO PARA LOS ÍCONOS --- */
 .fila-iconos a {
     width: 42px !important;
@@ -848,9 +861,13 @@ div:focus:not(:focus-visible),
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
 </div>
 
-<!-- Botón Música (Derecha) con su respectiva clase de texto -->
+<!-- Botón Música (Derecha) con controles dinámicos -->
 <div class="musica-flotante-der">
-  <div class="musica-boton" id="btn-musica" onclick="toggleMusica()">▶️</div>
+  <div class="musica-controles">
+    <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()" style="display:none;">⏪️</button>
+    <button class="musica-boton-ctrl musica-boton-central" id="btn-play-pause" onclick="toggleMusica()">▶️</button>
+    <button class="musica-boton-ctrl" id="btn-siguiente" onclick="cancionSiguiente()" style="display:none;">⏩️</button>
+  </div>
   <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
 </div>
 
@@ -1055,9 +1072,13 @@ div:focus:not(:focus-visible),
   let cancionActual = 0;
   let estaReproduciendo = false;
 
-  // 🎵 Tu lista de canciones (así ya no da error cuando se use canciones.length)
+  // 🎵 Tu lista de canciones (cuando subas tus archivos a GitHub, cambia los nombres)
   const canciones = [
-    { archivo: 'NewTrend_Music Old Melody(M4A_128K).m4a' }
+    { archivo: 'NewTrend_Music Old Melody(M4A_128K).m4a' },
+    { archivo: 'cancion2.mp3' },
+    { archivo: 'cancion3.mp3' },
+    { archivo: 'cancion4.mp3' },
+    { archivo: 'cancion5.mp3' }
   ];
 
   // ⏰ RELOJ Y FECHA
@@ -1179,23 +1200,17 @@ div:focus:not(:focus-visible),
     }
   }
 
-  // 🎵 MÚSICA (UNIFICADA Y SIN CÓDIGO HUÉRFANO)
+  // 🎵 MÚSICA (VERSIÓN FINAL - 3 BOTONES CON LOOP INFINITO)
   function toggleMusica() {
     const audio = document.getElementById('audio-fondo');
-    const btnMusica = document.getElementById('btn-musica');
-    const lblMusica = document.getElementById('lbl-musica-activo');
     if (!audio) return;
 
     if (audio.paused) {
       audio.play();
       estaReproduciendo = true;
-      if (btnMusica) btnMusica.textContent = '⏸️';
-      if (lblMusica) lblMusica.textContent = (idiomaActual === 'es') ? 'Pausa' : 'Pause';
     } else {
       audio.pause();
       estaReproduciendo = false;
-      if (btnMusica) btnMusica.textContent = '▶️';
-      if (lblMusica) lblMusica.textContent = (idiomaActual === 'es') ? 'Reproducir' : 'Play';
     }
     actualizarControles();
   }
@@ -1203,30 +1218,56 @@ div:focus:not(:focus-visible),
   function actualizarControles() {
     const btnAnterior = document.getElementById('btn-anterior');
     const btnSiguiente = document.getElementById('btn-siguiente');
-    const btnPlay = document.getElementById('btn-play-pause');
+    const btnPlayPause = document.getElementById('btn-play-pause');
     const lblMusica = document.getElementById('lbl-musica-activo');
+    const audio = document.getElementById('audio-fondo');
 
-    if (lblMusica) {
+    // 📝 Texto debajo de los botones (Reproducir/Pausa o Play/Pause)
+    if (lblMusica && audio) {
       lblMusica.textContent = estaReproduciendo
         ? (idiomaActual === 'es' ? 'Pausa' : 'Pause')
         : (idiomaActual === 'es' ? 'Reproducir' : 'Play');
     }
-    if (btnPlay) btnPlay.textContent = estaReproduciendo ? '⏸️' : '▶️';
-    if (btnAnterior) btnAnterior.style.display = (estaReproduciendo && cancionActual > 0) ? 'flex' : 'none';
-    if (btnSiguiente) btnSiguiente.style.display = (estaReproduciendo && cancionActual < canciones.length - 1) ? 'flex' : 'none';
+
+    // 🎛️ Ícono del botón central
+    if (btnPlayPause) {
+      btnPlayPause.textContent = estaReproduciendo ? '⏸️' : '▶️';
+    }
+
+    // 🎚️ Mostrar/ocultar botones de navegación
+    if (!estaReproduciendo) {
+      // ⏹️ Pausado: solo botón reproducir
+      if (btnAnterior) btnAnterior.style.display = 'none';
+      if (btnSiguiente) btnSiguiente.style.display = 'none';
+    } else {
+      // ▶️ Reproduciendo: siempre los 3 botones
+      if (btnAnterior) btnAnterior.style.display = 'flex';
+      if (btnSiguiente) btnSiguiente.style.display = 'flex';
+    }
   }
 
   function cancionSiguiente() {
     if (cancionActual < canciones.length - 1) {
       cancionActual++;
       cargarCancion();
+    } else {
+      // 🔄 En la última canción, vuelve a la primera (loop)
+      cancionActual = 0;
+      cargarCancion();
     }
   }
 
   function cancionAnterior() {
+    const audio = document.getElementById('audio-fondo');
     if (cancionActual > 0) {
       cancionActual--;
       cargarCancion();
+    } else {
+      // 🔁 En la primera canción, reinicia la canción actual
+      if (audio) {
+        audio.currentTime = 0;
+        if (estaReproduciendo) audio.play();
+      }
     }
   }
 
@@ -1244,20 +1285,20 @@ div:focus:not(:focus-visible),
 
   actualizarControles();
 
+  // 🔄 Cuando termina una canción, pasa a la siguiente automáticamente (con loop)
   const audioFondo = document.getElementById('audio-fondo');
   if (audioFondo) {
     audioFondo.addEventListener('ended', function() {
       if (cancionActual < canciones.length - 1) {
         cancionSiguiente();
       } else {
+        // 🔄 Vuelve a la primera y sigue sonando (loop infinito)
         cancionActual = 0;
         cargarCancion();
-        audioFondo.pause();
-        estaReproduciendo = false;
-        actualizarControles();
+        audioFondo.play();
       }
     });
-  }
+        }
         </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
@@ -1399,18 +1440,12 @@ div:focus:not(:focus-visible),
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
     var audio = document.getElementById('audio-fondo');
-    var btnMusica = document.getElementById('btn-musica');
-    var lblMusica = document.getElementById('lbl-musica-activo');
     
     if (audio && !audio.paused) {
       audio.pause();
-      audio.currentTime = 0; // 🎵 ¡LÍNEA MÁGICA! Reinicia la canción al principio
-      
-      // Actualizar los botones visualmente
-      if (btnMusica) btnMusica.textContent = '▶️';
-      if (lblMusica) {
-        lblMusica.textContent = (idiomaActual === 'es') ? 'Reproducir' : 'Play';
-      }
+      audio.currentTime = 0; // 🎵 Reinicia la canción al principio
+      estaReproduciendo = false;
+      actualizarControles(); // ✅ Actualiza los 3 botones automáticamente
     }
   }
 });
