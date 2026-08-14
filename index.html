@@ -1063,6 +1063,13 @@ div:focus:not(:focus-visible),
     <img src="extra-estrella.png" class="icono-enlace" alt="Extra" draggable="false" oncontextmenu="return false;">
     <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
+<!-- Sección para el código QR Personalizado -->
+<div style="margin-top: 40px; margin-bottom: 40px; text-align: center;">
+    <p style="color: white; font-weight: bold; margin-bottom: 15px; font-family: sans-serif;">¡Escaneá este código para compartir mi web!</p>
+    
+    <!-- Aquí es donde se va a crear el dibujo del QR -->
+    <div id="canvas"></div>
+</div>
 
 </div>
 
@@ -1551,6 +1558,50 @@ document.addEventListener('visibilitychange', function() {
   });
 })();
     </script>
+    <!-- Paso 2a: Cargamos la librería que permite personalizar los colores -->
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+<!-- Paso 2b: Configuración personalizada de tu QR -->
+<script type="text/javascript">
+  const qrCode = new QRCodeStyling({
+    width: 250,
+    height: 250,
+    type: "svg",
+    data: "https://hevp23.github.io", // Tu dirección de sitio web
+
+    // --- AQUÍ VA TU FOTO REDONDA ---
+    image: "hectoreduardovalladaresperez.jng", // <--- ¡CAMBIÁ ESTO POR EL NOMBRE DE TU ARCHIVO DE FOTO!
+    imageOptions: {
+      hideBackgroundDots: true,
+      imageSize: 0.4,
+      margin: 5,
+      roundCorners: true // Esto hace que tu foto se vea redonda
+    },
+
+    // --- COLORES ---
+    dotsOptions: {
+      color: "#00ff16", // Verde para los puntitos
+      type: "rounded"
+    },
+    backgroundOptions: {
+      color: "#0070ff", // Azul para el fondo
+    },
+    cornersSquareOptions: {
+      type: "extra-rounded",
+      color: "#ff4200", // Naranja para las esquinas (marco)
+    },
+    cornersDotOptions: {
+      type: "dot",
+      color: "#ff4200", // Naranja para las esquinas (el punto central)
+    },
+    qrOptions: {
+      errorCorrectionLevel: 'H'
+    }
+  });
+
+  qrCode.append(document.getElementById("canvas"));
+</script>
+
   
 <!-- PANTALLA 1: COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
