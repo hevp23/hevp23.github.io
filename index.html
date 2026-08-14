@@ -1174,25 +1174,35 @@ div:focus:not(:focus-visible),
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
 
-  // 🌍 TRADUCTOR
+    // 🌍 TRADUCTOR
   function alternarIdioma() {
+    const elQr = document.getElementById('texto-qr'); // Obtenemos el elemento una vez
+
     if (idiomaActual === 'es') {
       idiomaActual = 'en';
       const btnIdioma = document.getElementById('btn-idioma');
       const lblIdioma = document.getElementById('lbl-idioma-activo');
       if (btnIdioma) btnIdioma.innerText = '🇬🇧';
       if (lblIdioma) lblIdioma.innerText = 'English';
+      
+      // Aquí el texto en INGLÉS porque cambiamos a inglés
+      if (elQr) elQr.innerText = 'Scan this code to share my website!';
+
     } else {
       idiomaActual = 'es';
       const btnIdioma = document.getElementById('btn-idioma');
       const lblIdioma = document.getElementById('lbl-idioma-activo');
       if (btnIdioma) btnIdioma.innerText = '🇪🇸';
       if (lblIdioma) lblIdioma.innerText = 'Español';
+      
+      // Aquí el texto en ESPAÑOL porque regresamos a español
+      if (elQr) elQr.innerText = '¡Escanea este código para compartir mi web!';
     }
 
     actualizarReloj();
     actualizarTextosBotones();
 
+    // ... (el resto de tu código igual, sin las líneas sueltas afuera)
     const audio = document.getElementById('audio-fondo');
     const lblMusica = document.getElementById('lbl-musica-activo');
     if (lblMusica && audio) {
@@ -1202,12 +1212,6 @@ div:focus:not(:focus-visible),
         lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
       }
     }
-
-// Agregá esto dentro de la parte que pone el idioma en Inglés:
-document.getElementById('texto-qr').innerText = 'Scan this code to share my website!';
-
-// Agregá esto dentro de la parte que pone el idioma en Español:
-document.getElementById('texto-qr').innerText = '¡Escanea este código para compartir mi web!';
 
     traducirPantallasInternas();
   }
