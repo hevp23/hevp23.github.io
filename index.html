@@ -1074,8 +1074,10 @@ div:focus:not(:focus-visible),
 <!-- Sección para el QR -->
 <div style="margin-top: 40px; margin-bottom: 40px; text-align: center;">
     <p style="color: #ffe000; font-weight: bold; margin-bottom: 15px; font-family: sans-serif; font-size: 18px;">
-      ¡Escaneá este código para compartir mi web!
-    </p>
+  <!-- Aquí le pusimos el ID "texto-qr" para que tu código de traducción lo encuentre -->
+  <span id="text-qr">¡Escaneá este código para compartir mi web!</span>
+</p>
+
     
     <!-- Contenedor del QR (sin nada más) -->
     <div id="canvas" style="display: inline-block; padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff;"></div>
@@ -1193,6 +1195,8 @@ div:focus:not(:focus-visible),
         lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
       }
     }
+
+      const qr = document.getElementById('texto-qr').innerHTML = 'Scan this code to share my web!';
 
     traducirPantallasInternas();
   }
@@ -1583,9 +1587,9 @@ document.addEventListener('visibilitychange', function() {
       image: "hectoreduardovalladaresperez.jpg", 
       imageOptions: {
         hideBackgroundDots: true,
-        imageSize: 0.35,
-        margin: 4,
-        roundCorners: true // <--- ¡ESTO ES LO QUE HACE LA FOTO REDONDA AUTOMÁTICAMENTE!
+        imageSize: 0.45, // Un poquito más grande para que se vea mejor
+        margin: 5,
+        roundCorners: true // ESTO ES LA CLAVE
       },
       dotsOptions: { color: "#00ff16", type: "rounded" },
       backgroundOptions: { color: "#0070ff" },
@@ -1595,11 +1599,11 @@ document.addEventListener('visibilitychange', function() {
     });
 
     const canvasElement = document.getElementById("canvas");
-    // Limpiamos el contenedor antes de dibujar por si acaso
     canvasElement.innerHTML = ""; 
     qrCode.append(canvasElement);
   });
 </script>
+
 
 <!-- PANTALLA 1: COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
