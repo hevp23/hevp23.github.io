@@ -1335,15 +1335,10 @@ div:focus:not(:focus-visible),
   function actualizarMediaSession() {
     if (!('mediaSession' in navigator)) return;
 
-    const nombreLimpio = canciones[cancionActual].archivo
-      .replace(/\(M4A_128K\)\.m4a$/, '')
-      .replace(/\s*-\s*Instrumental$/, '')
-      .trim();
-
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: nombreLimpio,  // 🎵 El nombre limpio de la canción
-      artist: cancionActual === 0 ? 'TopGoat' : 'Gocho "El Lápiz de Platino"',
-      album: 'TreeLinks @hevp23',
+      title: 'TreeLinks',        // 🌳 Siempre mostrará TreeLinks
+      artist: '@hevp23',         // Tu usuario debajo del nombre
+      album: 'Héctor Eduardo Valladares Pérez',
       artwork: [
         { src: 'hectoreduardovalladaresperez.jpg', sizes: '512x512', type: 'image/jpeg' }
       ]
