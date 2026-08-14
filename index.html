@@ -1077,18 +1077,13 @@ div:focus:not(:focus-visible),
     <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
 
-<!-- Sección para el QR -->
-<div style="margin-top: 40px; margin-bottom: 40px; text-align: center;">
-    <p style="color: #ffe000; font-weight: bold; margin-bottom: 15px; font-family: sans-serif; font-size: 18px;">
-    <span id="texto-qr" data-es="¡Escanea este código para compartir mi web!" data-en="Scan this code to share my website!">¡Escanea este código para compartir mi web!</span>
-</p>
-
-
-
-    
-    <!-- Contenedor del QR (sin nada más) -->
-    <div id="canvas" style="display: inline-block; padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff;"></div>
+<div style="margin-top: 40px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <p style="color: #ffe000; font-weight: bold; margin-bottom: 15px; font-family: sans-serif; font-size: 18px; text-align: center; max-width: 90%; margin-left: auto; margin-right: auto;">
+        <span id="texto-qr">¡Escanea este código para compartir mi web!</span>
+    </p>
+    <div id="canvas" style="padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff; display: flex; justify-content: center; align-items: center;"></div>
 </div>
+
 
 
 
