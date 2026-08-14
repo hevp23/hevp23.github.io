@@ -1305,10 +1305,11 @@ div:focus:not(:focus-visible),
     if (source) {
       source.src = canciones[cancionActual].archivo;
       audio.load();
+      audio.currentTime = 0;  // 👈 Empieza desde el inicio siempre
       if (estaReproduciendo) audio.play();
     }
     actualizarControles();
-  }
+    }
 
   actualizarControles();
 
@@ -1316,13 +1317,8 @@ div:focus:not(:focus-visible),
   const audioFondo = document.getElementById('audio-fondo');
   if (audioFondo) {
     audioFondo.addEventListener('ended', function() {
-      if (cancionActual < canciones.length - 1) {
-        cancionSiguiente();
-      } else {
-        cancionActual = 0;
-        cargarCancion();
-        audioFondo.play();
-      }
+      // cancionSiguiente() ya maneja TODO: el loop y la reproducción
+      cancionSiguiente();
     });
   }
 
