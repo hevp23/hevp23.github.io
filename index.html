@@ -854,55 +854,13 @@ div:focus:not(:focus-visible),
 [tabindex]:focus:not(:focus-visible) {
   outline: none !important;
 }
-        <!-- Librería para el QR -->
-<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"></script>
+    
+  /* ... aquí tenés tus otros estilos ... */
 
-<!-- Estilo CSS especial para hacer la imagen central circular -->
-<style>
+  /* Solo esta línea poné aquí */
   #canvas img {
     border-radius: 50% !important;
   }
-</style>
-
-<script type="text/javascript">
-  const qrCode = new QRCodeStyling({
-    width: 250,
-    height: 250,
-    type: "svg",
-    data: "https://hevp23.github.io",
-
-    // --- TU FOTO EN EL CENTRO ---
-    image: "hectoreduardovalladaresperez.jpg", 
-    imageOptions: {
-      hideBackgroundDots: true,
-      imageSize: 0.35,
-      margin: 4
-    },
-
-    // --- COLORES ---
-    dotsOptions: {
-      color: "#00ff16", // Verde
-      type: "rounded"
-    },
-    backgroundOptions: {
-      color: "#0070ff", // Azul
-    },
-    cornersSquareOptions: {
-      type: "extra-rounded",
-      color: "#ff4200", // Naranja
-    },
-    cornersDotOptions: {
-      type: "dot",
-      color: "#ff4200", // Naranja
-    },
-    qrOptions: {
-      errorCorrectionLevel: 'H'
-    }
-  });
-
-  qrCode.append(document.getElementById("canvas"));
-</script>
-
     </style>
 </head>
 <body>
@@ -1113,12 +1071,14 @@ div:focus:not(:focus-visible),
     <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
 
-<!-- Sección para el código QR Personalizado -->
+<!-- Esto debe estar en el cuerpo de tu página (donde van tus botones) -->
 <div style="margin-top: 40px; margin-bottom: 40px; text-align: center;">
-    <!-- Texto en amarillo (#ffe000) -->
     <p style="color: #ffe000; font-weight: bold; margin-bottom: 15px; font-family: sans-serif; font-size: 18px;">
       ¡Escaneá este código para compartir mi web!
     </p>
+    <div id="canvas" style="display: inline-block; padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff;"></div>
+</div>
+
     
     <!-- Contenedor del QR con borde amarillo (#ffe000) de 3px -->
     <div id="canvas" style="display: inline-block; padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff;"></div>
@@ -1615,46 +1575,31 @@ document.addEventListener('visibilitychange', function() {
     <!-- Paso 2a: Cargamos la librería que permite personalizar los colores -->
 <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"></script>
 
-<!-- Paso 2b: Configuración personalizada de tu QR -->
+<!-- Esto es lo único que debe ir hasta abajo -->
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"></script>
+
 <script type="text/javascript">
   const qrCode = new QRCodeStyling({
     width: 250,
     height: 250,
     type: "svg",
-    data: "https://hevp23.github.io", // Tu dirección de sitio web
-
-    // --- AQUÍ VA TU FOTO REDONDA ---
-    image: "hectoreduardovalladaresperez.jpg", // <--- ¡CAMBIÁ ESTO POR EL NOMBRE DE TU ARCHIVO DE FOTO!
+    data: "https://hevp23.github.io",
+    image: "hectoreduardovalladaresperez.jpg", 
     imageOptions: {
       hideBackgroundDots: true,
-      imageSize: 0.4,
-      margin: 5,
-      roundCorners: true // Esto hace que tu foto se vea redonda
+      imageSize: 0.35,
+      margin: 4
     },
-
-    // --- COLORES ---
-    dotsOptions: {
-      color: "#00ff16", // Verde para los puntitos
-      type: "rounded"
-    },
-    backgroundOptions: {
-      color: "#0070ff", // Azul para el fondo
-    },
-    cornersSquareOptions: {
-      type: "extra-rounded",
-      color: "#ff4200", // Naranja para las esquinas (marco)
-    },
-    cornersDotOptions: {
-      type: "dot",
-      color: "#ff4200", // Naranja para las esquinas (el punto central)
-    },
-    qrOptions: {
-      errorCorrectionLevel: 'H'
-    }
+    dotsOptions: { color: "#00ff16", type: "rounded" },
+    backgroundOptions: { color: "#0070ff" },
+    cornersSquareOptions: { type: "extra-rounded", color: "#ff4200" },
+    cornersDotOptions: { type: "dot", color: "#ff4200" },
+    qrOptions: { errorCorrectionLevel: 'H' }
   });
 
   qrCode.append(document.getElementById("canvas"));
 </script>
+
 
   
 <!-- PANTALLA 1: COMUNIDAD -->
