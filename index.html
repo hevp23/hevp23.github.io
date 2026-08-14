@@ -854,6 +854,55 @@ div:focus:not(:focus-visible),
 [tabindex]:focus:not(:focus-visible) {
   outline: none !important;
 }
+        <!-- Librería para el QR -->
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"></script>
+
+<!-- Estilo CSS especial para hacer la imagen central circular -->
+<style>
+  #canvas img {
+    border-radius: 50% !important;
+  }
+</style>
+
+<script type="text/javascript">
+  const qrCode = new QRCodeStyling({
+    width: 250,
+    height: 250,
+    type: "svg",
+    data: "https://hevp23.github.io",
+
+    // --- TU FOTO EN EL CENTRO ---
+    image: "hectoreduardovalladaresperez.jpg", 
+    imageOptions: {
+      hideBackgroundDots: true,
+      imageSize: 0.35,
+      margin: 4
+    },
+
+    // --- COLORES ---
+    dotsOptions: {
+      color: "#00ff16", // Verde
+      type: "rounded"
+    },
+    backgroundOptions: {
+      color: "#0070ff", // Azul
+    },
+    cornersSquareOptions: {
+      type: "extra-rounded",
+      color: "#ff4200", // Naranja
+    },
+    cornersDotOptions: {
+      type: "dot",
+      color: "#ff4200", // Naranja
+    },
+    qrOptions: {
+      errorCorrectionLevel: 'H'
+    }
+  });
+
+  qrCode.append(document.getElementById("canvas"));
+</script>
+
     </style>
 </head>
 <body>
@@ -1063,13 +1112,18 @@ div:focus:not(:focus-visible),
     <img src="extra-estrella.png" class="icono-enlace" alt="Extra" draggable="false" oncontextmenu="return false;">
     <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
+
 <!-- Sección para el código QR Personalizado -->
 <div style="margin-top: 40px; margin-bottom: 40px; text-align: center;">
-    <p style="color: white; font-weight: bold; margin-bottom: 15px; font-family: sans-serif;">¡Escaneá este código para compartir mi web!</p>
+    <!-- Texto en amarillo (#ffe000) -->
+    <p style="color: #ffe000; font-weight: bold; margin-bottom: 15px; font-family: sans-serif; font-size: 18px;">
+      ¡Escaneá este código para compartir mi web!
+    </p>
     
-    <!-- Aquí es donde se va a crear el dibujo del QR -->
-    <div id="canvas"></div>
+    <!-- Contenedor del QR con borde amarillo (#ffe000) de 3px -->
+    <div id="canvas" style="display: inline-block; padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff;"></div>
 </div>
+
 
 </div>
 
