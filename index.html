@@ -1331,7 +1331,50 @@ div:focus:not(:focus-visible),
       cancionSiguiente();
     });
   }
+// 📱 NOTIFICACIÓN DEL SISTEMA CON BOTONES ANTERIOR / SIGUIENTE (Media Session API)
+  function actualizarMediaSession() {
+    if (!('mediaSession' in navigator)) return;
 
+    const nombreLimpio = canciones[cancionActual].archivo
+      .replace(/\(M4A_128K\)\.m4a$/, '')
+      .replace(/\s*-\s*Instrumental$/, '')
+      .trim();
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: nombreLimpio,  // 🎵 El nombre limpio de la canción
+      artist: cancionActual === 0 ? 'TopGoat' : 'Gocho "El Lápiz de Platino"',
+      album: 'TreeLinks @hevp23',
+      artwork: [
+        { src: 'hectoreduardovalladaresperez.jpg', sizes: '512x512', type: 'image/jpeg' }
+      ]
+    });
+  }
+
+  if ('mediaSession' in navigator) {
+    // ▶️ Botón reproducir de la notificación
+    navigator.mediaSession.setActionHandler('play', function() {
+      const audio = document.getElementById('audio-fondo');
+      if (audio) { audio.play(); estaReproduciendo = true; actualizarControles(); }
+    });
+
+    // ⏸️ Botón pausa de la notificación
+    navigator.mediaSession.setActionHandler('pause', function() {
+      const audio = document.getElementById('audio-fondo');
+      if (audio) { audio.pause(); estaReproduciendo = false; actualizarControles(); }
+    });
+
+    // ⏮️ Botón anterior de la notificación
+    navigator.mediaSession.setActionHandler('previoustrack', function() {
+      cancionAnterior();
+    });
+
+    // ⏭️ Botón siguiente de la notificación
+    navigator.mediaSession.setActionHandler('nexttrack', function() {
+      cancionSiguiente();
+    });
+  }
+
+  actualizarMediaSession(); // Para que la primera canción ya tenga su ficha lista
         </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
