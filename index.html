@@ -1084,6 +1084,7 @@ div:focus:not(:focus-visible),
 </p>
 
 
+
     
     <!-- Contenedor del QR (sin nada más) -->
     <div id="canvas" style="display: inline-block; padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff;"></div>
@@ -1202,6 +1203,11 @@ div:focus:not(:focus-visible),
       }
     }
 
+// Agregá esto dentro de la parte que pone el idioma en Inglés:
+document.getElementById('texto-qr').innerText = 'Scan this code to share my website!';
+
+// Agregá esto dentro de la parte que pone el idioma en Español:
+document.getElementById('texto-qr').innerText = '¡Escanea este código para compartir mi web!';
 
     traducirPantallasInternas();
   }
