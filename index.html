@@ -1139,7 +1139,7 @@ div:focus:not(:focus-visible),
     const lblMusica = document.getElementById('lbl-musica-activo');
     if (lblMusica && audio) {
       if (idiomaActual === 'es') {
-        lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausa';
+        lblMusica.textContent = audio.paused ? 'Reproducir' : 'Pausar';
       } else {
         lblMusica.textContent = audio.paused ? 'Play' : 'Pause';
       }
@@ -1224,7 +1224,7 @@ div:focus:not(:focus-visible),
     // 📝 Texto debajo de los botones
     if (lblMusica && audio) {
       lblMusica.textContent = estaReproduciendo
-        ? (idiomaActual === 'es' ? 'Pausa' : 'Pause')
+        ? (idiomaActual === 'es' ? 'Pausar' : 'Pause')
         : (idiomaActual === 'es' ? 'Reproducir' : 'Play');
     }
 
