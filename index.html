@@ -861,6 +861,12 @@ div:focus:not(:focus-visible),
   #canvas img {
     border-radius: 50% !important;
   }
+        /* Esto fuerza a que la imagen dentro del QR se vea redonda */
+#canvas svg image {
+    border-radius: 50% !important;
+    clip-path: circle(50% at 50% 50%);
+}
+
     </style>
 </head>
 <body>
@@ -1187,7 +1193,6 @@ div:focus:not(:focus-visible),
     actualizarTextosBotones();
 
     const audio = document.getElementById('audio-fondo');
-    const qr = document.getElementById('texto-qr').innerHTML = 'Scan this code to share my web!';
     const lblMusica = document.getElementById('lbl-musica-activo');
     if (lblMusica && audio) {
       if (idiomaActual === 'es') {
@@ -1579,7 +1584,7 @@ document.addEventListener('visibilitychange', function() {
 
 <script type="text/javascript">
   window.addEventListener('load', function() {
-    const qrCode = new QRCodeStyling({
+      const qrCode = new QRCodeStyling({
       width: 250,
       height: 250,
       type: "svg",
@@ -1587,10 +1592,11 @@ document.addEventListener('visibilitychange', function() {
       image: "hectoreduardovalladaresperez.jpg", 
       imageOptions: {
         hideBackgroundDots: true,
-        imageSize: 0.45, // Un poquito más grande para que se vea mejor
+        imageSize: 0.5,       // Aumentamos un poquito para que llene más
         margin: 5,
-        roundCorners: true // ESTO ES LA CLAVE
+        crossOrigin: "anonymous" // Esto es importante para que cargue bien
       },
+      // ... resto de tu configuración igual
       dotsOptions: { color: "#00ff16", type: "rounded" },
       backgroundOptions: { color: "#0070ff" },
       cornersSquareOptions: { type: "extra-rounded", color: "#ff4200" },
