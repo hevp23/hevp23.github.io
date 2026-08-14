@@ -616,11 +616,11 @@
 .icono-red-social {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;   /* La imagen llena el circulito */
-    border-radius: 50% !important;  /* Redondita como el botón */
-    pointer-events: none;           /* El clic va al enlace */
-    -webkit-user-drag: none;
-    user-drag: none;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    pointer-events: none !important;  /* 👈 EL TRUCO: el toque atraviesa la imagen y llega al enlace */
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
 }
 .cheque-verificado {
     width: 20px;
