@@ -311,10 +311,10 @@
 .idioma-flotante-izq {
   position: absolute;   
   left: 35px;           
-  top: 190px;           
+  top: 195px;           /* ⬇️ Un poquito más abajo */
   z-index: 1000;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;  /* 🔃 Texto arriba, botón abajo */
   align-items: center;
 }
 
@@ -340,7 +340,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   padding: 2px 6px;
   border-radius: 6px;
-  margin-top: 4px;
+  margin-bottom: 4px;
   text-align: center;
   white-space: nowrap;
 }
@@ -453,10 +453,10 @@
 .musica-flotante-der {
   position: absolute;   
   right: 12px;
-  top: 190px;
+  top: 195px;           /* ⬇️ Un poquito más abajo */
   z-index: 1000;        
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;  /* 🔃 Texto arriba, botones abajo */
   align-items: center;
 }
 
@@ -493,7 +493,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   padding: 2px 6px;
   border-radius: 6px;
-  margin-top: 4px;
+  margin-bottom: 4px;
   text-align: center;
   white-space: nowrap;
 }
