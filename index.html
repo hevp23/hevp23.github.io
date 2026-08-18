@@ -877,17 +877,6 @@ div:focus:not(:focus-visible),
     text-shadow: 0 0 6px #00ff16, 0 0 14px rgba(0, 255, 22, 0.6); /* ✨ brillo del mismo verde */
 }
 
-/* 👻 Segmentos "apagados" de fondo, como en la foto que te gustó */
-#reloj-digitos::before {
-    content: '88:88:88';
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    color: rgba(0, 0, 0, 0.3); /* se ve rojizo oscuro sobre el naranja */
-    text-shadow: none;
-}
-
 /* AM/PM conserva su fuente normal para que no se deforme */
 #reloj-ampm {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
