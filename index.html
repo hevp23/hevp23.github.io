@@ -876,6 +876,13 @@ div:focus:not(:focus-visible),
     letter-spacing: 2px;
 }
 
+/* --- PUNTITOS DE LOS DOS PUNTOS MÁS GRANDECITOS 🔍 --- */
+.puntos-reloj {
+    display: inline-block;
+    transform: scale(1.4); /* 👈 subilo a 1.5 o 1.6 si los querés aún más grandes */
+    transform-origin: center;
+}
+        
 /* AM/PM conserva su fuente normal para que no se deforme */
 #reloj-ampm {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1182,7 +1189,7 @@ div:focus:not(:focus-visible),
     const elementoDigitos = document.getElementById('reloj-digitos');
     const elementoAmPm = document.getElementById('reloj-ampm');
     if (elementoFecha) elementoFecha.textContent = fechaTexto;
-    if (elementoDigitos) elementoDigitos.textContent = horaTexto;
+    if (elementoDigitos) elementoDigitos.innerHTML = `${horas}<span class="puntos-reloj">:</span>${minutos}<span class="puntos-reloj">:</span>${segundos}`;
     if (elementoAmPm) elementoAmPm.textContent = ampm;
   }
 
