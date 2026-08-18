@@ -867,9 +867,35 @@ div:focus:not(:focus-visible),
     clip-path: circle(50% at 50% 50%);
 }
 
+        /* --- NÚMEROS DEL RELOJ EN DISPLAY 7 SEGMENTOS (verde #00ff16 intacto 💚) --- */
+#reloj-digitos {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    font-family: 'DSEG7-Classic', 'Courier New', monospace;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px #00ff16, 0 0 14px rgba(0, 255, 22, 0.6); /* ✨ brillo del mismo verde */
+}
+
+/* 👻 Segmentos "apagados" de fondo, como en la foto que te gustó */
+#reloj-digitos::before {
+    content: '88:88:88';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    color: rgba(0, 0, 0, 0.3); /* se ve rojizo oscuro sobre el naranja */
+    text-shadow: none;
+}
+
+/* AM/PM conserva su fuente normal para que no se deforme */
+#reloj-ampm {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
     </style>
 </head>
 <body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <div class="portada" style="background-image: url('hevpcity.jpg'); border-radius: 0;"></div>
 
@@ -920,7 +946,7 @@ div:focus:not(:focus-visible),
 <!-- Reloj con paleta de Héctor corregido -->
 <div style="background-color: #ff4200; padding: 3px 7px; border-radius: 12px; margin: 15px auto; width: 65%; max-width: 265px; font-family: sans-serif; border: none;">
   <div id="fecha-actual" style="color: #00ff16; font-size: 15px; font-size: clamp(12px, 4.2vw, 1rem); text-align: center; font-weight: bold; white-space: nowrap;">Cargando fecha...</div>
-  <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: 5px; color: #00ff16; text-align: center;">00:00:00</div>
+  <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: 5px; color: #00ff16; text-align: center;"><span id="reloj-digitos">00:00:00</span> <span id="reloj-ampm">AM</span></div>
 </div>
 
 <div class="contenedor-redes">
@@ -1161,12 +1187,15 @@ div:focus:not(:focus-visible),
     const ampm = horas >= 12 ? 'PM' : 'AM';
     horas = horas % 12;
     horas = horas ? horas : 12;
-    const horaTexto = `${horas}:${minutos}:${segundos} ${ampm}`;
+    horas = String(horas).padStart(2, '0'); // 👈 cerito a la izquierda para que el "88:88:88" fantasma calce encima
+    const horaTexto = `${horas}:${minutos}:${segundos}`;
 
     const elementoFecha = document.getElementById('fecha-actual');
-    const elementoReloj = document.getElementById('reloj-actual');
+    const elementoDigitos = document.getElementById('reloj-digitos');
+    const elementoAmPm = document.getElementById('reloj-ampm');
     if (elementoFecha) elementoFecha.textContent = fechaTexto;
-    if (elementoReloj) elementoReloj.textContent = horaTexto;
+    if (elementoDigitos) elementoDigitos.textContent = horaTexto;
+    if (elementoAmPm) elementoAmPm.textContent = ampm;
   }
 
   actualizarReloj();
