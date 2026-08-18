@@ -884,6 +884,17 @@ div:focus:not(:focus-visible),
 #reloj-ampm {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* --- ARREGLO: fila Teléfono/TreeLinks/Correo siempre debajo de las redes 📱🔄 --- */
+.fila-iconos::after {
+    content: '';
+    flex-basis: 100%; /* 👈 separador invisible que fuerza el salto de línea */
+    order: 1;
+}
+
+.fila-iconos > div {
+    order: 2; /* 👈 la fila del Teléfono/TreeLinks/Correo siempre va de última */
+}
     </style>
 </head>
 <body>
