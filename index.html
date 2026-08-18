@@ -869,20 +869,15 @@ div:focus:not(:focus-visible),
 
         /* --- NÚMEROS DEL RELOJ EN DISPLAY 7 SEGMENTOS (verde #00ff16 intacto 💚) --- */
 #reloj-digitos {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center; /* 👈 esto centra los puntitos solito, para siempre */
     font-family: 'DSEG7-Classic', 'Courier New', monospace;
     letter-spacing: 2px;
 }
 
-/* --- PUNTITOS DE LOS DOS PUNTOS MÁS GRANDECITOS 🔍 --- */
 .puntos-reloj {
-    display: inline-block;
-    transform: scale(1.7) !important;
-    transform-origin: center;
-    position: relative;
-    top: -0.9em !important; /* 👈 esto los sube */
+    font-size: 1.7em; /* 👈 el tamaño de los puntitos */
+    line-height: 1;
 }
         
 /* AM/PM conserva su fuente normal para que no se deforme */
