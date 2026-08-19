@@ -1470,12 +1470,46 @@ cargarUbicacion();   // 👈 primero carga la ubicación
       .then(datos => {
         datosUbicacion = datos;
         pintarUbicacion();
+        cargarClima(datos.latitude, datos.longitude);
       })
       .catch(() => { /* si falla, simplemente no se muestra */ });
   }
 
   cargarUbicacion();
 
+// 🌡️ CLIMA Y TEMPERATURA DEL VISITANTE (Open-Meteo, gratis y sin clave)
+  function emojiClima(codigo) {
+    if (codigo === 0) return '☀️';
+    if (codigo === 1 || codigo === 2) return '🌤️';
+    if (codigo === 3) return '☁️';
+    if (codigo === 45 || codigo === 48) return '🌫️';
+    if (codigo >= 51 && codigo <= 57) return '🌦️';
+    if (codigo >= 61 && codigo <= 67) return '🌧️';
+    if (codigo >= 71 && codigo <= 77) return '🌨️';
+    if (codigo >= 80 && codigo <= 82) return '🌧️';
+    if (codigo === 85 || codigo === 86) return '❄️';
+    if (codigo >= 95) return '⛈️';
+    return '🌡️';
+  }
+
+  function cargarClima(lat, lon) {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code')
+      .then(respuesta => respuesta.json())
+      .then(d => {
+        const elTemp = document.getElementById('bloque-temp');
+        const elClima = document.getElementById('bloque-clima');
+        if (elTemp && d.current) {
+          elTemp.textContent = Math.round(d.current.temperature_2m) + '°';
+          elTemp.style.display = 'flex';
+        }
+        if (elClima && d.current) {
+          elClima.textContent = emojiClima(d.current.weather_code);
+          elClima.style.display = 'flex';
+        }
+      })
+      .catch(() => { /* si falla, simplemente no se muestran */ });
+  }
+    
     // 🌍 TRADUCTOR
   function alternarIdioma() {
     const elQr = document.getElementById('texto-qr'); // Obtenemos el elemento una vez
