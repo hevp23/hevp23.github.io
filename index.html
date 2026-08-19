@@ -1519,6 +1519,20 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     if (elTexto) elTexto.textContent = (idiomaActual === 'es') ? info.es : info.en;
   }
 
+// 🔢 Convierte los números del termómetro en emojis numéricos
+  function emojisNumericos(texto) {
+    const mapa = {
+      '0': '0️⃣', '1': '1️⃣', '2': '2️⃣', '3': '3️⃣', '4': '4️⃣',
+      '5': '5️⃣', '6': '6️⃣', '7': '7️⃣', '8': '8️⃣', '9': '9️⃣',
+      '-': '➖'
+    };
+    let resultado = '';
+    for (const caracter of texto) {
+      resultado += mapa[caracter] || caracter;
+    }
+    return resultado;
+  }
+    
   function cargarClima(lat, lon) {
     fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code')
       .then(respuesta => respuesta.json())
@@ -1527,7 +1541,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
         const elClima = document.getElementById('bloque-clima');
         const elNum = document.getElementById('temp-num');
         if (elTemp && d.current) {
-          if (elNum) elNum.textContent = Math.round(d.current.temperature_2m) + '°';
+          if (elNum) elNum.textContent = emojisNumericos(String(Math.round(d.current.temperature_2m)));
           elTemp.style.display = 'flex';
         }
         if (elClima && d.current) {
