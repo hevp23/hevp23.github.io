@@ -1464,6 +1464,16 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     'Adelaide': 'Adelaida'
   };
 
+  // 🏳️ Convierte el código del país (SV, ES, US...) en su banderita emoji
+  function banderaEmoji(codigo) {
+    if (!codigo || codigo.length !== 2) return '';
+    const codigoMayus = codigo.toUpperCase();
+    const base = 0x1F1E6;
+    const punto1 = base + (codigoMayus.charCodeAt(0) - 65);
+    const punto2 = base + (codigoMayus.charCodeAt(1) - 65);
+    return String.fromCodePoint(punto1) + String.fromCodePoint(punto2);
+  }
+    
   function pintarUbicacion() {
     const elemento = document.getElementById('ubicacion-actual');
     if (!elemento || !datosUbicacion) return;
@@ -1474,7 +1484,8 @@ cargarUbicacion();   // 👈 primero carga la ubicación
       pais = paisesES[pais] || pais;
     }
     if (ciudad && pais) {
-      elemento.textContent = ciudad + ' (' + pais + ')';
+      const bandera = banderaEmoji(datosUbicacion.country_code);
+      elemento.textContent = ciudad + ' (' + pais + (bandera ? ' ' + bandera : '') + ')';
       elemento.style.display = 'block';
     }
   }
