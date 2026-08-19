@@ -951,6 +951,7 @@ div:focus:not(:focus-visible),
 <div style="background-color: #ff4200; padding: 3px 7px; border-radius: 12px; margin: 15px auto; width: 65%; max-width: 265px; font-family: sans-serif; border: none;">
   <div id="fecha-actual" style="color: #00ff16; font-size: 15px; font-size: clamp(12px, 4.2vw, 1rem); text-align: center; font-weight: bold; white-space: nowrap;">Cargando fecha...</div>
   <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: -4px; color: #00ff16; text-align: center;"><span id="reloj-digitos">00:00:00</span> <span id="reloj-ampm">AM</span></div>
+  <div id="ubicacion-actual" style="display: none; color: #00ff16; font-size: clamp(11px, 3.5vw, 0.95rem); text-align: center; font-weight: bold; margin-top: 4px;"></div>
 </div>
 
 <div class="contenedor-redes">
@@ -1202,7 +1203,237 @@ div:focus:not(:focus-visible),
   }
 
   actualizarReloj();
+  pintarUbicacion();
   setInterval(actualizarReloj, 1000);
+
+// 🌍 UBICACIÓN DEL VISITANTE (por IP) - CON TRADUCCIÓN ES/EN
+  let datosUbicacion = null;
+
+  // 🗺️ Países cuyo nombre cambia en español (agregá más si querés)
+  const paisesES = {
+    'United States': 'Estados Unidos',
+    'United Kingdom': 'Reino Unido',
+    'Germany': 'Alemania',
+    'France': 'Francia',
+    'Italy': 'Italia',
+    'Spain': 'España',
+    'Brazil': 'Brasil',
+    'Canada': 'Canadá',
+    'Mexico': 'México',
+    'Japan': 'Japón',
+    'South Korea': 'Corea del Sur',
+    'North Korea': 'Corea del Norte',
+    'Russia': 'Rusia',
+    'New Zealand': 'Nueva Zelanda',
+    'South Africa': 'Sudáfrica',
+    'Egypt': 'Egipto',
+    'Morocco': 'Marruecos',
+    'Turkey': 'Turquía',
+    'Greece': 'Grecia',
+    'Netherlands': 'Países Bajos',
+    'Belgium': 'Bélgica',
+    'Switzerland': 'Suiza',
+    'Poland': 'Polonia',
+    'Ukraine': 'Ucrania',
+    'Sweden': 'Suecia',
+    'Norway': 'Noruega',
+    'Denmark': 'Dinamarca',
+    'Finland': 'Finlandia',
+    'Ireland': 'Irlanda',
+    'Czech Republic': 'República Checa',
+    'Czechia': 'Chequia',
+    'Hungary': 'Hungría',
+    'Romania': 'Rumania',
+    'Croatia': 'Croacia',
+    'Slovakia': 'Eslovaquia',
+    'Slovenia': 'Eslovenia',
+    'Belarus': 'Bielorrusia',
+    'Lithuania': 'Lituania',
+    'Latvia': 'Letonia',
+    'Iceland': 'Islandia',
+    'Luxembourg': 'Luxemburgo',
+    'Cyprus': 'Chipre',
+    'Peru': 'Perú',
+    'Haiti': 'Haití',
+    'Panama': 'Panamá',
+    'Dominican Republic': 'República Dominicana',
+    'Philippines': 'Filipinas',
+    'Thailand': 'Tailandia',
+    'Malaysia': 'Malasia',
+    'Taiwan': 'Taiwán',
+    'Kazakhstan': 'Kazajistán',
+    'Uzbekistan': 'Uzbekistán',
+    'Afghanistan': 'Afganistán',
+    'Pakistan': 'Pakistán',
+    'Myanmar': 'Birmania',
+    'Cambodia': 'Camboya',
+    'Iran': 'Irán',
+    'Iraq': 'Irak',
+    'Syria': 'Siria',
+    'Lebanon': 'Líbano',
+    'Jordan': 'Jordania',
+    'Saudi Arabia': 'Arabia Saudita',
+    'United Arab Emirates': 'Emiratos Árabes Unidos',
+    'Qatar': 'Catar',
+    'Bahrain': 'Baréin',
+    'Oman': 'Omán',
+    'Azerbaijan': 'Azerbaiyán',
+    'Kenya': 'Kenia',
+    'Ethiopia': 'Etiopía',
+    'Algeria': 'Argelia',
+    'Tunisia': 'Túnez',
+    'Libya': 'Libia',
+    'Sudan': 'Sudán',
+    'Ivory Coast': 'Costa de Marfil',
+    'Zimbabwe': 'Zimbabue',
+    'Mali': 'Malí',
+    'Niger': 'Níger',
+    'Gabon': 'Gabón'
+  };
+
+  // 🏙️ Ciudades cuyo nombre cambia en español (agregá más si querés)
+  const ciudadesES = {
+    'Beijing': 'Pekín',
+    'Shanghai': 'Shanghái',
+    'Guangzhou': 'Cantón',
+    'Moscow': 'Moscú',
+    'Saint Petersburg': 'San Petersburgo',
+    'London': 'Londres',
+    'Paris': 'París',
+    'Marseille': 'Marsella',
+    'Rome': 'Roma',
+    'Milan': 'Milán',
+    'Naples': 'Nápoles',
+    'Turin': 'Turín',
+    'Florence': 'Florencia',
+    'Venice': 'Venecia',
+    'Genoa': 'Génova',
+    'Lisbon': 'Lisboa',
+    'Porto': 'Oporto',
+    'Prague': 'Praga',
+    'Vienna': 'Viena',
+    'Warsaw': 'Varsovia',
+    'Kraków': 'Cracovia',
+    'Munich': 'Múnich',
+    'Cologne': 'Colonia',
+    'Frankfurt': 'Fráncfort',
+    'Hamburg': 'Hamburgo',
+    'Dresden': 'Dresde',
+    'Cairo': 'El Cairo',
+    'Alexandria': 'Alejandría',
+    'Athens': 'Atenas',
+    'Istanbul': 'Estambul',
+    'Izmir': 'Esmirna',
+    'Amsterdam': 'Ámsterdam',
+    'Rotterdam': 'Róterdam',
+    'The Hague': 'La Haya',
+    'Brussels': 'Bruselas',
+    'Antwerp': 'Amberes',
+    'Ghent': 'Gante',
+    'Bruges': 'Brujas',
+    'Geneva': 'Ginebra',
+    'Zurich': 'Zúrich',
+    'Basel': 'Basilea',
+    'Bern': 'Berna',
+    'Copenhagen': 'Copenhague',
+    'Stockholm': 'Estocolmo',
+    'Gothenburg': 'Gotemburgo',
+    'Dublin': 'Dublín',
+    'Edinburgh': 'Edimburgo',
+    'Manchester': 'Mánchester',
+    'New York': 'Nueva York',
+    'Los Angeles': 'Los Ángeles',
+    'Philadelphia': 'Filadelfia',
+    'New Orleans': 'Nueva Orleans',
+    'Mexico City': 'Ciudad de México',
+    'Havana': 'La Habana',
+    'Port-au-Prince': 'Puerto Príncipe',
+    'Panama City': 'Ciudad de Panamá',
+    'Guatemala City': 'Ciudad de Guatemala',
+    'Cusco': 'Cuzco',
+    'Rio de Janeiro': 'Río de Janeiro',
+    'Brasilia': 'Brasilia',
+    'Tokyo': 'Tokio',
+    'Kyoto': 'Kioto',
+    'Seoul': 'Seúl',
+    'Busan': 'Busán',
+    'Pyongyang': 'Pionyang',
+    'Hanoi': 'Hanói',
+    'Ho Chi Minh City': 'Ciudad de Ho Chi Minh',
+    'Yangon': 'Rangún',
+    'Jakarta': 'Yakarta',
+    'New Delhi': 'Nueva Delhi',
+    'Mumbai': 'Bombay',
+    'Kolkata': 'Calcuta',
+    'Dhaka': 'Daca',
+    'Kathmandu': 'Katmandú',
+    'Tehran': 'Teherán',
+    'Baghdad': 'Bagdad',
+    'Basra': 'Basora',
+    'Damascus': 'Damasco',
+    'Aleppo': 'Alepo',
+    'Amman': 'Amán',
+    'Jerusalem': 'Jerusalén',
+    'Riyadh': 'Riad',
+    'Jeddah': 'Yeda',
+    'Mecca': 'La Meca',
+    'Dubai': 'Dubái',
+    'Abu Dhabi': 'Abu Dabi',
+    'Muscat': 'Mascate',
+    'Baku': 'Bakú',
+    'Tbilisi': 'Tiflis',
+    'Yerevan': 'Ereván',
+    'Kyiv': 'Kiev',
+    'Kharkiv': 'Járkov',
+    'Bucharest': 'Bucarest',
+    'Sofia': 'Sofía',
+    'Belgrade': 'Belgrado',
+    'Ljubljana': 'Liubliana',
+    'Skopje': 'Skopie',
+    'Vilnius': 'Vilna',
+    'Tallinn': 'Tallin',
+    'Reykjavik': 'Reikiavik',
+    'Valletta': 'La Valeta',
+    'Vatican City': 'Ciudad del Vaticano',
+    'Tangier': 'Tánger',
+    'Algiers': 'Argel',
+    'Tripoli': 'Trípoli',
+    'Khartoum': 'Jartum',
+    'Addis Ababa': 'Adís Abeba',
+    'Abuja': 'Abuya',
+    'Abidjan': 'Abiyán',
+    'Ouagadougou': 'Uagadugú',
+    'Yaoundé': 'Yaundé',
+    'Sydney': 'Sídney',
+    'Adelaide': 'Adelaida'
+  };
+
+  function pintarUbicacion() {
+    const elemento = document.getElementById('ubicacion-actual');
+    if (!elemento || !datosUbicacion) return;
+    let ciudad = datosUbicacion.city || '';
+    let pais = datosUbicacion.country || '';
+    if (idiomaActual === 'es') {
+      ciudad = ciudadesES[ciudad] || ciudad;
+      pais = paisesES[pais] || pais;
+    }
+    if (ciudad && pais) {
+      elemento.textContent = ciudad + ' (' + pais + ')';
+      elemento.style.display = 'block';
+    }
+  }
+
+  function cargarUbicacion() {
+    fetch('https://ipwho.is/')
+      .then(respuesta => respuesta.json())
+      .then(datos => {
+        datosUbicacion = datos;
+        pintarUbicacion();
+      })
+      .catch(() => { /* si falla, simplemente no se muestra */ });
+  }
+
+  cargarUbicacion();
 
     // 🌍 TRADUCTOR
   function alternarIdioma() {
