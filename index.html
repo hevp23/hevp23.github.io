@@ -1190,7 +1190,6 @@ div:focus:not(:focus-visible),
     const ampm = horas >= 12 ? 'PM' : 'AM';
     horas = horas % 12;
     horas = horas ? horas : 12;
-    horas = String(horas).padStart(2, '0'); // 👈 cerito a la izquierda para que el "88:88:88" fantasma calce encima
     const horaTexto = `${horas}:${minutos}:${segundos}`;
 
     const elementoFecha = document.getElementById('fecha-actual');
