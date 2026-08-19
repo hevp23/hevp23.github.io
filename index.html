@@ -916,22 +916,32 @@ div:focus:not(:focus-visible),
 
 .bloque-clima {
   flex: 0 0 48px;
-  height: 48px;
+  min-height: 48px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2px;
   background-color: #ff4200;
   border-radius: 12px;
   color: #00ff16;
   font-weight: bold;
   font-size: 15px;
   text-align: center;
+  padding: 4px 2px;
+}
+
+.clima-etiqueta {
+  font-size: 9px;
+  line-height: 1.1;
 }
 
 @media (min-width: 900px) {
   .fila-reloj-clima { max-width: 560px; }
-  .bloque-clima { flex: 0 0 70px; height: 70px; font-size: 22px; }
+  .bloque-clima { flex: 0 0 70px; min-height: 70px; font-size: 22px; }
+  .clima-etiqueta { font-size: 11px; }
 }
+        
     </style>
 </head>
 <body>
@@ -984,7 +994,10 @@ div:focus:not(:focus-visible),
 </p>
     
 <div class="fila-reloj-clima">
-  <div class="bloque-clima" id="bloque-clima" style="display: none;">🌤️</div>
+  <div class="bloque-clima" id="bloque-clima" style="display: none;">
+    <span id="clima-emoji">🌤️</span>
+    <span id="clima-texto" class="clima-etiqueta">--</span>
+  </div>
 
   <div class="caja-reloj-centro" style="background-color: #ff4200; padding: 3px 7px; border-radius: 12px; font-family: sans-serif; border: none;">
     <div id="fecha-actual" style="color: #00ff16; font-size: 15px; font-size: clamp(12px, 4.2vw, 1rem); text-align: center; font-weight: bold; white-space: nowrap;">Cargando fecha...</div>
@@ -992,7 +1005,10 @@ div:focus:not(:focus-visible),
     <div id="ubicacion-actual" style="display: none; color: #00ff16; font-size: clamp(11px, 3.5vw, 0.95rem); text-align: center; font-weight: bold; margin-top: 4px;"></div>
   </div>
 
-  <div class="bloque-clima" id="bloque-temp" style="display: none;">--°</div>
+  <div class="bloque-clima" id="bloque-temp" style="display: none;">
+    <span id="temp-num">--°</span>
+    <span class="clima-etiqueta">Celsius</span>
+  </div>
 </div>
 
 <div class="contenedor-redes">
@@ -1477,19 +1493,31 @@ cargarUbicacion();   // 👈 primero carga la ubicación
 
   cargarUbicacion();
 
-// 🌡️ CLIMA Y TEMPERATURA DEL VISITANTE (Open-Meteo, gratis y sin clave)
-  function emojiClima(codigo) {
-    if (codigo === 0) return '☀️';
-    if (codigo === 1 || codigo === 2) return '🌤️';
-    if (codigo === 3) return '☁️';
-    if (codigo === 45 || codigo === 48) return '🌫️';
-    if (codigo >= 51 && codigo <= 57) return '🌦️';
-    if (codigo >= 61 && codigo <= 67) return '🌧️';
-    if (codigo >= 71 && codigo <= 77) return '🌨️';
-    if (codigo >= 80 && codigo <= 82) return '🌧️';
-    if (codigo === 85 || codigo === 86) return '❄️';
-    if (codigo >= 95) return '⛈️';
-    return '🌡️';
+// 🌡️ CLIMA Y TEMPERATURA CON PALABRITA ES/EN
+  let codigoClimaActual = null;
+
+  function climaInfo(codigo) {
+    if (codigo === 0) return { emoji: '☀️', es: 'Despejado', en: 'Clear' };
+    if (codigo === 1) return { emoji: '🌤️', es: 'Soleado', en: 'Sunny' };
+    if (codigo === 2) return { emoji: '🌤️', es: 'Parcial', en: 'Partly' };
+    if (codigo === 3) return { emoji: '☁️', es: 'Nublado', en: 'Cloudy' };
+    if (codigo === 45 || codigo === 48) return { emoji: '🌫️', es: 'Niebla', en: 'Fog' };
+    if (codigo >= 51 && codigo <= 57) return { emoji: '🌦️', es: 'Llovizna', en: 'Drizzle' };
+    if (codigo >= 61 && codigo <= 67) return { emoji: '🌧️', es: 'Lluvia', en: 'Rain' };
+    if (codigo >= 71 && codigo <= 77) return { emoji: '🌨️', es: 'Nieve', en: 'Snow' };
+    if (codigo >= 80 && codigo <= 82) return { emoji: '🌧️', es: 'Chubascos', en: 'Showers' };
+    if (codigo === 85 || codigo === 86) return { emoji: '❄️', es: 'Nevada', en: 'Snow' };
+    if (codigo >= 95) return { emoji: '⛈️', es: 'Tormenta', en: 'Storm' };
+    return { emoji: '🌡️', es: 'Clima', en: 'Weather' };
+  }
+
+  function pintarClima() {
+    if (codigoClimaActual === null) return;
+    const info = climaInfo(codigoClimaActual);
+    const elEmoji = document.getElementById('clima-emoji');
+    const elTexto = document.getElementById('clima-texto');
+    if (elEmoji) elEmoji.textContent = info.emoji;
+    if (elTexto) elTexto.textContent = (idiomaActual === 'es') ? info.es : info.en;
   }
 
   function cargarClima(lat, lon) {
@@ -1498,12 +1526,14 @@ cargarUbicacion();   // 👈 primero carga la ubicación
       .then(d => {
         const elTemp = document.getElementById('bloque-temp');
         const elClima = document.getElementById('bloque-clima');
+        const elNum = document.getElementById('temp-num');
         if (elTemp && d.current) {
-          elTemp.textContent = Math.round(d.current.temperature_2m) + '°';
+          if (elNum) elNum.textContent = Math.round(d.current.temperature_2m) + '°';
           elTemp.style.display = 'flex';
         }
         if (elClima && d.current) {
-          elClima.textContent = emojiClima(d.current.weather_code);
+          codigoClimaActual = d.current.weather_code;
+          pintarClima();
           elClima.style.display = 'flex';
         }
       })
@@ -1537,6 +1567,8 @@ cargarUbicacion();   // 👈 primero carga la ubicación
 
     actualizarReloj();
     actualizarTextosBotones();
+    pintarUbicacion();
+    pintarClima();
 
     // ... (el resto de tu código igual, sin las líneas sueltas afuera)
     const audio = document.getElementById('audio-fondo');
