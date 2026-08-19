@@ -896,6 +896,42 @@ div:focus:not(:focus-visible),
 .fila-iconos > div {
     order: 2; /* 👈 la fila del Teléfono/TreeLinks/Correo siempre va de última */
 }
+
+/* --- FILA: clima | reloj | temperatura, bien separaditos 🌡️ --- */
+.fila-reloj-clima {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 👈 empuja los cuadraditos a las orillas */
+  gap: 8px;
+  margin: 15px auto;
+  width: 96%;
+  max-width: 440px;
+}
+
+.caja-reloj-centro {
+  flex: 0 1 auto;
+  max-width: 265px;
+  margin: 0 auto;
+}
+
+.bloque-clima {
+  flex: 0 0 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff4200;
+  border-radius: 12px;
+  color: #00ff16;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .fila-reloj-clima { max-width: 560px; }
+  .bloque-clima { flex: 0 0 70px; height: 70px; font-size: 22px; }
+}
     </style>
 </head>
 <body>
@@ -947,11 +983,16 @@ div:focus:not(:focus-visible),
   ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇸🇻
 </p>
     
-<!-- Reloj con paleta de Héctor corregido -->
-<div style="background-color: #ff4200; padding: 3px 7px; border-radius: 12px; margin: 15px auto; width: 65%; max-width: 265px; font-family: sans-serif; border: none;">
-  <div id="fecha-actual" style="color: #00ff16; font-size: 15px; font-size: clamp(12px, 4.2vw, 1rem); text-align: center; font-weight: bold; white-space: nowrap;">Cargando fecha...</div>
-  <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: -4px; color: #00ff16; text-align: center;"><span id="reloj-digitos">00:00:00</span> <span id="reloj-ampm">AM</span></div>
-  <div id="ubicacion-actual" style="display: none; color: #00ff16; font-size: clamp(11px, 3.5vw, 0.95rem); text-align: center; font-weight: bold; margin-top: 4px;"></div>
+<div class="fila-reloj-clima">
+  <div class="bloque-clima" id="bloque-clima" style="display: none;">🌤️</div>
+
+  <div class="caja-reloj-centro" style="background-color: #ff4200; padding: 3px 7px; border-radius: 12px; font-family: sans-serif; border: none;">
+    <div id="fecha-actual" style="color: #00ff16; font-size: 15px; font-size: clamp(12px, 4.2vw, 1rem); text-align: center; font-weight: bold; white-space: nowrap;">Cargando fecha...</div>
+    <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: -4px; color: #00ff16; text-align: center;"><span id="reloj-digitos">00:00:00</span> <span id="reloj-ampm">AM</span></div>
+    <div id="ubicacion-actual" style="display: none; color: #00ff16; font-size: clamp(11px, 3.5vw, 0.95rem); text-align: center; font-weight: bold; margin-top: 4px;"></div>
+  </div>
+
+  <div class="bloque-clima" id="bloque-temp" style="display: none;">--°</div>
 </div>
 
 <div class="contenedor-redes">
