@@ -896,11 +896,10 @@ div:focus:not(:focus-visible),
 .fila-iconos > div {
     order: 2; /* 👈 la fila del Teléfono/TreeLinks/Correo siempre va de última */
 }
-
-/* --- FILA: clima | reloj | temperatura, SIEMPRE DEL MISMO TAMAÑO 🌡️ --- */
+/* --- FILA: clima | reloj | temperatura, bien separaditos 🌡️ --- */
 .fila-reloj-clima {
   display: flex;
-  align-items: stretch;
+  align-items: stretch; /* 👈 estira los cuadraditos a la misma altura del reloj */
   justify-content: space-between;
   gap: 8px;
   margin: 15px auto;
@@ -909,19 +908,13 @@ div:focus:not(:focus-visible),
 }
 
 .caja-reloj-centro {
-  flex: 1; /* 👈 Ocupa TODO el espacio disponible */
-  min-width: 220px; /* 👈 Ancho MÍNIMO fijo (no se encoge más) */
-  max-width: 280px; /* 👈 Ancho MÁXIMO (no crece demasiado) */
+  flex: 0 1 auto;
+  max-width: 265px;
   margin: 0 auto;
-  background-color: #ff4200;
-  padding: 3px 7px;
-  border-radius: 12px;
-  font-family: sans-serif;
-  border: none;
 }
 
 .bloque-clima {
-  flex: 0 0 65px; /* 👈 Ancho FIJO de 65px para los bloques laterales */
+  flex: 0 0 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -931,67 +924,21 @@ div:focus:not(:focus-visible),
   border-radius: 12px;
   color: #00ff16;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 20px; /* 👈 emoji y número más grandes */
   text-align: center;
   padding: 4px 2px;
 }
 
 .clima-etiqueta {
-  font-size: 10px;
+  font-size: 11px; /* 👈 palabritas más grandes */
   line-height: 1.1;
 }
 
-/* Para PC: un poco más grandes pero manteniendo la proporción */
 @media (min-width: 900px) {
   .fila-reloj-clima { max-width: 560px; }
-  .caja-reloj-centro { min-width: 280px; max-width: 350px; }
-  .bloque-clima { flex: 0 0 80px; font-size: 28px; }
-  .clima-etiqueta { font-size: 12px; }
-}
-
-/* --- TOAST FLOTANTE AZUL (#0070ff) --- */
-.toast-notificacion {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #0070ff; /* Tu azul chivo 💙 */
-  color: white;
-  padding: 16px 24px;
-  border-radius: 12px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  z-index: 10000;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  animation: slideDown 0.3s ease, slideUp 0.3s ease 2.7s;
-  text-align: center;
-  max-width: 90%;
-  width: auto;
-}
-
-@keyframes slideDown {
-  from { 
-    top: -100px; 
-    opacity: 0; 
-  }
-  to { 
-    top: 20px; 
-    opacity: 1; 
-  }
-}
-
-@keyframes slideUp {
-  from { 
-    top: 20px; 
-    opacity: 1; 
-  }
-  to { 
-    top: -100px; 
-    opacity: 0; 
-  }
-    }
-        
+  .bloque-clima { flex: 0 0 70px; font-size: 28px; }
+  .clima-etiqueta { font-size: 13px; }
+}    
     </style>
 </head>
 <body>
@@ -1711,36 +1658,34 @@ cargarUbicacion();   // 👈 primero carga la ubicación
   }
 
 // 🎵 MÚSICA (VERSIÓN FINAL CON MEDIA SESSION PERSISTENTE Y VIBRACIÓN)
-function toggleMusica() {
-  const audio = document.getElementById('audio-fondo');
-  if (!audio) return;
+  function toggleMusica() {
+    const audio = document.getElementById('audio-fondo');
+    if (!audio) return;
 
-  if (audio.paused) {
-    audio.play().then(() => {
-      if ('mediaSession' in navigator) {
-        navigator.mediaSession.playbackState = "playing";
+    if (audio.paused) {
+      audio.play().then(() => {
+        // Asegurar que la Media Session actualice su estado a "playing"
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = "playing";
+        }
+      }).catch(err => console.log("Error al reproducir:", err));
+      
+      estaReproduciendo = true;
+      
+      // 📳 Vibración corta (solo en dispositivos móviles/tablets que lo soporten)
+      if ("vibrate" in navigator) {
+        try { navigator.vibrate(50); } catch(e) {}
       }
-    }).catch(err => console.log("Error al reproducir:", err));
-    
-    estaReproduciendo = true;
-    
-    // 📳 Vibración corta
-    if ("vibrate" in navigator) {
-      try { navigator.vibrate(50); } catch(e) {}
-    }
 
-    // 🔔 MOSTRAR SOLO NOTIFICACIÓN DEL SISTEMA (sin toast flotante)
-    mostrarNotificacionFlotante();
-
-  } else {
-    audio.pause();
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.playbackState = "paused";
+    } else {
+      audio.pause();
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = "paused";
+      }
+      estaReproduciendo = false;
     }
-    estaReproduciendo = false;
-  }
-  actualizarControles();
-}
+    actualizarControles();
+    }
     
   function actualizarControles() {
     const btnAnterior = document.getElementById('btn-anterior');
