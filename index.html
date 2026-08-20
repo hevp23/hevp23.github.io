@@ -944,10 +944,10 @@ div:focus:not(:focus-visible),
   line-height: 1.1;
 }
 
-@media (min-width: 900px) {
-  .fila-reloj-clima { max-width: 560px; }
-  .bloque-clima { flex: 0 0 70px; font-size: 28px; }
-  .clima-etiqueta { font-size: 13px; }
+@media (min-width:900px) {
+    .fila-reloj-clima { max-width:440px; gap:6px; } /* 👈 Más compacto */
+    .bloque-clima { flex:0070px; font-size:28px; }
+    .clima-etiqueta { font-size:13px; }
 }
 
 /* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
