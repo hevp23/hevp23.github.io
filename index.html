@@ -1711,7 +1711,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
   }
 
 // 🎵 MÚSICA (VERSIÓN FINAL CON MEDIA SESSION PERSISTENTE Y VIBRACIÓN)
-  function toggleMusica() {
+function toggleMusica() {
   const audio = document.getElementById('audio-fondo');
   if (!audio) return;
 
@@ -1729,8 +1729,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
       try { navigator.vibrate(50); } catch(e) {}
     }
 
-    //  MOSTRAR NOTIFICACIÓN FLOTANTE AZUL + SISTEMA
-    mostrarToastNotificacion();
+    // 🔔 MOSTRAR SOLO NOTIFICACIÓN DEL SISTEMA (sin toast flotante)
     mostrarNotificacionFlotante();
 
   } else {
@@ -1741,28 +1740,6 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     estaReproduciendo = false;
   }
   actualizarControles();
-    }
-
-// 🔵 TOAST FLOTANTE AZUL (aparece 3 segundos)
-function mostrarToastNotificacion() {
-  // Eliminar toast anterior si existe
-  const toastExistente = document.querySelector('.toast-notificacion');
-  if (toastExistente) toastExistente.remove();
-
-  const toast = document.createElement('div');
-  toast.className = 'toast-notificacion';
-  
-  const mensaje = idiomaActual === 'es' 
-    ? '🎵 Reproduciendo: Héctor Eduardo Valladares Pérez - @hevp23'
-    : '🎵 Playing: Héctor Eduardo Valladares Pérez - @hevp23';
-  
-  toast.textContent = mensaje;
-  document.body.appendChild(toast);
-
-  // Se elimina automáticamente después de 3 segundos
-  setTimeout(() => {
-    toast.remove();
-  }, 3000);
 }
     
   function actualizarControles() {
