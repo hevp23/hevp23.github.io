@@ -1959,64 +1959,39 @@ document.addEventListener('visibilitychange', function() {
   }
 });
 
-    // 💬 CREAR Y MOSTRAR BURBUJA FLOTANTE UNIVERSAL (Estilo WhatsApp)
+// 💬 LANZAR NOTIFICACIÓN NATIVA DEL SISTEMA (Windows / Celular)
   function mostrarNotificacionFlotante() {
-    // Evitar duplicados si ya hay una abierta
-    const existente = document.getElementById('notif-flotante-treelinks');
-    if (existente) existente.remove();
+    // Verificar si el navegador soporta notificaciones
+    if (!("Notification" in window)) return;
 
-    const notif = document.createElement('div');
-    notif.id = 'notif-flotante-treelinks';
-    
-    // Texto dinámico según el idioma actual
-    const mensaje = idiomaActual === 'es' ? '🎵 Reproduciendo música • TreeLinks' : '🎵 Playing music • TreeLinks';
-    
-    notif.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 20px;">🎶</span>
-        <div>
-          <div style="font-weight: bold; font-size: 13px;">TreeLinks Player</div>
-          <div style="font-size: 12px; opacity: 0.9;">${mensaje}</div>
-        </div>
-      </div>
-    `;
+    // Si ya tenemos permiso, lanzamos la notificación del sistema
+    if (Notification.permission === "granted") {
+      lanzarNotificacionSistema();
+    } 
+    // Si no ha respondido, pedimos el permiso una vez al hacer clic en Reproducir
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          lanzarNotificacionSistema();
+        }
+      });
+    }
+  }
 
-    // Estilos de la burbuja flotante (universal para celular, tablet y PC)
-    notif.style.cssText = `
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-20px);
-      background: rgba(30, 30, 30, 0.95);
-      color: #ffffff;
-      padding: 12px 18px;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      z-index: 999999;
-      font-family: inherit;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.15);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      pointer-events: none;
-      max-width: 90%;
-      text-align: left;
-    `;
+  function lanzarNotificacionSistema() {
+    const titulo = "TreeLinks";
+    const opciones = {
+      body: idiomaActual === 'es' ? '🎵 Reproduciendo música • Héctor Eduardo' : '🎵 Playing music • Héctor Eduardo',
+      icon: 'treelinks.jpg' // Usa la misma imagen que tenías en la Media Session
+    };
 
-    document.body.appendChild(notif);
+    // Esto crea la burbuja nativa que sale en la barra de tareas de Windows o centro de notificaciones del cel
+    const noti = new Notification(titulo, opciones);
 
-    // Animación de entrada (baja suavemente flotando)
+    // Opcional: Cerrar la notificación automáticamente después de 4 segundos
     setTimeout(() => {
-      notif.style.opacity = '1';
-      notif.style.transform = 'translateX(-50%) translateY(0)';
-    }, 50);
-
-    // Animación de salida (después de 3.5 segundos se desvanece sola)
-    setTimeout(() => {
-      notif.style.opacity = '0';
-      notif.style.transform = 'translateX(-50%) translateY(-20px)';
-      setTimeout(() => notif.remove(), 400);
-    }, 3500);
+      noti.close();
+    }, 4000);
   }
     
 </script>
