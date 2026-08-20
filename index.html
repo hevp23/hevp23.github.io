@@ -1494,7 +1494,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     }
     if (ciudad && pais) {
       const bandera = banderaEmoji(datosUbicacion.country_code);
-      elemento.textContent = ciudad + ' (' + pais + (bandera ? ' ' + bandera : '') + ')';
+      elemento.textContent='📍 '+ciudad+' ('+pais+(bandera ? ' '+bandera : '')+')';
       elemento.style.display = 'block';
     }
   }
