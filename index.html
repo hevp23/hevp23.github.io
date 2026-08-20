@@ -820,10 +820,10 @@ picture {
   .punto-verde::before { top: 0.27em !important; }
   .logo-web { width: 44px !important; height: 44px !important; }
 
-  /* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
-  #reloj-actual { font-size: 2.7rem !important; white-space: nowrap !important; }
-  #fecha-actual { font-size: 1.2rem !important; }
-  div:has(> #reloj-actual) { max-width: 370px !important; }
+/* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
+#reloj-actual { font-size: 1.7rem !important; white-space: normal !important; }
+#fecha-actual { font-size: clamp(11px, 3.8vw, 0.9rem) !important; white-space: normal !important; word-wrap: break-word; line-height: 1.2; }
+div:has(> #reloj-actual) { max-width: 340px !important; min-width: 340px !important; width: 340px !important; }
     
   /* Íconos más grandes */
   .btn-red { width: 52px !important; height: 52px !important; min-width: 52px !important; max-width: 52px !important; }
@@ -1255,8 +1255,8 @@ div:focus:not(:focus-visible),
     const elementoFecha = document.getElementById('fecha-actual');
     const elementoDigitos = document.getElementById('reloj-digitos');
     const elementoAmPm = document.getElementById('reloj-ampm');
-    if (elementoFecha) elementoFecha.textContent = fechaTexto;
-    if (elementoDigitos) elementoDigitos.innerHTML = `${horas}<span class="puntos-reloj">:</span>${minutos}<span class="puntos-reloj">:</span>${segundos}`;
+    if(elementoFecha)elementoFecha.textContent='🗓 '+fechaTexto;
+    if(elementoDigitos)elementoDigitos.innerHTML=`🕰 ${horas}<span class="puntos-reloj">:</span>${minutos}<span class="puntos-reloj">:</span>${segundos}`;
     if (elementoAmPm) elementoAmPm.textContent = ampm;
   }
 
