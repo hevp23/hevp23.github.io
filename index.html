@@ -897,10 +897,10 @@ div:focus:not(:focus-visible),
     order: 2; /* 👈 la fila del Teléfono/TreeLinks/Correo siempre va de última */
 }
 
-/* --- FILA: clima | reloj | temperatura, bien separaditos 🌡️ --- */
+/* --- FILA: clima | reloj | temperatura, SIEMPRE DEL MISMO TAMAÑO 🌡️ --- */
 .fila-reloj-clima {
   display: flex;
-  align-items: stretch; /* 👈 estira los cuadraditos a la misma altura del reloj */
+  align-items: stretch;
   justify-content: space-between;
   gap: 8px;
   margin: 15px auto;
@@ -909,13 +909,19 @@ div:focus:not(:focus-visible),
 }
 
 .caja-reloj-centro {
-  flex: 0 1 auto;
-  max-width: 265px;
+  flex: 1; /* 👈 Ocupa TODO el espacio disponible */
+  min-width: 220px; /* 👈 Ancho MÍNIMO fijo (no se encoge más) */
+  max-width: 280px; /* 👈 Ancho MÁXIMO (no crece demasiado) */
   margin: 0 auto;
+  background-color: #ff4200;
+  padding: 3px 7px;
+  border-radius: 12px;
+  font-family: sans-serif;
+  border: none;
 }
 
 .bloque-clima {
-  flex: 0 0 52px;
+  flex: 0 0 65px; /* 👈 Ancho FIJO de 65px para los bloques laterales */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -925,21 +931,66 @@ div:focus:not(:focus-visible),
   border-radius: 12px;
   color: #00ff16;
   font-weight: bold;
-  font-size: 20px; /* 👈 emoji y número más grandes */
+  font-size: 20px;
   text-align: center;
   padding: 4px 2px;
 }
 
 .clima-etiqueta {
-  font-size: 11px; /* 👈 palabritas más grandes */
+  font-size: 10px;
   line-height: 1.1;
 }
 
+/* Para PC: un poco más grandes pero manteniendo la proporción */
 @media (min-width: 900px) {
   .fila-reloj-clima { max-width: 560px; }
-  .bloque-clima { flex: 0 0 70px; font-size: 28px; }
-  .clima-etiqueta { font-size: 13px; }
+  .caja-reloj-centro { min-width: 280px; max-width: 350px; }
+  .bloque-clima { flex: 0 0 80px; font-size: 28px; }
+  .clima-etiqueta { font-size: 12px; }
 }
+
+/* --- TOAST FLOTANTE AZUL (#0070ff) --- */
+.toast-notificacion {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0070ff; /* Tu azul chivo 💙 */
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 10000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  animation: slideDown 0.3s ease, slideUp 0.3s ease 2.7s;
+  text-align: center;
+  max-width: 90%;
+  width: auto;
+}
+
+@keyframes slideDown {
+  from { 
+    top: -100px; 
+    opacity: 0; 
+  }
+  to { 
+    top: 20px; 
+    opacity: 1; 
+  }
+}
+
+@keyframes slideUp {
+  from { 
+    top: 20px; 
+    opacity: 1; 
+  }
+  to { 
+    top: -100px; 
+    opacity: 0; 
+  }
+    }
         
     </style>
 </head>
@@ -1661,34 +1712,59 @@ cargarUbicacion();   // 👈 primero carga la ubicación
 
 // 🎵 MÚSICA (VERSIÓN FINAL CON MEDIA SESSION PERSISTENTE Y VIBRACIÓN)
   function toggleMusica() {
-    const audio = document.getElementById('audio-fondo');
-    if (!audio) return;
+  const audio = document.getElementById('audio-fondo');
+  if (!audio) return;
 
-    if (audio.paused) {
-      audio.play().then(() => {
-        // Asegurar que la Media Session actualice su estado a "playing"
-        if ('mediaSession' in navigator) {
-          navigator.mediaSession.playbackState = "playing";
-        }
-      }).catch(err => console.log("Error al reproducir:", err));
-      
-      estaReproduciendo = true;
-      
-      // 📳 Vibración corta (solo en dispositivos móviles/tablets que lo soporten)
-      if ("vibrate" in navigator) {
-        try { navigator.vibrate(50); } catch(e) {}
-      }
-
-    } else {
-      audio.pause();
+  if (audio.paused) {
+    audio.play().then(() => {
       if ('mediaSession' in navigator) {
-        navigator.mediaSession.playbackState = "paused";
+        navigator.mediaSession.playbackState = "playing";
       }
-      estaReproduciendo = false;
+    }).catch(err => console.log("Error al reproducir:", err));
+    
+    estaReproduciendo = true;
+    
+    // 📳 Vibración corta
+    if ("vibrate" in navigator) {
+      try { navigator.vibrate(50); } catch(e) {}
     }
-    actualizarControles();
-  }
 
+    //  MOSTRAR NOTIFICACIÓN FLOTANTE AZUL + SISTEMA
+    mostrarToastNotificacion();
+    mostrarNotificacionFlotante();
+
+  } else {
+    audio.pause();
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = "paused";
+    }
+    estaReproduciendo = false;
+  }
+  actualizarControles();
+    }
+
+// 🔵 TOAST FLOTANTE AZUL (aparece 3 segundos)
+function mostrarToastNotificacion() {
+  // Eliminar toast anterior si existe
+  const toastExistente = document.querySelector('.toast-notificacion');
+  if (toastExistente) toastExistente.remove();
+
+  const toast = document.createElement('div');
+  toast.className = 'toast-notificacion';
+  
+  const mensaje = idiomaActual === 'es' 
+    ? '🎵 Reproduciendo: Héctor Eduardo Valladares Pérez - @hevp23'
+    : '🎵 Playing: Héctor Eduardo Valladares Pérez - @hevp23';
+  
+  toast.textContent = mensaje;
+  document.body.appendChild(toast);
+
+  // Se elimina automáticamente después de 3 segundos
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+    
   function actualizarControles() {
     const btnAnterior = document.getElementById('btn-anterior');
     const btnSiguiente = document.getElementById('btn-siguiente');
@@ -1696,7 +1772,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     const lblMusica = document.getElementById('lbl-musica-activo');
     const audio = document.getElementById('audio-fondo');
 
-    // 📝 Texto debajo de los botones
+    // 📝 Texto arriba de los botones
     if (lblMusica && audio) {
       lblMusica.textContent = estaReproduciendo
         ? (idiomaActual === 'es' ? 'Pausar' : 'Pause')
@@ -1986,19 +2062,25 @@ document.addEventListener('visibilitychange', function() {
   }
 
   function lanzarNotificacionSistema() {
-    const titulo = "TreeLinks";
-    const opciones = {
-      body: idiomaActual === 'es' ? '🎵 Reproduciendo música • Héctor Eduardo' : '🎵 Playing music • Héctor Eduardo',
-      icon: 'treelinks.jpg' // Usa la misma imagen que tenías en la Media Session
-    };
+  const titulo = " TreeLinks";
+  const cuerpo = idiomaActual === 'es' 
+    ? 'Reproduciendo: Héctor Eduardo Valladares Pérez - @hevp23'
+    : 'Playing: Héctor Eduardo Valladares Pérez - @hevp23';
+  
+  const opciones = {
+    body: cuerpo,
+    icon: 'treelinks.jpg',
+    badge: 'treelinks.jpg',
+    tag: 'treelinks-musica', // Para no duplicar notificaciones
+    requireInteraction: false
+  };
 
-    // Esto crea la burbuja nativa que sale en la barra de tareas de Windows o centro de notificaciones del cel
-    const noti = new Notification(titulo, opciones);
+  const noti = new Notification(titulo, opciones);
 
-    // Opcional: Cerrar la notificación automáticamente después de 4 segundos
-    setTimeout(() => {
-      noti.close();
-    }, 4000);
+  // Cerrar después de 4 segundos
+  setTimeout(() => {
+    noti.close();
+  }, 4000);
   }
     
 </script>
