@@ -950,23 +950,37 @@ div:focus:not(:focus-visible),
   .clima-etiqueta { font-size: 13px; }
 }
 
-/* Agrega esto en tu sección de CSS, después de las reglas del reloj */
-#fecha-actual, #reloj-actual, #ubicacion-actual {
-    font-size: clamp(10px, 3.5vw, 0.85rem) !important;
+/* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
+#reloj-actual { 
+    font-size: 2.2rem !important; /*  Aumenté de 1.7rem a 2.2rem */
+    white-space: nowrap !important; 
+}
+#fecha-actual { 
+    font-size: clamp(13px, 4.5vw, 1.1rem) !important; /* 👈 Aumenté los tamaños */
+    white-space: nowrap !important; 
+}
+#ubicacion-actual { 
+    font-size: clamp(12px, 4vw, 1rem) !important; /* 👈 Más grande */
+    white-space: nowrap !important; 
+}
+div:has(> #reloj-actual) { 
+    max-width: 340px !important; 
+    min-width: 340px !important; 
+    width: 340px !important; 
 }
 
-/* Para hacer los emojis más pequeños */
-#fecha-actual::before,
-#reloj-actual::before,
-#ubicacion-actual::before {
-    font-size: 0.7em !important;
+/* Emojis proporcionales */
+.emoji-reloj {
+    font-size: 1.2em !important; /* 👈 Emoji proporcional al texto */
     vertical-align: middle !important;
+    margin-right: 4px;
 }
 
-/* O simplemente haz todos los emojis más pequeños dentro del rectángulo */
-.caja-reloj-centro emoji,
-.caja-reloj-centro span {
-    font-size: 0.8em !important;
+/* AM/PM más grande y alineado */
+#reloj-ampm {
+    font-size: 1.8rem !important; /* 👈 Más grande para igualar la hora */
+    vertical-align: middle !important;
+    margin-left: 4px;
 }
     </style>
 </head>
