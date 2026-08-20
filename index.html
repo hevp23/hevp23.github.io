@@ -952,15 +952,15 @@ div:focus:not(:focus-visible),
 
 /* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
 #reloj-actual { 
-    font-size: 2.2rem !important; /*  Aumenté de 1.7rem a 2.2rem */
+    font-size: 1.9rem !important; /* 👈 Bajé de 2.2rem a 1.9rem */
     white-space: nowrap !important; 
 }
 #fecha-actual { 
-    font-size: clamp(13px, 4.5vw, 1.1rem) !important; /* 👈 Aumenté los tamaños */
+    font-size: clamp(12px, 4vw, 1rem) !important; /* 👈 Bajé un poco */
     white-space: nowrap !important; 
 }
 #ubicacion-actual { 
-    font-size: clamp(12px, 4vw, 1rem) !important; /* 👈 Más grande */
+    font-size: clamp(11px, 3.5vw, 0.9rem) !important; /* 👈 Más pequeño */
     white-space: nowrap !important; 
 }
 div:has(> #reloj-actual) { 
@@ -971,14 +971,14 @@ div:has(> #reloj-actual) {
 
 /* Emojis proporcionales */
 .emoji-reloj {
-    font-size: 1.2em !important; /* 👈 Emoji proporcional al texto */
+    font-size: 1.1em !important; /* 👈 Bajé de 1.2em a 1.1em */
     vertical-align: middle !important;
     margin-right: 4px;
 }
 
-/* AM/PM más grande y alineado */
+/* AM/PM alineado */
 #reloj-ampm {
-    font-size: 1.8rem !important; /* 👈 Más grande para igualar la hora */
+    font-size: 1.6rem !important; /* 👈 Bajé de 1.8rem a 1.6rem */
     vertical-align: middle !important;
     margin-left: 4px;
 }
