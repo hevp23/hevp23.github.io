@@ -948,7 +948,26 @@ div:focus:not(:focus-visible),
   .fila-reloj-clima { max-width: 560px; }
   .bloque-clima { flex: 0 0 70px; font-size: 28px; }
   .clima-etiqueta { font-size: 13px; }
-}    
+}
+
+/* Agrega esto en tu sección de CSS, después de las reglas del reloj */
+#fecha-actual, #reloj-actual, #ubicacion-actual {
+    font-size: clamp(10px, 3.5vw, 0.85rem) !important;
+}
+
+/* Para hacer los emojis más pequeños */
+#fecha-actual::before,
+#reloj-actual::before,
+#ubicacion-actual::before {
+    font-size: 0.7em !important;
+    vertical-align: middle !important;
+}
+
+/* O simplemente haz todos los emojis más pequeños dentro del rectángulo */
+.caja-reloj-centro emoji,
+.caja-reloj-centro span {
+    font-size: 0.8em !important;
+}
     </style>
 </head>
 <body>
