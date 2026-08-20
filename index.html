@@ -908,9 +908,12 @@ div:focus:not(:focus-visible),
 }
 
 .caja-reloj-centro {
-  flex: 0 1 auto;
-  max-width: 305px;
-  margin: 0 auto;
+    flex: 0 0 305px; /* 👈 El '0 0' significa: NO crecer, NO encoger. 305px es el tamaño fijo. */
+    width: 305px;
+    min-width: 305px;
+    max-width: 305px;
+    margin: 0 auto;
+    box-sizing: border-box; /* 👈 Asegura que el padding no sume al ancho total */
 }
 
 .bloque-clima {
