@@ -1659,13 +1659,19 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     }
   }
 
-// 🎵 MÚSICA (VERSIÓN CON COMBO MAESTRO: BURBUJA FLOTANTE + VIBRACIÓN)
+// 🎵 MÚSICA (VERSIÓN FINAL CON MEDIA SESSION PERSISTENTE Y VIBRACIÓN)
   function toggleMusica() {
     const audio = document.getElementById('audio-fondo');
     if (!audio) return;
 
     if (audio.paused) {
-      audio.play();
+      audio.play().then(() => {
+        // Asegurar que la Media Session actualice su estado a "playing"
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = "playing";
+        }
+      }).catch(err => console.log("Error al reproducir:", err));
+      
       estaReproduciendo = true;
       
       // 📳 Vibración corta (solo en dispositivos móviles/tablets que lo soporten)
@@ -1673,10 +1679,11 @@ cargarUbicacion();   // 👈 primero carga la ubicación
         try { navigator.vibrate(50); } catch(e) {}
       }
 
-      // 💬 Mostrar notificación flotante universal (estilo WhatsApp)
-      mostrarNotificacionFlotante();
     } else {
       audio.pause();
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = "paused";
+      }
       estaReproduciendo = false;
     }
     actualizarControles();
