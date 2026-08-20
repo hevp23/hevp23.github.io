@@ -1659,7 +1659,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     }
   }
 
-  // 🎵 MÚSICA (VERSIÓN FINAL - BOTONES ESTÁTICOS CON LOOP INFINITO)
+// 🎵 MÚSICA (VERSIÓN CON COMBO MAESTRO: BURBUJA FLOTANTE + VIBRACIÓN)
   function toggleMusica() {
     const audio = document.getElementById('audio-fondo');
     if (!audio) return;
@@ -1667,6 +1667,14 @@ cargarUbicacion();   // 👈 primero carga la ubicación
     if (audio.paused) {
       audio.play();
       estaReproduciendo = true;
+      
+      // 📳 Vibración corta (solo en dispositivos móviles/tablets que lo soporten)
+      if ("vibrate" in navigator) {
+        try { navigator.vibrate(50); } catch(e) {}
+      }
+
+      // 💬 Mostrar notificación flotante universal (estilo WhatsApp)
+      mostrarNotificacionFlotante();
     } else {
       audio.pause();
       estaReproduciendo = false;
@@ -1950,6 +1958,67 @@ document.addEventListener('visibilitychange', function() {
     }
   }
 });
+
+    // 💬 CREAR Y MOSTRAR BURBUJA FLOTANTE UNIVERSAL (Estilo WhatsApp)
+  function mostrarNotificacionFlotante() {
+    // Evitar duplicados si ya hay una abierta
+    const existente = document.getElementById('notif-flotante-treelinks');
+    if (existente) existente.remove();
+
+    const notif = document.createElement('div');
+    notif.id = 'notif-flotante-treelinks';
+    
+    // Texto dinámico según el idioma actual
+    const mensaje = idiomaActual === 'es' ? '🎵 Reproduciendo música • TreeLinks' : '🎵 Playing music • TreeLinks';
+    
+    notif.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">🎶</span>
+        <div>
+          <div style="font-weight: bold; font-size: 13px;">TreeLinks Player</div>
+          <div style="font-size: 12px; opacity: 0.9;">${mensaje}</div>
+        </div>
+      </div>
+    `;
+
+    // Estilos de la burbuja flotante (universal para celular, tablet y PC)
+    notif.style.cssText = `
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: rgba(30, 30, 30, 0.95);
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 999999;
+      font-family: inherit;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      max-width: 90%;
+      text-align: left;
+    `;
+
+    document.body.appendChild(notif);
+
+    // Animación de entrada (baja suavemente flotando)
+    setTimeout(() => {
+      notif.style.opacity = '1';
+      notif.style.transform = 'translateX(-50%) translateY(0)';
+    }, 50);
+
+    // Animación de salida (después de 3.5 segundos se desvanece sola)
+    setTimeout(() => {
+      notif.style.opacity = '0';
+      notif.style.transform = 'translateX(-50%) translateY(-20px)';
+      setTimeout(() => notif.remove(), 400);
+    }, 3500);
+  }
+    
 </script>
 
     <script>
