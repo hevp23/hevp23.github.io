@@ -1541,7 +1541,7 @@ cargarUbicacion();   // 👈 primero carga la ubicación
 
   cargarUbicacion();
 
-// 🌡️ CLIMA Y TEMPERATURA CON PALABRITA ES/EN (ahora con modo nocturno 🌙)
+// ️ CLIMA Y TEMPERATURA CON PALABRITA ES/EN (ahora con modo nocturno 🌙)
 let codigoClimaActual = null;
 
 function esDeNoche() {
@@ -1550,17 +1550,17 @@ function esDeNoche() {
 }
 
 function climaInfo(codigo, esNoche = false) {
-  if (codigo === 0) return { emoji: esNoche ? '🌙' : '☀️', es: esNoche ? 'Despejado' : 'Despejado', en: 'Clear' };
-  if (codigo === 1) return { emoji: esNoche ? '' : '🌤️', es: esNoche ? 'Despejado' : 'Soleado', en: esNoche ? 'Clear' : 'Sunny' };
+  if (codigo === 0) return { emoji: esNoche ? '🌙' : '☀️', es: 'Despejado', en: 'Clear' };
+  if (codigo === 1) return { emoji: esNoche ? '🌙' : '️', es: esNoche ? 'Despejado' : 'Soleado', en: esNoche ? 'Clear' : 'Sunny' };
   if (codigo === 2) return { emoji: esNoche ? '☁️' : '🌤️', es: esNoche ? 'Nublado' : 'Parcial', en: esNoche ? 'Cloudy' : 'Partly' };
   if (codigo === 3) return { emoji: '☁️', es: 'Nublado', en: 'Cloudy' };
   if (codigo === 45 || codigo === 48) return { emoji: '🌫️', es: 'Niebla', en: 'Fog' };
-  if (codigo >= 51 && codigo <= 57) return { emoji: '🌦️', es: 'Llovizna', en: 'Drizzle' };
-  if (codigo >= 61 && codigo <= 67) return { emoji: '️', es: 'Lluvia', en: 'Rain' };
+  if (codigo >= 51 && codigo <= 57) return { emoji: '️', es: 'Llovizna', en: 'Drizzle' };
+  if (codigo >= 61 && codigo <= 67) return { emoji: '🌧️', es: 'Lluvia', en: 'Rain' };
   if (codigo >= 71 && codigo <= 77) return { emoji: '🌨️', es: 'Nieve', en: 'Snow' };
-  if (codigo >= 80 && codigo <= 82) return { emoji: '🌧️', es: 'Chubascos', en: 'Showers' };
+  if (codigo >= 80 && codigo <= 82) return { emoji: '️', es: 'Chubascos', en: 'Showers' };
   if (codigo === 85 || codigo === 86) return { emoji: '❄️', es: 'Nevada', en: 'Snow' };
-  if (codigo >= 95) return { emoji: '⛈️', es: 'Tormenta', en: 'Storm' };
+  if (codigo >= 95) return { emoji: '️', es: 'Tormenta', en: 'Storm' };
   return { emoji: '🌡️', es: 'Clima', en: 'Weather' };
 }
 
@@ -1572,8 +1572,7 @@ function pintarClima() {
   const elTexto = document.getElementById('clima-texto');
   if (elEmoji) elEmoji.textContent = info.emoji;
   if (elTexto) elTexto.textContent = (idiomaActual === 'es') ? info.es : info.en;
-}
-
+    }
 // 🔢 Convierte los números del termómetro en emojis numéricos
   function emojisNumericos(texto) {
     const mapa = {
