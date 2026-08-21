@@ -820,11 +820,6 @@ picture {
   .punto-verde::before { top: 0.27em !important; }
   .logo-web { width: 44px !important; height: 44px !important; }
 
-  /* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
-  #reloj-actual { font-size: 1.7rem !important; white-space: normal !important; }
-  #fecha-actual { font-size: clamp(11px, 3.8vw, 0.9rem) !important; white-space: normal !important; word-wrap: break-word; line-height: 1.2; }
-  div:has(> #reloj-actual) { max-width: 340px !important; min-width: 340px !important; width: 340px !important; }
-
   /* 👇 AGREGA ESTO PARA EL AM/PM  */
   #reloj-ampm {
     font-size: 1.5rem !important; /* Un tamaño más alto para igualar los números */
@@ -954,10 +949,10 @@ div:focus:not(:focus-visible),
 #reloj-actual { 
     font-size: 1.7rem !important; 
     white-space: nowrap !important; 
-    display: flex !important;          /* 👈 Agrega esto */
-    align-items: center !important;    /* 👈 Agrega esto */
-    justify-content: center !important;/* 👈 Agrega esto */
-    line-height: 1 !important;         /* 👈 Agrega esto */
+    display: flex !important;          /* 👈 Alineación perfecta */
+    align-items: center !important;    
+    justify-content: center !important;
+    line-height: 1 !important;         
 }
 #fecha-actual { 
     font-size: clamp(11px, 3.5vw, 0.95rem) !important;
@@ -968,9 +963,9 @@ div:focus:not(:focus-visible),
     white-space: nowrap !important; 
 }
 div:has(> #reloj-actual) { 
-    max-width: 255px !important; 
-    min-width: 255px !important; 
-    width: 340px !important; 
+    max-width: 340px !important; /* 👈 Unifiqué a 340px para que toque los cuadritos como querías */
+    min-width: 340px !important; 
+    width: 340px !important;     
 }
 
 /* Emojis proporcionales */
