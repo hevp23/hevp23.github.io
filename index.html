@@ -942,7 +942,7 @@ div:focus:not(:focus-visible),
     .clima-etiqueta { font-size:13px; }
 }
 
-/* Reloj que se adapta al ancho sin desbordarse */
+/* Reloj que se adapta al ancho sin desbordarse y sin ocultar nada */
 #reloj-actual { 
     font-size: clamp(1.2rem, 5vw, 1.7rem) !important; /* 👈 Se ajusta solo */
     white-space: nowrap !important; 
@@ -950,28 +950,23 @@ div:focus:not(:focus-visible),
     align-items: center !important;
     justify-content: center !important;
     line-height: 1 !important;
-    overflow: hidden !important; /* 👈 Evita que se desborde */
 }
 #fecha-actual { 
     font-size: clamp(11px, 3.5vw, 0.95rem) !important;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
 }
 #ubicacion-actual { 
     font-size: clamp(11px, 3.5vw, 0.9rem) !important; 
     white-space: nowrap !important; 
-    overflow: hidden !important;
 }
 div:has(> #reloj-actual) { 
-    max-width: 340px !important; 
-    min-width: 340px !important; 
-    width: 340px !important; 
-    overflow: hidden !important; /*  Contenedor no se desborda */
+    max-width: 250px !important; 
+    min-width: 250px !important; 
+    width: 250px !important; 
 }
 
 .emoji-reloj {
-    font-size: 1em !important; /* 👈 Emoji proporcional al reloj */
+    font-size: 1em !important; 
     vertical-align: middle !important;
     margin-right: 4px;
 }
