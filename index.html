@@ -942,42 +942,46 @@ div:focus:not(:focus-visible),
     .clima-etiqueta { font-size:13px; }
 }
 
-/* Reloj del mismo tamaño que en el celular, sin que el PM se descuelgue */
+/* Reloj que se adapta al ancho sin desbordarse */
 #reloj-actual { 
-    font-size: 1.7rem !important; 
+    font-size: clamp(1.2rem, 5vw, 1.7rem) !important; /* 👈 Se ajusta solo */
     white-space: nowrap !important; 
-    display: flex !important;          /* 👈 Alineación perfecta */
-    align-items: center !important;    
+    display: flex !important;
+    align-items: center !important;
     justify-content: center !important;
-    line-height: 1 !important;         
+    line-height: 1 !important;
+    overflow: hidden !important; /* 👈 Evita que se desborde */
 }
 #fecha-actual { 
     font-size: clamp(11px, 3.5vw, 0.95rem) !important;
     white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 #ubicacion-actual { 
     font-size: clamp(11px, 3.5vw, 0.9rem) !important; 
     white-space: nowrap !important; 
+    overflow: hidden !important;
 }
 div:has(> #reloj-actual) { 
-    max-width: 250px !important; /* 👈 Unifiqué a 340px para que toque los cuadritos como querías */
-    min-width: 250px !important; 
-    width: 250px !important;     
+    max-width: 340px !important; 
+    min-width: 340px !important; 
+    width: 340px !important; 
+    overflow: hidden !important; /*  Contenedor no se desborda */
 }
 
-/* Emojis proporcionales */
 .emoji-reloj {
-    font-size: 1.1em !important; 
+    font-size: 1em !important; /* 👈 Emoji proporcional al reloj */
     vertical-align: middle !important;
     margin-right: 4px;
 }
 
-/* AM/PM alineado */
 #reloj-ampm {
-    font-size: 1.6rem !important; 
+    font-size: clamp(1rem, 4vw, 1.6rem) !important; /* 👈 También se adapta */
     vertical-align: middle !important;
     margin-left: 4px;
 }
+        
     </style>
 </head>
 <body>
