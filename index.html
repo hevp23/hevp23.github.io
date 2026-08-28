@@ -992,6 +992,15 @@ div:has(> #reloj-actual) {
     vertical-align: middle !important;
     margin-left: 4px;
 }
+
+/* Bloquear selección en TODO el documento */
+body {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
         
     </style>
 </head>
@@ -2263,6 +2272,70 @@ document.addEventListener('visibilitychange', function() {
   });
 </script>
 
+<script>
+// --- BLOQUEO DE HERRAMIENTAS DE DESARROLLADOR ---
+
+// 1. Bloquear click derecho
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+}, true);
+
+// 2. Bloquear teclas F12, Ctrl+Shift+I, Ctrl+U, Ctrl+Shift+J
+document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+U (ver código fuente)
+    if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+Shift+I (inspeccionar)
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+Shift+J (consola)
+    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+Shift+C (inspeccionar elemento)
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        return false;
+    }
+}, true);
+
+// 3. Detectar si abren herramientas de desarrollador y redirigir
+setInterval(function() {
+    // Detectar por tamaño de ventana
+    if (window.outerHeight - window.innerHeight > 200 || 
+        window.outerWidth - window.innerWidth > 200) {
+        // Si detectan que abrieron devtools, recargar o redirigir
+        document.body.innerHTML = '';
+        window.location.href = 'about:blank';
+    }
+    
+    // Detectar debugger (más avanzado)
+    debugger;
+}, 1000);
+
+// 4. Bloquear selección de texto
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+    return false;
+}, true);
+
+// 5. Ofuscar un poco la consola
+console.log('%c¡Sitio protegido!', 'color: red; font-size: 50px; font-weight: bold;');
+console.log = function() {};
+console.warn = function() {};
+console.error = function() {};
+</script>
 
 <!-- PANTALLA 1: ✝️ COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
