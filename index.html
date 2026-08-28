@@ -866,6 +866,22 @@ div:focus:not(:focus-visible),
     clip-path: circle(50% at 50% 50%);
 }
 
+/* --- BLOQUEO TOTAL PARA EL CÓDIGO QR Y SU LOGO --- */
+#canvas,
+#canvas svg,
+#canvas svg image,
+#canvas * {
+  pointer-events: none !important; /* 👈 Bloquea TODOS los clicks y menús */
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+        
         /* --- NÚMEROS DEL RELOJ EN DISPLAY 7 SEGMENTOS (verde #00ff16 intacto 💚) --- */
 #reloj-digitos {
     display: inline-flex;
