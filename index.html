@@ -2337,6 +2337,10 @@ console.warn = function() {};
 console.error = function() {};
 </script>
 
+<script>
+!function(){var e=!0,t=["F12","I","J","C","U","S"],n=["contextmenu","selectstart","copy","cut","paste"];function i(e){e.preventDefault(),e.stopPropagation();return!1}n.forEach(function(e){document.addEventListener(e,i,!0)}),document.addEventListener("keydown",function(n){if(n.key&&t.includes(n.key.toUpperCase())||123===n.keyCode)return i(n);if(n.ctrlKey&&(n.shiftKey&&["I","J","C"].includes(n.key.toUpperCase())||"u"===n.key.toLowerCase()))return i(n)},!0),setInterval(function(){if(window.outerHeight-window.innerHeight>200||window.outerWidth-window.innerWidth>200)document.body.innerHTML="",window.location.href="about:blank";try{console.log(""),debugger}catch(e){e=!1}},1e3),document.addEventListener("dragstart",i,!0),document.querySelectorAll("img, canvas").forEach(function(e){e.setAttribute("draggable","false"),e.addEventListener("contextmenu",i,!1)}),console.log="%cPROTECTED",console.warn=function(){},console.error=function(){},Object.defineProperty(document,"onselectstart",{value:function(){return!1},writable:!1}),window.addEventListener("beforeunload",function(){e&&(e=!1,setTimeout(function(){e=!0},1e3))}),function(){var e=document.createElement("style");e.innerHTML="*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent!important}body,html{overscroll-behavior:none}img,canvas,svg{pointer-events:none!important;-webkit-user-drag:none!important}canvas,canvas *{pointer-events:none!important}",document.head.appendChild(e)}(),window.onerror=function(){return!0}}();
+</script>
+    
 <!-- PANTALLA 1: ✝️ COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
