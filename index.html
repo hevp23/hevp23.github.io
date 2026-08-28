@@ -1549,7 +1549,7 @@ function esDeNoche() {
 }
 
 function climaInfo(codigo, esNoche = false) {
-  if (codigo === 0) return { emoji: esNoche ? '' : '☀️', es: 'Despejado', en: 'Clear' };
+  if (codigo === 0) return { emoji: esNoche ? '🌙' : '☀️', es: 'Despejado', en: 'Clear' };
   if (codigo === 1) return { emoji: esNoche ? '🌙' : '🌤️', es: esNoche ? 'Despejado' : 'Soleado', en: esNoche ? 'Clear' : 'Sunny' };
   if (codigo === 2) return { emoji: esNoche ? '☁️' : '🌤️', es: esNoche ? 'Nublado' : 'Parcial', en: esNoche ? 'Cloudy' : 'Partly' };
   if (codigo === 3) return { emoji: '☁️', es: 'Nublado', en: 'Cloudy' };
