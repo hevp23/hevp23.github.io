@@ -1650,7 +1650,9 @@ function pintarClima() {
       // Aquí el texto en INGLÉS porque cambiamos a inglés
       if (elQr) elQr.innerText = 'Scan this code to share my website!';
 
-    } else {
+    } 
+    
+      else {
       idiomaActual = 'es';
       const btnIdioma = document.getElementById('btn-idioma');
       const lblIdioma = document.getElementById('lbl-idioma-activo');
@@ -1661,6 +1663,11 @@ function pintarClima() {
       if (elQr) elQr.innerText = '¡Escanea este código para compartir mi web!';
     }
 
+    // Agrega esto dentro de tu función cambiarIdioma()
+    document.querySelectorAll('div[style*="text-align: center"] span[data-es]').forEach(function(span) {
+    span.textContent = idiomaActual === 'es' ? span.getAttribute('data-es') : span.getAttribute('data-en');
+    });
+      
     actualizarReloj();
     actualizarTextosBotones();
     pintarUbicacion();
