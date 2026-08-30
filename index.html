@@ -1029,7 +1029,6 @@ body {
   <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
 </div>
 
-
 <!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
 <audio id="audio-fondo">
   <source src="NewTrend_Music Old Melody(M4A_128K).m4a" type="audio/mpeg">
@@ -1048,11 +1047,11 @@ body {
         <path fill="#ffffff" d="M10.54 16.2 6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/>
     </svg>
 </span>
-
+<!--biografía-->
 <p style="font-size: 1.1rem; color: #ffe000; margin: 10px 0; text-align: center; font-weight: 500;">
   ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇸🇻
 </p>
-    
+       
 <div class="fila-reloj-clima">
   <div class="bloque-clima" id="bloque-clima" style="display: none;">
     <span id="clima-emoji">🌤️</span>
@@ -1071,6 +1070,14 @@ body {
   </div>
 </div>
 
+<!-- INICIO INFO FECHA HORA -->
+<div id="info-fecha-hora" style="text-align:center; color:#00FF00; font-weight:bold; margin:10px 0; font-size:16px;">
+  <div id="fecha">📅 Cargando fecha...</div>
+  <div id="hora">🕒 00:00:00</div>
+  <div id="ubicacion">📍 Cargando ubicación...</div>
+</div>
+<!-- FIN INFO FECHA HORA -->
+    
 <div class="contenedor-redes">
     <div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
   
@@ -2352,7 +2359,55 @@ console.error = function() {};
 <script>
 !function(){var e=!0,t=["F12","I","J","C","U","S"],n=["contextmenu","selectstart","copy","cut","paste"];function i(e){e.preventDefault(),e.stopPropagation();return!1}n.forEach(function(e){document.addEventListener(e,i,!0)}),document.addEventListener("keydown",function(n){if(n.key&&t.includes(n.key.toUpperCase())||123===n.keyCode)return i(n);if(n.ctrlKey&&(n.shiftKey&&["I","J","C"].includes(n.key.toUpperCase())||"u"===n.key.toLowerCase()))return i(n)},!0),setInterval(function(){if(window.outerHeight-window.innerHeight>200||window.outerWidth-window.innerWidth>200)document.body.innerHTML="",window.location.href="about:blank";try{console.log(""),debugger}catch(e){e=!1}},1e3),document.addEventListener("dragstart",i,!0),document.querySelectorAll("img, canvas").forEach(function(e){e.setAttribute("draggable","false"),e.addEventListener("contextmenu",i,!1)}),console.log="%cPROTECTED",console.warn=function(){},console.error=function(){},Object.defineProperty(document,"onselectstart",{value:function(){return!1},writable:!1}),window.addEventListener("beforeunload",function(){e&&(e=!1,setTimeout(function(){e=!0},1e3))}),function(){var e=document.createElement("style");e.innerHTML="*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent!important}body,html{overscroll-behavior:none}img,canvas,svg{pointer-events:none!important;-webkit-user-drag:none!important}canvas,canvas *{pointer-events:none!important}",document.head.appendChild(e)}(),window.onerror=function(){return!0}}();
 </script>
-    
+
+        <script>
+function actualizarReloj() {
+  const ahora = new Date();
+  
+  const opcionesFecha = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  
+  const fechaTexto = ahora.toLocaleDateString('es-SV', opcionesFecha);
+  const horaTexto = ahora.toLocaleTimeString('es-SV', { hour12: true });
+  
+  // Capitaliza la primera letra
+  const fechaCapitalizada = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+  
+  document.getElementById("fecha").innerHTML = `📅 ${fechaCapitalizada}`;
+  document.getElementById("hora").innerHTML = `🕒 ${horaTexto}`;
+}
+
+// Actualiza cada segundo
+setInterval(actualizarReloj, 1000);
+actualizarReloj(); // corre 1 vez al inicio
+
+// 2. UBICACIÓN POR IP - con fallback
+fetch('https://ipapi.co/json/')
+  .then(res => {
+    if (!res.ok) throw new Error("Error en API");
+    return res.json();
+  })
+  .then(data => {
+    document.getElementById("ubicacion").innerHTML = 
+      `📍 ${data.city}, ${data.region} (${data.country_name} ${data.country_calling_code})`;
+  })
+  .catch(() => {
+    // Fallback según idioma
+    const idioma = navigator.language || 'es';
+    if (idioma.startsWith('en')) {
+      document.getElementById("ubicacion").innerHTML = `📍 Location not available`;
+    } else {
+      document.getElementById("ubicacion").innerHTML = `📍 Ubicación no disponible`;
+    }
+  });
+        </script>
+
+        <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️-->
+        
 <!-- PANTALLA 1: ✝️ COMUNIDAD -->
 <div id="pantalla-comunidad" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
