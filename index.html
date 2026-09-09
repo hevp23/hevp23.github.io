@@ -1335,7 +1335,20 @@ body {
     if (elementoAmPm) elementoAmPm.textContent = ampm;
   }
 
-cargarUbicacion();   // 👈 primero carga la ubicación
+function cargarUbicacion() {
+  // Determinar idioma: 'es' para español, 'en' para inglés
+  const idiomaAPI = idiomaActual === 'es' ? 'es' : 'en';
+  
+  fetch(`https://ipapi.co/json/?lang=${idiomaAPI}`)
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+      datosUbicacion = datos;
+      pintarUbicacion();
+      cargarClima(datos.latitude, datos.longitude);
+    })
+    .catch(() => { /* si falla, simplemente no se muestra */ });
+}
+    
   actualizarReloj();   // 👈 luego arranca el reloj
   setInterval(actualizarReloj, 1000);
     
