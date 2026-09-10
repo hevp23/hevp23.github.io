@@ -1336,15 +1336,20 @@ body {
   }
 
 function cargarUbicacion() {
-  // Determinar idioma: 'es' para español, 'en' para inglés
   const idiomaAPI = idiomaActual === 'es' ? 'es' : 'en';
   
-  fetch(`https://ipapi.co/json/?lang=${idiomaAPI}`)
+  fetch(`http://ip-api.com/json/?lang=${idiomaAPI}`)
     .then(respuesta => respuesta.json())
     .then(datos => {
-      datosUbicacion = datos;
+      datosUbicacion = {
+        city: datos.city,
+        country: datos.country,
+        country_code: datos.countryCode,
+        latitude: datos.lat,
+        longitude: datos.lon
+      };
       pintarUbicacion();
-      cargarClima(datos.latitude, datos.longitude);
+      cargarClima(datos.lat, datos.lon);
     })
     .catch(() => { /* si falla, simplemente no se muestra */ });
 }
