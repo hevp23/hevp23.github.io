@@ -2322,68 +2322,45 @@ document.addEventListener('visibilitychange', function() {
 </script>
 
 <script>
-// --- BLOQUEO DE HERRAMIENTAS DE DESARROLLADOR ---
+// 🛡️ --- BLOQUEO DE HERRAMIENTAS DE DESARROLLADOR --- 🛡️
 
-// 1. Bloquear click derecho
+// 1. Bloquear clic derecho
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     return false;
 }, true);
 
-// 2. Bloquear teclas F12, Ctrl+Shift+I, Ctrl+U, Ctrl+Shift+J
+// 2. Bloquear teclas comunes de desarrollador (F12, Ctrl+U, Ctrl+Shift+I, etc.)
 document.addEventListener('keydown', function(e) {
     // F12
     if (e.key === 'F12' || e.keyCode === 123) {
         e.preventDefault();
         return false;
     }
-    // Ctrl+U (ver código fuente)
-    if (e.ctrlKey && e.key === 'u') {
+    // Ctrl + U (Ver código fuente)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
         e.preventDefault();
         return false;
     }
-    // Ctrl+Shift+I (inspeccionar)
-    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+Shift+J (consola)
-    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+Shift+C (inspeccionar elemento)
-    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+    // Ctrl + Shift + I, J, C (Herramientas de desarrollador)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
         e.preventDefault();
         return false;
     }
 }, true);
 
-// 3. Detectar si abren herramientas de desarrollador y redirigir
-setInterval(function() {
-    // Detectar por tamaño de ventana
-    if (window.outerHeight - window.innerHeight > 200 || 
-        window.outerWidth - window.innerWidth > 200) {
-        // Si detectan que abrieron devtools, recargar o redirigir
-        document.body.innerHTML = '';
-        window.location.href = 'about:blank';
-    }
-    
-    // Detectar debugger (más avanzado)
-    debugger;
-}, 1000);
+// 3. Mensaje personalizado y amigable en la consola (por si alguien logra abrirla)
+console.log('%c🛡️ ¡Sitio protegido por Héctor! 🛡️', 'color: #8A2BE2; font-size: 20px; font-weight: bold;');
+console.log('%cEl contenido de este sitio está resguardado.', 'color: gray; font-size: 14px;');
 
-// 4. Bloquear selección de texto
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-    return false;
-}, true);
-
-// 5. Ofuscar un poco la consola
-console.log('%c¡Sitio protegido!', 'color: red; font-size: 50px; font-weight: bold;');
+// 4. Ofuscar funciones de consola para evitar inspección fácil
 console.log = function() {};
 console.warn = function() {};
 console.error = function() {};
+
+// ✅ NOTA: Se eliminó el "setInterval" que medía el tamaño de la ventana.
+// Esa era la causa exacta de las redirecciones accidentales a "about:blank".
+// ¡Esta versión es mucho más ligera, estable y no afectará tu experiencia! 😊
 </script>
 
 <script>
