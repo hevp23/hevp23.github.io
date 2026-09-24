@@ -562,7 +562,6 @@
 
 .social-tiktok {
     background-color: #000000 !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
 }
 
 .social-discord {
@@ -602,15 +601,16 @@
         }
         /* --- ÍCONOS PNG OFICIALES EN LOS CÍRCULOS SOCIALES --- */
 .icono-red-social {
-    width: 100% !important;
-    height: 100% !important;
-    border: 2px solid #ffe000;
-    object-fit: cover !important;
-    border-radius: 50% !important;
-    pointer-events: none !important;  /* 👈 EL TRUCO: el toque atraviesa la imagen y llega al enlace */
-    -webkit-user-drag: none !important;
-    user-drag: none !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 50% !important;
+      pointer-events: none !important;
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+      border: none !important; /* 👈 Esto elimina cualquier borde amarillo de la imagen */
 }
+        
 .cheque-verificado {
     width: 20px;
     height: 20px;
