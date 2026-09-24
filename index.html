@@ -532,15 +532,14 @@
     }
 
     /* Ajuste para pantallas de PC */
-    @media (min-width: 900px) {
-      .btn-red { 
+@media (min-width: 900px) {
+    .btn-red { 
         width: 57px !important; 
         height: 57px !important; 
         min-width: 57px !important; 
         max-width: 57px !important; 
-        outline: 3px solid #ffe000 !important;
-        outline-offset: 2px !important;
-      }
+        border: 2px solid #ffe000 !important; /* 👈 Sin outline-offset */
+       }
     }
 
 /* --- COLORES OFICIALES Y CLASES DE CADA RED --- */
@@ -572,23 +571,22 @@
     background-color: #FF4500 !important;
 }
         .btn-red {
-      width: 47px !important;
-      height: 47px !important;
-      min-width: 47px !important;
-      max-width: 47px !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      border-radius: 50% !important;
-      text-decoration: none !important;
-      color: white !important;
-      box-shadow: 0 4px 7px rgba(0,0,0,0.1) !important;
-      flex-shrink: 0 !important;
-      transition: transform 0.2s ease !important;
-      outline: 3px solid #ffe000 !important; /* 👈 Borde amarillo limpio y único */
-      outline-offset: 2px !important; /* 👈 Separa un poquito el borde del ícono */
-      box-sizing: border-box !important;
-        }
+    width: 47px !important;
+    height: 47px !important;
+    min-width: 47px !important;
+    max-width: 47px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    text-decoration: none !important;
+    color: white !important;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.1) !important;
+    flex-shrink: 0 !important;
+    transition: transform 0.2s ease !important;
+    border: 2px solid #ffe000 !important; /* 👈 Borde normal, pegado al botón */
+    box-sizing: border-box !important; /*  El borde no aumenta el tamaño */
+ }
 
         .btn-red:hover {
             transform: scale(1.1) !important;
