@@ -551,11 +551,21 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
 }
 
-.fila-iconos a svg {
-    width: 22px !important;
-    height: 22px !important;
-    fill: currentColor !important;
-}
+/* --- TAMAÑO UNIFICADO PARA ÍCONOS SVG --- */
+    .fila-iconos a svg,
+    .btn-red svg {
+      width: 20px !important;
+      height: 20px !important;
+      fill: currentColor !important;
+    }
+
+    /* Ajuste para pantallas de PC */
+    @media (min-width: 900px) {
+      .btn-red svg {
+        width: 24px !important;
+        height: 24px !important;
+      }
+    }
 
 /* --- COLORES OFICIALES Y CLASES DE CADA RED --- */
 .social-facebook {
@@ -587,17 +597,17 @@
     background-color: #FF4500 !important;
 }
         .btn-red {
-            width: 42px !important;
-            height: 42px !important;
-            min-width: 42px !important;
-            max-width: 42px !important;
+            width: 41px !important;
+            height: 41px !important;
+            min-width: 41px !important;
+            max-width: 41px !important;
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
             border-radius: 50% !important;
             text-decoration: none !important;
             color: white !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            box-shadow: 0 4px 7px rgba(0,0,0,0.1) !important;
             flex-shrink: 0 !important;
             transition: transform 0.2s ease !important;
         }
@@ -1262,7 +1272,7 @@ body {
     <span data-es="Sitio web hecho a mano." data-en="Handmade website.">Sitio web hecho a mano.</span><br>
     
     <!--Cuadro de ⚠️ ADVERTENCIA ⚠️ y ⚠️ WARNING ⚠️-->
-    <span style="background-color: #ff4200; padding: 7px 7px; border-radius: 12px; display: inline-block; margin-top: 7px; color: #ffe000;">
+    <span style="background-color: #ff4200; padding: 7px 7px; border-radius: 12px; display: inline-block; margin-top: 15px; margin-bottom: 15px; color: #ffe000;">
     <span data-es="⚠️ ADVERTENCIA ⚠️" data-en="⚠️ WARNING ⚠️">️⚠️ ADVERTENCIA ⚠️</span><br>
     <span data-es="PROHIBIDA LA REPRODUCCIÓN, DISTRIBUCIÓN O MODIFICACIÓN TOTAL O PARCIAL DE ESTE SITIO WEB, SU DISEÑO, CÓDIGO E IMÁGENES, SIN LA AUTORIZACIÓN PREVIA Y POR ESCRITO DE SU AUTOR." data-en="REPRODUCTION, DISTRIBUTION OR MODIFICATION, IN WHOLE OR IN PART, OF THIS WEBSITE, ITS DESIGN, CODE AND IMAGES IS PROHIBITED WITHOUT THE PRIOR WRITTEN AUTHORIZATION OF ITS AUTHOR.">PROHIBIDA LA REPRODUCCIÓN, DISTRIBUCIÓN O MODIFICACIÓN TOTAL O PARCIAL DE ESTE SITIO WEB, SU DISEÑO, CÓDIGO E IMÁGENES, SIN LA AUTORIZACIÓN PREVIA Y POR ESCRITO DE SU AUTOR.</span>
     </span>
