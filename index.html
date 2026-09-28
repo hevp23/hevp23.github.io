@@ -935,6 +935,18 @@ div:focus:not(:focus-visible),
     width: 260px !important; 
         }
         
+/* ✅ Limitar el ancho del contenedor principal en PC */
+  .container {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* ✅ Limitar el ancho de la portada */
+  .portada-img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+        
 @media (min-width:900px) {
     .fila-reloj-clima { max-width:440px; gap:6px; } /* 👈 Más compacto */
     .bloque-clima { flex:0070px; font-size:28px; }
