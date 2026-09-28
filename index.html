@@ -180,16 +180,17 @@
         }
 
 
-.portada {
+.portada-img {
     width: 100%;
-    height: 180px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px 15px 0 0;
-    margin-bottom: -70px;
+    height: auto; /* ¡ESTA ES LA MAGIA! 🪄 Le dice al navegador: "usa la altura real de la foto" */
+    display: block;
+    border-radius: 0; /* Puedes cambiarlo a 15px 15px 0 0 si quieres bordes redondeados arriba */
+    margin-bottom: -70px; /* Esto mantiene el efecto de que tu foto de perfil "muerda" la portada */
     position: relative;
     z-index: 1;
+    object-fit: contain; /* Asegura que la imagen se muestre completa, sin recortes */
 }
+        
 .profile-image {
     position: relative;
     z-index: 2;
@@ -973,7 +974,7 @@ body {
 <body>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<div class="portada" style="background-image: url('hevpolis.jpg'); border-radius: 0;"></div>
+<img src="hevpolis.jpg" class="portada-img" alt="Foto de portada" draggable="false" oncontextmenu="return false;">
 
 <!-- Tu foto centrada con una clase limpia -->
 <div class="contenedor-avatar">
