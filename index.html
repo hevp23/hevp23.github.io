@@ -786,7 +786,7 @@ picture {
 
   /* 👇 AGREGA ESTO PARA EL AM/PM  */
   #reloj-ampm {
-    font-size: 1.5rem !important; /* Un tamaño más alto para igualar los números */
+    font-size: 0.7rem !important; /* Un tamaño más alto para igualar los números */
     vertical-align: middle !important; /* Para que quede alineado a la mitad de los números */
     margin-left: 4px; /* Un poquito de espacio para que no se pegue a los segundos */
   }
@@ -918,34 +918,6 @@ div:focus:not(:focus-visible),
   font-size: 11px; /* 👈 palabritas más grandes */
   line-height: 1.1;
 }
-        
-/* Ajustes del reloj para PC */
-#reloj-actual { 
-    font-size: 1.2rem !important; 
-  }
-  #reloj-ampm {
-    font-size: 1rem !important; 
-  }
-  .emoji-reloj {
-    font-size: 0.9em !important; 
-  }
-  div:has(> #reloj-actual) { 
-    max-width: 260px !important; 
-    min-width: 260px !important; 
-    width: 260px !important; 
-        }
-        
-/* ✅ Limitar el ancho del contenedor principal en PC */
-  .container {
-    max-width: 480px !important;
-    margin: 0 auto !important;
-  }
-  
-  /* ✅ Limitar el ancho de la portada */
-  .portada-img {
-    max-width: 100% !important;
-    height: auto !important;
-  }
         
 @media (min-width:900px) {
     .fila-reloj-clima { max-width:440px; gap:6px; } /* 👈 Más compacto */
