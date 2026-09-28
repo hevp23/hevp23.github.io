@@ -786,7 +786,7 @@ picture {
 
   /* 👇 AGREGA ESTO PARA EL AM/PM  */
   #reloj-ampm {
-    font-size: 0.7rem !important; /* Un tamaño más alto para igualar los números */
+    font-size: 1.5rem !important; /* Un tamaño más alto para igualar los números */
     vertical-align: middle !important; /* Para que quede alineado a la mitad de los números */
     margin-left: 4px; /* Un poquito de espacio para que no se pegue a los segundos */
   }
@@ -927,7 +927,7 @@ div:focus:not(:focus-visible),
 
 /* Reloj que se adapta al ancho sin desbordarse y sin ocultar nada */
 #reloj-actual { 
-    font-size: clamp(1.0rem, 2vw, 1.0rem) !important; /* 👈 Se ajusta solo */
+    font-size: clamp(1.1rem, 2vw, 1.1rem) !important; /* 👈 Se ajusta solo */
     white-space: nowrap !important; 
     display: flex !important;
     align-items: center !important;
@@ -955,7 +955,7 @@ div:has(> #reloj-actual) {
 }
 
 #reloj-ampm {
-    font-size: clamp(1rem, 4vw, 1.6rem) !important; /* 👈 También se adapta */
+    font-size: clamp(0.7rem, 2vw, 0.7rem) !important; /* 👈 También se adapta */
     vertical-align: middle !important;
     margin-left: 4px;
 }
