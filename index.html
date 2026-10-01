@@ -1866,15 +1866,21 @@ function pintarClima() {
       cancionSiguiente();
     });
   }
-// 📱 NOTIFICACIÓN DEL SISTEMA CON BOTONES ANTERIOR / SIGUIENTE (Media Session API)
+    
+// 📱 NOTIFICACIÓN DEL SISTEMA MULTINAVEGADOR Y MULTIPLATAFORMA (Media Session API)
 function actualizarMediaSession() {
   if (!('mediaSession' in navigator)) return;
 
   navigator.mediaSession.metadata = new MediaMetadata({
-    title: 'TreeLinks',                                  // 🌳 Siempre mostrará TreeLinks
-    artist: 'Héctor Eduardo Valladares Pérez - @hevp23', // Tu usuario debajo del nombre
+    title: 'TreeLinks',
+    artist: 'Héctor Eduardo Valladares Pérez - @hevp23',
     album: 'Héctor Eduardo Valladares Pérez',
     artwork: [
+      { src: 'treelinks.jpg', sizes: '96x96',   type: 'image/jpeg' },
+      { src: 'treelinks.jpg', sizes: '128x128', type: 'image/jpeg' },
+      { src: 'treelinks.jpg', sizes: '192x192', type: 'image/jpeg' },
+      { src: 'treelinks.jpg', sizes: '256x256', type: 'image/jpeg' },
+      { src: 'treelinks.jpg', sizes: '384x384', type: 'image/jpeg' },
       { src: 'treelinks.jpg', sizes: '512x512', type: 'image/jpeg' }
     ]
   });
