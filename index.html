@@ -1867,7 +1867,7 @@ function pintarClima() {
     });
   }
     
-// 📱 NOTIFICACIÓN DEL SISTEMA MULTINAVEGADOR Y MULTIPLATAFORMA (Media Session API)
+// 📱 NOTIFICACIÓN DEL SISTEMA CON CONTROLES ACTIVOS Y MULTIPLATAFORMA
 function actualizarMediaSession() {
   if (!('mediaSession' in navigator)) return;
 
@@ -1887,39 +1887,44 @@ function actualizarMediaSession() {
 }
 
 if ('mediaSession' in navigator) {
-  // ▶️️ Botón reproducir de la notificación
+  // ▶️ Reproducir desde la notificación
   navigator.mediaSession.setActionHandler('play', function() {
-    if (typeof reproductor !== 'undefined') {
-      if (!reproductor.src && typeof canciones !== 'undefined') {
-        cargarCancion(indiceActual);
-      }
+    const btnPlay = document.getElementById('btnReproducir') || document.querySelector('[onclick*="reproducir"]');
+    if (btnPlay) {
+      btnPlay.click();
+    } else if (typeof reproductor !== 'undefined') {
       reproductor.play();
-      estaReproduciendo = true;
-      if (typeof actualizarControles === 'function') actualizarControles();
     }
   });
 
-  // ⏸️ Botón pausa de la notificación
+  // ⏸️ Pausar desde la notificación
   navigator.mediaSession.setActionHandler('pause', function() {
-    if (typeof reproductor !== 'undefined') {
+    const btnPause = document.getElementById('btnPausar') || document.querySelector('[onclick*="pausar"]');
+    if (btnPause) {
+      btnPause.click();
+    } else if (typeof reproductor !== 'undefined') {
       reproductor.pause();
-      estaReproduciendo = false;
-      if (typeof actualizarControles === 'function') actualizarControles();
     }
   });
 
-  // ⏮️ Botón anterior de la notificación
+  // ⏮️ Canción anterior desde la notificación
   navigator.mediaSession.setActionHandler('previoustrack', function() {
-    if (typeof anteriorCancion === 'function') {
+    const btnAnt = document.getElementById('btnAnterior') || document.querySelector('[onclick*="Anterior"]');
+    if (btnAnt) {
+      btnAnt.click();
+    } else if (typeof anteriorCancion === 'function') {
       anteriorCancion();
     } else if (typeof cancionAnterior === 'function') {
       cancionAnterior();
     }
   });
 
-  // ⏭️ Botón siguiente de la notificación
+  // ⏭️ Canción siguiente desde la notificación
   navigator.mediaSession.setActionHandler('nexttrack', function() {
-    if (typeof siguienteCancion === 'function') {
+    const btnSig = document.getElementById('btnSiguiente') || document.querySelector('[onclick*="Siguiente"]');
+    if (btnSig) {
+      btnSig.click();
+    } else if (typeof siguienteCancion === 'function') {
       siguienteCancion();
     } else if (typeof cancionSiguiente === 'function') {
       cancionSiguiente();
@@ -1927,7 +1932,7 @@ if ('mediaSession' in navigator) {
   });
 }
 
-actualizarMediaSession(); // Para que la primera canción ya tenga su ficha lista
+actualizarMediaSession();
         </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
