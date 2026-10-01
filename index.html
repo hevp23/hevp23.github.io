@@ -1867,64 +1867,54 @@ function pintarClima() {
     });
   }
     
-// 📱 NOTIFICACIÓN DEL SISTEMA CON CONTROLES ACTIVOS Y MULTIPLATAFORMA
+// 📱 NOTIFICACIÓN DEL SISTEMA CON BOTONES ANTERIOR / SIGUIENTE (Media Session API) - CÓDIGO ANTERIOR
 function actualizarMediaSession() {
   if (!('mediaSession' in navigator)) return;
 
   navigator.mediaSession.metadata = new MediaMetadata({
-    title: 'TreeLinks',
-    artist: 'Héctor Eduardo Valladares Pérez - @hevp23',
+    title: 'TreeLinks',                                  // 🌳 Siempre mostrará TreeLinks
+    artist: 'Héctor Eduardo Valladares Pérez - @hevp23', // Tu usuario debajo del nombre
     album: 'Héctor Eduardo Valladares Pérez',
     artwork: [
-      { src: 'treelinks.jpg', sizes: '96x96',   type: 'image/jpeg' },
-      { src: 'treelinks.jpg', sizes: '128x128', type: 'image/jpeg' },
-      { src: 'treelinks.jpg', sizes: '192x192', type: 'image/jpeg' },
-      { src: 'treelinks.jpg', sizes: '256x256', type: 'image/jpeg' },
-      { src: 'treelinks.jpg', sizes: '384x384', type: 'image/jpeg' },
       { src: 'treelinks.jpg', sizes: '512x512', type: 'image/jpeg' }
     ]
   });
 }
 
 if ('mediaSession' in navigator) {
-  // ▶️ Reproducir desde la notificación
+  // ▶️ Botón reproducir de la notificación
   navigator.mediaSession.setActionHandler('play', function() {
-    const btnPlay = document.getElementById('btnReproducir') || document.querySelector('[onclick*="reproducir"]');
-    if (btnPlay) {
-      btnPlay.click();
-    } else if (typeof reproductor !== 'undefined') {
+    if (typeof reproductor !== 'undefined') {
+      if (!reproductor.src && typeof canciones !== 'undefined') {
+        cargarCancion(indiceActual);
+      }
       reproductor.play();
+      estaReproduciendo = true;
+      if (typeof actualizarControles === 'function') actualizarControles();
     }
   });
 
-  // ⏸️ Pausar desde la notificación
+  // ⏸️ Botón pausa de la notificación
   navigator.mediaSession.setActionHandler('pause', function() {
-    const btnPause = document.getElementById('btnPausar') || document.querySelector('[onclick*="pausar"]');
-    if (btnPause) {
-      btnPause.click();
-    } else if (typeof reproductor !== 'undefined') {
+    if (typeof reproductor !== 'undefined') {
       reproductor.pause();
+      estaReproduciendo = false;
+      if (typeof actualizarControles === 'function') actualizarControles();
     }
   });
 
-  // ⏮️ Canción anterior desde la notificación
+  // ⏮️ Botón anterior de la notificación
   navigator.mediaSession.setActionHandler('previoustrack', function() {
-    const btnAnt = document.getElementById('btnAnterior') || document.querySelector('[onclick*="Anterior"]');
-    if (btnAnt) {
-      btnAnt.click();
-    } else if (typeof anteriorCancion === 'function') {
+    if (typeof anteriorCancion === 'function') {
       anteriorCancion();
     } else if (typeof cancionAnterior === 'function') {
       cancionAnterior();
     }
   });
 
-  // ⏭️ Canción siguiente desde la notificación
+  // ⏭️️ Botón siguiente de la notificación
   navigator.mediaSession.setActionHandler('nexttrack', function() {
-    const btnSig = document.getElementById('btnSiguiente') || document.querySelector('[onclick*="Siguiente"]');
-    if (btnSig) {
-      btnSig.click();
-    } else if (typeof siguienteCancion === 'function') {
+    if (typeof siguienteCancion === 'function') {
       siguienteCancion();
     } else if (typeof cancionSiguiente === 'function') {
       cancionSiguiente();
@@ -1932,7 +1922,7 @@ if ('mediaSession' in navigator) {
   });
 }
 
-actualizarMediaSession();
+actualizarMediaSession(); // Para que la primera canción ya tenga su ficha lista
         </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
