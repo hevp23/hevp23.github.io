@@ -968,7 +968,26 @@ body {
     user-select: none !important;
     -webkit-touch-callout: none !important;
 }
-        
+
+/* Bloqueo de selección de texto universal */
+html, body {
+  -webkit-touch-callout: none; /* iOS Safari / Safari */
+  -webkit-user-select: none;   /* Safari, Chrome, Opera, Samsung, Edge */
+  -khtml-user-select: none;    /* Konqueror HTML */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer / Edge antiguo */
+  user-select: none;           /* Estándar actual */
+}
+
+/* Evitar arrastrar e interactuar directamente con imágenes */
+img, audio, video {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -2335,6 +2354,55 @@ console.error = function() {};
 
 <script>
 !function(){var e=!0,t=["F12","I","J","C","U","S"],n=["contextmenu","selectstart","copy","cut","paste"];function i(e){e.preventDefault(),e.stopPropagation();return!1}n.forEach(function(e){document.addEventListener(e,i,!0)}),document.addEventListener("keydown",function(n){if(n.key&&t.includes(n.key.toUpperCase())||123===n.keyCode)return i(n);if(n.ctrlKey&&(n.shiftKey&&["I","J","C"].includes(n.key.toUpperCase())||"u"===n.key.toLowerCase()))return i(n)},!0),setInterval(function(){if(window.outerHeight-window.innerHeight>200||window.outerWidth-window.innerWidth>200)document.body.innerHTML="",window.location.href="about:blank";try{console.log(""),debugger}catch(e){e=!1}},1e3),document.addEventListener("dragstart",i,!0),document.querySelectorAll("img, canvas").forEach(function(e){e.setAttribute("draggable","false"),e.addEventListener("contextmenu",i,!1)}),console.log="%cPROTECTED",console.warn=function(){},console.error=function(){},Object.defineProperty(document,"onselectstart",{value:function(){return!1},writable:!1}),window.addEventListener("beforeunload",function(){e&&(e=!1,setTimeout(function(){e=!0},1e3))}),function(){var e=document.createElement("style");e.innerHTML="*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent!important}body,html{overscroll-behavior:none}img,canvas,svg{pointer-events:none!important;-webkit-user-drag:none!important}canvas,canvas *{pointer-events:none!important}",document.head.appendChild(e)}(),window.onerror=function(){return!0}}();
+</script>
+
+<!-- Copiá esto justo antes del cierre de </body> -->
+<script>
+  // 1. Bloquear clic derecho universalmente
+  document.addEventListener('contextmenu', (e) => e.preventDefault(), false);
+
+  // 2. Bloquear atajos de teclado para todos los navegadores y SO
+  document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+    const isCmdOrCtrl = e.ctrlKey || e.metaKey; // e.metaKey cubre la tecla Command en Mac/Safari
+
+    // F12 (DevTools en Chrome, Edge, Firefox, Opera, etc.)
+    if (e.key === 'F12') {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl+Shift+I / Cmd+Option+I (Inspector)
+    // Ctrl+Shift+J / Cmd+Option+J (Consola)
+    // Ctrl+Shift+C / Cmd+Option+C (Inspeccionar elemento)
+    // Ctrl+Shift+K (Consola de Firefox)
+    // Ctrl+Shift+E (Red en Firefox/Edge)
+    if ((isCmdOrCtrl && e.shiftKey && ['i', 'j', 'c', 'k', 'e'].includes(key)) ||
+        (e.metaKey && e.altKey && ['i', 'j', 'c'].includes(key))) {
+      e.preventDefault();
+      return false;
+    }
+
+    // Ctrl+U / Cmd+Option+U (Ver código fuente)
+    // Ctrl+S / Cmd+S (Guardar página)
+    if ((isCmdOrCtrl && ['u', 's'].includes(key)) ||
+        (e.metaKey && e.altKey && key === 'u')) {
+      e.preventDefault();
+      return false;
+    }
+  }, false);
+
+  // 3. Bloquear arrastre de archivos (imágenes, audios, etc.)
+  document.addEventListener('dragstart', (e) => e.preventDefault(), false);
+
+  // 4. Congelar DevTools mediante el debugger (funciona en motores Chromium, Gecko y WebKit)
+  setInterval(() => {
+    const start = performance.now();
+    debugger;
+    if (performance.now() - start > 100) {
+      console.clear();
+    }
+  }, 1000);
 </script>
 <!--Aquí termina SCRIPT 🏁-->
 
