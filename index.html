@@ -1867,62 +1867,44 @@ function pintarClima() {
     });
   }
     
-// 📱 NOTIFICACIÓN DEL SISTEMA CON BOTONES ANTERIOR / SIGUIENTE (Media Session API) - CÓDIGO ANTERIOR
-function actualizarMediaSession() {
-  if (!('mediaSession' in navigator)) return;
+// 📱 NOTIFICACIÓN DEL SISTEMA CON BOTONES ANTERIOR / SIGUIENTE (Media Session API)
+  function actualizarMediaSession() {
+    if (!('mediaSession' in navigator)) return;
 
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: 'TreeLinks',                                  // 🌳 Siempre mostrará TreeLinks
-    artist: 'Héctor Eduardo Valladares Pérez - @hevp23', // Tu usuario debajo del nombre
-    album: 'Héctor Eduardo Valladares Pérez',
-    artwork: [
-      { src: 'treelinks.jpg', sizes: '512x512', type: 'image/jpeg' }
-    ]
-  });
-}
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: 'TreeLinks',        // 🌳 Siempre mostrará TreeLinks
+      artist: 'Héctor Eduardo Valladares Pérez - @hevp23',         // Tu usuario debajo del nombre
+      album: 'Héctor Eduardo Valladares Pérez',
+      artwork: [
+        { src: 'treelinks.jpg', sizes: '512x512', type: 'image/jpeg' }
+      ]
+    });
+  }
+    if ('mediaSession' in navigator) {
+    // ▶️ Botón reproducir de la notificación
+    navigator.mediaSession.setActionHandler('play', function() {
+      const audio = document.getElementById('audio-fondo');
+      if (audio) { audio.play(); estaReproduciendo = true; actualizarControles(); }
+    });
 
-if ('mediaSession' in navigator) {
-  // ▶️ Botón reproducir de la notificación
-  navigator.mediaSession.setActionHandler('play', function() {
-    if (typeof reproductor !== 'undefined') {
-      if (!reproductor.src && typeof canciones !== 'undefined') {
-        cargarCancion(indiceActual);
-      }
-      reproductor.play();
-      estaReproduciendo = true;
-      if (typeof actualizarControles === 'function') actualizarControles();
-    }
-  });
+    // ⏸️ Botón pausa de la notificación
+    navigator.mediaSession.setActionHandler('pause', function() {
+      const audio = document.getElementById('audio-fondo');
+      if (audio) { audio.pause(); estaReproduciendo = false; actualizarControles(); }
+    });
 
-  // ⏸️ Botón pausa de la notificación
-  navigator.mediaSession.setActionHandler('pause', function() {
-    if (typeof reproductor !== 'undefined') {
-      reproductor.pause();
-      estaReproduciendo = false;
-      if (typeof actualizarControles === 'function') actualizarControles();
-    }
-  });
+    // ⏮️ Botón anterior de la notificación
+    navigator.mediaSession.setActionHandler('previoustrack', function() {
+      cancionAnterior();
+    });
 
-  // ⏮️ Botón anterior de la notificación
-  navigator.mediaSession.setActionHandler('previoustrack', function() {
-    if (typeof anteriorCancion === 'function') {
-      anteriorCancion();
-    } else if (typeof cancionAnterior === 'function') {
-      cancionAnterior();
-    }
-  });
+    // ⏭️ Botón siguiente de la notificación 
+        navigator.mediaSession.setActionHandler('nexttrack', function() {
+      cancionSiguiente();
+    });
+  }
 
-  // ⏭️️ Botón siguiente de la notificación
-  navigator.mediaSession.setActionHandler('nexttrack', function() {
-    if (typeof siguienteCancion === 'function') {
-      siguienteCancion();
-    } else if (typeof cancionSiguiente === 'function') {
-      cancionSiguiente();
-    }
-  });
-}
-
-actualizarMediaSession(); // Para que la primera canción ya tenga su ficha lista
+  actualizarMediaSession(); // Para que la primera canción ya tenga su ficha lista
         </script>
 <script>
 /* ✅ BLOQUEO UNIVERSAL DE IMÁGENES - Compatible con TODOS los navegadores (Edge, Chrome, Firefox, Safari, iOS, Android) */
