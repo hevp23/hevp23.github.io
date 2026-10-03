@@ -1008,6 +1008,29 @@ img, audio, video {
         height: 150px;
     }
 }
+    /* --- RECTÁNGULO VERDE CON FRASE --- */
+.rectangulo-frase {
+    background-color: #00ff16;
+    color: #ffe000;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 20px auto;
+    max-width: 440px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilos específicos para el versículo 📖 */
+.dailyVerses.bibleVerse {
+    margin-top: 0.5em;
+}
+
+.dailyVerses.bibleVerse a {
+    font-weight: bold;
+    color: #ffe000;
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -2435,6 +2458,11 @@ console.error = function() {};
   </button>
     <img src="cruz-colina.jpg" alt="Comunidad" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
+    <!-- VERSÍCULO DIARIO -->
+<div class="rectangulo-frase">
+  <div id="dailyVersesWrapper"></div>
+  <script async defer src="https://dailyverses.net/get/verse.js?language=rvr60"></script>
+</div>
   <div class="cuadricula-interna">
     <a href="https://bible.com/users/hectoreduardovalladaresperez288" class="boton-interno" target="_blank">
       <img src="youversion.png" alt="YouVersion" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2462,6 +2490,10 @@ console.error = function() {};
   </button>
     <img src="globo-terraneo.png" alt="Redes Sociales" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</h2>
+    <!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>Hoy es un buen día para empezar algo nuevo 🌞</p>
+</div>
   <div class="cuadricula-interna">
     <a href="https://facebook.com/hevp23" class="boton-interno" target="_blank">
       <img src="facebook.png" alt="Facebook" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2705,6 +2737,10 @@ console.error = function() {};
   </button>
     <img src="paisaje-sol.png" alt="Fotos" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Fotos" data-en="Photos">Fotos</h2>
+    <!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>Sonríe la vida es hermosa 😀</p>
+</div>
   <div class="cuadricula-interna">
     <a href="https://vsco.co/hevp23/gallery?fbclid=IwVERDUATToNtleHRuA2FlbQIxMABzcnRjBmFwcF9pZAwzNTA2ODU1MzE3MjgAAR4vBuNmG_jYlvlp2U8-taU7OFPTKnyoo_0n-dvYhYVN1OUo9hRmO_pC3aAOvA_aem_ZEOrEwO9KlwmLtrQIPPwiw" class="boton-interno" target="_blank">
       <img src="vsco.png" alt="VSCO" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2764,6 +2800,10 @@ console.error = function() {};
   </button>
     <img src="chat-burbuja.png" alt="Mensajes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Mensajes" data-en="Messages">Mensajes</h2>
+    <!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>Un paso a la vez y llegarás más lejos 👣</p>
+</div>
   <div class="cuadricula-interna">
    <a href="https://tellonym.me/hevp23" class="boton-interno" target="_blank">
       <img src="tellonym.png" alt="Tellonym" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2795,6 +2835,10 @@ console.error = function() {};
   </button>
     <img src="robot-chat.png" alt="Asistentes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Asistentes" data-en="Assistants">Asistentes</h2>
+<!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>Tu actitud determina tu día 🥰</p>
+</div>
   <div class="cuadricula-interna">
     <a href="https://aistudio.instagram.com/ai/1477479866867218?utm_source=ai_agent" class="boton-interno" target="_blank">
       <img src="qwhevpn25.png" alt="Qwhevpn25" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2818,6 +2862,10 @@ console.error = function() {};
   </button>
     <img src="controlador-juego.jpg" alt="Juegos" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Juegos" data-en="Games">Juegos</h2>
+    <!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>Cree en tí, puedes con todo 😎</p>
+</div>
   <div class="cuadricula-interna">
       <a href="https://my.play/HEVP23" class="boton-interno" target="_blank">
       <img src="googleplayjuegos.jpg" alt="Google Play Games" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2917,6 +2965,10 @@ console.error = function() {};
   </button>
     <img src="mapa-pin.png" alt="Mapas" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Mapas" data-en="Maps">Mapas</h2>
+    <!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>Puede que hoy descubras algo nuevo 💫</p>
+</div>
   <div class="cuadricula-interna">
     <a href="https://maps.app.goo.gl/KLGQL6BuDfMarUfu9" class="boton-interno" target="_blank">
       <img src="googlemaps.jpg" alt="Google Maps" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
@@ -2944,6 +2996,10 @@ console.error = function() {};
   </button>
     <img src="personas.jpg" alt="Servidores" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Servidores" data-en="Servers">Servidores</h2>
+    <!-- FRASE DE LA PANTALLA -->
+<div class="rectangulo-frase">
+  <p>La paciencia trae grandes recompensas 🎁</p>
+</div>
   <div class="cuadricula-interna">
     <a href="https://discord.gg/ktcr3Smef" class="boton-interno" target="_blank">
       <img src="zuzubalandia.png" alt="Zuzubalandia" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
