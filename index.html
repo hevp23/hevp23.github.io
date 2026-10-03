@@ -988,6 +988,26 @@ img, audio, video {
   -o-user-drag: none;
   user-drag: none;
 }
+
+/* --- IMAGEN EN PANTALLAS INTERNAS --- */
+.imagen-pantalla-interna {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 20px auto 15px auto;
+    border: 4px solid #ffe000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Ajuste para PC */
+@media (min-width: 900px) {
+    .imagen-pantalla-interna {
+        width: 150px;
+        height: 150px;
+    }
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -2413,6 +2433,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="cruz-colina.jpg" alt="Comunidad" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
   <div class="cuadricula-interna">
     <a href="https://bible.com/users/hectoreduardovalladaresperez288" class="boton-interno" target="_blank">
@@ -2439,6 +2460,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-redes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="globo-terraneo.png" alt="Redes Sociales" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</h2>
   <div class="cuadricula-interna">
     <a href="https://facebook.com/hevp23" class="boton-interno" target="_blank">
@@ -2681,6 +2703,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-fotos')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="paisaje-sol.png" alt="Fotos" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Fotos" data-en="Photos">Fotos</h2>
   <div class="cuadricula-interna">
     <a href="https://vsco.co/hevp23/gallery?fbclid=IwVERDUATToNtleHRuA2FlbQIxMABzcnRjBmFwcF9pZAwzNTA2ODU1MzE3MjgAAR4vBuNmG_jYlvlp2U8-taU7OFPTKnyoo_0n-dvYhYVN1OUo9hRmO_pC3aAOvA_aem_ZEOrEwO9KlwmLtrQIPPwiw" class="boton-interno" target="_blank">
@@ -2739,6 +2762,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-mensajes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="chat-burbuja.png" alt="Mensajes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Mensajes" data-en="Messages">Mensajes</h2>
   <div class="cuadricula-interna">
    <a href="https://tellonym.me/hevp23" class="boton-interno" target="_blank">
@@ -2769,6 +2793,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-asistentes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="robot-chat.png" alt="Asistentes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Asistentes" data-en="Assistants">Asistentes</h2>
   <div class="cuadricula-interna">
     <a href="https://aistudio.instagram.com/ai/1477479866867218?utm_source=ai_agent" class="boton-interno" target="_blank">
@@ -2791,6 +2816,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-juegos')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="controlador-juego.png" alt="Juegos" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Juegos" data-en="Games">Juegos</h2>
   <div class="cuadricula-interna">
       <a href="https://my.play/HEVP23" class="boton-interno" target="_blank">
@@ -2889,6 +2915,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-mapas')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="mapa-pin.png" alt="Mapas" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Mapas" data-en="Maps">Mapas</h2>
   <div class="cuadricula-interna">
     <a href="https://maps.app.goo.gl/KLGQL6BuDfMarUfu9" class="boton-interno" target="_blank">
@@ -2915,6 +2942,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-servidores')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="personas.jpg" alt="Servidores" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Servidores" data-en="Servers">Servidores</h2>
   <div class="cuadricula-interna">
     <a href="https://discord.gg/ktcr3Smef" class="boton-interno" target="_blank">
@@ -2945,6 +2973,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-educacion')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="libros.png" alt="Libros" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Educación" data-en="Education">Educación</h2>
   <div class="cuadricula-interna">
       <a href="https://es.wikipedia.org/wiki/Usuario:HEVP23" class="boton-interno" target="_blank">
@@ -3027,6 +3056,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-deportes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="futbol.png" alt="Deportes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Deportes" data-en="Sports">Deportes</h2>
   <div class="cuadricula-interna">
     <a href="https://www.strava.com/athletes/hevp23" class="boton-interno" target="_blank">
@@ -3097,6 +3127,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-tecnologia')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="tecnologia-chip.png" alt="Tecnología" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Tecnología" data-en="Technology">Tecnología</h2>
   <div class="cuadricula-interna">
       <a href="https://gitlab.com/hevp23" class="boton-interno" target="_blank">
@@ -3179,6 +3210,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-portafolio')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="portafolio-maletin.png" alt="Portafolio" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Portafolio" data-en="Portfolio">Portafolio</h2>
   <div class="cuadricula-interna">
       <a href="https://www.linkedin.com/in/hevp23?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="boton-interno" target="_blank">
@@ -3265,6 +3297,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-economia')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="economia-monedas.png" alt="Economía" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Economía" data-en="Economy">Economía</h2>
   <div class="cuadricula-interna">
       <a href="https://www.paypal.com/paypalme/hevp23" class="boton-interno" target="_blank">
@@ -3347,6 +3380,7 @@ console.error = function() {};
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-extra')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
+    <img src="extra-estrella.png" alt="Extra" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Extra" data-en="Extra">Extra</h2>
   <div class="cuadricula-interna">
       <a href="https://hevp23.github.io/reloj" class="boton-interno" target="_blank">
