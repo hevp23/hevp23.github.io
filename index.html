@@ -1011,7 +1011,7 @@ img, audio, video {
     /* --- RECTÁNGULO VERDE CON FRASE --- */
 .rectangulo-frase {
     background-color: #ff4200;
-    color: #ffe000;
+    color: #00ff16;
     border-radius: 12px;
     padding: 15px 20px;
     margin: 20px auto;
@@ -1029,7 +1029,7 @@ img, audio, video {
 
 .dailyVerses.bibleVerse a {
     font-weight: bold;
-    color: #ffe000;
+    color: #00ff16;
 }
     </style>
 <!--Aquí termina CSS 🏁-->
@@ -1754,8 +1754,27 @@ function pintarClima() {
     }
 
     traducirPantallasInternas();
+
+    // 👇 ¡AGREGA ESTA LÍNEA AQUÍ! (antes de cerrar la función)
+    cargarVersiculo(idiomaActual);
+          
   }
 
+  // 👇 Función para cargar el versículo en el idioma correcto
+  function cargarVersiculo(idioma) {
+    var wrapper = document.getElementById('dailyVersesWrapper');
+    if (!wrapper) return; // Evita errores si no estamos en Comunidad
+    
+    var codigoIdioma = (idioma === 'en') ? 'niv' : 'rvr60'; 
+    wrapper.innerHTML = ''; 
+    
+    var script = document.createElement('script');
+    script.src = 'https://dailyverses.net/get/verse.js?language=' + codigoIdioma;
+    script.async = true;
+    script.defer = true;
+    wrapper.appendChild(script);
+          }
+    
   function actualizarTextosBotones() {
     const elementos = {
       comunidad: document.getElementById('txt-comunidad'),
