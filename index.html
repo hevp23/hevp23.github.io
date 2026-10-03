@@ -1736,7 +1736,17 @@ function pintarClima() {
     document.querySelectorAll('div[style*="text-align: center"] span[data-es]').forEach(function(span) {
     span.textContent = idiomaActual === 'es' ? span.getAttribute('data-es') : span.getAttribute('data-en');
     });
-      
+
+    //  Traducción para el versículo de Comunidad en Español e Inglés 📖
+    if (idiomaActual === 'en') { 
+        // Si se cambió a inglés:
+        cargarVersiculo('en'); 
+    } else {
+        // Si se cambió a español:
+        cargarVersiculo('es'); 
+    }
+    }
+    
     actualizarReloj();
     actualizarTextosBotones();
     pintarUbicacion();
@@ -2447,6 +2457,27 @@ console.error = function() {};
     }
   }, 1000);
 </script>
+
+    <script>
+        // Función para cambiar el idioma del versículo diario
+function cargarVersiculo(idioma) {
+    var wrapper = document.getElementById('dailyVersesWrapper');
+    // Si el idioma es inglés usamos 'niv', si es español usamos 'rvr60'
+    var codigoIdioma = (idioma === 'en') ? 'niv' : 'rvr60'; 
+    
+    // Limpiamos el versículo anterior
+    wrapper.innerHTML = ''; 
+    
+    // Creamos el nuevo script con el idioma correcto
+    var script = document.createElement('script');
+    script.src = 'https://dailyverses.net/get/verse.js?language=' + codigoIdioma;
+    script.async = true;
+    script.defer = true;
+    
+    // Lo agregamos a la pantalla
+    wrapper.appendChild(script);
+}
+    </script>
 <!--Aquí termina SCRIPT 🏁-->
 
         <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️ 📶 💼 💰 ⭐️-->
