@@ -1737,16 +1737,6 @@ function pintarClima() {
     span.textContent = idiomaActual === 'es' ? span.getAttribute('data-es') : span.getAttribute('data-en');
     });
 
-    //  Traducción para el versículo de Comunidad en Español e Inglés 📖
-    if (idiomaActual === 'en') { 
-        // Si se cambió a inglés:
-        cargarVersiculo('en'); 
-    } else {
-        // Si se cambió a español:
-        cargarVersiculo('es'); 
-    }
-    }
-    
     actualizarReloj();
     actualizarTextosBotones();
     pintarUbicacion();
