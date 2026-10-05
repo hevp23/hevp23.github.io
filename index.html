@@ -884,9 +884,9 @@ div:focus:not(:focus-visible),
 /* --- FILA: clima | reloj | temperatura, bien separaditos 🌡️ --- */
 .fila-reloj-clima {
   display: flex;
-  align-items: stretch; /* 👈 estira los cuadraditos a la misma altura del reloj */
+  align-items: stretch;
   justify-content: space-between;
-  gap: 7px;
+  gap: 4px;  /* 👈 Reducido de 7px a 4px para acercarlos al reloj */
   margin: 15px auto;
   width: 97%;
   max-width: 440px;
@@ -902,7 +902,10 @@ div:focus:not(:focus-visible),
 }
 
 .bloque-clima {
-  flex: 0 0 52px;
+  flex: 0 0 80px;  /* 👈 Aumentado de 52px a 80px */
+  width: 80px;     /* 👈 Ancho fijo para ambos cuadritos */
+  min-width: 80px; /* 👈 Evita que se encoja */
+  max-width: 80px; /* 👈 Evita que se expanda */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -912,20 +915,36 @@ div:focus:not(:focus-visible),
   border-radius: 12px;
   color: #00ff16;
   font-weight: bold;
-  font-size: 20px; /* 👈 emoji y número más grandes */
+  font-size: 20px;
   text-align: center;
   padding: 2px 2px;
 }
 
 .clima-etiqueta {
-  font-size: 11px; /* 👈 palabritas más grandes */
+  font-size: 11px;
   line-height: 1.1;
+  white-space: nowrap;      /* 👈 Evita que el texto se parta */
+  overflow: hidden;         /* 👈 Si es muy largo, lo corta */
+  text-overflow: ellipsis;  /* 👈 Agrega "..." si no cabe */
+  max-width: 100%;          /*  Se adapta al ancho del contenedor */
 }
         
 @media (min-width:900px) {
-    .fila-reloj-clima { max-width:440px; gap:6px; } /* 👈 Más compacto */
-    .bloque-clima { flex:0070px; font-size:28px; }
-    .clima-etiqueta { font-size:13px; }
+    .fila-reloj-clima { max-width:440px; gap:4px; }  /* 👈 Mismo gap */
+    .bloque-clima { 
+        flex: 0 0 80px;  /* 👈 Mismo ancho */
+        width: 80px;
+        min-width: 80px;
+        max-width: 80px;
+        font-size: 28px;
+    }
+    .clima-etiqueta { 
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
 }
 
 /* Reloj que se adapta al ancho sin desbordarse y sin ocultar nada */
