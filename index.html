@@ -886,7 +886,7 @@ div:focus:not(:focus-visible),
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  gap: 4px;  /* 👈 Reducido de 7px a 4px para acercarlos al reloj */
+  gap: 1px;  /* 👈 Reducido de 7px a 4px para acercarlos al reloj */
   margin: 15px auto;
   width: 97%;
   max-width: 440px;
@@ -932,10 +932,10 @@ div:focus:not(:focus-visible),
 @media (min-width:900px) {
     .fila-reloj-clima { max-width:440px; gap:4px; }
     .bloque-clima { 
-        flex: 0 0 65px;
-        width: 65px;
-        min-width: 65px;
-        max-width: 65px;
+        flex: 0 0 50px;
+        width: 50px;
+        min-width: 50px;
+        max-width: 5ppx;
         font-size: 24px;  /* 👈 Reducido de 28px a 24px */
     }
     .clima-etiqueta { 
