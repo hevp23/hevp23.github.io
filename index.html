@@ -881,31 +881,32 @@ div:focus:not(:focus-visible),
 .fila-iconos > div {
     order: 2; /* 👈 la fila del Teléfono/TreeLinks/Correo siempre va de última */
 }
+
 /* --- FILA: clima | reloj | temperatura, bien separaditos 🌡️ --- */
 .fila-reloj-clima {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  gap: 1px;  /* 👈 Reducido de 7px a 4px para acercarlos al reloj */
+  gap: 2px;  /* 👈 De 1px a 2px para que no estén tan pegados */
   margin: 15px auto;
   width: 97%;
   max-width: 440px;
 }
 
 .caja-reloj-centro {
-    flex: 0 0 250px; /* 👈 El '0 0' significa: NO crecer, NO encoger. 305px es el tamaño fijo. */
+    flex: 0 0 250px;
     width: 250px;
     min-width: 250px;
     max-width: 250px;
     margin: 0 auto;
-    box-sizing: border-box; /* 👈 Asegura que el padding no sume al ancho total */
+    box-sizing: border-box;
 }
 
 .bloque-clima {
-  flex: 0 0 50px;   /* 👈 Reducido de 80px a 65px */
-  width: 50px;
-  min-width: 50px;
-  max-width: 50px;
+  flex: 0 0 60px;   /* 👈 Aumentado de 50px a 60px para hacerlos "gorditos" */
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -915,13 +916,13 @@ div:focus:not(:focus-visible),
   border-radius: 12px;
   color: #00ff16;
   font-weight: bold;
-  font-size: 17px;  /* 👈 Reducido de 20px a 18px para que quepa mejor */
+  font-size: 17px;
   text-align: center;
-  padding: 4px 2px;  /* 👈 Un poquito más de padding vertical */
+  padding: 4px 2px;
 }
 
 .clima-etiqueta {
-  font-size: 9px;  /* 👈 Reducido de 11px a 10px para que "Celsius" quepa completo */
+  font-size: 9px;
   line-height: 1.1;
   white-space: nowrap;
   overflow: hidden;
@@ -930,22 +931,22 @@ div:focus:not(:focus-visible),
 }
         
 @media (min-width:900px) {
-    .fila-reloj-clima { max-width:440px; gap:4px; }
+    .fila-reloj-clima { max-width:440px; gap:2px; }
     .bloque-clima { 
-        flex: 0 0 50px;
-        width: 50px;
-        min-width: 50px;
-        max-width: 5ppx;
-        font-size: 24px;  /* 👈 Reducido de 28px a 24px */
+        flex: 0 0 60px;
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;  /* 👈 Corregido: tenías "5ppx" */
+        font-size: 24px;
     }
     .clima-etiqueta { 
-        font-size: 12px;  /* 👈 Reducido de 13px a 12px */
+        font-size: 12px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
     }
-}
+        }
 
 /* Reloj que se adapta al ancho sin desbordarse y sin ocultar nada */
 #reloj-actual { 
