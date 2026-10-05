@@ -886,8 +886,8 @@ div:focus:not(:focus-visible),
 .fila-reloj-clima {
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
-  gap: 2px;  /* 👈 De 1px a 2px para que no estén tan pegados */
+  justify-content: center;  /* 👈 Cambiado de space-between a center para simetría */
+  gap: 2px;
   margin: 15px auto;
   width: 97%;
   max-width: 440px;
@@ -903,7 +903,7 @@ div:focus:not(:focus-visible),
 }
 
 .bloque-clima {
-  flex: 0 0 60px;   /* 👈 Aumentado de 50px a 60px para hacerlos "gorditos" */
+  flex: 0 0 60px;
   width: 60px;
   min-width: 60px;
   max-width: 60px;
@@ -931,12 +931,15 @@ div:focus:not(:focus-visible),
 }
         
 @media (min-width:900px) {
-    .fila-reloj-clima { max-width:440px; gap:2px; }
+    .fila-reloj-clima { 
+        max-width: 400px;  /* 👈 Reducido de 440px a 400px para acercar los cuadritos */
+        gap: 2px;          /* 👈 Mismo gap que en móvil */
+    }
     .bloque-clima { 
         flex: 0 0 60px;
         width: 60px;
         min-width: 60px;
-        max-width: 60px;  /* 👈 Corregido: tenías "5ppx" */
+        max-width: 60px;
         font-size: 24px;
     }
     .clima-etiqueta { 
@@ -946,7 +949,7 @@ div:focus:not(:focus-visible),
         text-overflow: ellipsis;
         max-width: 100%;
     }
-        }
+}
 
 /* Reloj que se adapta al ancho sin desbordarse y sin ocultar nada */
 #reloj-actual { 
