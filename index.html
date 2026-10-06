@@ -886,7 +886,7 @@ div:focus:not(:focus-visible),
 .fila-reloj-clima {
   display: flex;
   align-items: stretch;
-  justify-content: center;  /* 👈 Cambiado de space-between a center para simetría */
+  justify-content: center;
   gap: 2px;
   margin: 15px auto;
   width: 97%;
@@ -894,13 +894,14 @@ div:focus:not(:focus-visible),
 }
 
 .caja-reloj-centro {
-    flex: 0 0 250px;
-    width: 250px;
-    min-width: 250px;
-    max-width: 250px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    border: 2px solid #ffe000;
+  flex: 0 0 250px;
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 2px solid #ffe000 !important; /* 👈 Borde amarillo al rectángulo central */
+  border-radius: 12px; /* 👈 Para que combine con los de los lados */
 }
 
 .bloque-clima {
@@ -914,7 +915,7 @@ div:focus:not(:focus-visible),
   justify-content: center;
   gap: 1px;
   background-color: #ff4200;
-  border: 2px solid #ffe000;
+  border: 2px solid #ffe000 !important; /* 👈 Borde amarillo al cuadrito completo */
   border-radius: 12px;
   color: #00ff16;
   font-weight: bold;
@@ -930,31 +931,31 @@ div:focus:not(:focus-visible),
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  border: 2px solid #ffe000;
+  /* ❌ QUITAMOS el borde de aquí, ya no va */
 }
-        
-@media (min-width:900px) {
-    .fila-reloj-clima { 
-        max-width: 400px;  /* 👈 Reducido de 440px a 400px para acercar los cuadritos */
-        gap: 2px;/* 👈 Mismo gap que en móvil */
-        border: 2px solid #ffe000;
-    }
-    .bloque-clima { 
-        flex: 0 0 60px;
-        width: 60px;
-        min-width: 60px;
-        max-width: 60px;
-        font-size: 24px;
-        border: 2px solid #ffe000;
-    }
-    .clima-etiqueta { 
-        font-size: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        border: 2px solid #ffe000;
-    }
+
+@media (min-width: 900px) {
+  .fila-reloj-clima {
+    max-width: 400px;
+    gap: 2px;
+    /* ❌ QUITAMOS el borde de aquí también */
+  }
+  .bloque-clima {
+    flex: 0 0 60px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    font-size: 24px;
+    border: 2px solid #ffe000 !important;
+  }
+  .clima-etiqueta {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    /*  QUITAMOS el borde de aquí también */
+  }
 }
 
 /* Reloj que se adapta al ancho sin desbordarse y sin ocultar nada */
