@@ -1122,45 +1122,48 @@ img, audio, video {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 4px !important;
+  gap: 2px !important; /* 👈 Reducido de 4px a 2px */
+  flex-shrink: 0 !important; /* 👈 Evita que se encojan */
 }
 
 /* --- ETIQUETA CON EL NOMBRE DE LA RED SOCIAL --- */
 .nombre-red {
-  font-size: 10px !important;
+  font-size: 8px !important; /* 👈 Reducido de 10px a 8px */
   font-weight: bold !important;
   color: #ffe000 !important;
   background-color: #ff4200 !important;
-  padding: 2px 6px !important;
-  border-radius: 6px !important;
-  border: 2px solid #00ff16 !important;
+  padding: 1px 3px !important; /* 👈 Reducido de 2px 6px a 1px 3px */
+  border-radius: 4px !important; /* 👈 Reducido de 6px a 4px */
+  border: 1.5px solid #00ff16 !important; /* 👈 Reducido de 2px a 1.5px */
   text-align: center !important;
   white-space: nowrap !important;
-  line-height: 1.2 !important;
+  line-height: 1.1 !important;
 }
 
-/* --- FILA DE ÍCONOS DE REDES SOCIALES CON GRID  --- */
+/* --- FILA DE ÍCONOS DE REDES SOCIALES EN UNA SOLA LÍNEA --- */
 .fila-iconos {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important;
-  gap: 10px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important; /* 👈 Esto fuerza a que todos estén en una sola fila */
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 4px !important; /* 👈 Reducido de 10px a 4px */
   margin: 20px auto !important;
-  width: 95% !important;
-  max-width: 500px !important;
-  justify-items: center !important;
+  overflow-x: auto !important; /* 👈 Por si no caben, permite scroll horizontal */
 }
 
-/* --- En PC, más columnas y un poquito más grande --- */
+/* --- En PC, tamaños normales --- */
 @media (min-width: 900px) {
   .fila-iconos {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important;
-    gap: 15px !important;
-    max-width: 600px !important;
+    gap: 10px !important;
   }
   .nombre-red {
     font-size: 12px !important;
     padding: 3px 8px !important;
     border: 3px solid #00ff16 !important;
+  }
+  .icono-red-con-nombre {
+    gap: 4px !important;
   }
 }
     </style>
