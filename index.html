@@ -1139,37 +1139,24 @@ img, audio, video {
   line-height: 1.2 !important;
 }
 
-/* --- En PC, un poquito más grande --- */
+/* --- FILA DE ÍCONOS DE REDES SOCIALES CON GRID  --- */
+.fila-iconos {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important;
+  gap: 10px !important;
+  margin: 20px auto !important;
+  width: 95% !important;
+  max-width: 500px !important;
+  justify-items: center !important;
+}
+
+/* --- En PC, más columnas y un poquito más grande --- */
 @media (min-width: 900px) {
-  .nombre-red {
-    font-size: 12px !important;
-    padding: 3px 8px !important;
-    border: 3px solid #00ff16 !important;
+  .fila-iconos {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important;
+    gap: 15px !important;
+    max-width: 600px !important;
   }
-}
-/* --- CONTENEDOR PARA ÍCONO + NOMBRE DE RED SOCIAL --- */
-.icono-red-con-nombre {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-/* --- ETIQUETA CON EL NOMBRE DE LA RED SOCIAL --- */
-.nombre-red {
-  font-size: 10px !important;
-  font-weight: bold !important;
-  color: #ffe000 !important;
-  background-color: #ff4200 !important;
-  padding: 2px 6px !important;
-  border-radius: 6px !important;
-  border: 2px solid #00ff16 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  line-height: 1.2 !important;
-}
-
-@media (min-width: 900px) {
   .nombre-red {
     font-size: 12px !important;
     padding: 3px 8px !important;
