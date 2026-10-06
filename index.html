@@ -1904,6 +1904,11 @@ function pintarClima() {
     span.textContent = idiomaActual === 'es' ? span.getAttribute('data-es') : span.getAttribute('data-en');
     });
 
+    // Traducir Teléfono y Correo
+    document.querySelectorAll('.nombre-red[data-es]').forEach(function(span){
+    span.textContent = idiomaActual === 'es' ? span.getAttribute('data-es') : span.getAttribute('data-en');
+    });
+      
     actualizarReloj();
     actualizarTextosBotones();
     pintarUbicacion();
