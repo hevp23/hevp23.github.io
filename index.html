@@ -1183,45 +1183,55 @@ img, audio, video {
     .fila-iconos {
         display: flex !important;
         flex-direction: row !important;
-        flex-wrap: nowrap !important; /* 👈 Fuerza una sola línea, no permite que bajen */
+        flex-wrap: nowrap !important;
         justify-content: center !important;
         align-items: center !important;
-        width: 100% !important; /* 👈 Ocupa todo el ancho disponible */
-        max-width: 100% !important; /* 👈 Quita el límite de ancho para que quepan */
-        gap: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 15px !important;
     }
 
     .fila-iconos > div,
     .fila-iconos > .icono-red-con-nombre {
         width: auto !important;
         max-width: none !important;
-        flex: 0 0 auto !important; /* 👈 No se encojan */
+        flex: 0 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
     }
 
-    /* Mantener ícono y nombre MUY juntos */
+    /* Forzar que cada ícono y su nombre estén juntos */
     .icono-red-con-nombre {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 2px !important; /* 👈 Pegaditos verticalmente */
+        justify-content: center !important;
+        gap: 2px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
-    /* Hacer los íconos un poquito más pequeños en PC para que quepan los 7 */
+    /* Íconos un poquito más grandes en PC */
     .fila-iconos .btn-red {
-        width: 40px !important;
-        height: 40px !important;
+        width: 45px !important;
+        height: 45px !important;
+        min-width: 45px !important;
+        max-width: 45px !important;
     }
 
-    /* Nombres de redes sociales en PC */
+    /* Nombres más grandes y legibles */
     .nombre-red {
-        font-size: 10px !important;
-        padding: 1px 4px !important;
-        white-space: nowrap !important; /* 👈 El texto no se rompe */
+        font-size: 12px !important;
+        padding: 3px 8px !important;
+        white-space: nowrap !important;
         border: 2px solid #00ff16 !important;
-        margin-top: 0 !important;
+        margin: 0 !important;
+        display: inline-block !important;
     }
 
-    /* Arreglar TreeLinks para que no se rompa */
+    /* Arreglar TreeLinks */
     .marca-web-contenedor {
         flex-shrink: 0 !important;
         white-space: nowrap !important;
@@ -1233,7 +1243,7 @@ img, audio, video {
         white-space: nowrap !important;
     }
 
-    /* Fila de contacto (Teléfono/TreeLinks/Correo) */
+    /* Fila de contacto */
     .fila-contacto {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
@@ -1244,12 +1254,15 @@ img, audio, video {
     }
 
     .fila-contacto .icono-red-con-nombre {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         gap: 2px !important;
     }
 
     .fila-contacto .nombre-red {
-        font-size: 11px !important;
-        padding: 2px 6px !important;
+        font-size: 12px !important;
+        padding: 3px 8px !important;
     }
 }
         
