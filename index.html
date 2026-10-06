@@ -1181,10 +1181,13 @@ img, audio, video {
 /* --- ARREGLAR LA FILA DE ÍCONOS EN PC (MODO ESCRITORIO) 💻 --- */
 @media (min-width: 900px) {
     .fila-iconos {
+        display: flex !important;
         flex-direction: row !important;
-        flex-wrap: nowrap !important;
+        flex-wrap: nowrap !important; /* 👈 Fuerza una sola línea, no permite que bajen */
         justify-content: center !important;
-        align-items: flex-start !important; /* 👈 Alinea desde arriba */
+        align-items: center !important;
+        width: 100% !important; /* 👈 Ocupa todo el ancho disponible */
+        max-width: 100% !important; /* 👈 Quita el límite de ancho para que quepan */
         gap: 10px !important;
     }
 
@@ -1192,7 +1195,7 @@ img, audio, video {
     .fila-iconos > .icono-red-con-nombre {
         width: auto !important;
         max-width: none !important;
-        flex: 0 0 auto !important;
+        flex: 0 0 auto !important; /* 👈 No se encojan */
     }
 
     /* Mantener ícono y nombre MUY juntos */
@@ -1200,18 +1203,25 @@ img, audio, video {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 2px !important; /* 👈 Muy pegaditos (reducido de 3px a 2px) */
+        gap: 2px !important; /* 👈 Pegaditos verticalmente */
+    }
+
+    /* Hacer los íconos un poquito más pequeños en PC para que quepan los 7 */
+    .fila-iconos .btn-red {
+        width: 40px !important;
+        height: 40px !important;
     }
 
     /* Nombres de redes sociales en PC */
     .nombre-red {
-        font-size: 11px !important;
-        padding: 2px 6px !important;
+        font-size: 10px !important;
+        padding: 1px 4px !important;
+        white-space: nowrap !important; /* 👈 El texto no se rompe */
         border: 2px solid #00ff16 !important;
-        margin-top: 0 !important; /* 👈 Sin espacio extra arriba */
+        margin-top: 0 !important;
     }
 
-    /* Arreglar TreeLinks para que no se rompa en dos líneas */
+    /* Arreglar TreeLinks para que no se rompa */
     .marca-web-contenedor {
         flex-shrink: 0 !important;
         white-space: nowrap !important;
@@ -1223,27 +1233,23 @@ img, audio, video {
         white-space: nowrap !important;
     }
 
-    /* Fila de contacto (Teléfono/TreeLinks/Correo) también alineada */
+    /* Fila de contacto (Teléfono/TreeLinks/Correo) */
     .fila-contacto {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: center !important;
-        align-items: flex-start !important;
+        align-items: center !important;
         gap: 20px !important;
         max-width: 400px !important;
     }
 
     .fila-contacto .icono-red-con-nombre {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
         gap: 2px !important;
     }
 
     .fila-contacto .nombre-red {
         font-size: 11px !important;
         padding: 2px 6px !important;
-        margin-top: 0 !important;
     }
 }
         
