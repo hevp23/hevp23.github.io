@@ -1117,6 +1117,36 @@ img, audio, video {
         border: 3px solid #ffe000 !important; /* 👈 Borde amarillo de 3px */
     }
 }
+/* --- CONTENEDOR PARA ÍCONO + NOMBRE DE RED SOCIAL --- */
+.icono-red-con-nombre {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* --- ETIQUETA CON EL NOMBRE DE LA RED SOCIAL --- */
+.nombre-red {
+  font-size: 10px !important;
+  font-weight: bold !important;
+  color: #ffe000 !important;
+  background-color: #ff4200 !important;
+  padding: 2px 6px !important;
+  border-radius: 6px !important;
+  border: 2px solid #00ff16 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
+}
+
+/* --- En PC, un poquito más grande --- */
+@media (min-width: 900px) {
+  .nombre-red {
+    font-size: 12px !important;
+    padding: 3px 8px !important;
+    border: 3px solid #00ff16 !important;
+  }
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -1194,68 +1224,97 @@ img, audio, video {
 
 <!--7 íconos circulares de Redes sociales-->
 <div class="contenedor-redes">
-    <div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
-  
+<div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
+
   <!-- Facebook -->
-  <a href="https://facebook.com/hevp23" target="_blank" class="btn-red social-facebook" title="Facebook">
-    <img src="facebook.png" alt="Facebook" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
+  <div class="icono-red-con-nombre">
+    <a href="https://facebook.com/hevp23" target="_blank" class="btn-red social-facebook" title="Facebook">
+      <img src="facebook.png" alt="Facebook" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">Facebook</span>
+  </div>
 
   <!-- Instagram -->
-  <a href="https://instagram.com/hevp23" target="_blank" class="btn-red social-instagram" title="Instagram">
-    <img src="instagram.png" alt="Instagram" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
+  <div class="icono-red-con-nombre">
+    <a href="https://instagram.com/hevp23" target="_blank" class="btn-red social-instagram" title="Instagram">
+      <img src="instagram.png" alt="Instagram" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">Instagram</span>
+  </div>
 
   <!-- WhatsApp -->
-  <a href="https://wa.me/50379037911" target="_blank" class="btn-red social-whatsapp" title="WhatsApp">
-    <img src="whatsapp.jpg" alt="WhatsApp" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
+  <div class="icono-red-con-nombre">
+    <a href="https://wa.me/50379037911" target="_blank" class="btn-red social-whatsapp" title="WhatsApp">
+      <img src="whatsapp.jpg" alt="WhatsApp" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">WhatsApp</span>
+  </div>
 
   <!-- YouTube -->
-  <a href="https://youtube.com/@hevp23" target="_blank" class="btn-red social-youtube" title="YouTube">
-    <img src="youtube.png" alt="YouTube" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
-        
-  <!-- TikTok -->
-  <a href="https://tiktok.com/@hevp23" target="_blank" class="btn-red social-tiktok" title="TikTok">
-    <img src="tiktok.png" alt="TikTok" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
+  <div class="icono-red-con-nombre">
+    <a href="https://youtube.com/@hevp23" target="_blank" class="btn-red social-youtube" title="YouTube">
+      <img src="youtube.png" alt="YouTube" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">YouTube</span>
+  </div>
 
-  <!-- Discord Dog-->
-  <a href="https://discord.dog/hevp23" target="_blank" class="btn-red social-discord" title="Discord">
-    <img src="discord-dog.png" alt="Discord" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
+  <!-- TikTok -->
+  <div class="icono-red-con-nombre">
+    <a href="https://tiktok.com/@hevp23" target="_blank" class="btn-red social-tiktok" title="TikTok">
+      <img src="tiktok.png" alt="TikTok" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">TikTok</span>
+  </div>
+
+  <!-- Discord -->
+  <div class="icono-red-con-nombre">
+    <a href="https://discord.dog/hevp23" target="_blank" class="btn-red social-discord" title="Discord">
+      <img src="discord-dog.png" alt="Discord" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">Discord</span>
+  </div>
 
   <!-- Reddit -->
-  <a href="https://www.reddit.com/u/hevp_23/s/ISRisFW2LY" target="_blank" class="btn-red social-reddit" title="Reddit">
-    <img src="reddit.png" alt="Reddit" class="icono-red-social" draggable="false" oncontextmenu="return false;">
-  </a>
-<!-- Fila con Teléfono, TreeLinks y Correo -->
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 320px; margin: 10px auto 0 auto; padding: 0 10px;">
-      
-      <!-- Botón de Teléfono (izquierda) -->
+  <div class="icono-red-con-nombre">
+    <a href="https://www.reddit.com/u/hevp_23/s/ISRisFW2LY" target="_blank" class="btn-red social-reddit" title="Reddit">
+      <img src="reddit.png" alt="Reddit" class="icono-red-social" draggable="false" oncontextmenu="return false;">
+    </a>
+    <span class="nombre-red">Reddit</span>
+  </div>
+
+  <!-- Fila con Teléfono, TreeLinks y Correo -->
+  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 320px; margin: 10px auto 0 auto; padding: 0 10px;">
+
+    <!-- Botón de Teléfono (izquierda) -->
+    <div class="icono-red-con-nombre">
       <a href="tel:+50379037911" class="btn-red social-telefono" title="Teléfono">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
           <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
         </svg>
       </a>
+      <span class="nombre-red">Teléfono</span>
+    </div>
 
-      <!-- Logo y nombre TreeLinks (centro) -->
-      <div class="marca-web-contenedor" style="margin: 0 !important;">
-        <img src="treelinks.jpg" alt="Logo TreeLinks" class="logo-web" draggable="false" oncontextmenu="return false;">
-        <span class="texto-web">
-          <span style="color: #ffe000 !important;">Tree</span><span style="color: #ff4200 !important;">L<span class="punto-verde">ı</span>nks</span>
-        </span>
-      </div>
+    <!-- Logo y nombre TreeLinks (centro) -->
+    <div class="marca-web-contenedor" style="margin: 0 !important;">
+      <img src="treelinks.jpg" alt="Logo TreeLinks" class="logo-web" draggable="false" oncontextmenu="return false;">
+      <span class="texto-web">
+        <span style="color: #ffe000 !important;">Tree</span><span style="color: #ff4200 !important;">L<span class="punto-verde">ı</span>nks</span>
+      </span>
+    </div>
 
-      <!-- Botón de Correo (derecha) -->
+    <!-- Botón de Correo (derecha) -->
+    <div class="icono-red-con-nombre">
       <a href="mailto:hectoreduardovalladaresperez@protonmail.com" class="btn-red social-correo" title="Correo">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
           <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
       </a>
-
+      <span class="nombre-red">Correo</span>
     </div>
+
+  </div>
+
 </div>
 
     
