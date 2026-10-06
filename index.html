@@ -1184,8 +1184,8 @@ img, audio, video {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: center !important;
-        align-items: center !important;
-        gap: 8px !important; /* 👈 Reducido de 15px a 8px para que los nombres queden cerca */
+        align-items: flex-start !important; /* 👈 Alinea desde arriba */
+        gap: 10px !important;
     }
 
     .fila-iconos > div,
@@ -1195,9 +1195,12 @@ img, audio, video {
         flex: 0 0 auto !important;
     }
 
-    /* Mantener ícono y nombre juntos */
+    /* Mantener ícono y nombre MUY juntos */
     .icono-red-con-nombre {
-        gap: 3px !important; /* 👈 Espacio chiquito entre el ícono y su nombre */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important; /* 👈 Muy pegaditos (reducido de 3px a 2px) */
     }
 
     /* Nombres de redes sociales en PC */
@@ -1205,17 +1208,18 @@ img, audio, video {
         font-size: 11px !important;
         padding: 2px 6px !important;
         border: 2px solid #00ff16 !important;
+        margin-top: 0 !important; /* 👈 Sin espacio extra arriba */
     }
 
     /* Arreglar TreeLinks para que no se rompa en dos líneas */
     .marca-web-contenedor {
-        flex-shrink: 0 !important; /* 👈 No se encoja */
-        white-space: nowrap !important; /* 👈 No rompe el texto */
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
         gap: 8px !important;
     }
 
     .texto-web {
-        font-size: 1.4rem !important; /* 👈 Tamaño fijo para que no se rompa */
+        font-size: 1.4rem !important;
         white-space: nowrap !important;
     }
 
@@ -1224,21 +1228,25 @@ img, audio, video {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: center !important;
-        align-items: center !important;
+        align-items: flex-start !important;
         gap: 20px !important;
         max-width: 400px !important;
     }
 
     .fila-contacto .icono-red-con-nombre {
-        gap: 3px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
     }
 
     .fila-contacto .nombre-red {
         font-size: 11px !important;
         padding: 2px 6px !important;
+        margin-top: 0 !important;
     }
 }
-
+        
 /* --- COLORES DIFERENTES PARA TELÉFONO Y CORREO 💚🧡 --- */
 .fila-contacto .nombre-red {
     background-color: #00ff16 !important; /* 👈 Fondo Verde */
