@@ -1177,6 +1177,31 @@ img, audio, video {
         border: 3px solid #ffe000 !important; /* 👈 Borde amarillo de 3px */
     }
 }
+
+/* --- ARREGLAR LA FILA DE ÍCONOS EN PC (MODO ESCRITORIO) 💻 --- */
+@media (min-width: 900px) {
+    .fila-iconos {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+
+    .fila-iconos > div,
+    .fila-iconos > .icono-red-con-nombre {
+        width: auto !important;
+        max-width: none !important;
+        flex: 0 0 auto !important;
+    }
+
+    .nombre-red {
+        font-size: 12px !important;
+        padding: 3px 8px !important;
+        border: 2px solid #00ff16 !important;
+    }
+}
+
     </style>
 <!--Aquí termina CSS 🏁-->
 
