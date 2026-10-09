@@ -1373,7 +1373,18 @@ img, audio, video {
         -webkit-overflow-scrolling: touch !important;
     }
 }
- 
+/* ======================================== */
+/* ✅ SCROLL GLOBAL Y BLOQUEO DE ZOOM 🔒    */
+/* ======================================== */
+
+html, body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    -webkit-overflow-scrolling: touch !important; /* Scroll suave en iOS */
+    touch-action: pan-y !important; /* 🔑 La magia: permite scroll vertical, pero BLOQUEA el zoom */
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
