@@ -140,32 +140,35 @@
 }
 
 .profile-image {
-  width: 50%;
-  max-width: 350px;
+  width: 110px !important;
+  max-width: 110px !important;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
-  margin-top: -55px;
+  margin-top: -40px !important;
   margin-bottom: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  pointer-events: none !important;
 }
 
 .contenedor-avatar {
   text-align: center;
   width: 100%;
-  margin-top: -75px; /* Esto la baja exactamente a la mitad para que calce perfecto */
+  margin-top: -40px !important;
   position: relative;
   z-index: 5;
+  pointer-events: none !important;
 }
 
 .contenedor-avatar img {
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 110px !important;
+  height: 110px !important;
   border: 2px solid #00ff16 !important;
   display: inline-block;
+  pointer-events: none !important;
 }
 
 .footer {
@@ -199,8 +202,8 @@
     z-index: 2;
     border: none;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none !important;
 }
-
                 
 
                 .fila-iconos {
@@ -279,8 +282,9 @@
 .contenedor-perfil {
   position: relative;
   display: inline-block;
-  margin-top: -55px; /* Esto hace que la foto suba un poquito y muerda la portada azul de forma limpia */
+  margin-top: -40px !important;
   text-align: center;
+  pointer-events: none !important;
 }
 
 /* --- BOTÓN TRADUCTOR 🇪🇸/🇬🇧--- */
