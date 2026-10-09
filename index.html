@@ -1272,7 +1272,44 @@ img, audio, video {
     color: #ff4200 !important;            /* 👈 Letra Naranja */
     border: 2px solid #ffe000 !important; /* 👈 Borde Amarillo */
 }
-        
+/* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) 📱➡️ --- */
+@media screen and (orientation: landscape) {
+    /* Bajar los botones de traductor y música */
+    .idioma-flotante-izq {
+        top: 220px !important; /* Más abajo en horizontal */
+    }
+    
+    .musica-flotante-der {
+        top: 220px !important; /* Más abajo en horizontal */
+    }
+    
+    /* Ajustar el margen negativo del avatar para que no se superponga */
+    .contenedor-avatar {
+        margin-top: -40px !important; /* Menos negativo en horizontal */
+    }
+    
+    /* Ajustar la portada para que no ocupe tanto espacio */
+    .portada-img {
+        margin-bottom: -40px !important; /* Reducir la superposición */
+    }
+    
+    /* Reducir un poco el tamaño del avatar en horizontal */
+    .contenedor-avatarimg {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    /* Asegurar que los botones no se salgan de la pantalla */
+    .links-row {
+        flex-wrap: wrap !important;
+    }
+    
+    /* Ajustar el reloj y clima para que quepan mejor */
+    .fila-reloj-clima {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}     
     </style>
 <!--Aquí termina CSS 🏁-->
 
