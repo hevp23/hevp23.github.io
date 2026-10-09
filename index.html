@@ -1374,7 +1374,7 @@ img, audio, video {
     }
 }
 /* ======================================== */
-/* ✅ SCROLL GLOBAL Y BLOQUEO DE ZOOM 🔒    */
+/* ✅ SCROLL GLOBAL PARA TODO EL SITIO      */
 /* ======================================== */
 
 html, body {
@@ -1382,8 +1382,157 @@ html, body {
     overflow-x: hidden !important;
     height: auto !important;
     min-height: 100vh !important;
-    -webkit-overflow-scrolling: touch !important; /* Scroll suave en iOS */
-    touch-action: pan-y !important; /* 🔑 La magia: permite scroll vertical, pero BLOQUEA el zoom */
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important; /* ✅ Scroll vertical sí, zoom no 🔒 */
+}
+
+.container {
+    overflow: visible !important;
+}
+
+/* ======================================== */
+/* ✅ AVATAR: permite scroll a través de él ️ */
+/* ======================================== */
+
+/* El contenedor del avatar NO bloquea el scroll */
+.contenedor-avatar {
+    pointer-events: none !important; /* 🔑 El scroll pasa a través */
+}
+
+/* Pero la imagen del avatar SÍ puede recibir clics si los necesitas */
+.contenedor-avatarimg {
+    pointer-events: auto !important; /* 🔑 La imagen sigue siendo interactiva */
+}
+
+/* ======================================== */
+/* ✅ BOTONES FLOTANTES: scroll + clic      */
+/* ======================================== */
+
+.idioma-flotante-izq,
+.musica-flotante-der {
+    pointer-events: none !important;
+}
+
+.idioma-boton,
+.musica-boton,
+.musica-boton-ctrl,
+#btn-play-pause,
+.texto-idioma-actual,
+.texto-musica-actual {
+    pointer-events: auto !important;
+}
+
+/* ======================================== */
+/* ✅ MODO VERTICAL (POR DEFECTO) 📱⬆️      */
+/* ======================================== */
+
+/* Avatar más pequeño en vertical para no tapar tanto la portada */
+.contenedor-avatarimg {
+    width: 120px !important;  /* 🔑 Reducido de 150px a 120px */
+    height: 120px !important;
+}
+
+.contenedor-avatar {
+    margin-top: -60px !important;  /* Ajustado para el nuevo tamaño */
+}
+
+/* ======================================== */
+/* ✅ MODO HORIZONTAL (LANDSCAPE) 📱➡️      */
+/* ======================================== */
+@media screen and (orientation: landscape) {
+    
+    .idioma-flotante-izq {
+        top: 300px !important;
+        left: 15px !important;
+    }
+    
+    .musica-flotante-der {
+        top: 300px !important;
+        right: 15px !important;
+    }
+    
+    /* Avatar aún más pequeño en horizontal */
+    .contenedor-avatar {
+        margin-top: -50px !important;  /* 🔑 Menos negativo para que tape menos */
+    }
+    
+    .contenedor-avatarimg {
+        width: 100px !important;  /* 🔑 Reducido de 110px a 100px */
+        height: 100px !important;
+    }
+    
+    .portada-img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: fill !important;
+        object-position: center !important;
+        margin-bottom: -30px !important;
+        display: block !important;
+        overflow: visible !important;
+        pointer-events: none !important;
+    }
+    
+    .ribbon {
+        font-size: 17px !important;
+        padding: 12px 25px !important;
+    }
+    
+    .fila-reloj-clima {
+        width: auto !important;
+        max-width: 322px !important;
+        gap: 1px !important;
+        margin: 10px auto !important;
+        justify-content: center !important;
+    }
+    
+    .bloque-clima {
+        flex: 0 0 55px !important;
+        width: 55px !important;
+        min-width: 55px !important;
+        max-width: 55px !important;
+        font-size: 17px !important;
+    }
+    
+    .caja-reloj-centro {
+        flex: 0 0 210px !important;
+        width: 210px !important;
+        min-width: 210px !important;
+        max-width: 210px !important;
+    }
+    
+    #reloj-actual {
+        font-size: 1.1rem !important;
+    }
+    
+    #fecha-actual,
+    #ubicacion-actual {
+        font-size: 0.7rem !important;
+    }
+    
+    .btn-red {
+        width: 42px !important;
+        height: 42px !important;
+    }
+    
+    .nombre-red {
+        font-size: 8px !important;
+        padding: 1px 3px !important;
+    }
+}
+
+/* ======================================== */
+/* ✅ MODO PC/ESCRITORIO 💻                 */
+/* ======================================== */
+@media (min-width: 900px) {
+    html, body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    .container {
+        max-width: 700px !important;
+    }
 }
     </style>
 <!--Aquí termina CSS 🏁-->
