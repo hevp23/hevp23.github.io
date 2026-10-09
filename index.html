@@ -1275,14 +1275,14 @@ img, audio, video {
 /* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) ➡️ --- */
 @media screen and (orientation: landscape) {
     
-    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: posición correcta a los lados */
+    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: más abajo para no tapar la portada */
     .idioma-flotante-izq {
-        top: 200px !important;
+        top: 240px !important;
         left: 15px !important;
     }
     
     .musica-flotante-der {
-        top: 200px !important;
+        top: 240px !important;
         right: 15px !important;
     }
     
@@ -1296,13 +1296,13 @@ img, audio, video {
         height: 110px !important;
     }
     
-    /* ✅ PORTADA: se adapta automáticamente a cualquier imagen 🔑 */
+    /* ✅ PORTADA: ocupa TODO el ancho, sin espacios vacíos a los lados 🖼️ */
     .portada-img {
-        width: 100% !important;               /* Ocupa todo el ancho */
-        height: auto !important;              /* La altura se ajusta sola */
-        max-height: 220px !important;         /* Límite para no ocupar toda la pantalla */
-        object-fit: contain !important;       /* Nunca recorta la imagen */
-        object-position: center !important;   /* Centra si sobra espacio */
+        width: 100% !important;               /* Ocupa todo el ancho de la pantalla */
+        height: auto !important;              /* La altura se calcula sola según proporciones */
+        max-height: none !important;          /* ❌ Sin límite de altura */
+        object-fit: fill !important;          /* Estira para llenar todo el ancho */
+        object-position: center !important;
         margin-bottom: -30px !important;
         display: block !important;
     }
@@ -1313,11 +1313,11 @@ img, audio, video {
         padding: 12px 25px !important;
     }
     
-    /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: bien juntitos ️⏰🌡️ */
+    /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: bien pegaditos ️⏰🌡️ */
     .fila-reloj-clima {
-        width: auto !important;               /* Se ajusta al contenido */
-        max-width: 380px !important;          /* Ancho máximo compacto */
-        gap: 3px !important;                  /* Muy juntitos */
+        width: auto !important;
+        max-width: 320px !important;          /* 🔑 Más estrecho (antes 380px) */
+        gap: 0px !important;                  /* 🔑 Sin espacio entre ellos */
         margin: 10px auto !important;
         justify-content: center !important;
     }
@@ -1333,10 +1333,10 @@ img, audio, video {
     
     /* Reloj central compacto */
     .caja-reloj-centro {
-        flex: 0 0 220px !important;
-        width: 220px !important;
-        min-width: 220px !important;
-        max-width: 220px !important;
+        flex: 0 0 210px !important;
+        width: 210px !important;
+        min-width: 210px !important;
+        max-width: 210px !important;
     }
     
     #reloj-actual {
@@ -1359,6 +1359,7 @@ img, audio, video {
         padding: 1px 3px !important;
     }
 }
+
     </style>
 <!--Aquí termina CSS 🏁-->
 
