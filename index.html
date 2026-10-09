@@ -1272,23 +1272,24 @@ img, audio, video {
     color: #ff4200 !important;            /* 👈 Letra Naranja */
     border: 2px solid #ffe000 !important; /* 👈 Borde Amarillo */
 }
+
 /* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) ➡️ --- */
 @media screen and (orientation: landscape) {
     
-    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: más abajo para quedar debajo de la portada */
+    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: posición correcta */
     .idioma-flotante-izq {
-        top: 300px !important;  /* ⬇️ Bajados más (antes 275px) */
+        top: 300px !important;
         left: 15px !important;
     }
     
     .musica-flotante-der {
-        top: 300px !important;  /* ⬇️ Bajados más (antes 275px) */
+        top: 300px !important;
         right: 15px !important;
     }
     
     /* ✅ AVATAR: subido para quedar justo en la mitad de la portada */
     .contenedor-avatar {
-        margin-top: -60px !important;  /* ⬆️ Más negativo para subirlo (antes -30px) */
+        margin-top: -60px !important;
     }
     
     .contenedor-avatarimg {
@@ -1296,7 +1297,7 @@ img, audio, video {
         height: 110px !important;
     }
     
-    /* ✅ PORTADA: ocupa todo el ancho, sin espacios vacíos ️ */
+    /* ✅ PORTADA: ocupa todo el ancho y permite scroll desde cualquier parte 🖼️ */
     .portada-img {
         width: 100% !important;
         height: auto !important;
@@ -1305,7 +1306,8 @@ img, audio, video {
         object-position: center !important;
         margin-bottom: -30px !important;
         display: block !important;
-        overflow: visible !important;  /* ✅ Permite que el contenido fluya */
+        overflow: visible !important;
+        pointer-events: none !important;  /* 🔑 Permite scroll desde toda la imagen */
     }
     
     /* ✅ NOMBRE EN EL LISTÓN: tamaño normal */
@@ -1361,22 +1363,17 @@ img, audio, video {
     }
 }
 
-/* ✅ SCROLL EN LA PORTADA: permite deslizar hacia abajo desde la portada  */
+/* ✅ SCROLL EN TODA LA PÁGINA INCLUYENDO LA PORTADA 📱 */
 @media screen and (orientation: landscape) {
     html, body {
-        overflow-y: auto !important;  /* ✅ Permite scroll vertical */
-        overflow-x: hidden !important; /* ❌ Bloquea scroll horizontal */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
         height: auto !important;
         min-height: 100vh !important;
+        -webkit-overflow-scrolling: touch !important;
     }
-    
-    /* Asegurar que la portada no bloquee el scroll */
-    .portada-img {
-        pointer-events: auto !important;  /* ✅ Permite interacción */
-        -webkit-overflow-scrolling: touch !important; /* ✅ Scroll suave en iOS */
-    }
-        }
-        
+}
+ 
     </style>
 <!--Aquí termina CSS 🏁-->
 
