@@ -1374,7 +1374,7 @@ img, audio, video {
     }
 }
 /* ======================================== */
-/* ✅ SCROLL GLOBAL PARA TODO EL SITIO      */
+/* ✅ SCROLL GLOBAL Y BLOQUEO DE ZOOM 🔒    */
 /* ======================================== */
 
 html, body {
@@ -1383,7 +1383,7 @@ html, body {
     height: auto !important;
     min-height: 100vh !important;
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important; /* ✅ Scroll vertical sí, zoom no 🔒 */
+    touch-action: pan-y !important;
 }
 
 .container {
@@ -1391,17 +1391,25 @@ html, body {
 }
 
 /* ======================================== */
-/* ✅ AVATAR: permite scroll a través de él ️ */
+/* ✅ ACTUALIZAR TAMAÑOS ORIGINALES         */
 /* ======================================== */
 
-/* El contenedor del avatar NO bloquea el scroll */
-.contenedor-avatar {
-    pointer-events: none !important; /* 🔑 El scroll pasa a través */
+/* Busca y REEMPLAZA estas líneas en tu CSS BASE (al inicio): */
+.contenedor-avatarimg {
+    width: 120px !important;      /* 🔑 Reducido de 150px */
+    height: 120px !important;
+    border: 2px solid #00ff16 !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
 }
 
-/* Pero la imagen del avatar SÍ puede recibir clics si los necesitas */
-.contenedor-avatarimg {
-    pointer-events: auto !important; /* 🔑 La imagen sigue siendo interactiva */
+.contenedor-avatar {
+    text-align: center !important;
+    width: 100% !important;
+    margin-top: -60px !important;  /* 🔑 Ajustado para el nuevo tamaño */
+    position: relative !important;
+    z-index: 5 !important;
+    pointer-events: none !important; /* 🔑 Permite scroll a través */
 }
 
 /* ======================================== */
@@ -1423,20 +1431,6 @@ html, body {
 }
 
 /* ======================================== */
-/* ✅ MODO VERTICAL (POR DEFECTO) 📱⬆️      */
-/* ======================================== */
-
-/* Avatar más pequeño en vertical para no tapar tanto la portada */
-.contenedor-avatarimg {
-    width: 120px !important;  /* 🔑 Reducido de 150px a 120px */
-    height: 120px !important;
-}
-
-.contenedor-avatar {
-    margin-top: -60px !important;  /* Ajustado para el nuevo tamaño */
-}
-
-/* ======================================== */
 /* ✅ MODO HORIZONTAL (LANDSCAPE) 📱➡️      */
 /* ======================================== */
 @media screen and (orientation: landscape) {
@@ -1451,13 +1445,14 @@ html, body {
         right: 15px !important;
     }
     
-    /* Avatar aún más pequeño en horizontal */
+    /* Avatar más pequeño en horizontal */
     .contenedor-avatar {
-        margin-top: -50px !important;  /* 🔑 Menos negativo para que tape menos */
+        margin-top: -40px !important;  /* 🔑 Menos negativo */
+        pointer-events: none !important;
     }
     
     .contenedor-avatarimg {
-        width: 100px !important;  /* 🔑 Reducido de 110px a 100px */
+        width: 100px !important;  /* 🔑 Reducido */
         height: 100px !important;
     }
     
@@ -1532,6 +1527,16 @@ html, body {
     
     .container {
         max-width: 700px !important;
+    }
+    
+    /* Avatar más grande en PC */
+    .contenedor-avatar {
+        margin-top: -80px !important;
+    }
+    
+    .contenedor-avatarimg {
+        width: 150px !important;  /* Tamaño cómodo en PC */
+        height: 150px !important;
     }
 }
     </style>
