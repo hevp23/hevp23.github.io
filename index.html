@@ -1272,85 +1272,91 @@ img, audio, video {
     color: #ff4200 !important;            /* 👈 Letra Naranja */
     border: 2px solid #ffe000 !important; /* 👈 Borde Amarillo */
 }
-/* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) 📱➡️ --- */
+/* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) ➡️ --- */
 @media screen and (orientation: landscape) {
-    /* Bajar los botones de traductor y música */
+    
+    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: posición correcta a los lados */
     .idioma-flotante-izq {
-        top: 280px !important;
-        left: 20px !important;
+        top: 200px !important;
+        left: 15px !important;
     }
     
     .musica-flotante-der {
-        top: 280px !important;
-        right: 20px !important;
+        top: 200px !important;
+        right: 15px !important;
     }
     
-    /* Ajustar el avatar */
+    /* ✅ AVATAR: tamaño equilibrado */
     .contenedor-avatar {
-        margin-top: -20px !important;
+        margin-top: -30px !important;
     }
     
     .contenedor-avatarimg {
-        width: 100px !important;
-        height: 100px !important;
+        width: 110px !important;
+        height: 110px !important;
     }
     
-    /* Ajustar la portada */
+    /* ✅ PORTADA: se adapta automáticamente a cualquier imagen 🔑 */
     .portada-img {
-        margin-bottom: -20px !important;
-        max-height: 180px !important;
-        object-fit: cover !important;
+        width: 100% !important;               /* Ocupa todo el ancho */
+        height: auto !important;              /* La altura se ajusta sola */
+        max-height: 220px !important;         /* Límite para no ocupar toda la pantalla */
+        object-fit: contain !important;       /* Nunca recorta la imagen */
+        object-position: center !important;   /* Centra si sobra espacio */
+        margin-bottom: -30px !important;
+        display: block !important;
     }
     
-    /* Hacer el nombre más pequeño */
+    /* ✅ NOMBRE EN EL LISTÓN: tamaño normal */
     .ribbon {
-        font-size: 14px !important;
-        padding: 8px 15px !important;
+        font-size: 17px !important;
+        padding: 12px 25px !important;
     }
     
-    /* 🔧 ARREGLAR LA FILA DE CLIMA-RELOJ-TEMPERATURA  */
+    /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: bien juntitos ️⏰🌡️ */
     .fila-reloj-clima {
-        width: 85% !important; /* Más estrecha para centrar mejor */
-        max-width: 500px !important;
-        gap: 5px !important; /*  Reducir espacio entre elementos */
+        width: auto !important;               /* Se ajusta al contenido */
+        max-width: 380px !important;          /* Ancho máximo compacto */
+        gap: 3px !important;                  /* Muy juntitos */
         margin: 10px auto !important;
+        justify-content: center !important;
     }
     
-    /* Reducir el tamaño de los bloques de clima y temperatura */
+    /* Bloques de clima y temperatura compactos */
     .bloque-clima {
-        flex: 0 0 50px !important;
-        width: 50px !important;
-        min-width: 50px !important;
-        max-width: 50px !important;
-        font-size: 16px !important;
+        flex: 0 0 55px !important;
+        width: 55px !important;
+        min-width: 55px !important;
+        max-width: 55px !important;
+        font-size: 17px !important;
     }
     
-    /* Reducir el reloj central */
+    /* Reloj central compacto */
     .caja-reloj-centro {
-        flex: 0 0 200px !important;
-        width: 200px !important;
-        min-width: 200px !important;
-        max-width: 200px !important;
+        flex: 0 0 220px !important;
+        width: 220px !important;
+        min-width: 220px !important;
+        max-width: 220px !important;
     }
     
     #reloj-actual {
-        font-size: 1rem !important;
+        font-size: 1.1rem !important;
     }
     
     #fecha-actual,
     #ubicacion-actual {
-        font-size: 0.65rem !important;
+        font-size: 0.7rem !important;
     }
     
-    /* Reducir botones sociales */
+    /* Botones sociales */
     .btn-red {
-        width: 40px !important;
-        height: 40px !important;
+        width: 42px !important;
+        height: 42px !important;
     }
     
     .nombre-red {
-        font-size: 7px !important;
-        padding: 1px 2px !important;
+        font-size: 8px !important;
+        padding: 1px 3px !important;
     }
 }
     </style>
