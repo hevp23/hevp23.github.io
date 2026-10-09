@@ -1275,20 +1275,20 @@ img, audio, video {
 /* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) ➡️ --- */
 @media screen and (orientation: landscape) {
     
-    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: bajados para quedar debajo de la portada */
+    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: más abajo para quedar debajo de la portada */
     .idioma-flotante-izq {
-        top: 275px !important;  /* ⬇️ Bajados (antes 240px) */
+        top: 300px !important;  /* ⬇️ Bajados más (antes 275px) */
         left: 15px !important;
     }
     
     .musica-flotante-der {
-        top: 275px !important;  /* ⬇️ Bajados (antes 240px) */
+        top: 300px !important;  /* ⬇️ Bajados más (antes 275px) */
         right: 15px !important;
     }
     
-    /* ✅ AVATAR: tamaño equilibrado */
+    /* ✅ AVATAR: subido para quedar justo en la mitad de la portada */
     .contenedor-avatar {
-        margin-top: -30px !important;
+        margin-top: -60px !important;  /* ⬆️ Más negativo para subirlo (antes -30px) */
     }
     
     .contenedor-avatarimg {
@@ -1296,7 +1296,7 @@ img, audio, video {
         height: 110px !important;
     }
     
-    /* ✅ PORTADA: ocupa todo el ancho, sin espacios vacíos 🖼️ */
+    /* ✅ PORTADA: ocupa todo el ancho, sin espacios vacíos ️ */
     .portada-img {
         width: 100% !important;
         height: auto !important;
@@ -1305,6 +1305,7 @@ img, audio, video {
         object-position: center !important;
         margin-bottom: -30px !important;
         display: block !important;
+        overflow: visible !important;  /* ✅ Permite que el contenido fluya */
     }
     
     /* ✅ NOMBRE EN EL LISTÓN: tamaño normal */
@@ -1316,8 +1317,8 @@ img, audio, video {
     /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: separados 1px del reloj ⏰🌡️ */
     .fila-reloj-clima {
         width: auto !important;
-        max-width: 322px !important;  /* 🔑 Un poquito más ancho para el gap */
-        gap: 1px !important;          /* 🔑 Separación de 1px (antes 0px) */
+        max-width: 322px !important;
+        gap: 1px !important;
         margin: 10px auto !important;
         justify-content: center !important;
     }
@@ -1359,6 +1360,23 @@ img, audio, video {
         padding: 1px 3px !important;
     }
 }
+
+/* ✅ SCROLL EN LA PORTADA: permite deslizar hacia abajo desde la portada  */
+@media screen and (orientation: landscape) {
+    html, body {
+        overflow-y: auto !important;  /* ✅ Permite scroll vertical */
+        overflow-x: hidden !important; /* ❌ Bloquea scroll horizontal */
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+    
+    /* Asegurar que la portada no bloquee el scroll */
+    .portada-img {
+        pointer-events: auto !important;  /* ✅ Permite interacción */
+        -webkit-overflow-scrolling: touch !important; /* ✅ Scroll suave en iOS */
+    }
+        }
+        
     </style>
 <!--Aquí termina CSS 🏁-->
 
