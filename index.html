@@ -1276,40 +1276,83 @@ img, audio, video {
 @media screen and (orientation: landscape) {
     /* Bajar los botones de traductor y música */
     .idioma-flotante-izq {
-        top: 220px !important; /* Más abajo en horizontal */
+        top: 280px !important;
+        left: 20px !important;
     }
     
     .musica-flotante-der {
-        top: 220px !important; /* Más abajo en horizontal */
+        top: 280px !important;
+        right: 20px !important;
     }
     
-    /* Ajustar el margen negativo del avatar para que no se superponga */
+    /* Ajustar el avatar */
     .contenedor-avatar {
-        margin-top: -40px !important; /* Menos negativo en horizontal */
+        margin-top: -20px !important;
     }
     
-    /* Ajustar la portada para que no ocupe tanto espacio */
-    .portada-img {
-        margin-bottom: -40px !important; /* Reducir la superposición */
-    }
-    
-    /* Reducir un poco el tamaño del avatar en horizontal */
     .contenedor-avatarimg {
-        width: 120px !important;
-        height: 120px !important;
+        width: 100px !important;
+        height: 100px !important;
     }
     
-    /* Asegurar que los botones no se salgan de la pantalla */
-    .links-row {
-        flex-wrap: wrap !important;
+    /* Ajustar la portada */
+    .portada-img {
+        margin-bottom: -20px !important;
+        max-height: 180px !important;
+        object-fit: cover !important;
     }
     
-    /* Ajustar el reloj y clima para que quepan mejor */
+    /* Hacer el nombre más pequeño */
+    .ribbon {
+        font-size: 14px !important;
+        padding: 8px 15px !important;
+    }
+    
+    /* 🔧 ARREGLAR LA FILA DE CLIMA-RELOJ-TEMPERATURA  */
     .fila-reloj-clima {
-        width: 100% !important;
-        max-width: 100% !important;
+        width: 85% !important; /* Más estrecha para centrar mejor */
+        max-width: 500px !important;
+        gap: 5px !important; /*  Reducir espacio entre elementos */
+        margin: 10px auto !important;
     }
-}     
+    
+    /* Reducir el tamaño de los bloques de clima y temperatura */
+    .bloque-clima {
+        flex: 0 0 50px !important;
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+        font-size: 16px !important;
+    }
+    
+    /* Reducir el reloj central */
+    .caja-reloj-centro {
+        flex: 0 0 200px !important;
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+    
+    #reloj-actual {
+        font-size: 1rem !important;
+    }
+    
+    #fecha-actual,
+    #ubicacion-actual {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Reducir botones sociales */
+    .btn-red {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .nombre-red {
+        font-size: 7px !important;
+        padding: 1px 2px !important;
+    }
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
