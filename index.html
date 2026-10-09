@@ -1275,14 +1275,14 @@ img, audio, video {
 /* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) ➡️ --- */
 @media screen and (orientation: landscape) {
     
-    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: más abajo para no tapar la portada */
+    /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: bajados para quedar debajo de la portada */
     .idioma-flotante-izq {
-        top: 240px !important;
+        top: 275px !important;  /* ⬇️ Bajados (antes 240px) */
         left: 15px !important;
     }
     
     .musica-flotante-der {
-        top: 240px !important;
+        top: 275px !important;  /* ⬇️ Bajados (antes 240px) */
         right: 15px !important;
     }
     
@@ -1296,12 +1296,12 @@ img, audio, video {
         height: 110px !important;
     }
     
-    /* ✅ PORTADA: ocupa TODO el ancho, sin espacios vacíos a los lados 🖼️ */
+    /* ✅ PORTADA: ocupa todo el ancho, sin espacios vacíos 🖼️ */
     .portada-img {
-        width: 100% !important;               /* Ocupa todo el ancho de la pantalla */
-        height: auto !important;              /* La altura se calcula sola según proporciones */
-        max-height: none !important;          /* ❌ Sin límite de altura */
-        object-fit: fill !important;          /* Estira para llenar todo el ancho */
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: fill !important;
         object-position: center !important;
         margin-bottom: -30px !important;
         display: block !important;
@@ -1313,11 +1313,11 @@ img, audio, video {
         padding: 12px 25px !important;
     }
     
-    /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: bien pegaditos ️⏰🌡️ */
+    /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: separados 1px del reloj ⏰🌡️ */
     .fila-reloj-clima {
         width: auto !important;
-        max-width: 320px !important;          /* 🔑 Más estrecho (antes 380px) */
-        gap: 0px !important;                  /* 🔑 Sin espacio entre ellos */
+        max-width: 322px !important;  /* 🔑 Un poquito más ancho para el gap */
+        gap: 1px !important;          /* 🔑 Separación de 1px (antes 0px) */
         margin: 10px auto !important;
         justify-content: center !important;
     }
@@ -1359,7 +1359,6 @@ img, audio, video {
         padding: 1px 3px !important;
     }
 }
-
     </style>
 <!--Aquí termina CSS 🏁-->
 
