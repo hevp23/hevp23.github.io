@@ -25,6 +25,9 @@
     <meta property="og:image" content="https://hevp23.github.io/treelinks-compartir.jpg">
     <meta property="og:url" content="https://hevp23.github.io/">
 
+<!--Reloj de 7 segmentos-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
+
 <!--Aquí comienza CSS 🚩-->
     <style>
         * {
@@ -1618,9 +1621,9 @@ html, body {
 
   <div class="caja-reloj-centro" style="background-color: #ff4200; padding: 1px 7px; border-radius: 12px; font-family: sans-serif; border: none;">
     <div id="fecha-actual" style="color: #00ff16; font-size: clamp(7px, 7.0vw, 0.77rem) !important; text-align: center; font-weight: bold; white-space: normal; word-wrap: break-word; line-height: 1.2; padding: 0 5px;">Cargando fecha...</div>
-    <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: -4px; color: #00ff16; text-align: center;"><span id="reloj-digitos">00:00:00</span> <span id="reloj-ampm">AM</span></div>
+    <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: -4px; color: #00ff16; text-align: center;"><span id="reloj-digitos" class="dseg7-classic">00:00:00</span> <span id="reloj-ampm">AM</span></div>
     <div id="ubicacion-actual" style="display: none; color: #00ff16; font-size: clamp(7px, 7.0vw, 0.77rem); text-align: center; font-weight: bold; margin-top: 4px;"></div>
-  </div>
+</div>
 
   <div class="bloque-clima" id="bloque-temp" style="display: none;">
     <span id="temp-num">--°</span>
