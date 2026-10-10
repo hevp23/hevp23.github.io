@@ -12,6 +12,13 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
 
+<!-- Metadatos para deshabilitar modo de lectura y marcar como aplicación web -->
+<meta name="application-name" content="TreeLinks">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="reader" content="no-reader-mode">
+
     <!-- Vista previa al compartir (Open Graph) ↗️-->
     <meta property="og:title" content="Héctor Eduardo Valladares Pérez - @hevp23 - TreeLinks">
     <meta property="og:description" content="🌳 TreeLinks: Todos mis enlaces en un solo lugar ✨️. ✍️🧑‍💻 Sitio web hecho a mano.">
@@ -1552,19 +1559,20 @@ html, body {
 <!--Foto de portada-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<img src="hevpolis.jpg" class="portada-img" alt="Foto de portada" draggable="false" oncontextmenu="return false;">
+<div class="portada-img" style="background-image: url('hevpolis.jpg'); background-size: cover; background-position: center; width: 100%; height: 200px;" role="img" aria-label="Foto de portada" draggable="false" oncontextmenu="return false;"></div>
 
 <!-- Foto de perfil -->
-<div class="contenedor-avatar">
-<img src="https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials" alt="Foto de Perfil" draggable="false" oncontextmenu="return false;">
+<div class="contenedor-avatar" draggable="false" oncontextmenu="return false;">
+  <div style="background-image: url('https://0.gravatar.com/avatar/4e2ac996c9fb269ba1e9b81fd52f9b68c6895b27ff9a16baa2a52880ce30f5c9?size=512&d=initials'); background-size: cover; background-position: center; width: 100%; height: 100%; border-radius: 50%;" role="img" aria-label="Foto de Perfil" draggable="false" oncontextmenu="return false;"></div>
 </div>
 
+<!--Botón Traductor 🇪🇸/🇬🇧-->
 <div class="idioma-flotante-izq">
   <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()">🇪🇸</div>
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
 </div>
 
-<!-- Botón Música (Derecha) con controles dinámicos -->
+<!-- Botón Musical ▶️/⏸️-->
 <div class="musica-flotante-der">
   <div class="musica-controles">
     <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()" style="display:none;">⏪️</button>
