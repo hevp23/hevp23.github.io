@@ -1581,6 +1581,32 @@ html, body {
         height: 0 !important;
     }
 }
+/* Estilo base para todos los íconos de la cuadrícula */
+.icono-enlace {
+    display: inline-block;
+    width: 32px; /* o el tamaño que usés */
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+
+/* Rutas individuales de cada imagen */
+.icono-comunidad { background-image: url('cruz-colina.jpg'); }
+.icono-redes { background-image: url('globo-terraneo.png'); }
+.icono-fotos { background-image: url('paisaje-sol.png'); }
+.icono-mensajes { background-image: url('chat-burbuja.png'); }
+.icono-asistentes { background-image: url('robot-chat.png'); }
+.icono-juegos { background-image: url('controlador-juego.jpg'); }
+.icono-mapas { background-image: url('mapa-pin.png'); }
+.icono-servidores { background-image: url('personas.jpg'); }
+.icono-educacion { background-image: url('libros.png'); }
+.icono-deportes { background-image: url('futbol.png'); }
+.icono-tecnologia { background-image: url('tecnologia-chip.png'); }
+.icono-portafolio { background-image: url('portafolio-maletin.png'); }
+.icono-economia { background-image: url('economia-monedas.png'); }
+.icono-extra { background-image: url('extra-estrella.png'); }
 
     </style>
 <!--Aquí termina CSS 🏁-->
@@ -1759,94 +1785,96 @@ html, body {
     
 </div>
 
+ 
 <!-- Cuadrícula de Enlaces TreeLinks -->
 <div class="cuadricula-enlaces">
   
   <!-- 1. Comunidad -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-comunidad'); return false;">
-    <img src="cruz-colina.jpg" class="icono-enlace" alt="Comunidad" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="cruz-colina.jpg" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-comunidad" data-es="Comunidad" data-en="Community">Comunidad</span>
   </a>
 
   <!-- 2. Redes Sociales -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-redes'); return false;">
-    <img src="globo-terraneo.png" class="icono-enlace" alt="Redes" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="globo-terraneo.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-redes" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</span>
   </a>
 
   <!-- 3. Fotos -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-fotos'); return false;">
-    <img src="paisaje-sol.png" class="icono-enlace" alt="Fotos" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="paisaje-sol.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-fotos" data-es="Fotos" data-en="Photos">Fotos</span>
   </a>
 
   <!-- 4. Mensajes -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-mensajes'); return false;">
-    <img src="chat-burbuja.png" class="icono-enlace" alt="Mensajes" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="chat-burbuja.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-mensajes" data-es="Mensajes" data-en="Messages">Mensajes</span>
   </a>
 
   <!-- 5. Asistentes -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-asistentes'); return false;">
-    <img src="robot-chat.png" class="icono-enlace" alt="Asistentes" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="robot-chat.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-asistentes" data-es="Asistentes" data-en="Assistants">Asistentes</span>
   </a>
 
   <!-- 6. Juegos -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-juegos'); return false;">
-    <img src="controlador-juego.jpg" class="icono-enlace" alt="Juegos" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="controlador-juego.jpg" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-juegos" data-es="Juegos" data-en="Games">Juegos</span>
   </a>
 
   <!-- 7. Mapas -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-mapas'); return false;">
-    <img src="mapa-pin.png" class="icono-enlace" alt="Mapas" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="mapa-pin.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-mapas" data-es="Mapas" data-en="Maps">Mapas</span>
   </a>
 
   <!-- 8. Servidores -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-servidores'); return false;">
-    <img src="personas.jpg" class="icono-enlace" alt="Servidores" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="personas.jpg" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-servidores" data-es="Servidores" data-en="Servers">Servidores</span>
   </a>
 
   <!-- 9. Educación -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-educacion'); return false;">
-    <img src="libros.png" class="icono-enlace" alt="Educación" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="libros.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-educacion" data-es="Educación" data-en="Education">Educación</span>
   </a>
 
   <!-- 10. Deportes -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-deportes'); return false;">
-    <img src="futbol.png" class="icono-enlace" alt="Deportes" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="futbol.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-deportes" data-es="Deportes" data-en="Sports">Deportes</span>
   </a>
 
   <!-- 11. Tecnología -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-tecnologia'); return false;">
-    <img src="tecnologia-chip.png" class="icono-enlace" alt="Tecnología" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="tecnologia-chip.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-tecnologia" data-es="Tecnología" data-en="Technology">Tecnología</span>
   </a>
 
   <!-- 12. Portafolio -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-portafolio'); return false;">
-    <img src="portafolio-maletin.png" class="icono-enlace" alt="Portafolio" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="portafolio-maletin.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-portafolio" data-es="Portafolio" data-en="Portfolio">Portafolio</span>
   </a>
 
   <!-- 13. Economía -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-economia'); return false;">
-    <img src="economia-monedas.png" class="icono-enlace" alt="Economía" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="economia-monedas.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-economia" data-es="Economía" data-en="Economy">Economía</span>
   </a>
 
   <!-- 14. Extra -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-extra'); return false;">
-    <img src="extra-estrella.png" class="icono-enlace" alt="Extra" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <img src="extra-estrella.png" class="icono-enlace" alt="" role="presentation" aria-hidden="true" draggable="false" oncontextmenu="return false;">
     <span id="txt-extra" data-es="Extra" data-en="Extra">Extra</span>
   </a>
 
 </div>
+
 
 
 </div>
