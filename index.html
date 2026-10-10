@@ -1571,6 +1571,16 @@ html, body {
         display: none !important;
     }
 }
+/* Candado definitivo contra el Modo Lectura para los íconos de la cuadrícula */
+@media print {
+    .icono-enlace {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+}
 
     </style>
 <!--Aquí termina CSS 🏁-->
