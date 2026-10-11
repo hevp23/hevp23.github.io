@@ -667,6 +667,12 @@ picture {
   display: inline-block !important;
   vertical-align: middle !important;
 }
+/* Icono de Redes Sociales como fondo */
+.icono-fondo-redes {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
 /* --- PANTALLAS INTERNAS --- */
 .pantalla-interna {
   display: none;
@@ -1771,7 +1777,11 @@ html, body {
 
   <!-- 2. Redes Sociales -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-redes'); return false;">
-    <img src="globo-terraneo.png" class="icono-enlace" alt="Redes" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+    <span
+  class="icono-enlace icono-fondo-redes"
+  aria-hidden="true"
+  style="background-image: url('globo-terraneo.png');">
+    </span>
     <span id="txt-redes" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</span>
   </a>
 
