@@ -1784,11 +1784,10 @@ html, body {
 }
 /* ================================================================ */
 /* === ️ SCROLL Y VIBRACIÓN - AJUSTE DEFINITIVO ANDROID === */
-html {
-    overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important; /* La magia: permite scroll vertical, bloquea zoom y vibración */
-}
+html, body {
+  touch-action: auto !important;
+  overflow-y: auto !important;
+        }
 
 body {
     overflow-y: auto !important;
