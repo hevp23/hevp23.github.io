@@ -1666,6 +1666,16 @@ html, body {
     }
 }
 /* ================================================================ */
+/* === 🛡️ ESCUDO ANTI-MODO LECTURA PARA LAS 14 PANTALLAS === */
+.imagen-pantalla-interna[aria-hidden="true"] {
+    display: none !important;
+}
+@media print {
+    .imagen-pantalla-interna {
+        display: none !important;
+    }
+}
+/* ================================================================ */
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -3190,7 +3200,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="cruz-colina.jpg" alt="Comunidad" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+    <img src="cruz-colina.jpg" alt="Comunidad" class="imagen-pantalla-interna" aria-hidden="true" draggable="false" oncontextmenu="return false;">
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
     <!-- VERSÍCULO DIARIO -->
 <div class="rectangulo-frase">
