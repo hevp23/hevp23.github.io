@@ -1783,23 +1783,32 @@ html, body {
     }
 }
 /* ================================================================ */
-/* === 🛡️ SCROLL SUAVE Y SIN VIBRACIONES RARAS (DEFINITIVO) === */
-html, body {
-    overflow-x: hidden !important;
-    touch-action: manipulation !important; /* Esto quita el zoom de doble toque y la vibración rara */
+/* === ️ SCROLL Y VIBRACIÓN - AJUSTE DEFINITIVO ANDROID === */
+html {
+    overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important; /* La magia: permite scroll vertical, bloquea zoom y vibración */
 }
 
 body {
-    overflow-y: auto !important; /* Asegura que el scroll vertical funcione siempre */
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh !important;
 }
 
-/* Quitar brillo y vibración específicamente en botones y enlaces */
-a, button, [onclick], .boton-enlace, .boton-interno, .boton-volver {
-    -webkit-tap-highlight-color: transparent !important;
-    touch-action: manipulation !important;
+/* Asegurar que las pantallas internas también hagan scroll */
+.pantalla-interna {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+}
+
+/* Evitar la vibración de selección fallida en toda la web */
+* {
     -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
     user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
     outline: none !important;
 }
 /* ================================================================ */
