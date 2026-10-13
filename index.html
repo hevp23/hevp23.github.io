@@ -1701,23 +1701,24 @@ html, body {
     }
 }
 /* ================================================================ */
-/* === 🛡️ IMAGEN PANTALLA INTERNA (FONDO BLINDADO) - VERSIÓN CORREGIDA === */
+/* === ️ IMAGEN PANTALLA INTERNA (PARA DIV CON FONDO) - LIMPIO Y DEFINITIVO === */
 .imagen-pantalla-interna {
+    display: block !important;
     width: 120px !important;
     height: 120px !important;
     min-width: 120px !important;
     min-height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
     border-radius: 50% !important;
     border: 4px solid #ff4200 !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
     margin: 20px auto 15px auto !important;
-    display: block !important;
     background-size: cover !important;
-    background-position: center !important;
+    background-position: center center !important;
     background-repeat: no-repeat !important;
     background-color: transparent !important;
     overflow: hidden !important;
-    position: relative !important;
 }
 
 @media (min-width: 900px) {
@@ -1726,37 +1727,30 @@ html, body {
         height: 150px !important;
         min-width: 150px !important;
         min-height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
+    }
+}
+
+@media print {
+    .imagen-pantalla-interna {
+        display: none !important;
     }
 }
 /* ================================================================ */
-/* === ️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA === */
+
+/* === 🛡️ CHEQUE VERIFICADO - LIMPIO Y DEFINITIVO === */
+.cheque-verificado {
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    vertical-align: middle;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
 @media print {
     .cheque-verificado {
         display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
-    }
-}
-
-/* Forzar ocultamiento en cualquier contexto de lectura */
-svg.cheque-verificado[aria-hidden="true"] {
-    display: none !important;
-}
-/* ================================================================ */
-/* === ️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA === */
-svg.cheque-verificado {
-    /* Se ve normal en el sitio web */
-}
-
-@media print {
-    svg.cheque-verificado {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
     }
 }
 /* ================================================================ */
