@@ -1758,6 +1758,31 @@ html, body {
     }
 }
 /* ================================================================ */
+/* === 🛡️ LIMPIAR MODO LECTURA (OCULTAR TEXTOS NO DESEADOS) === */
+@media print {
+    /* Ocultar elementos específicos en Modo Lectura/Impresión */
+    .idioma-flotante-izq,       /* Botón Español */
+    .musica-flotante-der,       /* Botón Reproducir */
+    .fila-reloj-clima,          /* Fecha, reloj, clima, temperatura */
+    .fila-iconos,               /* Íconos de redes sociales */
+    .footer,                    /* Pie de página y advertencia */
+    .rectangulo-frase,          /* Frases motivadoras */
+    .titulo-pantalla,           /* Títulos de las pantallas internas */
+    #canvas,                    /* Código QR */
+    .boton-volver,              /* Botones de volver */
+    .imagen-pantalla-interna,   /* Imágenes de pantallas */
+    .cuadricula-enlaces,        /* Menú principal */
+    .cuadricula-interna {       /* Enlaces internos */
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+}
+/* ================================================================ */
     </style>
 <!--Aquí termina CSS 🏁-->
 
