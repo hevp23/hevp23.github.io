@@ -1676,6 +1676,30 @@ html, body {
     }
 }
 /* ================================================================ */
+/* === 🛡️ IMAGEN PANTALLA INTERNA (FONDO BLINDADO) === */
+.imagen-pantalla-interna {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    border: 4px solid #ff4200 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    margin: 20px auto 15px auto !important;
+    display: block !important; /* ¡Clave para que no desaparezca! */
+    
+    /* Propiedades de fondo para que se vea la imagen */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Ajuste para PC */
+@media (min-width: 900px) {
+    .imagen-pantalla-interna {
+        width: 150px !important;
+        height: 150px !important;
+    }
+}
+/* ================================================================ */
     </style>
 <!--Aquí termina CSS 🏁-->
 
