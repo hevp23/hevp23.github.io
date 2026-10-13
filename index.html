@@ -1061,7 +1061,7 @@ img, audio, video {
   user-drag: none;
 }
 
-/* === 🛡️ IMAGEN PANTALLA INTERNA (FONDO BLINDADO) - DEFINITIVO === */
+/* === 🛡️ IMAGEN PANTALLA INTERNA - VERSIÓN AGRESIVA === */
 .imagen-pantalla-interna {
     width: 120px !important;
     height: 120px !important;
@@ -1073,11 +1073,13 @@ img, audio, video {
     border: 4px solid #ff4200 !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
     margin: 20px auto 15px auto !important;
-    display: block !important;
+    display: inline-block !important;
     background-size: cover !important;
-    background-position: center !important;
+    background-position: center center !important;
     background-repeat: no-repeat !important;
     overflow: hidden !important;
+    position: relative !important;
+    vertical-align: middle !important;
 }
 
 @media (min-width: 900px) {
@@ -1091,14 +1093,16 @@ img, audio, video {
     }
 }
 
-/* Ocultar SOLO en Modo Lectura/Impresión */
 @media print {
     .imagen-pantalla-interna {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 }
 /* ================================================================ */
-
 /* Ajuste para PC */
 @media (min-width: 900px) {
     .imagen-pantalla-interna {
@@ -3276,6 +3280,27 @@ function cargarVersiculo(idioma) {
   }
 </script>
 
+<script>
+    // === 🛡️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA ===
+(function() {
+    const cheque = document.querySelector('.cheque-verificado');
+    if (cheque) {
+        // Detectar Modo Lectura de Chrome
+        const observer = new MutationObserver(function(mutations) {
+            if (document.documentElement.classList.contains('reader-mode') || 
+                document.body.classList.contains('reader-mode')) {
+                cheque.style.display = 'none !important';
+            }
+        });
+        
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+})();
+// ================================================================
+</script>
 <!--Aquí termina SCRIPT 🏁-->
 
         <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️ 📶 💼 💰 ⭐️-->
