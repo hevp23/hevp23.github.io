@@ -1783,17 +1783,20 @@ html, body {
     }
 }
 /* ================================================================ */
-/* === ️ SCROLL DEFINITIVO PARA MÓVIL === */
+/* === 🛠️ SCROLL LIBRE Y SIN BLOQUEOS (DEFINITIVO) === */
 html {
-    overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important; /* Permite scroll vertical, bloquea zoom */
+    height: auto !important;
+    overflow-y: scroll !important; /* 'scroll' obliga al navegador a permitir el deslizamiento */
+    -webkit-overflow-scrolling: touch !important; /* Scroll suave en móviles */
+    touch-action: pan-y !important; /* Permite deslizar hacia arriba/abajo */
 }
 
 body {
-    overflow-y: auto !important;
     height: auto !important;
     min-height: 100vh !important;
+    overflow-y: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 /* ================================================================ */
     </style>
@@ -1801,7 +1804,7 @@ body {
 
 </head>
 
-    <!--Aquí comienza HTML 🚩-->
+    <!--Aquí comienza HTML y BODY 🚩-->
 <body>
 <!-- Foto de portada -->
 <img src="hevpolis.jpg" class="portada-img" alt="Foto de portada" aria-hidden="true" draggable="false" oncontextmenu="return false;">
@@ -4522,4 +4525,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </div>
 </body>
+<!-- Aquí termina BODY 🚩 -->
 </html>
