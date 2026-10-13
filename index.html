@@ -3270,43 +3270,33 @@ function cargarVersiculo(idioma) {
 </script>
 
 <script>
-    // === 🛡️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA ===
-(function() {
-    const cheque = document.querySelector('.cheque-verificado');
-    if (cheque) {
-        // Detectar Modo Lectura de Chrome
-        const observer = new MutationObserver(function(mutations) {
-            if (document.documentElement.classList.contains('reader-mode') || 
-                document.body.classList.contains('reader-mode')) {
-                cheque.style.display = 'none !important';
-            }
-        });
-        
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
-    }
-})();
-// ================================================================
-</script>
-<script>
-// === 🛡️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA ===
+// === 🛡️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA (ÚNICO Y DEFINITIVO) ===
 document.addEventListener("DOMContentLoaded", function() {
     const cheque = document.querySelector('.cheque-verificado');
-    if (cheque) {
-        // Forzar ocultamiento si detecta que es un entorno de lectura/impresión
-        const mediaQuery = window.matchMedia('print');
-        mediaQuery.addEventListener('change', (e) => {
-            if (e.matches) cheque.style.display = 'none';
-        });
-        
-        // Truco adicional para Chrome Reader Mode en móviles
-        if (window.innerWidth < 800 && !document.querySelector('.container')) {
-             cheque.style.display = 'none';
+    if (!cheque) return;
+
+    // Función para ocultar el cheque de forma segura
+    function ocultarCheque() {
+        // Si es modo impresión o pantalla pequeña (móvil), lo ocultamos
+        if (window.matchMedia('print').matches || window.innerWidth < 800) {
+            cheque.style.setProperty('display', 'none', 'important');
+        } else {
+            // Si vuelve a la vista normal, lo restauramos
+            cheque.style.setProperty('display', '', 'important');
         }
     }
+
+    // 1. Ejecutar al cargar la página
+    ocultarCheque();
+
+    // 2. Observar cambios en el HTML (por si el Modo Lectura se activa después)
+    const observer = new MutationObserver(ocultarCheque);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+    
+    // 3. Escuchar cambios de tamaño de ventana (por si gira el teléfono)
+    window.addEventListener('resize', ocultarCheque);
 });
+// ================================================================
 </script>
 <!--Aquí termina SCRIPT 🏁-->
 
