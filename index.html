@@ -1783,40 +1783,24 @@ html, body {
     }
 }
 /* ================================================================ */
-/* === 🛡️ ELIMINAR TAP HIGHLIGHT EN TODO EL SITIO === */
-*, *::before, *::after {
-    -webkit-tap-highlight-color: transparent !important;
-    -webkit-touch-callout: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    -webkit-user-drag: none !important;
-    user-drag: none !important;
-    outline: none !important;
-}
-
-/* Permitir selección solo en campos de texto si los hubiera */
-input, textarea {
-    -webkit-user-select: text !important;
-    user-select: text !important;
-}
-/* ================================================================ */
-/* ===  PERMITIR SCROLL EN TODO EL SITIO === */
+/* === 🛡️ SCROLL SUAVE Y SIN VIBRACIONES RARAS (DEFINITIVO) === */
 html, body {
-    overflow-y: auto !important;
     overflow-x: hidden !important;
+    touch-action: manipulation !important; /* Esto quita el zoom de doble toque y la vibración rara */
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important;
-    height: auto !important;
-    min-height: 100% !important;
 }
 
-/* Las pantallas internas también deben hacer scroll */
-.pantalla-interna {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important;
+body {
+    overflow-y: auto !important; /* Asegura que el scroll vertical funcione siempre */
+}
+
+/* Quitar brillo y vibración específicamente en botones y enlaces */
+a, button, [onclick], .boton-enlace, .boton-interno, .boton-volver {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+    -webkit-touch-callout: none !important;
+    user-select: none !important;
+    outline: none !important;
 }
 /* ================================================================ */
     </style>
