@@ -1588,7 +1588,45 @@ html, body {
         height: 0 !important;
     }
 }
+/* === 🛡️ PARCHE DEFINITIVO: BOTONES CIRCULARES PERFECTOS 🛡️ === */
+.btn-red {
+    aspect-ratio: 1 / 1 !important;       /* Fuerza la forma cuadrada siempre */
+    width: 47px !important;
+    height: 47px !important;
+    min-width: 47px !important;
+    max-width: 47px !important;
+    min-height: 47px !important;          /* Bloquea el estiramiento vertical */
+    max-height: 47px !important;          /* Bloquea el estiramiento vertical */
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+}
 
+/* Ajuste específico para teléfonos en posición horizontal */
+@media (orientation: landscape) and (max-width: 899px) {
+    .btn-red {
+        width: 47px !important;
+        height: 47px !important;
+        min-width: 47px !important;
+        max-width: 47px !important;
+        min-height: 47px !important;
+        max-height: 47px !important;
+        aspect-ratio: 1 / 1 !important;
+    }
+}
+
+/* Ajuste unificado para PC y Laptops (resuelve la contradicción de 57px vs 52px) */
+@media (min-width: 900px) {
+    .btn-red {
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+        min-height: 52px !important;
+        max-height: 52px !important;
+        aspect-ratio: 1 / 1 !important;
+    }
+}
+/* ================================================================ */
     </style>
 <!--Aquí termina CSS 🏁-->
 
