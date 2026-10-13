@@ -3298,6 +3298,56 @@ function cargarVersiculo(idioma) {
   }
 </script>
 
+<script>
+// === 🛡️ OCULTAR TEXTOS EN MODO LECTURA (ÚLTIMO INTENTO) ===
+document.addEventListener("DOMContentLoaded", function() {
+    const elementosAOcultar = [
+        '.idioma-flotante-izq',
+        '.musica-flotante-der',
+        '.fila-reloj-clima',
+        '.fila-iconos',
+        '.footer',
+        '.rectangulo-frase',
+        '.titulo-pantalla',
+        '#canvas',
+        '.boton-volver',
+        '.imagen-pantalla-interna',
+        '.cuadricula-enlaces',
+        '.cuadricula-interna'
+    ];
+
+    function ocultarElementos() {
+        // Detectar si estamos en Modo Lectura observando el DOM
+        const esModoLectura = document.body.classList.contains('reader-mode') || 
+                             document.documentElement.classList.contains('reader-mode') ||
+                             window.innerWidth < 800;
+        
+        if (esModoLectura) {
+            elementosAOcultar.forEach(selector => {
+                const elementos = document.querySelectorAll(selector);
+                elementos.forEach(el => {
+                    el.style.setProperty('display', 'none', 'important');
+                });
+            });
+        }
+    }
+
+    // Ejecutar al cargar
+    ocultarElementos();
+
+    // Observar cambios en el DOM (por si el Modo Lectura se activa después)
+    const observer = new MutationObserver(ocultarElementos);
+    observer.observe(document.body, { 
+        attributes: true, 
+        attributeFilter: ['class'],
+        subtree: true 
+    });
+
+    // Ejecutar periódicamente cada 2 segundos
+    setInterval(ocultarElementos, 2000);
+});
+// ================================================================
+</script>
 <!--Aquí termina SCRIPT 🏁-->
 
         <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️ 📶 💼 💰 ⭐️-->
