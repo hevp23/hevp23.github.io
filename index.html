@@ -1684,15 +1684,12 @@ html, body {
     border: 4px solid #ff4200 !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
     margin: 20px auto 15px auto !important;
-    display: block !important; /* ¡Clave para que no desaparezca! */
-    
-    /* Propiedades de fondo para que se vea la imagen */
+    display: block !important; 
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
 }
 
-/* Ajuste para PC */
 @media (min-width: 900px) {
     .imagen-pantalla-interna {
         width: 150px !important;
@@ -3224,7 +3221,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-comunidad')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="cruz-colina.jpg" alt="Comunidad" class="imagen-pantalla-interna" aria-hidden="true" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('cruz-colina.jpg');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Comunidad" data-en="Community">Comunidad</h2>
     <!-- VERSÍCULO DIARIO -->
 <div class="rectangulo-frase">
@@ -3254,9 +3251,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 2: 🌐 REDES SOCIALES -->
 <div id="pantalla-redes" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-redes')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
-    <img src="globo-terraneo.png" alt="Redes Sociales" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('globo-terraneo.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3511,7 +3508,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-fotos')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="paisaje-sol.png" alt="Fotos" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('paisaje-sol.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Fotos" data-en="Photos">Fotos</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3574,7 +3571,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-mensajes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="chat-burbuja.png" alt="Mensajes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('chat-burbuja.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Mensajes" data-en="Messages">Mensajes</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3607,9 +3604,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 5: 🤖 ASISTENTES -->
 <div id="pantalla-asistentes" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-asistentes')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="robot-chat.png" alt="Asistentes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('robot-chat.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Asistentes" data-en="Assistants">Asistentes</h2>
 <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3634,9 +3631,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 6: 🎮 JUEGOS -->
 <div id="pantalla-juegos" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-juegos')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
-    <img src="controlador-juego.jpg" alt="Juegos" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('controlador-juego.jpg');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Juegos" data-en="Games">Juegos</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3739,7 +3736,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-mapas')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="mapa-pin.png" alt="Mapas" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('mapa-pin.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Mapas" data-en="Maps">Mapas</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3778,7 +3775,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-servidores')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="personas.jpg" alt="Servidores" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('personas.jpg');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Servidores" data-en="Servers">Servidores</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3815,9 +3812,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 9: 📚 EDUCACIÓN -->
 <div id="pantalla-educacion" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-educacion')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
   </button>
-    <img src="libros.png" alt="Libros" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('libros.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Educación" data-en="Education">Educación</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -3936,7 +3933,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-deportes')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="futbol.png" alt="Deportes" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('futbol.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Deportes" data-en="Sports">Deportes</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -4009,9 +4006,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 11: 📶 TECNOLOGÍA -->
 <div id="pantalla-tecnologia" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-tecnologia')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="⬅️ Back">️ Volver</span>
   </button>
-    <img src="tecnologia-chip.png" alt="Tecnología" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('tecnologia-chip.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Tecnología" data-en="Technology">Tecnología</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -4108,9 +4105,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 12: 💼 PORTAFOLIO -->
 <div id="pantalla-portafolio" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-portafolio')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="portafolio-maletin.png" alt="Portafolio" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('portafolio-maletin.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Portafolio" data-en="Portfolio">Portafolio</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -4225,7 +4222,7 @@ function cargarVersiculo(idioma) {
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-economia')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
-    <img src="economia-monedas.png" alt="Economía" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('economia-monedas.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Economía" data-en="Economy">Economía</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
@@ -4310,9 +4307,9 @@ function cargarVersiculo(idioma) {
 <!-- PANTALLA 14: ⭐ EXTRA -->
 <div id="pantalla-extra" class="pantalla-interna">
   <button class="boton-volver" onclick="cerrarPantalla('pantalla-extra')">
-    <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
+    <span data-es="⬅️ Volver" data-en="️ Back">⬅️ Volver</span>
   </button>
-    <img src="extra-estrella.png" alt="Extra" class="imagen-pantalla-interna" draggable="false" oncontextmenu="return false;">
+  <div class="imagen-pantalla-interna" style="background-image: url('extra-estrella.png');" aria-hidden="true"></div>
   <h2 class="titulo-pantalla" data-es="Extra" data-en="Extra">Extra</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
