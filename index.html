@@ -1061,17 +1061,43 @@ img, audio, video {
   user-drag: none;
 }
 
-/* --- IMAGEN EN PANTALLAS INTERNAS --- */
+/* === 🛡️ IMAGEN PANTALLA INTERNA (FONDO BLINDADO) - DEFINITIVO === */
 .imagen-pantalla-interna {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    margin: 20px auto 15px auto;
-    border: 4px solid #ff4200;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    width: 120px !important;
+    height: 120px !important;
+    min-width: 120px !important;
+    min-height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+    border-radius: 50% !important;
+    border: 4px solid #ff4200 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    margin: 20px auto 15px auto !important;
+    display: block !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden !important;
 }
+
+@media (min-width: 900px) {
+    .imagen-pantalla-interna {
+        width: 150px !important;
+        height: 150px !important;
+        min-width: 150px !important;
+        min-height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
+    }
+}
+
+/* Ocultar SOLO en Modo Lectura/Impresión */
+@media print {
+    .imagen-pantalla-interna {
+        display: none !important;
+    }
+}
+/* ================================================================ */
 
 /* Ajuste para PC */
 @media (min-width: 900px) {
@@ -1676,24 +1702,62 @@ html, body {
     }
 }
 /* ================================================================ */
-/* === 🛡️ IMAGEN PANTALLA INTERNA (FONDO BLINDADO) === */
+/* === 🛡️ IMAGEN PANTALLA INTERNA (FONDO BLINDADO) - VERSIÓN CORREGIDA === */
 .imagen-pantalla-interna {
     width: 120px !important;
     height: 120px !important;
+    min-width: 120px !important;
+    min-height: 120px !important;
     border-radius: 50% !important;
     border: 4px solid #ff4200 !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
     margin: 20px auto 15px auto !important;
-    display: block !important; 
+    display: block !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+    background-color: transparent !important;
+    overflow: hidden !important;
+    position: relative !important;
 }
 
 @media (min-width: 900px) {
     .imagen-pantalla-interna {
         width: 150px !important;
         height: 150px !important;
+        min-width: 150px !important;
+        min-height: 150px !important;
+    }
+}
+/* ================================================================ */
+/* === ️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA === */
+@media print {
+    .cheque-verificado {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+}
+
+/* Forzar ocultamiento en cualquier contexto de lectura */
+svg.cheque-verificado[aria-hidden="true"] {
+    display: none !important;
+}
+/* ================================================================ */
+/* === ️ OCULTAR CHEQUE VERIFICADO EN MODO LECTURA === */
+svg.cheque-verificado {
+    /* Se ve normal en el sitio web */
+}
+
+@media print {
+    svg.cheque-verificado {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 }
 /* ================================================================ */
