@@ -1805,6 +1805,21 @@ body {
     -webkit-user-select: none;   /* Desactiva la selección de texto */
     user-select: none;
 }
+/* Desactiva la selección de texto y el menú emergente nativo */
+body {
+    -webkit-touch-callout: none; /* Desactiva el menú de llamada en iOS (Guardar imagen/Copiar) */
+    -webkit-user-select: none;   /* Safari */
+    -khtml-user-select: none;    /* Navegadores Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Propiedad estándar (Chrome, Opera, etc.) */
+}
+
+/* Opcional: Desactiva el parpadeo gris al tocar en Android/Chrome */
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
     </style>
 <!--Aquí termina CSS 🏁-->
 
