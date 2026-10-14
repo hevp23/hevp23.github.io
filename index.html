@@ -1799,26 +1799,18 @@ body {
     padding: 0 !important;
 }
 /* ================================================================ */
-/* Coloca esto en tu archivo CSS para los elementos que no quieres que vibren o seleccionen */
-.sin-vibracion {
-    -webkit-touch-callout: none; /* Desactiva el menú contextual en iOS */
-    -webkit-user-select: none;   /* Desactiva la selección de texto */
-    user-select: none;
-}
-/* Desactiva la selección de texto y el menú emergente nativo */
-body {
-    -webkit-touch-callout: none; /* Desactiva el menú de llamada en iOS (Guardar imagen/Copiar) */
-    -webkit-user-select: none;   /* Safari */
-    -khtml-user-select: none;    /* Navegadores Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Propiedad estándar (Chrome, Opera, etc.) */
+/* Desactiva la vibración por toque sostenido, menús contextuales y selección en todo el sitio */
+* {
+  -webkit-touch-callout: none; /* Evita el menú flotante en móviles (iOS y Android) */
+  -webkit-user-select: none;   /* Evita la selección de texto */
+  user-select: none;          /* Estándar para evitar selección y vibración de toque largo */
 }
 
-/* Opcional: Desactiva el parpadeo gris al tocar en Android/Chrome */
-body {
-    -webkit-tap-highlight-color: transparent;
+/* Si tenés enlaces o botones que reaccionan al toque, esto asegura que no disparen el evento háptico nativo */
+a, button, .button, img {
+  -webkit-tap-highlight-color: transparent; /* Quita el destello gris/azul al tocar */
 }
+
 
     </style>
 <!--Aquí termina CSS 🏁-->
@@ -3367,6 +3359,20 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener('contextmenu', function(event) {
     event.preventDefault();
 });
+</script>
+
+<script>
+    // Desactiva el menú contextual (clic derecho en PC y toque largo en móviles)
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});
+
+// Refuerzo opcional para evitar el comportamiento por defecto en toques largos
+document.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+        event.preventDefault(); // Evita gestos de varios dedos si lo deseas
+    }
+}, { passive: false });
 </script>
     
 <!--Aquí termina SCRIPT 🏁-->
