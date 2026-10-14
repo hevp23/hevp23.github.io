@@ -1799,6 +1799,12 @@ body {
     padding: 0 !important;
 }
 /* ================================================================ */
+/* Coloca esto en tu archivo CSS para los elementos que no quieres que vibren o seleccionen */
+.sin-vibracion {
+    -webkit-touch-callout: none; /* Desactiva el menú contextual en iOS */
+    -webkit-user-select: none;   /* Desactiva la selección de texto */
+    user-select: none;
+}
 
     </style>
 <!--Aquí termina CSS 🏁-->
@@ -3341,6 +3347,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // ================================================================
 </script>
+
+<script>
+    // Desactiva el menú contextual en todo el sitio web
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});
+</script>
+    
 <!--Aquí termina SCRIPT 🏁-->
 
         <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️ 📶 💼 💰 ⭐️-->
