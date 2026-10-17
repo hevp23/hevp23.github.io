@@ -1867,6 +1867,11 @@ a, button, img, div {
     display: none !important;
   }
         }
+/* Ocultar títulos y frases en modo lectura */
+footer.titulo-pantalla,
+footer.rectangulo-frase {
+  display: none !important;
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -1884,21 +1889,21 @@ a, button, img, div {
 
 
 <!--Botón Traductor 🇪🇸/🇬🇧-->
-<aside class="idioma-flotante-izq" aria-hidden="true">
-  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()">🇪🇸</div>
+<footer class="idioma-flotante-izq" style="position: fixed; left: 10px; top: 100px; z-index: 1000;">
+  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()">🇪</div>
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
-</aside>
+</footer>
 
 <!-- Botón Musical ▶️/⏸️-->
-<aside class="musica-flotante-der" aria-hidden="true">
+<footer class="musica-flotante-der" style="position: fixed; right: 10px; top: 100px; z-index: 1000;">
   <div class="musica-controles">
-    <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()" style="display:none;">️</button>
+    <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()" style="display:none;">⏪️</button>
     <button class="musica-boton-ctrl musica-boton-central" id="btn-play-pause" onclick="toggleMusica()">▶️</button>
     <button class="musica-boton-ctrl" id="btn-siguiente" onclick="cancionSiguiente()" style="display:none;">⏩️</button>
   </div>
   <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
-</aside>
-
+</footer>
+    
 <!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
 <audio id="audio-fondo">
   <source src="NewTrend_Music Old Melody(M4A_128K).m4a" type="audio/mpeg">
@@ -1925,17 +1930,13 @@ a, button, img, div {
 </article>
 <!-- === BLOQUE DEL LISTÓN Y HANDLE ⬆️ === -->
 
-
-
-
-
-<!--Biografía general desde 2️⃣0️⃣2️⃣5️⃣-->
-<div class="info-perfil" aria-hidden="true">
-  ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇸🇻
+<!--Biografía general desde 2️⃣0️⃣2️⃣5️-->
+<div class="info-perfil" aria-hidden="true" style="text-align: center;">
+  ✝️ 🚹 🕓 9/Jul/2026 🏡 El Salvador 🇻
 </div>
 
 <!--Fecha actual, reloj de 7 segmentos de hora actual, ubicación por IP-->
-<aside class="fila-reloj-clima" aria-hidden="true">
+<footer class="fila-reloj-clima" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin: 20px auto; max-width: 320px;">
   <div class="bloque-clima" id="bloque-clima" style="display: none;">
     <span id="clima-emoji">🌤️</span>
     <span id="clima-texto" class="clima-etiqueta">--</span>
@@ -1951,10 +1952,10 @@ a, button, img, div {
     <span id="temp-num">--°</span>
     <span class="clima-etiqueta">Celsius</span>
   </div>
-</aside>
+</footer>
 
 <!--7 íconos circulares de Redes sociales-->
-<nav class="contenedor-redes" aria-hidden="true">
+<footer class="contenedor-redes" aria-hidden="true">
 <div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
 
   <!-- Facebook -->
@@ -2012,12 +2013,10 @@ a, button, img, div {
     </a>
     <span class="nombre-red">Reddit</span>
   </div>
-
-</div>
-</nav>
+  </footer>
 
 <!-- === FILA SEPARADA: Teléfono / TreeLinks / Correo === -->
-<nav class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important;" aria-hidden="true>
+<nav class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important;" aria-hidden="true" ;>
 
   <!-- Teléfono -->
   <div class="icono-red-con-nombre">
@@ -2154,10 +2153,10 @@ a, button, img, div {
 <!-- Este es el contenedor que tenés que reemplazar -->
 <div style="width: 100%; margin-top: 40px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center" aria-hidden="true;">
     
-    <div class="contenedor-qr" aria-hidden="true">
-  <p>¡Escanea este código para compartir mi web!</p>
-  <canvas id="qr-canvas"></canvas>
-    </div>
+    <footer class="contenedor-qr" style="text-align: center; margin-top: 40px;">
+  <p style="color: #ffe000; font-size: 14px;">¡Escanea este código para compartir mi web!</p>
+  <canvas id="qr-canvas" style="margin: 20px auto;"></canvas>
+    </footer>
     
     <div id="canvas" style="padding: 10px; border: 3px solid #ffe000; border-radius: 16px; background-color: #0070ff; display: inline-block;"></div>
 </div>
@@ -3832,6 +3831,10 @@ document.addEventListener('touchstart', function(event) {
       <a href="https://connected2.me/hevp23" class="boton-interno" target="_blank">
       <img src="connected2me.png" alt="Connected2me" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
       <span data-es="Connected2me" data-en="Connected2me">Connected2me</span>
+      </a>
+      <a href="https://hevp23.straw.page" class="boton-interno" target="_blank">
+      <img src="strawpage.png" alt="Straw.Page" class="icono-boton-interno" draggable="false" oncontextmenu="return false">
+      <span data-es="Straw.Page" data-en="Straw.Page">Straw.Page</span>
       </a>
   </div>
 </div>
