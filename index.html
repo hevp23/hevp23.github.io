@@ -1889,20 +1889,20 @@ footer.rectangulo-frase {
 
 
 <!--Botón Traductor 🇪🇸/🇬🇧-->
-<footer class="idioma-flotante-izq" style="position: fixed; left: 10px; top: 100px; z-index: 1000;">
-  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()">🇪</div>
+<aside class="idioma-flotante-izq" aria-hidden="true">
+  <div class="idioma-boton" id="btn-idioma" onclick="alternarIdioma()">🇪🇸</div>
   <span id="lbl-idioma-activo" class="texto-idioma-actual">Español</span>
-</footer>
+</aside>
 
 <!-- Botón Musical ▶️/⏸️-->
-<footer class="musica-flotante-der" style="position: fixed; right: 10px; top: 100px; z-index: 1000;">
+<aside class="musica-flotante-der" aria-hidden="true">
   <div class="musica-controles">
-    <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()" style="display:none;">⏪️</button>
+    <button class="musica-boton-ctrl" id="btn-anterior" onclick="cancionAnterior()" style="display:none;">️</button>
     <button class="musica-boton-ctrl musica-boton-central" id="btn-play-pause" onclick="toggleMusica()">▶️</button>
     <button class="musica-boton-ctrl" id="btn-siguiente" onclick="cancionSiguiente()" style="display:none;">⏩️</button>
   </div>
   <span id="lbl-musica-activo" class="texto-musica-actual">Reproducir</span>
-</footer>
+</aside>
     
 <!-- Etiqueta de audio oculta (cambiá 'tu-cancion.mp3' por el enlace o nombre de tu archivo de música) -->
 <audio id="audio-fondo">
@@ -1910,24 +1910,28 @@ footer.rectangulo-frase {
   Tu navegador no soporta el elemento de audio.
 </audio>
     
-<!-- === NOMBRE COMPLETO EN EL LISTÓN === -->
-<article>
-  <div class="ribbon-container aria-hidden="true">
-    <div class="ribbon">
-      <span style="font-size: 17.9px !important;">Héctor Eduardo Valladares Pérez</span>
-    </div>
+<!-- MI NOMBRE COMPLETO DEL LISTÓN -->
+<div class="ribbon-container">
+  <div class="ribbon">
+    <span style="font-size: 17.9px !important;">Héctor Eduardo Valladares Pérez</span>
   </div>
+</div>
 
-<!-- === NOMBRE DE USUARIO === -->
-  <span class="username" style="color: #ffe000; display: block; margin: 5px 0; text-align: center;">
+<!-- MI HANDLE -->
+<span class="username" style="color: #ffe000; display: block; margin: 5px 0; text-align: center;">
     @hevp23 <svg class="cheque-verificado" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path fill="#5AC8FA" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34z"/>
         <path fill="#ffffff" d="M10.54 16.2 6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/>
     </svg>
-  </span>
+</span>
 
-  </div>
-</article>
+<!-- Logo TreeLinks (centro) -->
+<div class="marca-web-contenedor" style="margin: 0 !important;">
+  <img src="treelinks.jpg" alt="Logo TreeLinks" class="logo-web" draggable="false" oncontextmenu="return false;">
+  <span class="texto-web">
+    <span style="color: #ffe000 !important;">Tree</span><span style="color: #ff4200 !important;">L<span class="punto-verde">ı</span>nks</span>
+  </span>
+</div>
 <!-- === BLOQUE DEL LISTÓN Y HANDLE ⬆️ === -->
 
 <!--Biografía general desde 2️⃣0️⃣2️⃣5️-->
@@ -1936,7 +1940,7 @@ footer.rectangulo-frase {
 </div>
 
 <!--Fecha actual, reloj de 7 segmentos de hora actual, ubicación por IP-->
-<footer class="fila-reloj-clima" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin: 20px auto; max-width: 320px;">
+<aside class="fila-reloj-clima" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin: 20px auto; max-width: 320px;">
   <div class="bloque-clima" id="bloque-clima" style="display: none;">
     <span id="clima-emoji">🌤️</span>
     <span id="clima-texto" class="clima-etiqueta">--</span>
@@ -1952,10 +1956,10 @@ footer.rectangulo-frase {
     <span id="temp-num">--°</span>
     <span class="clima-etiqueta">Celsius</span>
   </div>
-</footer>
+</aside>
 
 <!--7 íconos circulares de Redes sociales-->
-<footer class="contenedor-redes" aria-hidden="true">
+<nav class="contenedor-redes" aria-hidden="true">
 <div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
 
   <!-- Facebook -->
@@ -2013,7 +2017,7 @@ footer.rectangulo-frase {
     </a>
     <span class="nombre-red">Reddit</span>
   </div>
-  </footer>
+  </nav>
 
 <!-- === FILA SEPARADA: Teléfono / TreeLinks / Correo === -->
 <nav class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important;" aria-hidden="true" ;>
