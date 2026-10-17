@@ -1836,6 +1836,37 @@ a, button, img, div {
     display: none !important;
   }
 }
+/* === 🛡️ MODO LECTURA CHROME/SAMSUNG === */
+@media print {
+  .idioma-flotante-izq,
+  .musica-flotante-der,
+  .fila-reloj-clima,
+  .contenedor-redes,
+  .fila-contacto,
+  .footer,
+  .titulo-pantalla,
+  .rectangulo-frase,
+  .contenedor-qr {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+}
+.titulo-pantalla,
+.rectangulo-frase {
+  /* Mantén tus estilos actuales aquí */
+}
+
+@media print {
+  .titulo-pantalla,
+  .rectangulo-frase {
+    display: none !important;
+  }
+        }
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -1876,7 +1907,7 @@ a, button, img, div {
     
 <!-- === NOMBRE COMPLETO EN EL LISTÓN === -->
 <article>
-  <div class="ribbon-container">
+  <div class="ribbon-container aria-hidden="true">
     <div class="ribbon">
       <span style="font-size: 17.9px !important;">Héctor Eduardo Valladares Pérez</span>
     </div>
@@ -1986,7 +2017,7 @@ a, button, img, div {
 </nav>
 
 <!-- === FILA SEPARADA: Teléfono / TreeLinks / Correo === -->
-<nav class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important;" aria-hidden="true">
+<nav class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important;" aria-hidden="true>
 
   <!-- Teléfono -->
   <div class="icono-red-con-nombre">
@@ -2121,7 +2152,7 @@ a, button, img, div {
 
 
 <!-- Este es el contenedor que tenés que reemplazar -->
-<div style="width: 100%; margin-top: 40px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div style="width: 100%; margin-top: 40px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center" aria-hidden="true;">
     
     <div class="contenedor-qr" aria-hidden="true">
   <p>¡Escanea este código para compartir mi web!</p>
