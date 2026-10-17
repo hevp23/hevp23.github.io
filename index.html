@@ -1894,7 +1894,7 @@ a, button, img, div {
 </p>
 
 <!--Fecha actual, reloj de 7 segmentos de hora actual, ubicación por IP-->
-<div class="fila-reloj-clima" aria-hidden="true">
+<aside class="fila-reloj-clima" aria-hidden="true">
   <div class="bloque-clima" id="bloque-clima" style="display: none;">
     <span id="clima-emoji">🌤️</span>
     <span id="clima-texto" class="clima-etiqueta">--</span>
@@ -1904,17 +1904,17 @@ a, button, img, div {
     <div id="fecha-actual" style="color: #00ff16; font-size: clamp(7px, 7.0vw, 0.77rem) !important; text-align: center; font-weight: bold; white-space: normal; word-wrap: break-word; line-height: 1.2; padding: 0 5px;">Cargando fecha...</div>
     <div id="reloj-actual" style="font-size: 1.7rem; font-weight: bold; margin-top: -4px; color: #00ff16; text-align: center;"><span id="reloj-digitos" class="dseg7-classic">00:00:00</span> <span id="reloj-ampm">AM</span></div>
     <div id="ubicacion-actual" style="display: none; color: #00ff16; font-size: clamp(7px, 7.0vw, 0.77rem); text-align: center; font-weight: bold; margin-top: 4px;"></div>
-</div>
+  </div>
 
   <div class="bloque-clima" id="bloque-temp" style="display: none;">
     <span id="temp-num">--°</span>
     <span class="clima-etiqueta">Celsius</span>
   </div>
-</div>
+</aside>
 
 <!--7 íconos circulares de Redes sociales-->
-<div class="contenedor-redes">
-<div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important "aria-hidden="true";>
+<nav class="contenedor-redes" aria-hidden="true">
+<div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
 
   <!-- Facebook -->
   <div class="icono-red-con-nombre">
@@ -1973,9 +1973,10 @@ a, button, img, div {
   </div>
 
 </div>
+</nav>
 
 <!-- === FILA SEPARADA: Teléfono / TreeLinks / Correo === -->
-<div class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important "aria-hidden="true";>
+<nav class="fila-contacto" style="display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; max-width: 320px !important; margin: 10px auto 20px auto !important; gap: 40px !important;" aria-hidden="true">
 
   <!-- Teléfono -->
   <div class="icono-red-con-nombre">
@@ -1989,7 +1990,7 @@ a, button, img, div {
 
   <!-- Logo TreeLinks (centro) -->
   <div class="marca-web-contenedor" style="margin: 0 !important;">
-    <img src="treelinks.jpg" alt="Logo TreeLinks" class="logo-web" draggable="false" oncontextmenu="return false;">
+    <img src="treelinks.jpg" alt="Logo TreeLinks" class="logo-web" draggable="false" oncontextmenu="return false;" aria-hidden="true">
     <span class="texto-web">
       <span style="color: #ffe000 !important;">Tree</span><span style="color: #ff4200 !important;">L<span class="punto-verde">ı</span>nks</span>
     </span>
@@ -2005,7 +2006,7 @@ a, button, img, div {
     <span class="nombre-red" data-es="Correo" data-en="Email">Correo</span>
   </div>
 
-</div>
+</nav>
 
     
 </div>
@@ -2132,16 +2133,16 @@ a, button, img, div {
 <meta name="author" content="Héctor Eduardo Valladares Pérez">      
 
     <!-- Pie de página en español e inglés 🦶📄🇪🇸🇬🇧-->
-    <div style="text-align: center; margin-top: 40px; padding: 0 20px; font-size: 11px; color: #ffe000; opacity: 100; line-height: 1.7;">
+    <footer style="text-align: center; margin-top: 40px; padding: 0 20px; font-size: 11px; color: #ffe000; opacity: 100; line-height: 1.7;" aria-hidden="true">
     © 2026 | Héctor Eduardo Valladares Pérez (@hevp23).<br> <span data-es="Todos los derechos reservados. | " data-en="All rights reserved. | ">Todos los derechos reservados. | </span>
     <span data-es="Sitio web hecho a mano." data-en="Handmade website.">Sitio web hecho a mano.</span><br>
     
     <!--Cuadro de ⚠️ ADVERTENCIA ⚠️ y ⚠️ WARNING ⚠️-->
-    <span class="cuadro-advertencia" style="background-color: #ff4200; padding: 7px 7px; border-radius: 12px; display: inline-block; margin-top: 7px; margin-bottom: 7px; color: #ffe000" aria-hidden="true";>
+    <span class="cuadro-advertencia" style="background-color: #ff4200; padding: 7px 7px; border-radius: 12px; display: inline-block; margin-top: 7px; margin-bottom: 7px; color: #ffe000;">
     <span style="font-size:13px !important;" data-es="⚠️ ADVERTENCIA ⚠️" data-en="⚠️ WARNING ⚠️">️⚠️ ADVERTENCIA ⚠️</span><br>
     <span style="font-size:13px !important;" data-es="PROHIBIDA LA REPRODUCCIÓN, DISTRIBUCIÓN O MODIFICACIÓN TOTAL O PARCIAL DE ESTE SITIO WEB, SU DISEÑO, CÓDIGO E IMÁGENES, SIN LA AUTORIZACIÓN PREVIA Y POR ESCRITO DE SU AUTOR." data-en="REPRODUCTION, DISTRIBUTION OR MODIFICATION, IN WHOLE OR IN PART, OF THIS WEBSITE, ITS DESIGN, CODE AND IMAGES IS PROHIBITED WITHOUT THE PRIOR WRITTEN AUTHORIZATION OF ITS AUTHOR.">PROHIBIDA LA REPRODUCCIÓN, DISTRIBUCIÓN O MODIFICACIÓN TOTAL O PARCIAL DE ESTE SITIO WEB, SU DISEÑO, CÓDIGO E IMÁGENES, SIN LA AUTORIZACIÓN PREVIA Y POR ESCRITO DE SU AUTOR.</span>
     </span>
-    </div>
+    </footer>
 </div>
 <!--Aquí termina HTML 🏁-->
 
