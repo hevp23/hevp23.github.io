@@ -1332,46 +1332,46 @@ img, audio, video {
 }
 
 /* -- ARREGLO PARA MODO HORIZONTAL (LANDSCAPE) ➡️ --- */
-@media screen and (orientation: landscape) {
+@media  screen and ( orientation : landscape )  {
     
     /* ✅ BOTONES DE TRADUCTOR Y MÚSICA: posición correcta */
-    .idioma-flotante-izq {
-        top: 505px !important;
-        left: 35px !important;
+    . idioma-flotante-izq  {
+        superior : 505 px  !importante ;
+        izquierda : 35 px  !importante ;
     }
     
-    .musica-flotante-der {
-        top: 505px !important;
-        right: 35px !important;
+    . musica-flotante-der  {
+        superior : 505 px  !importante ;
+        derecha : 35 px  !importante ;
     }
     
     /* ✅ AVATAR: subido para quedar justo en la mitad de la portada */
-    .contenedor-avatar {
-        margin-top: -60px !important;
+    . contenedor-avatar  {
+        margen superior : -60 px  !importante ;
     }
     
-    .contenedor-avatarimg {
-        width: 110px !important;
-        height: 110px !important;
+    . contenedor-avatarimg  {
+        ancho : 110 px  !importante ;
+        altura : 110 px  !importante ;
     }
     
-    /* ✅ PORTADA: ocupa todo el ancho y permite scroll desde cualquier parte 🖼️ */
-    .portada-img {
-        width: 100% !important;
-        height: auto !important;
-        max-height: none !important;
-        object-fit: fill !important;
-        object-position: center !important;
-        margin-bottom: -30px !important;
-        display: block !important;
-        overflow: visible !important;
-        pointer-events: none !important;  /* 🔑 Permite scroll desde toda la imagen */
+    /* ✅ PORTADA: ocupa todo el ancho y permite desplazarse desde cualquier parte 🖼️ */
+    . portada-img  {
+        ancho : 100 %  !importante ;
+        altura : auto  !important ;
+        altura máxima : ninguna  !importante ;
+        object-fit : ¡rellenar  !importante ;
+        posición del objeto : centro  !importante ;
+        margen inferior : -30 px  !importante ;
+        mostrar : bloque  !importante ;
+        desbordamiento : visible  !importante ;
+        eventos de puntero : ninguno  ! Importante ;   /* 🔑 Permite desplazarse desde toda la imagen */
     }
     
     /* ✅ NOMBRE EN EL LISTÓN: tamaño normal */
-    .ribbon {
-        font-size: 17.9px !important;
-        padding: 12px 25px !important;
+    . cinta  {
+        font-size : 17.9 px  !important ;
+        relleno : 12 px  25 px  !importante ;
     }
     
     /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: separados 1px del reloj ⏰🌡️ */
@@ -1573,8 +1573,14 @@ html, body {
         padding: 1px 3px !important;
     }
     
-    #bloque-temp .clima-etiqueta {
-    font-size: 7px !important;
+/* Para Chubascos (lado izquierdo) */
+#bloque-clima .clima-etiqueta {
+    font-size: 7px !important; /* 👈 Este es el que necesitas hacer más chico */
+}
+
+/* Para Celsius (lado derecho) */
+#bloque-temp .clima-etiqueta {
+    font-size: 9px !important; /* 👈 Este lo dejas más grande */
 }
 
 } /* ← Este es el cierre del @media landscape */
