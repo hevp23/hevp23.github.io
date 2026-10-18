@@ -1872,6 +1872,13 @@ footer.titulo-pantalla,
 footer.rectangulo-frase {
   display: none !important;
 }
+/* Bloquear la selección de texto e imágenes en todo el sitio */
+body {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* Internet Explorer / Edge */
+  user-select: none;         Estándar moderno */
+}
+
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -3431,7 +3438,45 @@ document.addEventListener('touchstart', function(event) {
     }
 }, { passive: false });
 </script>
-    
+
+<script>
+   // 1. Bloquear el clic derecho solo en las imágenes, ¡pero dejarlo libre en los enlaces!
+document.addEventListener('contextmenu', function (e) {
+  // Si hacen clic derecho sobre una imagen, lo bloqueamos
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
+
+// 2. Bloquear atajos de teclado para guardar la página o abrir herramientas de inspección
+document.addEventListener('keydown', function (e) {
+  // Deshabilitar F12
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+
+  // Deshabilitar Ctrl+Shift+I / Cmd+Option+I (DevTools)
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+  }
+
+  // Deshabilitar Ctrl+Shift+J / Cmd+Option+J (Consola)
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'j') {
+    e.preventDefault();
+  }
+
+  // Deshabilitar Ctrl+U / Cmd+Option+U (Ver código fuente)
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+  }
+
+  // Deshabilitar Ctrl+S / Cmd+S (Guardar página)
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+  }
+});
+
+</script>
 <!--Aquí termina SCRIPT 🏁-->
 
         <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️ 📶 💼 💰 ⭐️-->
