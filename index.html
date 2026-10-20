@@ -1885,14 +1885,16 @@ footer.rectangulo-frase {
   display: none !important;
 }
 /* ================================================================ */
-/* ================================================================ */
-/* === 🔵 CORRECCIÓN FINAL: IGUALES A TELÉFONO Y CORREO 🔵 === */
+
+/* === 🔵 UNIFICACIÓN TOTAL: SOLO PC Y LAPTOPS (>= 900px) 🔵 === */
 /* ================================================================ */
 
 @media (min-width: 900px) {
-  /* 1. Los 7 íconos de redes sociales - Círculos perfectos del mismo tamaño */
-  .btn-red, 
-  .fila-iconos a {
+  
+  /* 1. Círculos perfectos e iguales para los 7 íconos, Teléfono y Correo */
+  .btn-red,
+  .fila-iconos a,
+  .fila-contacto a {
     width: 45px !important;
     height: 45px !important;
     min-width: 45px !important;
@@ -1908,24 +1910,30 @@ footer.rectangulo-frase {
     padding: 0 !important;
   }
 
-  /* 2. Las imágenes dentro de los íconos */
-  .icono-red-social {
+  /* 2. Las "almohaditas" de los nombres: mismo tamaño, letras y esquinas */
+  .nombre-red {
+    font-size: 11px !important;           /* Mismo tamaño de letra */
+    padding: 2px 6px !important;          /* Mismo tamaño de almohadita */
+    border-radius: 6px !important;        /* Mismas esquinas redondeadas */
+    border: 1.5px solid #00ff16 !important; /* Mismo borde */
+    margin-top: 4px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    color: #ffe000 !important;
+    background-color: #ff4200 !important;
+  }
+
+  /* 3. Asegurar que las imágenes y SVGs internos se adapten al círculo */
+  .icono-red-social,
+  .btn-red svg,
+  .fila-contacto svg {
     width: 100% !important;
     height: 100% !important;
     border-radius: 50% !important;
     object-fit: cover !important;
     display: block !important;
-  }
-
-  /* 3. Los nombres - Exactamente como Teléfono y Correo */
-  .nombre-red {
-    font-size: 11px !important;
-    padding: 2px 6px !important;
-    border-radius: 6px !important;
-    border: 1.5px solid #00ff16 !important;
-    margin-top: 4px !important;
-    line-height: 1.2 !important;
-    white-space: nowrap !important;
   }
 }
     </style>
