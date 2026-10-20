@@ -1885,29 +1885,30 @@ footer.rectangulo-frase {
   display: none !important;
 }
 /* ================================================================ */
-/* === 🔵 CORRECCIÓN FINAL: CÍRCULOS PERFECTOS Y NOMBRES MÁS GRANDES (SOLO PC/LAPTOP) 🔵 === */
+/* ================================================================ */
+/* === 🔵 CORRECCIÓN FINAL: IGUALES A TELÉFONO Y CORREO 🔵 === */
 /* ================================================================ */
 
 @media (min-width: 900px) {
-  /* 1. Contenedor del ícono: Círculo perfecto y sin deformaciones */
+  /* 1. Los 7 íconos de redes sociales - Círculos perfectos del mismo tamaño */
   .btn-red, 
   .fila-iconos a {
-    width: 56px !important;
-    height: 56px !important;
-    min-width: 56px !important;
-    max-width: 56px !important;
-    min-height: 56px !important;
-    max-height: 56px !important;
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
+    min-height: 45px !important;
+    max-height: 45px !important;
     aspect-ratio: 1 / 1 !important;
     border-radius: 50% !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    padding: 0 !important; /* Clave: evita que cualquier relleno deforme el círculo */
+    padding: 0 !important;
   }
 
-  /* 2. La imagen interna: Debe obedecer el círculo del contenedor al 100% */
+  /* 2. Las imágenes dentro de los íconos */
   .icono-red-social {
     width: 100% !important;
     height: 100% !important;
@@ -1916,13 +1917,13 @@ footer.rectangulo-frase {
     display: block !important;
   }
 
-  /* 3. Los nombres: Más grandes, con su "cuadradito" más amplio y legible */
+  /* 3. Los nombres - Exactamente como Teléfono y Correo */
   .nombre-red {
-    font-size: 14px !important; /* Texto notablemente más grande y claro */
-    padding: 6px 14px !important; /* Más espacio interno para el fondo de color */
+    font-size: 11px !important;
+    padding: 2px 6px !important;
     border-radius: 6px !important;
-    border: 2px solid #00ff16 !important;
-    margin-top: 6px !important; /* Separación limpia y elegante respecto al ícono */
+    border: 1.5px solid #00ff16 !important;
+    margin-top: 4px !important;
     line-height: 1.2 !important;
     white-space: nowrap !important;
   }
