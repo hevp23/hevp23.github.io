@@ -1884,6 +1884,49 @@ footer.titulo-pantalla,
 footer.rectangulo-frase {
   display: none !important;
 }
+/* ================================================================ */
+/* === 🔵 CORRECCIÓN FINAL: CÍRCULOS PERFECTOS Y NOMBRES MÁS GRANDES (SOLO PC/LAPTOP) 🔵 === */
+/* ================================================================ */
+
+@media (min-width: 900px) {
+  /* 1. Contenedor del ícono: Círculo perfecto y sin deformaciones */
+  .btn-red, 
+  .fila-iconos a {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 0 !important; /* Clave: evita que cualquier relleno deforme el círculo */
+  }
+
+  /* 2. La imagen interna: Debe obedecer el círculo del contenedor al 100% */
+  .icono-red-social {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  /* 3. Los nombres: Más grandes, con su "cuadradito" más amplio y legible */
+  .nombre-red {
+    font-size: 14px !important; /* Texto notablemente más grande y claro */
+    padding: 6px 14px !important; /* Más espacio interno para el fondo de color */
+    border-radius: 6px !important;
+    border: 2px solid #00ff16 !important;
+    margin-top: 6px !important; /* Separación limpia y elegante respecto al ícono */
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
