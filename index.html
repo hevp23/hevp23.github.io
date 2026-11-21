@@ -2128,10 +2128,10 @@ footer.rectangulo-frase {
     <span id="txt-redes" data-es="Redes Sociales" data-en="Social Media">Redes Sociales</span>
   </a>
 
-  <!-- 3. Fotos -->
+  <!-- 3. Galería -->
   <a href="#" class="boton-enlace" onclick="abrirPantalla('pantalla-fotos'); return false;">
     <img src="paisaje-sol.png" class="icono-enlace" alt="Fotos" aria-hidden="true" draggable="false" oncontextmenu="return false;">
-    <span id="txt-fotos" data-es="Fotos" data-en="Photos">Fotos</span>
+    <span id="txt-galeria" data-es="Galería" data-en="Gallery">Galería</span>
   </a>
 
   <!-- 4. Mensajes -->
@@ -2728,12 +2728,13 @@ function pintarClima() {
     script.defer = true;
     wrapper.appendChild(script);
           }
-    
+
+  // Traducción de nombres de pantallas internas en Español (🇪🇸), y English (🇬🇧).
   function actualizarTextosBotones() {
     const elementos = {
       comunidad: document.getElementById('txt-comunidad'),
       redes: document.getElementById('txt-redes'),
-      fotos: document.getElementById('txt-fotos'),
+      galeria: document.getElementById('txt-galeria'),
       mensajes: document.getElementById('txt-mensajes'),
       asistentes: document.getElementById('txt-asistentes'),
       juegos: document.getElementById('txt-juegos'),
@@ -2750,7 +2751,7 @@ function pintarClima() {
     if (idiomaActual === 'es') {
       if(elementos.comunidad) elementos.comunidad.innerText = "Comunidad";
       if(elementos.redes) elementos.redes.innerText = "Redes Sociales";
-      if(elementos.fotos) elementos.fotos.innerText = "Fotos";
+      if(elementos.galeria) elementos.galeria.innerText = "Galería";
       if(elementos.mensajes) elementos.mensajes.innerHTML = "Mensajes";
       if(elementos.asistentes) elementos.asistentes.innerText = "Asistentes";
       if(elementos.juegos) elementos.juegos.innerText = "Juegos";
@@ -2765,7 +2766,7 @@ function pintarClima() {
     } else {
       if(elementos.comunidad) elementos.comunidad.innerText = "Community";
       if(elementos.redes) elementos.redes.innerText = "Social Media";
-      if(elementos.fotos) elementos.fotos.innerText = "Photos";
+      if(elementos.galeria) elementos.galeria.innerText = "Gallery";
       if(elementos.mensajes) elementos.mensajes.innerHTML = "Messages";
       if(elementos.asistentes) elementos.asistentes.innerText = "Assistants";
       if(elementos.juegos) elementos.juegos.innerText = "Games";
@@ -3858,13 +3859,13 @@ document.addEventListener('touchstart', function(event) {
   </div>
 </div>
 
-<!-- PANTALLA 3: 🖼 FOTOS -->
-<div id="pantalla-fotos" class="pantalla-interna">
-  <button class="boton-volver" onclick="cerrarPantalla('pantalla-fotos')">
+<!-- PANTALLA 3: 🖼 GALERÍA -->
+<div id="pantalla-galeria" class="pantalla-interna">
+  <button class="boton-volver" onclick="cerrarPantalla('pantalla-galeria')">
     <span data-es="⬅️ Volver" data-en="⬅️ Back">⬅️ Volver</span>
   </button>
   <div class="imagen-pantalla-interna" style="background-image: url('paisaje-sol.png');" aria-hidden="true"></div>
-  <h2 class="titulo-pantalla" data-es="Fotos" data-en="Photos">Fotos</h2>
+  <h2 class="titulo-pantalla" data-es="Galería" data-en="Gallery">Galería</h2>
     <!-- FRASE DE LA PANTALLA -->
 <div class="rectangulo-frase">
   <p data-es="Sonríe, la vida es buena 😀" data-en="Smile, life is good 😀">Sonríe, la vida es buena 😀</p>
