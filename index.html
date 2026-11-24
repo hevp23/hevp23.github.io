@@ -3112,6 +3112,11 @@ function pintarClima() {
       if(elementos.economia) elementos.economia.innerText = "Economy";
       if(elementos.extra) elementos.extra.innerText = "Extra";
     }
+      
+    // Sincronizar el idioma de Billy AI con TreeLinks
+    if (typeof window.actualizarIdiomaBilly === 'function') {
+      window.actualizarIdiomaBilly();
+    }
   }
 
   // 🎵 MÚSICA (VERSIÓN FINAL - BOTONES ESTÁTICOS CON LOOP INFINITO)
