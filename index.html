@@ -4013,7 +4013,8 @@ function idioma() {
       ultimoTema = 'saludo';
       return en
         ? 'Hello! I am Billy, the TreeLinks assistant. How can I help you?'
-        : '¡Hola! Soy Billy, el asistente de TreeLinks. ¿En qué te puedo ayudar?';
+      return es
+        ? '¡Hola! Soy Billy, el asistente de TreeLinks. ¿En qué te puedo ayudar?';
     }
 
     if (/buscar|buscador|enlace|link|encontrar|search|find/.test(q)) {
