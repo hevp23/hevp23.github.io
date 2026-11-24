@@ -2281,32 +2281,40 @@ footer.rectangulo-frase {
 
 </div>
 
-<!-- Ventana de Billy AI -->
-<section id="panel-billy-ai" role="dialog"
-  aria-modal="false" aria-labelledby="titulo-billy-ai" hidden>
 
+<section id="panel-billy-ai" role="dialog" aria-modal="false" aria-labelledby="titulo-billy-ai" hidden>
   <header class="encabezado-billy">
     <img src="billy-avatar.jpg" alt="" class="avatar-billy-chat">
     <strong id="titulo-billy-ai">Billy AI</strong>
     <button type="button" id="cerrar-billy-ai"
-      aria-label="Cerrar Billy AI">×</button>
+      aria-label="Cerrar Billy AI"
+      data-aria-es="Cerrar Billy AI"
+      data-aria-en="Close Billy AI">×</button>
   </header>
 
   <div id="conversacion-billy" aria-live="polite">
-    <p class="bienvenida-billy">
+    <p class="bienvenida-billy"
+      data-es="¡Hola! Mi nombre es Billy. ¿En qué te puedo ayudar?"
+      data-en="Hello! My name is Billy. How can I help you?">
       ¡Hola! Mi nombre es Billy. ¿En qué te puedo ayudar?
     </p>
 
     <div class="sugerencias-billy">
-      <button type="button" class="sugerencia-billy">
+      <button type="button" class="sugerencia-billy"
+        data-es="¿Cómo puedo encontrar un enlace?"
+        data-en="How can I find a link?">
         ¿Cómo puedo encontrar un enlace?
       </button>
 
-      <button type="button" class="sugerencia-billy">
+      <button type="button" class="sugerencia-billy"
+        data-es="¿Qué herramientas hay disponibles en TreeLinks?"
+        data-en="What tools are available in TreeLinks?">
         ¿Qué herramientas hay disponibles en TreeLinks?
       </button>
 
-      <button type="button" class="sugerencia-billy">
+      <button type="button" class="sugerencia-billy"
+        data-es="¿Cómo puedo utilizar el buscador?"
+        data-en="How can I use the search bar?">
         ¿Cómo puedo utilizar el buscador?
       </button>
     </div>
@@ -2315,23 +2323,30 @@ footer.rectangulo-frase {
   <div class="entrada-billy">
     <input type="text" id="mensaje-billy"
       placeholder="La conexión de Billy AI se activará próximamente"
-      disabled aria-label="Mensaje para Billy AI">
+      data-placeholder-es="La conexión de Billy AI se activará próximamente"
+      data-placeholder-en="Billy AI connection will be available soon"
+      aria-label="Mensaje para Billy AI"
+      data-aria-es="Mensaje para Billy AI"
+      data-aria-en="Message to Billy AI"
+      disabled>
 
     <button type="button" id="enviar-billy"
-      aria-label="Enviar mensaje" disabled>
+      aria-label="Enviar mensaje"
+      data-aria-es="Enviar mensaje"
+      data-aria-en="Send message"
+      disabled>
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M2 21 23 12 2 3v7l15 2-15 2z"
-          fill="currentColor"/>
+        <path d="M2 21 23 12 2 3v7l15 2-15 2z" fill="currentColor"/>
       </svg>
     </button>
   </div>
 
-  <p class="aviso-billy">
+  <p class="aviso-billy"
+    data-es="Interfaz de prueba · Billy AI todavía no está conectado"
+    data-en="Test interface · Billy AI is not connected yet">
     Interfaz de prueba · Billy AI todavía no está conectado
   </p>
-
 </section>
-
 
 <!--7 íconos circulares de Redes sociales 7️⃣-->
 <div class="contenedor-redes" aria-hidden="true">
@@ -3963,6 +3978,65 @@ document.addEventListener('touchstart', function(event) {
       cerrarPanel();
     }
   });
+
+ 
+  // 🌍 Traducción de la interfaz de Billy AI
+  window.actualizarIdiomaBilly = function() {
+    const idioma = (typeof idiomaActual !== 'undefined' &&
+                    idiomaActual === 'en') ? 'en' : 'es';
+
+    // Traducir los textos visibles
+    document.querySelectorAll(
+      '#panel-billy-ai [data-es][data-en]'
+    ).forEach(function(elemento) {
+      elemento.textContent = elemento.getAttribute(
+        idioma === 'es' ? 'data-es' : 'data-en'
+      );
+    });
+
+    // Traducir el campo de escritura
+    const campo = document.getElementById('mensaje-billy');
+
+    if (campo) {
+      campo.placeholder = campo.getAttribute(
+        idioma === 'es'
+          ? 'data-placeholder-es'
+          : 'data-placeholder-en'
+      );
+
+      campo.setAttribute(
+        'aria-label',
+        campo.getAttribute(
+          idioma === 'es' ? 'data-aria-es' : 'data-aria-en'
+        )
+      );
+    }
+
+    // Traducir las etiquetas accesibles de los botones
+    document.querySelectorAll(
+      '#panel-billy-ai [data-aria-es][data-aria-en]'
+    ).forEach(function(elemento) {
+      elemento.setAttribute(
+        'aria-label',
+        elemento.getAttribute(
+          idioma === 'es' ? 'data-aria-es' : 'data-aria-en'
+        )
+      );
+    });
+  };
+
+  // Actualizar Billy después de cambiar el idioma de TreeLinks
+  const botonIdiomaBilly = document.getElementById('btn-idioma');
+
+  if (botonIdiomaBilly) {
+    botonIdiomaBilly.addEventListener(
+      'click',
+      window.actualizarIdiomaBilly
+    );
+  }
+
+  // Aplicar el idioma inicial
+  window.actualizarIdiomaBilly();
 })();
 </script>
     
