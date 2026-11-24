@@ -3517,47 +3517,24 @@ document.addEventListener('touchstart', function(event) {
     if (index > 2) img.setAttribute('loading', 'lazy');
   });
 
-  // 2. Reproducción sin pausas usando caché en RAM
+  // 2. Precarga en caché sin tocar ni interferir con tu reproductor original
   const reproductor = document.querySelector('audio');
-  const memoriaAudios = {};
-
-  async function descargarEnMemoria(archivo) {
-    if (memoriaAudios[archivo]) return memoriaAudios[archivo];
-    try {
-      // Esta petición completa (sin Range) hace que tu sw.js SÍ la guarde offline
-      const res = await fetch(encodeURI(archivo));
-      if (res.ok) {
-        const blob = await res.blob();
-        const urlLocal = URL.createObjectURL(blob);
-        memoriaAudios[archivo] = urlLocal;
-        return urlLocal;
-      }
-    } catch (e) {}
-    return null;
-  }
+  const yaDescargadas = new Set();
 
   if (reproductor && typeof canciones !== 'undefined') {
-    let indiceActual = 0;
-
-    // Detecta qué canción está sonando y prepara inmediatamente la siguiente en RAM
     reproductor.addEventListener('play', () => {
-      const ruta = decodeURIComponent(reproductor.src);
-      const encontrado = canciones.findIndex(c => ruta.endsWith(c.archivo));
-      if (encontrado !== -1) indiceActual = encontrado;
+      const rutaActual = decodeURIComponent(reproductor.src);
+      const indiceActual = canciones.findIndex(c => rutaActual.endsWith(c.archivo));
 
-      const siguiente = canciones[(indiceActual + 1) % canciones.length].archivo;
-      descargarEnMemoria(siguiente);
-    });
-
-    // Cuando termina la canción actual, inyecta la siguiente directo desde la RAM (0 segundos)
-    reproductor.addEventListener('ended', () => {
-      const siguienteIndice = (indiceActual + 1) % canciones.length;
-      const siguienteArchivo = canciones[siguienteIndice].archivo;
-
-      if (memoriaAudios[siguienteArchivo]) {
-        indiceActual = siguienteIndice;
-        reproductor.src = memoriaAudios[siguienteArchivo];
-        reproductor.play().catch(() => {});
+      if (indiceActual !== -1) {
+        // Precarga las 2 siguientes canciones en el caché de tu sw.js
+        [1, 2].forEach(paso => {
+          const siguiente = canciones[(indiceActual + paso) % canciones.length].archivo;
+          if (!yaDescargadas.has(siguiente)) {
+            yaDescargadas.add(siguiente);
+            fetch(encodeURI(siguiente)).catch(() => yaDescargadas.delete(siguiente));
+          }
+        });
       }
     });
   }
