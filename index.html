@@ -3567,7 +3567,6 @@ document.addEventListener('touchstart', function(event) {
   if (inputBuscador && cajaResultados) {
     let idiomaActual = 'es';
 
-    // Detecta automáticamente si tu página está en español o en inglés
     function detectarIdiomaTreeLinks() {
       const textoPagina = document.body.innerText;
       if (textoPagina.includes('Social Networks') || textoPagina.includes('Community') || document.documentElement.lang === 'en') {
@@ -3575,34 +3574,46 @@ document.addEventListener('touchstart', function(event) {
       } else {
         idiomaActual = 'es';
       }
-      // Actualiza el texto si la barra no está presionada en ese momento
       if (document.activeElement !== inputBuscador) {
         inputBuscador.placeholder = idiomaActual === 'en' ? 'Look for a link' : 'Busca un enlace';
       }
     }
 
-    // Vigila cuando presionas tu botón traductor para cambiar el texto al instante
     const vigilanteIdioma = new MutationObserver(() => detectarIdiomaTreeLinks());
     vigilanteIdioma.observe(document.body, { childList: true, subtree: true, characterData: true });
     detectarIdiomaTreeLinks();
 
-    // Desaparece el texto apenas presionas en la barra de búsqueda
     inputBuscador.addEventListener('focus', () => {
       inputBuscador.placeholder = '';
     });
 
-    // Vuelve a mostrar el texto en el idioma activo si sales de la barra vacía
     inputBuscador.addEventListener('blur', () => {
       detectarIdiomaTreeLinks();
     });
 
-    // Recopila todos los enlaces únicos con imagen
+    // Lista exacta de tus 15 botones de pantallas internas para excluirlos siempre
+    const pantallasInternas = [
+      'comunidad', 'community', 'redes sociales', 'social networks', 'galería', 'gallery',
+      'mensajes', 'messages', 'asistentes', 'assistants', 'juegos', 'games', 'mapas', 'maps',
+      'servidores', 'servers', 'educación', 'education', 'deportes', 'sports',
+      'tecnología', 'technology', 'portafolio', 'portfolio', 'economía', 'economy',
+      'extra', 'volver', 'back'
+    ];
+
     const enlacesUnicos = new Map();
     document.querySelectorAll('a[href]').forEach(a => {
+      const hrefOriginal = a.getAttribute('href') || '';
       const texto = a.textContent.trim();
+      const textoMinuscula = texto.toLowerCase();
       const img = a.querySelector('img');
-      if (texto && texto !== 'Volver' && texto !== 'Back' && !texto.includes('⬅') && img && !enlacesUnicos.has(texto.toLowerCase())) {
-        enlacesUnicos.set(texto.toLowerCase(), {
+
+      // 1. Debe ser un enlace web real (http/https) o de contacto (tel/mailto), NO un ancla interna (#)
+      const esEnlaceReal = hrefOriginal.startsWith('http') || hrefOriginal.startsWith('tel:') || hrefOriginal.startsWith('mailto:');
+      // 2. No debe ser el nombre de ninguna de tus pantallas internas
+      const esPantallaInterna = pantallasInternas.includes(textoMinuscula) || texto.includes('⬅');
+
+      if (esEnlaceReal && !esPantallaInterna && texto && img && !enlacesUnicos.has(textoMinuscula)) {
+        enlacesUnicos.set(textoMinuscula, {
           nombre: texto,
           url: a.href,
           icono: img.src
@@ -3651,6 +3662,7 @@ document.addEventListener('touchstart', function(event) {
     });
   }
 </script>
+
 
 <!--Aquí termina SCRIPT 🏁-->
 
