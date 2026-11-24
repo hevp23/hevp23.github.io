@@ -3562,49 +3562,26 @@ document.addEventListener('touchstart', function(event) {
 </script>
 
 <script>
+{
   const inputBuscador = document.getElementById('buscadorTreeLinks');
   const cajaResultados = document.getElementById('listaResultados');
 
   if (inputBuscador && cajaResultados) {
     let idiomaActual = 'es';
 
-    // Lee directamente los atributos data-es / data-en de tus propios botones internos
-    function obtenerNombreEnlace(boton) {
-      const span = boton.querySelector('span');
-      if (span) {
-        const traduccion = span.getAttribute(`data-${idiomaActual}`);
-        if (traduccion && traduccion.trim() !== '') return traduccion.trim();
-        return span.textContent.trim();
-      }
-      return boton.textContent.trim();
-    }
-
-    function detectarIdiomaTreeLinks() {
-      const textoPagina = document.body.innerText;
-      if (textoPagina.includes('Social Networks') || textoPagina.includes('Community') || document.documentElement.lang === 'en') {
-        idiomaActual = 'en';
-      } else {
-        idiomaActual = 'es';
-      }
+    function detectarIdioma() {
+      const btnIdioma = document.body.innerText || '';
+      idiomaActual = (btnIdioma.includes('Social Networks') || btnIdioma.includes('Community')) ? 'en' : 'es';
       if (document.activeElement !== inputBuscador) {
         inputBuscador.placeholder = idiomaActual === 'en' ? 'Look for a link' : 'Busca un enlace';
       }
     }
 
-    const vigilanteIdioma = new MutationObserver(() => detectarIdiomaTreeLinks());
-    vigilanteIdioma.observe(document.body, { childList: true, subtree: true, characterData: true });
-    detectarIdiomaTreeLinks();
+    setInterval(detectarIdioma, 800);
+    detectarIdioma();
 
-    inputBuscador.addEventListener('focus', () => {
-      inputBuscador.placeholder = '';
-    });
-
-    inputBuscador.addEventListener('blur', () => {
-      detectarIdiomaTreeLinks();
-    });
-
-    // Selecciona ÚNICAMENTE tus enlaces internos reales (class="boton-interno")
-    const todosLosBotonesInternos = Array.from(document.querySelectorAll('a.boton-interno'));
+    inputBuscador.addEventListener('focus', () => { inputBuscador.placeholder = ''; });
+    inputBuscador.addEventListener('blur', detectarIdioma);
 
     inputBuscador.addEventListener('input', () => {
       const consulta = inputBuscador.value.trim().toLowerCase();
@@ -3615,21 +3592,33 @@ document.addEventListener('touchstart', function(event) {
         return;
       }
 
-      // Evita duplicados (como los 7 prioritarios) y respeta el idioma activo (data-es / data-en)
       const unicos = new Map();
-      todosLosBotonesInternos.forEach(boton => {
-        const nombre = obtenerNombreEnlace(boton);
-        const clave = nombre.toLowerCase();
-        const img = boton.querySelector('img.icono-boton-interno') || boton.querySelector('img');
+      // Toma TODOS los enlaces <a> de la página que tengan href válido
+      const todosLosEnlaces = document.getElementsByTagName('a');
 
-        if (nombre && img && !unicos.has(clave)) {
-          unicos.set(clave, {
-            nombre: nombre,
-            url: boton.href,
-            icono: img.getAttribute('src') || img.src
-          });
+      for (let i = 0; i < todosLosEnlaces.length; i++) {
+        const a = todosLosEnlaces[i];
+        const href = a.getAttribute('href') || '';
+        // Ignora anclas internas (#) o resultados del propio buscador
+        if (!href || href.startsWith('#') || a.classList.contains('item-resultado-treelinks')) continue;
+
+        const span = a.querySelector('span');
+        let nombre = '';
+        if (span) {
+          nombre = span.getAttribute('data-' + idiomaActual) || span.textContent || '';
+        } else {
+          nombre = a.textContent || '';
         }
-      });
+        nombre = nombre.replace(/\s+/g, ' ').trim();
+
+        const img = a.querySelector('img');
+        const icono = img ? (img.getAttribute('src') || img.src) : '';
+        const clave = nombre.toLowerCase();
+
+        if (nombre && icono && !unicos.has(clave)) {
+          unicos.set(clave, { nombre, url: href, icono });
+        }
+      }
 
       const lista = Array.from(unicos.values());
       const empiezan = lista.filter(item => item.nombre.toLowerCase().startsWith(consulta));
@@ -3637,8 +3626,8 @@ document.addEventListener('touchstart', function(event) {
       const coincidencias = [...empiezan, ...contienen];
 
       if (coincidencias.length === 0) {
-        const msgVacio = idiomaActual === 'en' ? 'No links found' : 'No se encontraron enlaces';
-        cajaResultados.innerHTML = `<div style="padding: 12px 18px; color: #FF4200; font-weight: bold; font-size: 14px;">${msgVacio}</div>`;
+        const msg = idiomaActual === 'en' ? 'No links found' : 'No se encontraron enlaces';
+        cajaResultados.innerHTML = '<div style="padding: 12px 18px; color: #FF4200; font-weight: bold; font-size: 14px;">' + msg + '</div>';
       } else {
         coincidencias.forEach(item => {
           const fila = document.createElement('a');
@@ -3647,7 +3636,7 @@ document.addEventListener('touchstart', function(event) {
           fila.rel = 'noopener noreferrer';
           fila.className = 'item-resultado-treelinks';
           fila.style.cssText = 'display: flex; align-items: center; gap: 12px; padding: 10px 18px; color: #FF4200; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255, 224, 0, 0.5); font-size: 15px;';
-          fila.innerHTML = `<img src="${item.icono}" style="width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1.5px solid #FFE000; background: #fff;"><span>${item.nombre}</span>`;
+          fila.innerHTML = '<img src="' + item.icono + '" style="width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1.5px solid #FFE000; background: #fff;"><span>' + item.nombre + '</span>';
           cajaResultados.appendChild(fila);
         });
       }
@@ -3656,11 +3645,13 @@ document.addEventListener('touchstart', function(event) {
     });
 
     document.addEventListener('click', (e) => {
-      if (!document.getElementById('contenedor-buscador').contains(e.target)) {
+      const cont = document.getElementById('contenedor-buscador');
+      if (cont && !cont.contains(e.target)) {
         cajaResultados.style.display = 'none';
       }
     });
   }
+}
 </script>
 
 <!--Aquí termina SCRIPT 🏁-->
