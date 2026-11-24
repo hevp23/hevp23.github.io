@@ -1955,7 +1955,7 @@ footer.rectangulo-frase {
 #fila-buscador-billy {
   display: flex;
   align-items: stretch;
-  gap: 8px;
+  gap: 7px;
   width: 92%;
   max-width: 460px;
   margin: 14px auto;
@@ -1974,7 +1974,7 @@ footer.rectangulo-frase {
 
 #fila-buscador-billy #buscadorTreeLinks {
   height: 52px;
-  padding: 10px 8px 10px 10px !important;
+  padding: 10px 7px 10px 10px !important;
   font-size: 14px !important;
   user-select: text !important;
   -webkit-user-select: text !important;
@@ -1988,12 +1988,12 @@ footer.rectangulo-frase {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  padding: 4px 8px;
+  padding: 4px 7px;
   border: 2px solid #FFE000;
   border-radius: 50px;
   background: #00FF16;
   color: #FF4200;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,.25);
@@ -2164,7 +2164,7 @@ footer.rectangulo-frase {
 
   #fila-buscador-billy #buscadorTreeLinks {
     font-size: 12px !important;
-    padding-left: 8px !important;
+    padding-left: 7px !important;
   }
 
   #boton-billy-ai {
@@ -2177,6 +2177,71 @@ footer.rectangulo-frase {
     width: 30px;
     height: 30px;
     flex-basis: 30px;
+  }
+}
+
+/* === Billy AI: Ajuste para PC y Laptops (900px o más) === */
+@media (min-width: 900px) {
+  #fila-buscador-billy {
+    max-width: 640px;
+  }
+  #boton-billy-ai {
+    height: 57px;
+    font-size: 17px;
+  }
+  #fila-buscador-billy #buscadorTreeLinks {
+    height: 57px;
+    font-size: 17px !important;
+  }
+  .avatar-billy-pill {
+    width: 40px;
+    height: 40px;
+  }
+  #panel-billy-ai {
+    width: min(85vw, 540px);
+    height: min(77vh, 700px);
+    border-radius: 24px;
+  }
+  .encabezado-billy {
+    min-height: 72px;
+    padding: 14px 17px;
+    font-size: 20px;
+  }
+  .avatar-billy-chat {
+    width: 48px;
+    height: 48px;
+  }
+  #cerrar-billy-ai {
+    width: 40px;
+    height: 40px;
+    font-size: 27px;
+  }
+  #conversacion-billy {
+    padding: 20px 17px;
+  }
+  .bienvenida-billy {
+    font-size: 17px;
+  }
+  .sugerencia-billy {
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+  #mensaje-billy {
+    height: 50px;
+    font-size: 17px;
+    padding: 0 17px;
+  }
+  #enviar-billy {
+    width: 50px;
+    height: 50px;
+  }
+  #enviar-billy svg {
+    width: 24px;
+    height: 24px;
+  }
+  .aviso-billy {
+    font-size: 13px;
+    padding: 0 12px 11px;
   }
 }
     </style>
