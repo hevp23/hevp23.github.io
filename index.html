@@ -3512,13 +3512,41 @@ document.addEventListener('touchstart', function(event) {
 </script>
 
 <script>
+  // 1. Carga diferida para las 327 imágenes (excepto portada y perfil)
   document.querySelectorAll('img').forEach((img, index) => {
     if (index > 2) img.setAttribute('loading', 'lazy');
   });
-  document.querySelectorAll('audio').forEach(audio => {
-    audio.setAttribute('preload', 'none');
-  });
+
+  // 2. Precarga inteligente conectada directamente a tu arreglo 'canciones'
+  const reproductor = document.querySelector('audio');
+  const precargador = new Audio();
+  precargador.preload = 'auto';
+
+  if (reproductor && typeof canciones !== 'undefined') {
+    reproductor.preload = 'auto';
+
+    reproductor.addEventListener('play', () => {
+      // Decodifica el nombre del archivo actual para soportar espacios, tildes y paréntesis
+      const rutaActual = decodeURIComponent(reproductor.src);
+      
+      // Busca en qué posición (de 0 a 24) va la canción que está sonando
+      const indiceActual = canciones.findIndex(c => rutaActual.endsWith(c.archivo));
+
+      if (indiceActual !== -1) {
+        // Calcula cuál es la siguiente (si llega a la 25, vuelve a la 1)
+        const indiceSiguiente = (indiceActual + 1) % canciones.length;
+        const siguienteArchivo = canciones[indiceSiguiente].archivo;
+
+        // Descarga la siguiente pista en segundo plano mientras disfrutas la actual
+        if (!decodeURIComponent(precargador.src).endsWith(siguienteArchivo)) {
+          precargador.src = encodeURI(siguienteArchivo);
+          precargador.load();
+        }
+      }
+    });
+  }
 </script>
+
 
 <!--Aquí termina SCRIPT 🏁-->
 
