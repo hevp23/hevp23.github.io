@@ -3115,7 +3115,7 @@ function pintarClima() {
       
     // Sincronizar el idioma de Billy AI con TreeLinks
     if (typeof window.actualizarIdiomaBilly === 'function') {
-      window.actualizarIdiomaBilly();
+    window.actualizarIdiomaBilly(idiomaActual);
     }
   }
 
@@ -3976,11 +3976,11 @@ document.addEventListener('touchstart', function(event) {
   const historialBilly = [];
   let ultimoTema = '';
 
+let idiomaBilly = 'es';
 
 function idioma() {
-  return typeof idiomaActual !== 'undefined' &&
-         idiomaActual === 'en' ? 'en' : 'es';
-}
+  return idiomaBilly;
+    }
 
   function normalizar(texto) {
     return texto.toLowerCase()
@@ -4178,8 +4178,11 @@ function idioma() {
     });
 
   // Actualizar los textos al cambiar el idioma.
-  window.actualizarIdiomaBilly = function() {
-    const en = idioma() === 'en';
+  window.actualizarIdiomaBilly = function(nuevoIdioma) {
+  if (nuevoIdioma === 'es' || nuevoIdioma === 'en') {
+    idiomaBilly = nuevoIdioma;
+  }
+  const en = idiomaBilly === 'en';
 
     document.querySelectorAll(
       '#panel-billy-ai [data-es][data-en]'
