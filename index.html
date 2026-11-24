@@ -4022,9 +4022,8 @@ document.addEventListener('touchstart', function(event) {
 }
 </script>
 
-
 <script>
-// === BILLY AI: ASISTENTE LOCAL DE TREELINKS ===
+// === BILLY AI: ASISTENTE LOCAL DE TREELINKS (CORREGIDO) ===
 (function() {
   const boton = document.getElementById('boton-billy-ai');
   const panel = document.getElementById('panel-billy-ai');
@@ -4034,26 +4033,23 @@ document.addEventListener('touchstart', function(event) {
   const enviar = document.getElementById('enviar-billy');
   const aviso = document.querySelector('.aviso-billy');
 
-  if (!boton || !panel || !cerrar || !conversacion ||
-      !campo || !enviar) return;
+  if (!boton || !panel || !cerrar || !conversacion || !campo || !enviar) return;
 
-  // Memoria temporal: desaparece al actualizar la página.
   const historialBilly = [];
   let ultimoTema = '';
+  let idiomaBilly = 'es';
 
-let idiomaBilly = 'es';
+  function idioma() {
+    return idiomaBilly;
+  }
 
-function idioma() {
-  return idiomaBilly;
-}
-
-function normalizar(texto) {
+  function normalizar(texto) {
     return texto.toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[¿?¡!.,;:]/g, ' ')
       .trim();
-    }
+  }
 
   function agregarMensaje(texto, tipo) {
     const mensaje = document.createElement('p');
@@ -4072,89 +4068,88 @@ function normalizar(texto) {
 
   function responder(pregunta) {
     const q = normalizar(pregunta);
-    const en = idioma();
+    const esIngles = idioma() === 'en'; // ¡AQUÍ ESTABA EL ERROR! Ahora evalúa verdadero/falso correctamente.
 
     if (/^(hola|hey|buenas|hello|hi|good morning|good afternoon)/.test(q)) {
       ultimoTema = 'saludo';
-      return en
+      return esIngles
         ? 'Hello! I am Billy, the TreeLinks assistant. How can I help you?'
         : '¡Hola! Soy Billy, el asistente de TreeLinks. ¿En qué te puedo ayudar?';
     }
 
     if (/buscar|buscador|enlace|link|encontrar|search|find/.test(q)) {
       ultimoTema = 'buscador';
-      return en
+      return esIngles
         ? 'Use the TreeLinks search bar. Type the name of the website or service you are looking for.'
         : 'Podés utilizar el buscador de TreeLinks. Escribí el nombre del sitio o servicio que estás buscando.';
     }
 
     if (/herramienta|funcion|disponible|tools|features/.test(q)) {
       ultimoTema = 'herramientas';
-      return en
+      return esIngles
         ? 'TreeLinks includes a link search bar, a language switch, a music player and its different sections. Explore the page to discover them.'
         : 'TreeLinks cuenta con un buscador de enlaces, un traductor de idioma, un reproductor de música y diferentes secciones. Explorá la página para conocerlos.';
     }
 
     if (/idioma|ingles|espanol|language|english|spanish|traduc/.test(q)) {
       ultimoTema = 'idioma';
-      return en
+      return esIngles
         ? 'Use the language button with the flag near the top of TreeLinks to switch between Spanish and English.'
         : 'Utilizá el botón con la bandera que está en la parte superior de TreeLinks para cambiar entre español e inglés.';
     }
 
     if (/musica|cancion|reproduc|music|song|player/.test(q)) {
       ultimoTema = 'musica';
-      return en
+      return esIngles
         ? 'You can use the music player controls near the top of TreeLinks to play or pause the music.'
         : 'Podés utilizar los controles del reproductor musical que están en la parte superior de TreeLinks para reproducir o pausar la música.';
     }
 
     if (/seccion|pantalla|pagina|section|page/.test(q)) {
       ultimoTema = 'secciones';
-      return en
+      return esIngles
         ? 'Explore the sections and their links on the TreeLinks page. You can also use the search bar to find a specific link.'
         : 'Explorá las secciones y sus enlaces en TreeLinks. También podés utilizar el buscador para encontrar un enlace específico.';
     }
 
     if (/contacto|correo|telefono|redes sociales|contact|email|social/.test(q)) {
       ultimoTema = 'contacto';
-      return en
+      return esIngles
         ? 'You can find the social media and contact icons on the TreeLinks page.'
         : 'Podés encontrar los iconos de redes sociales y contacto en la página de TreeLinks.';
     }
 
     if (/quien sos|quien eres|tu nombre|who are you|your name/.test(q)) {
       ultimoTema = 'identidad';
-      return en
+      return esIngles
         ? 'My name is Billy. I am the virtual assistant of TreeLinks.'
         : 'Mi nombre es Billy. Soy el asistente virtual de TreeLinks.';
     }
 
     if (/gracias|thank you|thanks/.test(q)) {
-      return en
+      return esIngles
         ? 'You are welcome! I am here to help you explore TreeLinks.'
         : '¡Con gusto! Estoy aquí para ayudarte a explorar TreeLinks.';
     }
 
-    if (/^(y|tambien|también|como|cómo|cual|cuál|eso|that|and|also|how)/.test(q) &&
-        ultimoTema) {
+    if (/^(y|tambien|también|como|cómo|cual|cuál|eso|that|and|also|how)/.test(q) && ultimoTema) {
       const seguimientos = {
-        buscador: en
+        buscador: esIngles
           ? 'Type a word or the name of the service in the search bar.'
           : 'Escribí una palabra o el nombre del servicio en el buscador.',
-        herramientas: en
+        herramientas: esIngles
           ? 'You can explore each tool directly on the page.'
           : 'Podés explorar cada herramienta directamente en la página.',
-        idioma: en
+        idioma: esIngles
           ? 'Tap the language button to change the interface.'
           : 'Pulsá el botón de idioma para cambiar la interfaz.',
-        musica: en
+        musica: esIngles
           ? 'Use the central music button to play or pause.'
           : 'Utilizá el botón central de música para reproducir o pausar.',
-        secciones: en
+        secciones: esIngles
           ? 'Open the section you want to explore.'
           : 'Abrí la sección que querés explorar.',
-        contacto: en
+        contacto: esIngles
           ? 'Select the contact or social media icon you need.'
           : 'Seleccioná el icono de contacto o red social que necesitás.'
       };
@@ -4164,7 +4159,7 @@ function normalizar(texto) {
 
     ultimoTema = '';
 
-    return en
+    return esIngles
       ? 'I can help you with TreeLinks, its links, sections and tools. Could you ask me something about the website?'
       : 'Puedo ayudarte con TreeLinks, sus enlaces, secciones y herramientas. ¿Podés preguntarme algo sobre el sitio?';
   }
@@ -4173,7 +4168,6 @@ function normalizar(texto) {
     const pregunta = texto.trim();
     if (!pregunta) return;
 
-    // Ocultar las sugerencias después de comenzar.
     const sugerencias = conversacion.querySelector('.sugerencias-billy');
     if (sugerencias) sugerencias.style.display = 'none';
 
@@ -4188,12 +4182,9 @@ function normalizar(texto) {
     campo.focus();
   }
 
-  // Activar el campo y el botón.
   campo.disabled = false;
   enviar.disabled = false;
-  campo.placeholder = idioma() === 'en'
-    ? 'Write your question...'
-    : 'Escribí tu pregunta...';
+  campo.placeholder = idioma() === 'en' ? 'Write your question...' : 'Escribí tu pregunta...';
 
   if (aviso) {
     aviso.textContent = idioma() === 'en'
@@ -4201,7 +4192,6 @@ function normalizar(texto) {
       : 'Asistente local · Las conversaciones no se guardan';
   }
 
-  // Abrir y cerrar el panel.
   boton.addEventListener('click', function() {
     panel.hidden = false;
     boton.setAttribute('aria-expanded', 'true');
@@ -4218,7 +4208,6 @@ function normalizar(texto) {
     if (e.key === 'Escape' && !panel.hidden) cerrarPanel();
   });
 
-  // Enviar mensajes.
   enviar.addEventListener('click', function() {
     procesarMensaje(campo.value);
   });
@@ -4230,52 +4219,36 @@ function normalizar(texto) {
     }
   });
 
-  // Activar las tres preguntas sugeridas.
-  conversacion.querySelectorAll('.sugerencia-billy')
-    .forEach(function(botonSugerencia) {
-      botonSugerencia.addEventListener('click', function() {
-        procesarMensaje(
-          botonSugerencia.getAttribute(
-            idioma() === 'en' ? 'data-en' : 'data-es'
-          )
-        );
-      });
-    });
-
-  // Actualizar los textos al cambiar el idioma.
-  window.actualizarIdiomaBilly = function(nuevoIdioma) {
-  if (nuevoIdioma === 'es' || nuevoIdioma === 'en') {
-    idiomaBilly = nuevoIdioma;
-  }
-  const en = idiomaBilly === 'en';
-
-    document.querySelectorAll(
-      '#panel-billy-ai [data-es][data-en]'
-    ).forEach(function(elemento) {
-      elemento.textContent = elemento.getAttribute(
-        en ? 'data-en' : 'data-es'
+  conversacion.querySelectorAll('.sugerencia-billy').forEach(function(botonSugerencia) {
+    botonSugerencia.addEventListener('click', function() {
+      procesarMensaje(
+        botonSugerencia.getAttribute(idioma() === 'en' ? 'data-en' : 'data-es')
       );
     });
+  });
 
-    campo.placeholder = en
-      ? 'Write your question...'
-      : 'Escribí tu pregunta...';
+  window.actualizarIdiomaBilly = function(nuevoIdioma) {
+    if (nuevoIdioma === 'es' || nuevoIdioma === 'en') {
+      idiomaBilly = nuevoIdioma;
+    }
+    const esIngles = idiomaBilly === 'en';
+
+    document.querySelectorAll('#panel-billy-ai [data-es][data-en]').forEach(function(elemento) {
+      elemento.textContent = elemento.getAttribute(esIngles ? 'data-en' : 'data-es');
+    });
+
+    campo.placeholder = esIngles ? 'Write your question...' : 'Escribí tu pregunta...';
 
     if (aviso) {
-      aviso.textContent = en
+      aviso.textContent = esIngles
         ? 'Local assistant · Conversations are not saved'
         : 'Asistente local · Las conversaciones no se guardan';
     }
 
-    campo.setAttribute('aria-label',
-      en ? 'Message to Billy AI' : 'Mensaje para Billy AI');
+    campo.setAttribute('aria-label', esIngles ? 'Message to Billy AI' : 'Mensaje para Billy AI');
   };
 
-const botonIdioma = document.getElementById('btn-idioma');
-
-window.actualizarIdiomaBilly(
-  typeof idiomaActual !== 'undefined' ? idiomaActual : 'es'
-);
+  window.actualizarIdiomaBilly(typeof idiomaActual !== 'undefined' ? idiomaActual : 'es');
 })();
 </script>
 
