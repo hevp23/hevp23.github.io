@@ -3567,6 +3567,17 @@ document.addEventListener('touchstart', function(event) {
   if (inputBuscador && cajaResultados) {
     let idiomaActual = 'es';
 
+    // Lee directamente los atributos data-es / data-en de tus propios botones internos
+    function obtenerNombreEnlace(boton) {
+      const span = boton.querySelector('span');
+      if (span) {
+        const traduccion = span.getAttribute(`data-${idiomaActual}`);
+        if (traduccion && traduccion.trim() !== '') return traduccion.trim();
+        return span.textContent.trim();
+      }
+      return boton.textContent.trim();
+    }
+
     function detectarIdiomaTreeLinks() {
       const textoPagina = document.body.innerText;
       if (textoPagina.includes('Social Networks') || textoPagina.includes('Community') || document.documentElement.lang === 'en') {
@@ -3591,37 +3602,8 @@ document.addEventListener('touchstart', function(event) {
       detectarIdiomaTreeLinks();
     });
 
-    // Lista exacta de tus 15 botones de pantallas internas para excluirlos siempre
-    const pantallasInternas = [
-      'comunidad', 'community', 'redes sociales', 'social networks', 'galería', 'gallery',
-      'mensajes', 'messages', 'asistentes', 'assistants', 'juegos', 'games', 'mapas', 'maps',
-      'servidores', 'servers', 'educación', 'education', 'deportes', 'sports',
-      'tecnología', 'technology', 'portafolio', 'portfolio', 'economía', 'economy',
-      'extra', 'volver', 'back'
-    ];
-
-    const enlacesUnicos = new Map();
-    document.querySelectorAll('a[href]').forEach(a => {
-      const hrefOriginal = a.getAttribute('href') || '';
-      const texto = a.textContent.trim();
-      const textoMinuscula = texto.toLowerCase();
-      const img = a.querySelector('img');
-
-      // 1. Debe ser un enlace web real (http/https) o de contacto (tel/mailto), NO un ancla interna (#)
-      const esEnlaceReal = hrefOriginal.startsWith('http') || hrefOriginal.startsWith('tel:') || hrefOriginal.startsWith('mailto:');
-      // 2. No debe ser el nombre de ninguna de tus pantallas internas
-      const esPantallaInterna = pantallasInternas.includes(textoMinuscula) || texto.includes('⬅');
-
-      if (esEnlaceReal && !esPantallaInterna && texto && img && !enlacesUnicos.has(textoMinuscula)) {
-        enlacesUnicos.set(textoMinuscula, {
-          nombre: texto,
-          url: a.href,
-          icono: img.src
-        });
-      }
-    });
-
-    const listaCompleta = Array.from(enlacesUnicos.values());
+    // Selecciona ÚNICAMENTE tus enlaces internos reales (class="boton-interno")
+    const todosLosBotonesInternos = Array.from(document.querySelectorAll('a.boton-interno'));
 
     inputBuscador.addEventListener('input', () => {
       const consulta = inputBuscador.value.trim().toLowerCase();
@@ -3632,8 +3614,25 @@ document.addEventListener('touchstart', function(event) {
         return;
       }
 
-      const empiezan = listaCompleta.filter(item => item.nombre.toLowerCase().startsWith(consulta));
-      const contienen = listaCompleta.filter(item => !item.nombre.toLowerCase().startsWith(consulta) && item.nombre.toLowerCase().includes(consulta));
+      // Evita duplicados (como los 7 prioritarios) y respeta el idioma activo (data-es / data-en)
+      const unicos = new Map();
+      todosLosBotonesInternos.forEach(boton => {
+        const nombre = obtenerNombreEnlace(boton);
+        const clave = nombre.toLowerCase();
+        const img = boton.querySelector('img.icono-boton-interno') || boton.querySelector('img');
+
+        if (nombre && img && !unicos.has(clave)) {
+          unicos.set(clave, {
+            nombre: nombre,
+            url: boton.href,
+            icono: img.getAttribute('src') || img.src
+          });
+        }
+      });
+
+      const lista = Array.from(unicos.values());
+      const empiezan = lista.filter(item => item.nombre.toLowerCase().startsWith(consulta));
+      const contienen = lista.filter(item => !item.nombre.toLowerCase().startsWith(consulta) && item.nombre.toLowerCase().includes(consulta));
       const coincidencias = [...empiezan, ...contienen];
 
       if (coincidencias.length === 0) {
@@ -3662,7 +3661,6 @@ document.addEventListener('touchstart', function(event) {
     });
   }
 </script>
-
 
 <!--Aquí termina SCRIPT 🏁-->
 
