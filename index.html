@@ -3512,33 +3512,52 @@ document.addEventListener('touchstart', function(event) {
 </script>
 
 <script>
-  // 1. Mantiene las 327 imágenes rápidas (igual que en tu primer código)
+  // 1. Carga diferida para las imágenes
   document.querySelectorAll('img').forEach((img, index) => {
     if (index > 2) img.setAttribute('loading', 'lazy');
   });
 
-  // 2. Un solo reproductor sin competencia de internet
+  // 2. Reproducción sin pausas usando caché en RAM
   const reproductor = document.querySelector('audio');
-  if (reproductor && typeof canciones !== 'undefined') {
-    reproductor.setAttribute('preload', 'auto');
-    let yaPrecargo = false;
+  const memoriaAudios = {};
 
+  async function descargarEnMemoria(archivo) {
+    if (memoriaAudios[archivo]) return memoriaAudios[archivo];
+    try {
+      // Esta petición completa (sin Range) hace que tu sw.js SÍ la guarde offline
+      const res = await fetch(encodeURI(archivo));
+      if (res.ok) {
+        const blob = await res.blob();
+        const urlLocal = URL.createObjectURL(blob);
+        memoriaAudios[archivo] = urlLocal;
+        return urlLocal;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  if (reproductor && typeof canciones !== 'undefined') {
+    let indiceActual = 0;
+
+    // Detecta qué canción está sonando y prepara inmediatamente la siguiente en RAM
     reproductor.addEventListener('play', () => {
-      yaPrecargo = false;
+      const ruta = decodeURIComponent(reproductor.src);
+      const encontrado = canciones.findIndex(c => ruta.endsWith(c.archivo));
+      if (encontrado !== -1) indiceActual = encontrado;
+
+      const siguiente = canciones[(indiceActual + 1) % canciones.length].archivo;
+      descargarEnMemoria(siguiente);
     });
 
-    // Solo prepara la siguiente cuando faltan 8 segundos para terminar la actual
-    reproductor.addEventListener('timeupdate', () => {
-      if (!yaPrecargo && reproductor.duration && (reproductor.duration - reproductor.currentTime <= 8)) {
-        yaPrecargo = true;
-        const rutaActual = decodeURIComponent(reproductor.src);
-        const indiceActual = canciones.findIndex(c => rutaActual.endsWith(c.archivo));
+    // Cuando termina la canción actual, inyecta la siguiente directo desde la RAM (0 segundos)
+    reproductor.addEventListener('ended', () => {
+      const siguienteIndice = (indiceActual + 1) % canciones.length;
+      const siguienteArchivo = canciones[siguienteIndice].archivo;
 
-        if (indiceActual !== -1) {
-          const siguienteArchivo = canciones[(indiceActual + 1) % canciones.length].archivo;
-          // Pide el archivo suavemente a la caché sin abrir otro reproductor de audio
-          fetch(encodeURI(siguienteArchivo), { priority: 'low' }).catch(() => {});
-        }
+      if (memoriaAudios[siguienteArchivo]) {
+        indiceActual = siguienteIndice;
+        reproductor.src = memoriaAudios[siguienteArchivo];
+        reproductor.play().catch(() => {});
       }
     });
   }
