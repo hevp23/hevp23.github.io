@@ -3023,8 +3023,7 @@ function pintarClima() {
     document.querySelectorAll('.nombre-red[data-es]').forEach(function(span){
     span.textContent = idiomaActual === 'es' ? span.getAttribute('data-es') : span.getAttribute('data-en');
     });
-      
-    window.idiomaActual = idiomaActual;
+    
     actualizarReloj();
     actualizarTextosBotones();
     pintarUbicacion();
@@ -3977,9 +3976,11 @@ document.addEventListener('touchstart', function(event) {
   const historialBilly = [];
   let ultimoTema = '';
 
+
 function idioma() {
-  return window.idiomaActual === 'en' ? 'en' : 'es';
-    }
+  return typeof idiomaActual !== 'undefined' &&
+         idiomaActual === 'en' ? 'en' : 'es';
+}
 
   function normalizar(texto) {
     return texto.toLowerCase()
