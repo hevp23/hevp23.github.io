@@ -1,4 +1,4 @@
-const CACHE_NAME = 'treelinks-v1';
+const CACHE_NAME = 'treelinks-v2';
 
 const APP_SHELL = [
   new URL('./index.html', self.registration.scope).href,
@@ -29,23 +29,20 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const request = event.request;
-
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
-
-  // Los enlaces externos siguen funcionando normalmente en línea.
   if (url.origin !== self.location.origin) return;
 
+  // Navegación (index.html)
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          if (response.ok) {
+          if (response.status === 200) {
             const copy = response.clone();
             event.waitUntil(
-              caches.open(CACHE_NAME)
-                .then((cache) => cache.put(request, copy))
+              caches.open(CACHE_NAME).then((cache) => cache.put(request, copy))
             );
           }
           return response;
@@ -60,16 +57,17 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Archivos estáticos, imágenes y canciones completas (status 200)
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
 
       return fetch(request).then((response) => {
-        if (response.ok) {
+        // Solo guarda respuestas completas (200), evitando el fallo de 206 Partial Content
+        if (response.status === 200) {
           const copy = response.clone();
           event.waitUntil(
-            caches.open(CACHE_NAME)
-              .then((cache) => cache.put(request, copy))
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy))
           );
         }
         return response;
@@ -77,5 +75,3 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
-
-
