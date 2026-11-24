@@ -2029,6 +2029,26 @@ footer.rectangulo-frase {
   </div>
 </div>
 
+<!--Buscador de enlaces 🔎-->
+ <style>
+  #buscadorTreeLinks::placeholder {
+    color: #FF4200;
+    opacity: 1;
+    font-weight: bold;
+  }
+  .item-resultado-treelinks:hover, .item-resultado-treelinks:active {
+    background-color: rgba(255, 224, 0, 0.35);
+  }
+</style>
+
+<div id="contenedor-buscador" style="position: relative; width: 92%; max-width: 460px; margin: 14px auto; z-index: 999;">
+  <input type="search" id="buscadorTreeLinks" placeholder="Busca un enlace" autocomplete="off"
+    style="width: 100%; padding: 12px 20px; border-radius: 50px; border: 3px solid #FFE000; background-color: #00FF16; color: #FF4200; font-size: 16px; font-weight: bold; outline: none; box-sizing: border-box; box-shadow: 0 4px 10px rgba(0,0,0,0.25);">
+  
+  <div id="listaResultados" style="display: none; position: absolute; top: 54px; left: 0; right: 0; background-color: #00FF16; border: 3px solid #FFE000; border-radius: 22px; max-height: 270px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.45); text-align: left; z-index: 1000;">
+  </div>
+</div>
+
 <!--7 íconos circulares de Redes sociales 7️⃣-->
 <div class="contenedor-redes" aria-hidden="true">
 <div class="fila-iconos" style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin: 20px auto !important;">
@@ -3535,6 +3555,98 @@ document.addEventListener('touchstart', function(event) {
             fetch(encodeURI(siguiente)).catch(() => yaDescargadas.delete(siguiente));
           }
         });
+      }
+    });
+  }
+</script>
+
+<script>
+  const inputBuscador = document.getElementById('buscadorTreeLinks');
+  const cajaResultados = document.getElementById('listaResultados');
+
+  if (inputBuscador && cajaResultados) {
+    let idiomaActual = 'es';
+
+    // Detecta automáticamente si tu página está en español o en inglés
+    function detectarIdiomaTreeLinks() {
+      const textoPagina = document.body.innerText;
+      if (textoPagina.includes('Social Networks') || textoPagina.includes('Community') || document.documentElement.lang === 'en') {
+        idiomaActual = 'en';
+      } else {
+        idiomaActual = 'es';
+      }
+      // Actualiza el texto si la barra no está presionada en ese momento
+      if (document.activeElement !== inputBuscador) {
+        inputBuscador.placeholder = idiomaActual === 'en' ? 'Look for a link' : 'Busca un enlace';
+      }
+    }
+
+    // Vigila cuando presionas tu botón traductor para cambiar el texto al instante
+    const vigilanteIdioma = new MutationObserver(() => detectarIdiomaTreeLinks());
+    vigilanteIdioma.observe(document.body, { childList: true, subtree: true, characterData: true });
+    detectarIdiomaTreeLinks();
+
+    // Desaparece el texto apenas presionas en la barra de búsqueda
+    inputBuscador.addEventListener('focus', () => {
+      inputBuscador.placeholder = '';
+    });
+
+    // Vuelve a mostrar el texto en el idioma activo si sales de la barra vacía
+    inputBuscador.addEventListener('blur', () => {
+      detectarIdiomaTreeLinks();
+    });
+
+    // Recopila todos los enlaces únicos con imagen
+    const enlacesUnicos = new Map();
+    document.querySelectorAll('a[href]').forEach(a => {
+      const texto = a.textContent.trim();
+      const img = a.querySelector('img');
+      if (texto && texto !== 'Volver' && texto !== 'Back' && !texto.includes('⬅') && img && !enlacesUnicos.has(texto.toLowerCase())) {
+        enlacesUnicos.set(texto.toLowerCase(), {
+          nombre: texto,
+          url: a.href,
+          icono: img.src
+        });
+      }
+    });
+
+    const listaCompleta = Array.from(enlacesUnicos.values());
+
+    inputBuscador.addEventListener('input', () => {
+      const consulta = inputBuscador.value.trim().toLowerCase();
+      cajaResultados.innerHTML = '';
+
+      if (!consulta) {
+        cajaResultados.style.display = 'none';
+        return;
+      }
+
+      const empiezan = listaCompleta.filter(item => item.nombre.toLowerCase().startsWith(consulta));
+      const contienen = listaCompleta.filter(item => !item.nombre.toLowerCase().startsWith(consulta) && item.nombre.toLowerCase().includes(consulta));
+      const coincidencias = [...empiezan, ...contienen];
+
+      if (coincidencias.length === 0) {
+        const msgVacio = idiomaActual === 'en' ? 'No links found' : 'No se encontraron enlaces';
+        cajaResultados.innerHTML = `<div style="padding: 12px 18px; color: #FF4200; font-weight: bold; font-size: 14px;">${msgVacio}</div>`;
+      } else {
+        coincidencias.forEach(item => {
+          const fila = document.createElement('a');
+          fila.href = item.url;
+          fila.target = '_blank';
+          fila.rel = 'noopener noreferrer';
+          fila.className = 'item-resultado-treelinks';
+          fila.style.cssText = 'display: flex; align-items: center; gap: 12px; padding: 10px 18px; color: #FF4200; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255, 224, 0, 0.5); font-size: 15px;';
+          fila.innerHTML = `<img src="${item.icono}" style="width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1.5px solid #FFE000; background: #fff;"><span>${item.nombre}</span>`;
+          cajaResultados.appendChild(fila);
+        });
+      }
+
+      cajaResultados.style.display = 'block';
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('contenedor-buscador').contains(e.target)) {
+        cajaResultados.style.display = 'none';
       }
     });
   }
