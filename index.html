@@ -3510,6 +3510,16 @@ document.addEventListener('touchstart', function(event) {
     }
 }, { passive: false });
 </script>
+
+<script>
+  document.querySelectorAll('img').forEach((img, index) => {
+    if (index > 2) img.setAttribute('loading', 'lazy');
+  });
+  document.querySelectorAll('audio').forEach(audio => {
+    audio.setAttribute('preload', 'none');
+  });
+</script>
+
 <!--Aquí termina SCRIPT 🏁-->
 
         <!--Pantallas Internas ✝️ 🌐 🖼 💬 🤖 🎮 🗺 👥️ 📚 ⚽️ 📶 💼 💰 ⭐️-->
