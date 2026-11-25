@@ -125,27 +125,7 @@
         .ribbon-text {
             position: relative;
             z-index: 1;
-             {
-             background: linear-gradient(
-             90deg,
-    #FF4200 0%,
-    #FFD700 25%,
-    #FFFFFF 50%,
-    #FFD700 75%,
-    #FF4200 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  animation: brillo-shimmer 3s linear infinite;
-  font-weight: 900 !important;
-}
 
-@keyframes brillo-shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
         }
         /* ------------------------------------------- */
         .container {
@@ -2183,7 +2163,23 @@ footer.rectangulo-frase {
   text-align: center;
   font-size: 11px;
 }
-
+#cerrar-billy-ai {
+  margin-left: auto;
+  height: 34px;
+  padding: 0 12px;
+  border: 2px solid #FFE000;
+  border-radius: 12px;
+  background: #00FF16;
+  color: #FF4200;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+        }
 @media(max-width:360px) {
   #fila-buscador-billy {
     gap: 6px;
@@ -2274,6 +2270,11 @@ footer.rectangulo-frase {
   .aviso-billy {
     font-size: 13px;
     padding: 0 12px 11px;
+  }
+  #cerrar-billy-ai {
+  height: 37px;
+  padding: 0 14px;
+  font-size: 15px;
   }
 /* --- Borde naranja 2px en las burbujas de mensajes de Billy (excluyendo bienvenida) --- */
 #conversacion-billy p:not(.bienvenida-billy),
