@@ -2047,7 +2047,7 @@ footer.rectangulo-frase {
   border-bottom: 2px solid #FFE000;
   background: #0070FF;
   color: #FFE000;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .avatar-billy-chat {
@@ -2168,7 +2168,7 @@ footer.rectangulo-frase {
   height: 34px;
   padding: 0 12px;
   border: 2px solid #FFE000;
-  border-radius: 12px;
+  border-radius: 20px;
   background: #00FF16;
   color: #FF4200;
   font-size: 14px;
@@ -2177,9 +2177,12 @@ footer.rectangulo-frase {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   white-space: nowrap;
-        }
+  flex-shrink: 0;
+  min-width: 0;
+}
 @media(max-width:360px) {
   #fila-buscador-billy {
     gap: 6px;
@@ -2295,9 +2298,12 @@ footer.rectangulo-frase {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   white-space: nowrap;
-      }
+  flex-shrink: 0;
+  min-width: 0;
+}
     </style>
 <!--Aquí termina CSS 🏁-->
 
