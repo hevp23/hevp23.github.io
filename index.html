@@ -1990,18 +1990,20 @@ footer.rectangulo-frase {
 #boton-billy-ai {
   flex: 1 1 50%;
   min-width: 0;
-  height: 52px;
+  height: 42px;
+  min-height: 42px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  padding: 2px 2px;
+  padding: 0 2px;
   border: 2px solid #FFE000;
   border-radius: 50px;
   background: #00FF16;
   color: #FF4200;
-  font-size: 15px;        /* ← antes era 16px */
-  font-weight: 600;       /* ← antes era 800 */
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,.25);
 }
@@ -2192,13 +2194,11 @@ footer.rectangulo-frase {
     font-size: 12px !important;
     padding-left: 7px !important;
   }
-
-  #boton-billy-ai {
-    gap: 4px;
-    padding: 4px 4px;
-    font-size: 14px;
-  }
-
+#boton-billy-ai {
+  gap: 4px;
+  padding: 0 4px;
+  font-size: 14px;
+        }
   .avatar-billy-pill {
     width: 30px;
     height: 30px;
@@ -2217,9 +2217,10 @@ footer.rectangulo-frase {
   opacity: 1 !important;
   }
   #boton-billy-ai {
-    height: 57px;
-    font-size: 17px;
-  }
+  height: 46px;
+  min-height: 46px;
+  font-size: 17px;
+}
   #fila-buscador-billy #buscadorTreeLinks {
     height: 57px;
     font-size: 17px !important;
