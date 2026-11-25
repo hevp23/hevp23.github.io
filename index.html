@@ -2387,7 +2387,7 @@ footer.rectangulo-frase {
   <header class="encabezado-billy">
     <img src="billy-ai.png" alt="" class="avatar-billy-chat">
     <strong id="titulo-billy-ai">Billy AI</strong>
-    <button type="button" id="cerrar-billy-ai"
+   <button id="cerrar-billy-ai" data-es="❌ Cerrar" data-en="❌ Close">❌ Cerrar</button>
       aria-label="Cerrar Billy AI"
       data-aria-es="Cerrar Billy AI"
       data-aria-en="Close Billy AI">×</button>
@@ -4087,20 +4087,20 @@ document.addEventListener('touchstart', function(event) {
       .trim();
   }
 
-  function agregarMensaje(texto, tipo) {
-    const mensaje = document.createElement('p');
-    mensaje.textContent = texto;
-    mensaje.style.cssText =
-      'padding:10px 12px;margin:10px 0;' +
-      'border-radius:13px;line-height:1.45;' +
-      'overflow-wrap:anywhere;' +
-      (tipo === 'usuario'
-        ? 'background:#FFE000;color:#FF4200;margin-left:22px;'
-        : 'background:#00FF16;color:#FF4200;margin-right:22px;');
+function agregarMensaje(texto, tipo) {
+  const mensaje = document.createElement('p');
+  mensaje.textContent = texto;
+  mensaje.style.cssText =
+    'padding:10px 12px;margin:10px 0;' +
+    'border-radius:13px;line-height:1.45;' +
+    'overflow-wrap:anywhere;' +
+    (tipo === 'usuario'
+      ? 'background:#FFE000;color:#FF4200;margin-left:22px;border:2px solid #00FF16;'
+      : 'background:#00FF16;color:#FF4200;margin-right:22px;border:2px solid #FF4200;');
 
-    conversacion.appendChild(mensaje);
-    conversacion.scrollTop = conversacion.scrollHeight;
-  }
+  conversacion.appendChild(mensaje);
+  conversacion.scrollTop = conversacion.scrollHeight;
+    }
 
   function responder(pregunta) {
     const q = normalizar(pregunta);
