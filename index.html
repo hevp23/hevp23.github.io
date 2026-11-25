@@ -126,13 +126,26 @@
             position: relative;
             z-index: 1;
              {
-             text-shadow:
-             0 0 8px #FFE000,
-             0 0 16px #FFD700,
-             0 0 24px #FFA500,
-             0 2px 4px rgba(0,0,0,0.3) !important;
-             letter-spacing: 0.5px;
-             }
+             background: linear-gradient(
+             90deg,
+    #FF4200 0%,
+    #FFD700 25%,
+    #FFFFFF 50%,
+    #FFD700 75%,
+    #FF4200 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: brillo-shimmer 3s linear infinite;
+  font-weight: 900 !important;
+}
+
+@keyframes brillo-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
         }
         /* ------------------------------------------- */
         .container {
@@ -2262,20 +2275,10 @@ footer.rectangulo-frase {
     font-size: 13px;
     padding: 0 12px 11px;
   }
-}
-/* --- 1) Borde naranja 2px en las burbujas de mensajes de Billy --- */
-#conversacion-billy p,
+/* --- Borde naranja 2px en las burbujas de mensajes de Billy (excluyendo bienvenida) --- */
+#conversacion-billy p:not(.bienvenida-billy),
 .sugerencia-billy {
   border: 2px solid #FF4200 !important;
-}
-
-/* --- 2) Apagar el anillo negro/blanco del input y dejar borde amarillo --- */
-#mensaje-billy,
-#mensaje-billy:focus,
-#mensaje-billy:active {
-  outline: none !important;
-  border: 2px solid #FFE000 !important;
-  box-shadow: none !important;
 }
     </style>
 <!--Aquí termina CSS 🏁-->
