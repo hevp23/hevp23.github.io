@@ -2338,7 +2338,72 @@ footer.rectangulo-frase {
     font-size: 14px !important;
   }
 }
+/* --- ALMOHADITA PARA LA BIOGRAFÍA --- */
+.bio-contenedor {
+    display: inline-block;
+    background-color: #FF4200;
+    border: 2px solid #FFE000;
+    padding: 7px 17px;
+    border-radius: 7px;
+    text-align: center;
+    font-size: 10.7px;
+    margin: 0 auto 1px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    color: #FFE000;
+    font-weight: bold;
+    line-height: 1.5;
+}
 
+/* --- ALMOHADITA PARA EL TEXTO DEL QR --- */
+.texto-qr-contenedor {
+    display: inline-block;
+    background-color: #FF4200;
+    border: 2px solid #FFE000;
+    padding: 7px 16px;
+    border-radius: 7px;
+    color: #00FF16;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* --- ALMOHADITA PARA EL PIE DE PÁGINA --- */
+.footer-contenedor {
+    display: inline-block;
+    background-color: #FF4200;
+    border: 2px solid #FFE000;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #FFE000;
+    text-align: center;
+    margin: 10px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    line-height: 1.7;
+}
+
+/* --- PC Y LAPTOPS --- */
+@media (min-width: 900px) {
+    .bio-contenedor {
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+    
+    .texto-qr-contenedor {
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+    
+    .footer-contenedor {
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+        }
+    
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -2395,9 +2460,9 @@ footer.rectangulo-frase {
 <!-- ======= -->
 
 <!--Biografía general desde 2️⃣0️⃣2️⃣5️⃣-->
-<p style="font-size: 10.7px; color: #ffe000; margin: 7px 0; text-align: center; font-weight: 700;">
+<div class="bio-contenedor">
     ✝️<br>🚹<br>🕓 9/Jul/2026<br>🏡 El Salvador 🇸🇻
-</p>
+</div>
 
 <!--Fecha actual, reloj de 7 segmentos de hora actual, ubicación por IP 🗓🕰📍-->
 <div class="fila-reloj-clima" aria-hidden="true">
