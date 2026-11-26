@@ -4136,7 +4136,7 @@ document.addEventListener('touchstart', function(event) {
 
 function agregarMensaje(texto, tipo) {
   const mensaje = document.createElement('p');
-  mensaje.textContent = texto;
+
   mensaje.style.cssText =
     'padding:10px 12px;margin:10px 0;' +
     'border-radius:13px;line-height:1.45;' +
@@ -4146,6 +4146,26 @@ function agregarMensaje(texto, tipo) {
       : 'background:#00FF16;color:#FF4200;margin-right:22px;border:2px solid #FF4200;');
 
   conversacion.appendChild(mensaje);
+
+  if (tipo === 'usuario') {
+    mensaje.textContent = texto;
+  } else {
+    const caracteres = Array.from(texto);
+    let indice = 0;
+
+    function escribirCaracter() {
+      if (indice < caracteres.length) {
+        mensaje.textContent += caracteres[indice];
+        indice++;
+
+        conversacion.scrollTop = conversacion.scrollHeight;
+        setTimeout(escribirCaracter, 20);
+      }
+    }
+
+    escribirCaracter();
+  }
+
   conversacion.scrollTop = conversacion.scrollHeight;
     }
 
