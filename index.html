@@ -2340,70 +2340,70 @@ footer.rectangulo-frase {
 }
 /* --- ALMOHADITA PARA LA BIOGRAFÍA --- */
 .bio-contenedor {
-    display: inline-block;
-    background-color: #FF4200;
-    border: 2px solid #FFE000;
-    padding: 7px 17px;
-    border-radius: 7px;
-    text-align: center;
-    font-size: 10.7px;
-    margin: 0 auto 1px auto;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    color: #FFE000;
-    font-weight: bold;
-    line-height: 1.5;
+    display: inline-block !important;
+    background-color: #FF4200 !important;
+    border: 2px solid #FFE000 !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    text-align: center !important;
+    margin: 0 auto 1px auto !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    color: #FFE000 !important;
+    font-weight: bold !important;
+    line-height: 1.5 !important;
+    width: fit-content !important;
 }
 
 /* --- ALMOHADITA PARA EL TEXTO DEL QR --- */
 .texto-qr-contenedor {
-    display: inline-block;
-    background-color: #FF4200;
-    border: 2px solid #FFE000;
-    padding: 7px 16px;
-    border-radius: 7px;
-    color: #00FF16;
-    font-weight: bold;
-    font-size: 11px;
-    text-align: center;
-    margin: 0 auto 15px auto;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    display: inline-block !important;
+    background-color: #FF4200 !important;
+    border: 2px solid #FFE000 !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    color: #00FF16 !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    margin: 0 auto 15px auto !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    width: fit-content !important;
 }
 
 /* --- ALMOHADITA PARA EL PIE DE PÁGINA --- */
 .footer-contenedor {
-    display: inline-block;
-    background-color: #FF4200;
-    border: 2px solid #FFE000;
-    padding: 10px 16px;
-    border-radius: 8px;
-    color: #FFE000;
-    text-align: center;
-    margin: 10px auto;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    line-height: 1.7;
+    display: inline-block !important;
+    background-color: #FF4200 !important;
+    border: 2px solid #FFE000 !important;
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    color: #FFE000 !important;
+    text-align: center !important;
+    margin: 10px auto !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    line-height: 1.7 !important;
+    width: fit-content !important;
 }
 
 /* --- PC Y LAPTOPS --- */
 @media (min-width: 900px) {
     .bio-contenedor {
-        padding: 10px 20px;
-        border-radius: 10px;
-        font-size: 14px;
+        padding: 10px 20px !important;
+        border-radius: 10px !important;
+        font-size: 14px !important;
     }
     
     .texto-qr-contenedor {
-        padding: 10px 20px;
-        border-radius: 10px;
-        font-size: 20px;
+        padding: 10px 20px !important;
+        border-radius: 10px !important;
+        font-size: 20px !important;
     }
     
     .footer-contenedor {
-        padding: 12px 20px;
-        border-radius: 10px;
-        font-size: 13px;
+        padding: 12px 20px !important;
+        border-radius: 10px !important;
+        font-size: 13px !important;
     }
-        }
-    
+}   
     </style>
 <!--Aquí termina CSS 🏁-->
 
@@ -2459,7 +2459,6 @@ footer.rectangulo-frase {
 
 <!-- ======= -->
 
-<!--Biografía general desde 2️⃣0️⃣2️⃣5️⃣-->
 <div class="bio-contenedor">
     ✝️<br>🚹<br>🕓 9/Jul/2026<br>🏡 El Salvador 🇸🇻
 </div>
@@ -2769,7 +2768,7 @@ footer.rectangulo-frase {
 <!-- Código QR -->
 <div style="width: 100%; margin-top: 40px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
-    <p class="texto-qr-contenedor" style="margin-bottom: 15px; font-family: sans-serif; text-align: center;">
+    <p class="texto-qr-contenedor">
     <span id="texto-qr">¡Escaneá este código para compartir mi web!</span>
     </p>
 
@@ -2787,12 +2786,14 @@ footer.rectangulo-frase {
 <meta name="author" content="Héctor Eduardo Valladares Pérez">      
 
    <!-- Pie de página en español e inglés 🦶📄🇪🇸🇬🇧-->
-<div class="footer-contenedor" aria-hidden="true">
+<div class="footer-contenedor">
     © 2026 | Héctor Eduardo Valladares Pérez (@hevp23).<br>
     <span data-es="Todos los derechos reservados. | " data-en="All rights reserved. | ">Todos los derechos reservados. | </span>
-    <span data-es="Sitio web hecho a mano." data-en="Handmade website.">Sitio web hecho a mano.</span><br>
+    <span data-es="Sitio web hecho a mano." data-en="Handmade website.">Sitio web hecho a mano.</span>
+</div>
     
     <!--Cuadro de ⚠️ ADVERTENCIA ⚠️ y ⚠️ WARNING ⚠️-->
+    <div>
     <span class="cuadro-advertencia" style="background-color: #ff4200; padding: 7px 7px; border-radius: 12px; display: inline-block; margin-top: 7px; margin-bottom: 7px; color: #ffe000;">
     <span style="font-size:13px !important;" data-es="⚠️ ADVERTENCIA ⚠️" data-en="⚠️ WARNING ⚠️">️⚠️ ADVERTENCIA ⚠️</span><br>
     <span style="font-size:13px !important;" data-es="PROHIBIDA LA REPRODUCCIÓN, DISTRIBUCIÓN O MODIFICACIÓN TOTAL O PARCIAL DE ESTE SITIO WEB, SU DISEÑO, CÓDIGO E IMÁGENES, SIN LA AUTORIZACIÓN PREVIA Y POR ESCRITO DE SU AUTOR." data-en="REPRODUCTION, DISTRIBUTION OR MODIFICATION, IN WHOLE OR IN PART, OF THIS WEBSITE, ITS DESIGN, CODE AND IMAGES IS PROHIBITED WITHOUT THE PRIOR WRITTEN AUTHORIZATION OF ITS AUTHOR.">PROHIBIDA LA REPRODUCCIÓN, DISTRIBUCIÓN O MODIFICACIÓN TOTAL O PARCIAL DE ESTE SITIO WEB, SU DISEÑO, CÓDIGO E IMÁGENES, SIN LA AUTORIZACIÓN PREVIA Y POR ESCRITO DE SU AUTOR.</span>
