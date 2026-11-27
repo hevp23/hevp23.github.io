@@ -996,21 +996,8 @@ div:focus:not(:focus-visible),
   max-width: 100%;
   /* ❌ QUITAMOS el borde de aquí, ya no va */
 }
-
-/* --- BIOGRAFÍA: centrada y pegada al reloj --- */
-.bio-contenedor {
-  display: block !important;
-  margin: 0 auto -13px auto !important;
-  text-align: center !important;
-  width: fit-content !important;
-}
         
 @media (min-width: 900px) {
-    /* ✅ Biografía en PC */
-  .bio-contenedor {
-    margin-bottom: -13px !important;
-    font-size: 13px;
-  }
     
   /* ✅ REEMPLAZA solo estas reglas del reloj: */
   .fila-reloj-clima {
@@ -1397,10 +1384,6 @@ img, audio, video {
         ancho : 110 px  !importante ;
         altura : 110 px  !importante ;
     }
-    /* ✅ Biografía en landscape */
-  .bio-contenedor {
-    margin-bottom: -13px !important;
-        }
     
     /* ✅ PORTADA: ocupa todo el ancho y permite desplazarse desde cualquier parte 🖼️ */
     . portada-img  {
@@ -1566,10 +1549,7 @@ html, body {
         font-size: 17.9px !important;
         padding: 12px 27px !important;
     }
-  /* ✅ Biografía en landscape */
-  .bio-contenedor {
-    margin-bottom: -13px !important;
-  }
+
     .fila-reloj-clima {
   display: flex;
   align-items: stretch;
