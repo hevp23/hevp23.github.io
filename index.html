@@ -1405,16 +1405,52 @@ img, audio, video {
         relleno : 12 px  25 px  !importante ;
     }
 
-/* ✅ SCROLL EN TODA LA PÁGINA INCLUYENDO LA PORTADA 📱 */
-@media screen and (orientation: landscape) {
-    html, body {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        height: auto !important;
-        min-height: 100vh !important;
-        -webkit-overflow-scrolling: touch !important;
-    }
+/* ✅ FILA CLIMA-RELOJ-TEMPERATURA: separados 1px del reloj ⏰🌡️ */
+    .fila-reloj-clima {
+        width: auto !important;
+        max-width: 322px !important;
+        gap: 2px !important;
+        margin: 10px auto !important;
+        justify-content: center !important;
+    } 
+    
+    /* Bloques de clima y temperatura compactos */
+.bloque-clima {
+    flex: 0 0 55px !important;
+    width: 55px !important;
+    min-width: 55px !important;
+    max-width: 55px !important;
+    font-size: 17px !important;
 }
+    
+    /* Reloj central compacto */
+    .caja-reloj-centro {
+        flex: 0 0 210px !important;
+        width: 210px !important;
+        min-width: 210px !important;
+        max-width: 210px !important;
+    }
+    
+    #reloj-actual {
+        font-size: 1.1rem !important;
+    }
+    
+    #fecha-actual,
+    #ubicacion-actual {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Botones sociales */
+    .btn-red {
+        width: 42px !important;
+        height: 42px !important;
+    }
+    
+    .nombre-red {
+        font-size: 7.9px !important;
+        padding: 1px 3px !important;
+    }
+        }
 /* ======================================== */
 /* ✅ SCROLL GLOBAL Y BLOQUEO DE ZOOM 🔒    */
 /* ======================================== */
@@ -1515,53 +1551,61 @@ html, body {
         padding: 12px 27px !important;
     }
   
-  .fila-reloj-clima {
-    margin: 10px auto;
-    max-width: 322px;
-  }
-  
-  .caja-reloj-centro {
-    flex: 0 0 210px;
-    width: 210px;
-    min-width: 210px;
-    max-width: 210px;
-  }
-  
-  .bloque-clima {
-    flex: 0 0 55px;
-    width: 55px;
-    min-width: 55px;
-    max-width: 55px;
-    font-size: 17px;
-  }
-  
-  #reloj-actual {
-    font-size: 1.1rem !important;
-  }
-  
-  #fecha-actual,
-  #ubicacion-actual {
-    font-size: 0.7rem !important;
-  }
-  
-  .btn-red {
-    width: 42px !important;
-    height: 42px !important;
-  }
-  
-  .nombre-red {
-    font-size: 7.9px !important;
-    padding: 1px 3px !important;
-  }
-  
-  #bloque-clima .clima-etiqueta {
-    font-size: 9.5px !important;
-  }
-  
-  #bloque-temp .clima-etiqueta {
-    font-size: 10.5px !important;
-  }
-        }
+    .fila-reloj-clima {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2px;
+  margin: 15px auto;
+  width: 97%;
+  max-width: 440px;
+    }
+    
+    .bloque-clima {
+        flex: 0 0 55px !important;
+        width: 55px !important;
+        min-width: 55px !important;
+        max-width: 55px !important;
+        font-size: 17px !important;
+    }
+    
+    .caja-reloj-centro {
+        flex: 0 0 210px !important;
+        width: 210px !important;
+        min-width: 210px !important;
+        max-width: 210px !important;
+    }
+    
+    #reloj-actual {
+        font-size: 1.1rem !important;
+    }
+    
+    #fecha-actual,
+    #ubicacion-actual {
+        font-size: 0.7rem !important;
+    }
+    
+    .btn-red {
+        width: 42px !important;
+        height: 42px !important;
+    }
+    
+    .nombre-red {
+        font-size: 7px !important;
+        padding: 1px 3px !important;
+    }
+    
+/* Clima 🌤 (lado izquierdo) */
+#bloque-clima .clima-etiqueta {
+    font-size: 9.5px !important; /* 👈 Tamaño de las letras del nombre de cada clima */
+}
+
+/* Temperatura 🌡 (lado derecho) */
+#bloque-temp .clima-etiqueta {
+    font-size: 10.5px !important; /* 👈 Tamaño de las letras de Celsius */
+}
+
+} /* ← Este es el cierre del @media landscape */
 
 
 /* ======================================== */
