@@ -2551,10 +2551,17 @@ footer.rectangulo-frase {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
 }
-/* Ajuste milimétrico SOLO para horizontal y PC (no toca el vertical) */
-@media (orientation: landscape), (min-width: 900px) {
+/* 1. SOLO para pantallas grandes (PC / Laptops) */
+@media (min-width: 900px) {
   .fila-reloj-clima {
-    margin-top: 50px !important;
+    margin-top: 15px !important; /* Compensa el -12px de arriba y deja ~3px de aire */
+  }
+}
+
+/* 2. SOLO para teléfono en horizontal (Landscape) */
+@media screen and (orientation: landscape) and (max-width: 899px) {
+  .fila-reloj-clima {
+    margin-top: 14px !important; /* Compensa el -12px de arriba y deja ~2px de aire */
   }
 }
 
