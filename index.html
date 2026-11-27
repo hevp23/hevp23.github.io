@@ -2551,6 +2551,12 @@ footer.rectangulo-frase {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
 }
+/* Ajuste milimétrico SOLO para horizontal y PC (no toca el vertical) */
+@media (orientation: landscape), (min-width: 900px) {
+  .fila-reloj-clima {
+    margin-top: 4px !important;
+  }
+}
 
     </style>
 <!--Aquí termina CSS 🏁-->
