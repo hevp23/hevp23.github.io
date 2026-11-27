@@ -2406,8 +2406,77 @@ footer.rectangulo-frase {
         border-radius: 10px !important;
         font-size: 13px !important;
     }
-}
-    
+
+  /* Handle un poquito más grande */
+  .username {
+    font-size: 24px;
+    padding: 6px 16px;
+  }
+
+  /* Biografía un poquito más grande */
+  .bio-contenedor p {
+    font-size: 13px;
+  }
+
+  /* Reloj: SOLO aumentamos la separación de arriba, nada de anchos */
+  .fila-reloj-clima {
+    margin-top: 20px;
+  }
+
+  /* Clima y temperatura un poquito más grandes */
+  .bloque-clima {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    font-size: 22px;
+  }
+
+  .clima-etiqueta {
+    font-size: 12px;
+  }
+
+  /* Texto del QR un poquito más grande */
+  .texto-qr-contenedor {
+    font-size: 18px;
+  }
+
+  /* Pie de página un poquito más grande */
+  .footer-contenedor {
+    font-size: 13px;
+  }
+
+  /* Advertencia un poquito más grande */
+  .cuadro-advertencia {
+    font-size: 14px;
+  }
+
+    }
+
+/* --- MODO LANDSCAPE (celular/tablet acostados) --- */
+@media (orientation: landscape) and (max-width: 899px) {
+
+  /* Reducimos un poquito la altura para que quepa todo sin tanto scroll */
+  .fila-reloj-clima {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* Handle y biografía un pelín más compactos */
+  .username {
+    font-size: 18px;
+    padding: 4px 12px;
+  }
+
+  .bio-contenedor p {
+    font-size: 11px;
+  }
+
+  /* La fila del reloj se mantiene centrada y sin cortarse */
+  .caja-reloj-centro {
+    max-width: 320px;
+  }
+
+    }
 /* === CORRECCIÓN DEFINITIVA: FILA CLIMA-RELOJ-TEMPERATURA === */
 
 .fila-reloj-clima {
