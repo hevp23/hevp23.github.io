@@ -2554,25 +2554,22 @@ footer.rectangulo-frase {
 /* 1. SOLO para pantallas grandes (PC / Laptops) */
 @media (min-width: 900px) {
   .fila-reloj-clima {
-    margin-top: 15px !important; /* Compensa el -12px de arriba y deja ~3px de aire */
-  }
-}
-
-/* 2. SOLO para teléfono en horizontal (Landscape) */
-@media screen and (orientation: landscape) and (max-width: 899px) {
-  .fila-reloj-clima {
-    margin-top: 15px !important; /* Ahora sí funcionará fuera de min-width: 900px */
-  }
-}
-/* Regla limpia y libre de llaves abiertas para teléfono horizontal */
-@media screen and (orientation: landscape) and (max-width: 899px) {
-  .fila-reloj-clima {
     margin-top: 15px !important;
   }
-        }
+}
 
     </style>
+
+<style>
+/* 2. Regla limpia y libre de llaves abiertas para teléfono horizontal */
+@media screen and (orientation: landscape) and (max-width: 899px) {
+  .fila-reloj-clima {
+    margin-top: 18px !important;
+  }
+}
+</style>
 <!--Aquí termina CSS 🏁-->
+
 
 </head>
 
