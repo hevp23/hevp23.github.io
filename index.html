@@ -999,32 +999,32 @@ div:focus:not(:focus-visible),
 
 
 @media (min-width: 900px) {
+  
+  /* ✅ REEMPLAZA solo estas reglas del reloj: */
   .fila-reloj-clima {
-    max-width: 400px;
+    max-width: 500px;
     gap: 2px;
-    margin: 1px auto 15px auto;
-    /* ❌ QUITAMOS el borde de aquí también */
+    margin: 20px auto 15px auto;
   }
 
   .caja-reloj-centro {
-    margin: 0 !important;
+    flex: 0 0 300px;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .bloque-clima {
-    flex: 0 0 60px;
-    width: 60px;
-    min-width: 60px;
-    max-width: 60px;
-    font-size: 24px;
-    border: 2px solid #ffe000 !important;
+    flex: 0 0 70px;
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    font-size: 22px;
   }
+  
   .clima-etiqueta {
-    font-size: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    /*  QUITAMOS el borde de aquí también */
+    font-size: 12px;
   }
 }
 
@@ -1404,53 +1404,6 @@ img, audio, video {
         font-size : 17.9 px  !important ;
         relleno : 12 px  25 px  !importante ;
     }
-    
-    /* ✅ FILA CLIMA-RELOJ-TEMPERATURA: separados 1px del reloj ⏰🌡️ */
-    .fila-reloj-clima {
-        width: auto !important;
-        max-width: 322px !important;
-        gap: 2px !important;
-        margin: 10px auto !important;
-        justify-content: center !important;
-    } 
-    
-    /* Bloques de clima y temperatura compactos */
-.bloque-clima {
-    flex: 0 0 55px !important;
-    width: 55px !important;
-    min-width: 55px !important;
-    max-width: 55px !important;
-    font-size: 17px !important;
-}
-    
-    /* Reloj central compacto */
-    .caja-reloj-centro {
-        flex: 0 0 210px !important;
-        width: 210px !important;
-        min-width: 210px !important;
-        max-width: 210px !important;
-    }
-    
-    #reloj-actual {
-        font-size: 1.1rem !important;
-    }
-    
-    #fecha-actual,
-    #ubicacion-actual {
-        font-size: 0.7rem !important;
-    }
-    
-    /* Botones sociales */
-    .btn-red {
-        width: 42px !important;
-        height: 42px !important;
-    }
-    
-    .nombre-red {
-        font-size: 7.9px !important;
-        padding: 1px 3px !important;
-    }
-}
 
 /* ✅ SCROLL EN TODA LA PÁGINA INCLUYENDO LA PORTADA 📱 */
 @media screen and (orientation: landscape) {
@@ -1561,62 +1514,54 @@ html, body {
         font-size: 17.9px !important;
         padding: 12px 27px !important;
     }
-    
-    .fila-reloj-clima {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 2px;
-  margin: 15px auto;
-  width: 97%;
-  max-width: 440px;
-    }
-    
-    .bloque-clima {
-        flex: 0 0 55px !important;
-        width: 55px !important;
-        min-width: 55px !important;
-        max-width: 55px !important;
-        font-size: 17px !important;
-    }
-    
-    .caja-reloj-centro {
-        flex: 0 0 210px !important;
-        width: 210px !important;
-        min-width: 210px !important;
-        max-width: 210px !important;
-    }
-    
-    #reloj-actual {
-        font-size: 1.1rem !important;
-    }
-    
-    #fecha-actual,
-    #ubicacion-actual {
-        font-size: 0.7rem !important;
-    }
-    
-    .btn-red {
-        width: 42px !important;
-        height: 42px !important;
-    }
-    
-    .nombre-red {
-        font-size: 7px !important;
-        padding: 1px 3px !important;
-    }
-    
-/* Clima 🌤 (lado izquierdo) */
-#bloque-clima .clima-etiqueta {
-    font-size: 9.5px !important; /* 👈 Tamaño de las letras del nombre de cada clima */
-}
-
-/* Temperatura 🌡 (lado derecho) */
-#bloque-temp .clima-etiqueta {
-    font-size: 10.5px !important; /* 👈 Tamaño de las letras de Celsius */
-}
-
-} /* ← Este es el cierre del @media landscape */
+  
+  .fila-reloj-clima {
+    margin: 10px auto;
+    max-width: 322px;
+  }
+  
+  .caja-reloj-centro {
+    flex: 0 0 210px;
+    width: 210px;
+    min-width: 210px;
+    max-width: 210px;
+  }
+  
+  .bloque-clima {
+    flex: 0 0 55px;
+    width: 55px;
+    min-width: 55px;
+    max-width: 55px;
+    font-size: 17px;
+  }
+  
+  #reloj-actual {
+    font-size: 1.1rem !important;
+  }
+  
+  #fecha-actual,
+  #ubicacion-actual {
+    font-size: 0.7rem !important;
+  }
+  
+  .btn-red {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  
+  .nombre-red {
+    font-size: 7.9px !important;
+    padding: 1px 3px !important;
+  }
+  
+  #bloque-clima .clima-etiqueta {
+    font-size: 9.5px !important;
+  }
+  
+  #bloque-temp .clima-etiqueta {
+    font-size: 10.5px !important;
+  }
+        }
 
 
 /* ======================================== */
