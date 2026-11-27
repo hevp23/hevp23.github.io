@@ -2390,7 +2390,7 @@ footer.rectangulo-frase {
 /* --- PC Y LAPTOPS --- */
 @media (min-width: 900px) {
     .bio-contenedor {
-        padding: 10px 20px !important;
+        padding: 12px 24px !important;
         border-radius: 10px !important;
         font-size: 14px !important;
     }
@@ -2406,8 +2406,69 @@ footer.rectangulo-frase {
         border-radius: 10px !important;
         font-size: 13px !important;
     }
-}
 
+  /* Handle más grande en PC */
+  .username {
+    font-size: 26px !important;
+    padding: 8px 20px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Biografía más grande en PC */
+  .bio-contenedor {
+    padding: 12px 24px !important;
+    border-radius: 10px !important;
+  }
+  
+  .bio-contenedor p {
+    font-size: 14px !important;
+  }
+  
+  /* Reloj más grande en PC */
+  .fila-reloj-clima {
+    margin-top: 20px !important;
+  }
+  
+  .caja-reloj-centro {
+    flex: 0 0 350px !important;
+    width: 350px !important;
+    min-width: 350px !important;
+    max-width: 350px !important;
+  }
+  
+  .bloque-clima {
+    flex: 0 0 80px !important;
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    font-size: 24px !important;
+  }
+  
+  .clima-etiqueta {
+    font-size: 13px !important;
+  }
+  
+  /* Texto del QR más grande en PC */
+  .texto-qr-contenedor {
+    font-size: 20px !important;
+    padding: 10px 20px !important;
+  }
+  
+  /* Pie de página más grande en PC */
+  .footer-contenedor {
+    font-size: 14px !important;
+    padding: 12px 20px !important;
+  }
+  
+  /* Advertencia más grande en PC */
+  .cuadro-advertencia {
+    font-size: 15px !important;
+    padding: 12px 18px !important;
+  }
+  
+}
+}
+    
 /* === CORRECCIÓN DEFINITIVA: FILA CLIMA-RELOJ-TEMPERATURA === */
 
 .fila-reloj-clima {
