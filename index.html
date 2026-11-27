@@ -2405,7 +2405,90 @@ footer.rectangulo-frase {
         border-radius: 10px !important;
         font-size: 13px !important;
     }
-}   
+}
+
+/* === CORRECCIÓN DEFINITIVA: FILA CLIMA-RELOJ-TEMPERATURA === */
+
+.fila-reloj-clima {
+    display: grid !important;
+    grid-template-columns: 60px minmax(0, 1fr) 60px !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    gap: 4px !important;
+
+    width: calc(100% - 20px) !important;
+    max-width: 440px !important;
+
+    margin: 15px auto !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+/* Cuadros laterales: clima y temperatura */
+.fila-reloj-clima > .bloque-clima {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    flex: initial !important;
+    box-sizing: border-box !important;
+
+    padding: 4px 2px !important;
+    font-size: clamp(15px, 4vw, 24px) !important;
+}
+
+/* Rectángulo central: fecha, hora y ubicación */
+.fila-reloj-clima > .caja-reloj-centro,
+.fila-reloj-clima > div:has(> #reloj-actual) {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    flex: initial !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+/* Fecha y ubicación: evitar que empujen la fila */
+#fecha-actual,
+#ubicacion-actual {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    font-size: clamp(7px, 2.4vw, 11px) !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+
+    box-sizing: border-box !important;
+}
+
+/* Reloj: conservar el contenido dentro del cuadro */
+#reloj-actual {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    justify-content: center !important;
+    white-space: nowrap !important;
+
+    box-sizing: border-box !important;
+}
+
+/* Etiquetas Nublado y Celsius */
+.fila-reloj-clima .clima-etiqueta {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    font-size: 10px !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
     </style>
 <!--Aquí termina CSS 🏁-->
 
