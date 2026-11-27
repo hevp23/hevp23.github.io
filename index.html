@@ -2551,17 +2551,17 @@ footer.rectangulo-frase {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
 }
-/* 1. SOLO para pantallas grandes (PC / Laptops) */
+/* 1. Pantallas grandes (PC / Laptops) - NO SE TOCA, QUEDA IGUAL */
 @media (min-width: 900px) {
   .fila-reloj-clima {
-    margin-top: 15px !important; /* Compensa el -12px de arriba y deja ~3px de aire */
+    margin-top: 15px !important;
   }
 }
 
-/* 2. SOLO para teléfono en horizontal (Landscape) */
-@media screen and (orientation: landscape) and (max-width: 899px) {
+/* 2. SOLO teléfonos en horizontal (mide la pantalla física real, no afecta PC) */
+@media screen and (orientation: landscape) and (max-device-height: 550px) {
   .fila-reloj-clima {
-    margin-top: 50px !important; /* Compensa el -12px de arriba y deja ~2px de aire */
+    padding-top: 3px !important;
   }
 }
 
