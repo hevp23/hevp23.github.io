@@ -1409,7 +1409,7 @@ img, audio, video {
         width: auto !important;
         max-width: 322px !important;
         gap: 2px !important;
-        margin: 10px auto !important;
+        margin: 1px 10px auto !important;
         justify-content: center !important;
     } 
     
@@ -1562,11 +1562,13 @@ html, body {
     }
     
     .fila-reloj-clima {
-        width: auto !important;
-        max-width: 322px !important;
-        gap: 2px !important;
-        margin: 10px auto !important;
-        justify-content: center !important;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2px;
+  margin: 1px auto 15px auto;
+  width: 97%;
+  max-width: 440px;
     }
     
     .bloque-clima {
