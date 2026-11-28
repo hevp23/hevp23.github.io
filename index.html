@@ -1231,13 +1231,13 @@ img, audio, video {
 /* --- FILA DE ÍCONOS DE REDES SOCIALES EN UNA SOLA LÍNEA --- */
 .fila-iconos {
   display: flex !important;
-  flex-wrap: nowrap !important; /* 👈 Esto fuerza a que todos estén en una sola fila */
+  flex-wrap: nowrap !important;
   justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
-  gap: 4px !important; /* 👈 Reducido de 10px a 4px */
-  margin: 20px auto !important;
-  overflow-x: auto !important; /* 👈 Por si no caben, permite scroll horizontal */
+  gap: 4px !important;
+  margin: 20px auto !important; /* 👈 ¡ESTA es la que estaba pisando tu cambio del HTML! */
+  overflow-x: auto !important;
 }
 
 /* --- En PC, tamaños normales --- */
@@ -2482,7 +2482,7 @@ footer.rectangulo-frase {
     width: calc(100% - 20px) !important;
     max-width: 440px !important;
 
-    margin: 2px auto 15px !important;
+    margin: 2px auto 7px !important;
     padding: 0 !important;
 
     box-sizing: border-box !important;
